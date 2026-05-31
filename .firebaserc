@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "my-portfolio-fss"
+  },
+  "targets": {
+    "my-portfolio-fss": {
+      "hosting": {
+        "sahayasavari": [
+          "sahayasavari"
+        ]
+      }
+    }
+  }
+}
