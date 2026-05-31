@@ -58,6 +58,7 @@ const [copied, setCopied] = useState(false);
 const [selectedProject, setSelectedProject] = useState<any>(null);
 const [showResume, setShowResume] = useState(false);
 const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+const [isHeroLoaded, setIsHeroLoaded] = useState(false);
 
 useEffect(() => {
   const handleKeyDown = (e: KeyboardEvent) => {
@@ -137,8 +138,24 @@ useEffect(() => {
         </AnimatePresence>
         {/* HERO SECTION */}
         <section id="home" className="relative h-[1000px] flex items-start justify-center pt-[200px] px-6 overflow-hidden bg-black">
-          <div className="absolute top-[15%] left-0 w-full h-auto z-0 opacity-40">
-            <video src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260307_083826_e938b29f-a43a-41ec-a153-3d4730578ab8.mp4" autoPlay loop muted playsInline className="w-full h-auto object-contain" />
+          <div className="absolute top-[15%] left-0 w-full z-0 opacity-40">
+            <div className="relative w-full">
+              <img 
+                src="https://image.mux.com/9JXDljEVWYwWu01PUkAemafDugK89o01BR6zqJ3aS9u00A/thumbnail.webp?time=0" 
+                alt="Hero Video Poster" 
+                className={`absolute top-0 left-0 w-full h-auto object-contain transition-opacity duration-1000 ease-in-out ${isHeroLoaded ? 'opacity-0' : 'opacity-100'}`}
+              />
+              <video 
+                src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260307_083826_e938b29f-a43a-41ec-a153-3d4730578ab8.mp4" 
+                autoPlay 
+                loop 
+                muted 
+                playsInline 
+                preload="auto"
+                onCanPlay={() => setIsHeroLoaded(true)}
+                className={`relative w-full h-auto object-contain transition-opacity duration-1000 ease-in-out ${isHeroLoaded ? 'opacity-100' : 'opacity-0'}`} 
+              />
+            </div>
           </div>
           <div className="absolute inset-0 bg-black/10 z-0 pointer-events-none" />
           <div className="absolute bottom-0 left-0 right-0 h-[400px] bg-gradient-to-t from-black via-black/80 to-transparent z-[1]" />
@@ -170,13 +187,16 @@ useEffect(() => {
               Focused on machine learning, intelligent applications, backend development, and solving real-world problems through technology.
             </motion.p>
 
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.1, duration: 0.8 }} className="flex flex-col sm:flex-row items-center gap-4">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.1, duration: 0.8 }} className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4">
               <a href="#projects" className="liquid-glass-strong px-8 py-4 rounded-full font-body font-medium text-sm flex items-center gap-2 group transition-all hover:scale-105 active:scale-95">
                 View Projects <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </a>
               <a href="#about" className="text-white/60 hover:text-white font-body font-medium text-sm flex items-center gap-2 transition-all px-8 py-4">
                 Explore Skills <Play className="w-4 h-4 fill-current" />
               </a>
+              <button onClick={() => setShowResume(true)} className="liquid-glass px-8 py-4 rounded-full font-body font-medium text-sm text-white/80 hover:text-white flex items-center gap-2 transition-all hover:scale-105 active:scale-95">
+                View Resume
+              </button>
             </motion.div>
           </div>
           <div className="absolute bottom-16 left-0 right-0 z-10 flex flex-col items-center gap-6 px-6">
@@ -314,7 +334,7 @@ useEffect(() => {
         {/* PROJECTS GRID */}
         <section id="projects" className="py-32 px-6 bg-black relative">
           <div className="max-w-screen-xl mx-auto">
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-8">
               <div>
                 <div className="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-4">Selected Work</div>
                 <h2 className="text-5xl md:text-6xl font-heading italic text-white tracking-tight leading-[0.9]">AI-Powered <br/> Projects.</h2>

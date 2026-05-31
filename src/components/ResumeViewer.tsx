@@ -57,6 +57,10 @@ const ResumeViewer: React.FC<ResumeViewerProps> = ({ onClose, pdfUrl = '/resume.
         className="liquid-glass-strong bg-black/90 p-4 rounded-full flex items-center gap-6 mb-6 shadow-2xl border border-white/20 fixed top-6 z-[310]"
         onClick={e => e.stopPropagation()}
       >
+        <div className="hidden md:flex flex-col border-r border-white/20 pr-6 mr-2">
+          <span className="text-white font-heading italic text-lg leading-none">Sahaya Savari F</span>
+          <span className="text-white/50 font-body text-[10px] uppercase tracking-widest mt-1">M.Sc Artificial Intelligence • Resume</span>
+        </div>
         <div className="flex items-center gap-2 border-r border-white/20 pr-6">
           <button onClick={zoomOut} className="w-10 h-10 liquid-glass rounded-full flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-colors" aria-label="Zoom Out">
             <ZoomOut className="w-4 h-4" />
