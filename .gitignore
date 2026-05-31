@@ -1,0 +1,30 @@
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+*.log
+
+# Build
+dist/
+dist-ssr/
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.class
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Vite
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
