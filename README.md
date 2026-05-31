@@ -1,39 +1,54 @@
 # 🚀 Sahaya Savari F — Portfolio
 
-A modern portfolio website showcasing my projects, technical skills, certifications, and journey in Artificial Intelligence.
-
 <p align="center">
   <a href="https://sahayasavari.web.app">🌐 Live Portfolio</a> •
   <a href="https://github.com/sahaya-savari">💻 GitHub</a> •
   <a href="https://www.linkedin.com/in/sahayasavarif">💼 LinkedIn</a>
 </p>
 
----
-
-## About
-
-I am **Sahaya Savari F**, an **M.Sc Artificial Intelligence student** at **St. Joseph's College (Autonomous), Tiruchirappalli**.
-
-I enjoy building practical software solutions using Artificial Intelligence, Machine Learning, Python, Backend Development, Data Analytics, and Modern Web Technologies.
-
-This portfolio serves as my central hub for projects, certifications, technical skills, and professional achievements.
+<p align="center">
+  <img src="https://img.shields.io/badge/React-19-blue" />
+  <img src="https://img.shields.io/badge/TypeScript-Latest-blue" />
+  <img src="https://img.shields.io/badge/Vite-7-purple" />
+  <img src="https://img.shields.io/badge/Firebase-Hosting-orange" />
+  <img src="https://img.shields.io/badge/License-Personal-green" />
+</p>
 
 ---
 
-## Features
+## 👋 About
 
-* Premium Glassmorphism UI
-* Fully Responsive Design
-* In-App Resume Viewer
-* Interactive Project Showcase
-* Smooth Animations
-* Accessibility Improvements
-* Firebase Hosting Deployment
-* Performance Optimizations
+I'm **Sahaya Savari F**, an **M.Sc Artificial Intelligence student** at **St. Joseph's College (Autonomous), Tiruchirappalli**.
+
+I enjoy building practical software solutions using:
+
+* Artificial Intelligence
+* Machine Learning
+* Python Development
+* Backend Systems
+* Data Analytics
+* Modern Web Technologies
+
+This portfolio serves as my central professional hub, showcasing projects, certifications, technical skills, and achievements.
+
+🌐 **Portfolio:** https://sahayasavari.web.app
 
 ---
 
-## Tech Stack
+## ✨ Features
+
+* 🎨 Premium Glassmorphism Design
+* 📱 Fully Responsive Layout
+* 📄 Integrated Resume Viewer
+* 🔍 Interactive Project Showcase
+* ⚡ Performance Optimized
+* 🎬 Smooth Animations
+* ♿ Accessibility Improvements
+* 🚀 Firebase Hosting Deployment
+
+---
+
+## 🛠️ Tech Stack
 
 | Category        | Technologies            |
 | --------------- | ----------------------- |
@@ -48,65 +63,59 @@ This portfolio serves as my central hub for projects, certifications, technical 
 
 ---
 
-## Featured Projects
+## 📂 Featured Projects
 
-### Daily Spark
+### 📌 Daily Spark
 
 Offline-first habit tracking and streak management application.
 
-#### Highlights
+**Highlights**
 
 * Daily streak tracking
 * Calendar visualization
 * Local-first storage
-* Backup and restore
+* Backup & restore
 * Notifications support
 
-**Live Demo**
+**Links**
 
-https://daily-spark-app-da74b.web.app
+🌐 Live: https://daily-spark-app-da74b.web.app
 
-**GitHub**
-
-https://github.com/sahaya-savari/daily-spark
+💻 GitHub: https://github.com/sahaya-savari/daily-spark
 
 ---
 
-### PrepMind AI
+### 📌 PrepMind AI
 
-AI-powered learning platform focused on improving student preparation and learning workflows.
+AI-powered learning platform designed to improve student preparation and learning workflows.
 
-#### Technologies
+**Technologies**
 
-* Artificial Intelligence
+* AI Integration
 * React
 * Backend APIs
 * Modern Web Technologies
 
 ---
 
-### Personal Portfolio
+### 📌 Personal Portfolio
 
-Professional portfolio website showcasing projects, certifications, skills, and resume.
+Professional portfolio website showcasing projects, skills, certifications, and resume.
 
-#### Highlights
+**Highlights**
 
 * Resume Preview Modal
 * Interactive UI
 * Responsive Design
 * Firebase Deployment
 
-**Live Demo**
+🌐 Live: https://sahayasavari.web.app
 
-https://sahayasavari.web.app
-
-**GitHub**
-
-https://github.com/sahaya-savari/portfolio
+💻 GitHub: https://github.com/sahaya-savari/portfolio
 
 ---
 
-## Certifications
+## 🏆 Certifications
 
 * IBM Data Analyst Course
 * Honor's Diploma in Information Technology
@@ -114,25 +123,23 @@ https://github.com/sahaya-savari/portfolio
 
 ---
 
-## Education
+## 🎓 Education
 
 ### M.Sc Artificial Intelligence
 
 **St. Joseph's College (Autonomous)**
-
 Tiruchirappalli, Tamil Nadu
 
 Expected Graduation: **2026**
 
 ---
 
-## Resume
+## 📄 Resume
 
 The portfolio includes a built-in Resume Viewer that allows recruiters to:
 
 * View Resume
-* Zoom In
-* Zoom Out
+* Zoom In / Zoom Out
 * Navigate Pages
 * Download Resume
 
@@ -140,7 +147,7 @@ Without leaving the website.
 
 ---
 
-## Getting Started
+## 🚀 Getting Started
 
 ### Clone Repository
 
@@ -175,7 +182,7 @@ npm run preview
 
 ---
 
-## Deployment
+## 📦 Deployment
 
 Deploy to Firebase Hosting:
 
@@ -186,24 +193,27 @@ npx firebase deploy
 
 ---
 
-## Connect With Me
+## 📫 Connect With Me
 
-**Portfolio**
-
+🌐 Portfolio
 https://sahayasavari.web.app
 
-**LinkedIn**
-
+💼 LinkedIn
 https://www.linkedin.com/in/sahayasavarif
 
-**GitHub**
-
+💻 GitHub
 https://github.com/sahaya-savari
 
 ---
 
-## License
+## ⭐ Repository
 
-Copyright © 2026 Sahaya Savari F
+If you found this portfolio useful, consider giving the repository a star.
+
+---
+
+## 📜 License
+
+© 2026 Sahaya Savari F
 
 All Rights Reserved.
