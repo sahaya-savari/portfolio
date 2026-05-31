@@ -21,7 +21,8 @@ I am an AI Developer currently pursuing my M.Sc in Artificial Intelligence. This
 - ♿ **Accessible**: Semantic structure with universal `ESC` key bindings, focus trapping, and ARIA labels.
 
 ## Live Demo
-[https://sahayasavari.web.app](https://sahayasavari.web.app) *(Coming Soon)*
+[https://sahayasavari.web.app](https://sahayasavari.web.app)
+
 
 ## Installation
 
