@@ -8,6 +8,7 @@ export const PROJECTS = [
     desc: "A daily motivation and habit-tracking application that helps users build positive routines with AI-powered personalized suggestions.", 
     stack: "Python · AI · Mobile", 
     link: "https://daily-spark-app-da74b.web.app",
+    github: "https://github.com/sahaya-savari",
     longDesc: "Daily Spark is a comprehensive productivity ecosystem designed to overcome procrastination through intelligent intervention. By tracking daily habits and analyzing user behavior patterns, the AI engine generates personalized daily routines and motivational nudges tailored to the user's optimal performance windows.",
     metrics: [
       { label: "Core Tech", value: "Python, Firebase" },
@@ -31,6 +32,7 @@ export const PROJECTS = [
     desc: "An intelligent study companion that generates practice questions, summaries, and personalized learning paths using AI.", 
     stack: "Python · LLMs · React", 
     link: "",
+    github: "https://github.com/sahaya-savari",
     longDesc: "PrepMind AI transforms static study materials into highly interactive, adaptive learning experiences. Users can upload lecture notes or textbooks, and the underlying LLM dynamically generates flashcards, mock exams, and concept summaries that adapt to the user's demonstrated knowledge gaps.",
     metrics: [
       { label: "Core Tech", value: "LLMs, React" },
@@ -54,6 +56,7 @@ export const PROJECTS = [
     desc: "A modern, animated portfolio website built with React, TypeScript, and Tailwind CSS featuring liquid glass design and smooth animations.", 
     stack: "React · TypeScript · Vite", 
     link: "https://sahayasavari.web.app",
+    github: "https://github.com/sahaya-savari/portfolio",
     longDesc: "A masterclass in modern frontend development, this portfolio leverages Framer Motion for liquid-smooth animations and hardware-accelerated transitions. It features a custom glassmorphism design system, responsive grids, and an isolated state architecture for maximum performance.",
     metrics: [
       { label: "Core Tech", value: "React, Framer Motion" },
@@ -95,5 +98,29 @@ export const CERTIFICATIONS = [
     icon: React.createElement(Brain, { className: "w-5 h-5" }), 
     title: 'Business Intelligence', 
     items: [{ name: "Mastering Excel Data Analysis & Dashboard Reporting", link: "#" }] 
+  }
+];
+
+export const JOURNEY = [
+  {
+    year: "Present",
+    title: "M.Sc. Artificial Intelligence",
+    org: "Academic Studies",
+    desc: "Currently pursuing advanced studies focusing on Generative AI, LLMs, and scalable machine learning architectures.",
+    icon: "Brain"
+  },
+  {
+    year: "Recent",
+    title: "Generative AI Developer",
+    org: "Independent Projects",
+    desc: "Built full-stack AI applications including PrepMind AI and Daily Spark, integrating Python backends with modern React frontends.",
+    icon: "Code"
+  },
+  {
+    year: "Past",
+    title: "IT & Data Analytics",
+    org: "Certifications",
+    desc: "Completed IBM Data Analyst Course, Honor's Diploma in IT, and mastered Excel Data Analysis for robust data foundations.",
+    icon: "Database"
   }
 ];

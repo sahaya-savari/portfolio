@@ -9,6 +9,7 @@ import Hls from 'hls.js';
 import BlurText from './components/BlurText';
 import ErrorBoundary from './components/ErrorBoundary';
 import FocusText from './components/FocusText';
+import LearningJourney from './components/LearningJourney';
 
 const ResumeViewer = lazy(() => import('./components/ResumeViewer'));
 
@@ -241,15 +242,15 @@ export default function App() {
             </div>
 
             <motion.p initial={{ opacity: 0, filter: 'blur(10px)' }} animate={{ opacity: 1, filter: 'blur(0px)' }} transition={{ delay: 0.8, duration: 0.8 }} className="text-white/60 font-body font-light text-lg md:text-xl max-w-2xl mb-12 leading-relaxed">
-              Focused on machine learning, intelligent applications, backend development, and solving real-world problems through technology.
+              Building AI-powered applications, scalable backend systems, and modern full-stack experiences.
             </motion.p>
 
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.1, duration: 0.8 }} className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4">
-              <a href="#projects" className="liquid-glass-strong px-8 py-4 rounded-full font-body font-medium text-sm flex items-center gap-2 group transition-all hover:scale-105 active:scale-95">
-                View Projects <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-              </a>
-              <a href="#about" className="text-white/60 hover:text-white font-body font-medium text-sm flex items-center gap-2 transition-all px-8 py-4">
-                Explore Skills <Play className="w-4 h-4 fill-current" />
+              <button onClick={() => setShowResume(true)} className="liquid-glass-strong px-8 py-4 rounded-full font-body font-medium text-sm flex items-center gap-2 group transition-all hover:scale-105 active:scale-95 cursor-pointer text-white">
+                View Resume <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </button>
+              <a href="#projects" className="text-white/60 hover:text-white font-body font-medium text-sm flex items-center gap-2 transition-all px-8 py-4 bg-white/5 rounded-full backdrop-blur-md border border-white/10 hover:bg-white/10">
+                View Projects <Play className="w-4 h-4 fill-current" />
               </a>
             </motion.div>
           </div>
@@ -376,6 +377,17 @@ export default function App() {
           </div>
         </section>
 
+        {/* LEARNING JOURNEY */}
+        <section id="journey" className="py-32 px-6 bg-black relative border-t border-white/5">
+          <div className="max-w-screen-xl mx-auto">
+            <div className="flex flex-col items-center justify-center mb-16 text-center">
+              <div className="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-4">Academic & Technical</div>
+              <h2 className="text-5xl md:text-6xl font-heading italic text-white tracking-tight leading-[0.9]">Learning Journey.</h2>
+            </div>
+            <LearningJourney />
+          </div>
+        </section>
+
         {/* PROJECTS GRID */}
         <section id="projects" className="py-32 px-6 bg-black relative">
           <div className="max-w-screen-xl mx-auto">
@@ -418,15 +430,33 @@ export default function App() {
                       >
                         {p.tag}
                       </div>
-                      <div 
-                        className="w-10 h-10 rounded-full flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors"
-                        style={{
-                          background: theme.iconBg || 'rgba(255, 255, 255, 0.1)',
-                          color: theme.iconColor || '#fff',
-                          border: `1px solid ${theme.border || 'rgba(255, 255, 255, 0.2)'}`,
-                        }}
-                      >
-                        <ArrowUpRight className="w-5 h-5" />
+                      <div className="flex items-center gap-3">
+                        {(p as any).github && (
+                          <a 
+                            href={(p as any).github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-10 h-10 rounded-full flex items-center justify-center transition-colors hover:bg-white/20 z-20"
+                            style={{
+                              background: 'transparent',
+                              color: theme.iconColor || '#fff',
+                              border: `1px solid ${theme.border || 'rgba(255, 255, 255, 0.2)'}`,
+                            }}
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <Github className="w-5 h-5" />
+                          </a>
+                        )}
+                        <div 
+                          className="w-10 h-10 rounded-full flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors"
+                          style={{
+                            background: theme.iconBg || 'rgba(255, 255, 255, 0.1)',
+                            color: theme.iconColor || '#fff',
+                            border: `1px solid ${theme.border || 'rgba(255, 255, 255, 0.2)'}`,
+                          }}
+                        >
+                          <ArrowUpRight className="w-5 h-5" />
+                        </div>
                       </div>
                     </div>
                     <h3 className="font-heading italic text-3xl text-white mb-4">{p.title}</h3>
