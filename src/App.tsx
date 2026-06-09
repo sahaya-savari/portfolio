@@ -12,6 +12,7 @@ import FocusText from './components/FocusText';
 import LearningJourney from './components/LearningJourney';
 
 const ResumeViewer = lazy(() => import('./components/ResumeViewer'));
+const ProjectModal = lazy(() => import('./components/ProjectModal'));
 
 const HlsVideo = ({ src, className, style, desaturated = false }: { src: string; className?: string; style?: React.CSSProperties; desaturated?: boolean }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -85,36 +86,25 @@ export default function App() {
   const [showResume, setShowResume] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isHeroLoaded, setIsHeroLoaded] = useState(false);
-  const [muted, setMuted] = useState(true);
-  const [started, setStarted] = useState(false);
-  const audioRef = useRef<HTMLAudioElement>(null);
+  const [selectedProject, setSelectedProject] = useState<any>(null);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         if (mobileMenuOpen) setMobileMenuOpen(false);
         if (showResume) setShowResume(false);
+        if (selectedProject) setSelectedProject(null);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [mobileMenuOpen, showResume]);
+  }, [mobileMenuOpen, showResume, selectedProject]);
 
-  useEffect(() => {
-    const handleFirstClick = () => {
-      if (!started && audioRef.current) {
-        audioRef.current.play().catch(() => {});
-        setStarted(true);
-      }
-    };
-    window.addEventListener('click', handleFirstClick, { once: true });
-    return () => window.removeEventListener('click', handleFirstClick);
-  }, [started]);
+
 
   return (
     <ClickSpark sparkColor='#fff' sparkSize={12} sparkRadius={25} sparkCount={10} duration={300}>
       <div className="bg-black min-h-screen text-white selection:bg-white selection:text-black overflow-x-hidden">
-        <audio ref={audioRef} src="/song.mp3" loop />
 
         {/* NAVBAR */}
         <nav className="fixed top-6 left-0 right-0 z-[100] px-6" aria-label="Main Navigation">
@@ -137,24 +127,6 @@ export default function App() {
               <a href="#certifications" className="text-sm font-body font-medium text-white/70 hover:text-white transition-colors">Certs</a>
             </div>
             <div className="flex items-center gap-3">
-              <button
-                onClick={() => {
-                  const audio = audioRef.current;
-                  if (!audio) return;
-                  if (muted) {
-                    audio.muted = false;
-                    audio.play().catch(() => {});
-                    setMuted(false);
-                  } else {
-                    audio.muted = true;
-                    audio.pause();
-                    setMuted(true);
-                  }
-                }}
-                className="hidden md:flex liquid-glass w-10 h-10 rounded-full items-center justify-center text-white/70 hover:text-white transition-colors text-lg"
-              >
-                {muted ? '🔇' : '🔊'}
-              </button>
               <a
                 href="#contact"
                 className="hidden md:flex relative text-sm font-medium rounded-full h-10 pl-6 pr-14 group transition-all duration-500 hover:pl-14 hover:pr-6 overflow-hidden cursor-pointer bg-white text-black items-center"
@@ -396,23 +368,24 @@ export default function App() {
                 <div className="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-4">Selected Work</div>
                 <h2 className="text-5xl md:text-6xl font-heading italic text-white tracking-tight leading-[0.9]">AI-Powered <br/> Projects.</h2>
               </div>
-              <p className="text-white/50 font-body font-light max-w-xs md:text-right">Ask me for live demos, code samples, or walkthroughs of any project.</p>
+              <p className="text-white/60 font-body font-light max-w-xs md:text-right">Ask me for live demos, code samples, or walkthroughs of any project.</p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {PROJECTS.map((p, i) => {
                 const theme = p.theme || {};
                 return (
-                  <motion.a 
+                  <motion.div 
                     key={i} 
-                    href={p.link || '#'} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => setSelectedProject(p)}
+                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelectedProject(p); } }}
                     initial={{ opacity: 0, y: 20 }} 
                     whileInView={{ opacity: 1, y: 0 }} 
                     viewport={{ once: true }} 
                     transition={{ delay: i * 0.1 }} 
-                    className="rounded-3xl p-8 group flex flex-col hover:-translate-y-2 transition-transform cursor-pointer border border-white/10"
+                    className="text-left w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 rounded-3xl p-8 group flex flex-col hover:-translate-y-2 transition-transform cursor-pointer border border-white/10"
                     style={{
                       background: theme.bg || 'rgba(255, 255, 255, 0.01)',
                       boxShadow: theme.glow ? `0 0 30px ${theme.glow}, inset 0 1px 1px rgba(255, 255, 255, 0.15)` : 'inset 0 1px 1px rgba(255, 255, 255, 0.15)',
@@ -436,7 +409,7 @@ export default function App() {
                             href={(p as any).github}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="w-10 h-10 rounded-full flex items-center justify-center transition-colors hover:bg-white/20 z-20"
+                            className="w-10 h-10 rounded-full flex items-center justify-center transition-colors hover:bg-white/20 z-20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
                             style={{
                               background: 'transparent',
                               color: theme.iconColor || '#fff',
@@ -465,7 +438,7 @@ export default function App() {
                       <Terminal className="w-3 h-3" />
                       {p.stack}
                     </div>
-                  </motion.a>
+                  </motion.div>
                 );
               })}
             </div>
@@ -575,6 +548,16 @@ export default function App() {
           <ErrorBoundary>
             <Suspense fallback={<div className="fixed inset-0 z-[300] bg-black/80 flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white/50"></div></div>}>
               <ResumeViewer onClose={() => setShowResume(false)} />
+            </Suspense>
+          </ErrorBoundary>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {selectedProject && (
+          <ErrorBoundary>
+            <Suspense fallback={<div className="fixed inset-0 z-[400] bg-black/80 flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white/50"></div></div>}>
+              <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
             </Suspense>
           </ErrorBoundary>
         )}

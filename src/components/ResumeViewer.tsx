@@ -4,17 +4,19 @@ import { Download, ZoomIn, ZoomOut, Maximize, X, Loader2 } from 'lucide-react';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 
+// @ts-ignore
+import pdfWorker from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
+
 // Set worker path
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+pdfjs.GlobalWorkerOptions.workerSrc = pdfWorker;
 
 interface ResumeViewerProps {
   onClose: () => void;
   pdfUrl?: string;
 }
 
-const ResumeViewer: React.FC<ResumeViewerProps> = ({ onClose, pdfUrl = '/resume.pdf' }) => {
+const ResumeViewer: React.FC<ResumeViewerProps> = ({ onClose, pdfUrl = `${(import.meta as any).env.BASE_URL}resume.pdf` }) => {
   const [numPages, setNumPages] = useState<number | null>(null);
-  const [pageNumber, setPageNumber] = useState(1);
   const [scale, setScale] = useState(1.0);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -101,7 +103,7 @@ const ResumeViewer: React.FC<ResumeViewerProps> = ({ onClose, pdfUrl = '/resume.
           loading={<div className="h-[800px] w-full max-w-2xl bg-white/5 rounded-xl animate-pulse" />}
           className="flex flex-col items-center"
         >
-          {Array.from(new Array(numPages), (el, index) => (
+          {Array.from(new Array(numPages), (_, index) => (
             <div key={`page_${index + 1}`} className="mb-6 shadow-2xl rounded-lg overflow-hidden bg-white/5">
               <Page
                 pageNumber={index + 1}
@@ -109,6 +111,14 @@ const ResumeViewer: React.FC<ResumeViewerProps> = ({ onClose, pdfUrl = '/resume.
                 renderTextLayer={true}
                 renderAnnotationLayer={true}
                 loading={<div className="h-[800px] w-full max-w-2xl bg-white/5 rounded-xl animate-pulse" />}
+                inputRef={(el) => {
+                  if (el) {
+                    setTimeout(() => {
+                      const textLayers = document.querySelectorAll('.react-pdf__Page__textContent');
+                      textLayers.forEach(layer => layer.remove());
+                    }, 100);
+                  }
+                }}
               />
             </div>
           ))}

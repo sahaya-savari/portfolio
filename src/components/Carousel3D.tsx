@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import './Carousel3D.css';
 import { ArrowUpRight, Star, GitFork, CircleDot } from 'lucide-react';
 

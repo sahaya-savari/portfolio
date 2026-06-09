@@ -16,6 +16,12 @@ export const PROJECTS = [
       { label: "Platform", value: "Web App" }
     ],
     features: ["Habit Pattern Recognition", "AI-Generated Routine Suggestions", "Real-time Progress Dashboard", "Push Notifications"],
+    problem: "Procrastination and lack of personalized daily routine structures leading to low productivity.",
+    architecture: "Python backend with Firebase real-time database. Behavioral AI algorithms analyze user patterns to suggest optimal tasks.",
+    techStack: ["Python", "Firebase", "React", "AI/ML", "TypeScript"],
+    challenges: "Developing a performant algorithm capable of processing daily user habits in real-time without draining device battery.",
+    results: "Successfully built an MVP that demonstrates personalized AI-generated nudges based on user behavior.",
+    lessonsLearned: "Optimizing state management is critical when handling continuous real-time data streams from Firebase.",
     theme: {
       bg: "linear-gradient(180deg, rgba(88,28,135,0.4) 0%, rgba(15,23,42,0.8) 100%)",
       border: "rgba(168,85,247,0.3)",
@@ -40,6 +46,12 @@ export const PROJECTS = [
       { label: "Status", value: "In Development" }
     ],
     features: ["Dynamic Quiz Generation", "Context-Aware Summarization", "Adaptive Difficulty Scaling", "Upload-to-Learn Pipeline"],
+    problem: "Static study materials do not adapt to individual student knowledge gaps.",
+    architecture: "Python-based LLM integration pipeline. React frontend handles dynamic component rendering of mock exams and flashcards.",
+    techStack: ["Python", "OpenAI API", "React", "Tailwind CSS"],
+    challenges: "Ensuring the LLM does not hallucinate facts during quiz generation by implementing strict system prompts and context injection.",
+    results: "Achieved high accuracy in generated flashcard relevance compared to manual textbook extraction.",
+    lessonsLearned: "Prompt engineering requires rigorous testing; structuring LLM output into strict JSON formats is essential for reliable frontend rendering.",
     theme: {
       bg: "linear-gradient(180deg, rgba(6,78,59,0.4) 0%, rgba(15,23,42,0.8) 100%)",
       border: "rgba(16,185,129,0.3)",
@@ -63,15 +75,21 @@ export const PROJECTS = [
       { label: "Performance", value: "Sub-second Load" },
       { label: "Design", value: "Glassmorphism" }
     ],
-    features: ["Hardware Accelerated Animations", "Responsive CSS Grid", "Custom Dock Navigation", "Semantic Accessibility"],
+    features: ["Custom UI Engine", "Hardware Accelerated Motion", "Responsive Layout Architecture", "HLS Video Streaming"],
+    problem: "Standard portfolios fail to communicate the technical depth and design sensibility of a modern AI/Backend Developer.",
+    architecture: "Single Page Application built with React, Vite, and Tailwind CSS. Framer Motion used for animations. No traditional router used to preserve 'liquid' state.",
+    techStack: ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vite"],
+    challenges: "Achieving 60fps glassmorphism and spring animations without causing layout thrashing on mobile devices.",
+    results: "Perfect performance score with seamless cross-browser layout stability.",
+    lessonsLearned: "Using absolute DOM offset measurements instead of relying on offsetParent trees resolves critical layout bugs in complex tracks.",
     theme: {
-      bg: "linear-gradient(180deg, rgba(159,18,57,0.4) 0%, rgba(15,23,42,0.8) 100%)",
-      border: "rgba(244,63,94,0.3)",
-      glow: "rgba(244,63,94,0.15)",
-      tagBg: "rgba(244,63,94,0.2)",
-      tagText: "#fda4af",
-      iconBg: "rgba(244,63,94,0.15)",
-      iconColor: "#fda4af",
+      bg: "linear-gradient(180deg, rgba(30,58,138,0.4) 0%, rgba(15,23,42,0.8) 100%)",
+      border: "rgba(59,130,246,0.3)",
+      glow: "rgba(59,130,246,0.15)",
+      tagBg: "rgba(59,130,246,0.2)",
+      tagText: "#93c5fd",
+      iconBg: "rgba(59,130,246,0.15)",
+      iconColor: "#93c5fd",
     }
   }
 ];
