@@ -3,10 +3,12 @@ import Dock from './components/Dock';
 import ClickSpark from './components/ClickSpark';
 import React, { useEffect, useRef, useState, lazy, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, Play, Database, Brain, Code, ChevronDown, Mail, Phone, Linkedin, ExternalLink, Award, Terminal, Github, MapPin, Check, Menu, X } from 'lucide-react';
+import { ArrowUpRight, Play, Database, Brain, Code, ChevronDown, Mail, Linkedin, ExternalLink, Award, Terminal, Github, MapPin, Check, Menu, X } from 'lucide-react';
 import { PROJECTS, STATS, CERTIFICATIONS } from './data';
 import Hls from 'hls.js';
 import BlurText from './components/BlurText';
+import ErrorBoundary from './components/ErrorBoundary';
+import FocusText from './components/FocusText';
 
 const ResumeViewer = lazy(() => import('./components/ResumeViewer'));
 
@@ -15,15 +17,39 @@ const HlsVideo = ({ src, className, style, desaturated = false }: { src: string;
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
+    let hls: Hls | null = null;
     if (Hls.isSupported()) {
-      const hls = new Hls();
+      hls = new Hls();
       hls.loadSource(src);
       hls.attachMedia(video);
     } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
       video.src = src;
     }
+    return () => {
+      if (hls) {
+        hls.destroy();
+      }
+    };
   }, [src]);
-  return <video ref={videoRef} className={className} style={{ ...style, filter: desaturated ? 'saturate(0)' : 'none' }} autoPlay loop muted playsInline />;
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
+
+  return <video ref={videoRef} className={className} style={{ ...style, filter: desaturated ? 'saturate(0)' : 'none', transform: 'translate3d(0, 0, 0)', willChange: 'transform, filter' }} autoPlay loop muted playsInline />;
 };
 
 const SkillAccordion = ({ title, children, icon: Icon }: { title: string; children: React.ReactNode; icon: any }) => {
@@ -53,29 +79,41 @@ const SkillAccordion = ({ title, children, icon: Icon }: { title: string; childr
 };
 
 export default function App() {
-const [activePillar, setActivePillar] = useState<'Data' | 'AI'>('Data');
-const [copied, setCopied] = useState(false);
-const [selectedProject, setSelectedProject] = useState<any>(null);
-const [showResume, setShowResume] = useState(false);
-const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-const [isHeroLoaded, setIsHeroLoaded] = useState(false);
+  const [activePillar, setActivePillar] = useState<'Data' | 'AI'>('Data');
+  const [copied, setCopied] = useState(false);
+  const [showResume, setShowResume] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isHeroLoaded, setIsHeroLoaded] = useState(false);
+  const [muted, setMuted] = useState(true);
+  const [started, setStarted] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
-useEffect(() => {
-  const handleKeyDown = (e: KeyboardEvent) => {
-    if (e.key === 'Escape') {
-      if (selectedProject) setSelectedProject(null);
-      if (mobileMenuOpen) setMobileMenuOpen(false);
-      if (showResume) setShowResume(false);
-    }
-  };
-  window.addEventListener('keydown', handleKeyDown);
-  return () => window.removeEventListener('keydown', handleKeyDown);
-}, [selectedProject, mobileMenuOpen, showResume]);
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        if (mobileMenuOpen) setMobileMenuOpen(false);
+        if (showResume) setShowResume(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [mobileMenuOpen, showResume]);
+
+  useEffect(() => {
+    const handleFirstClick = () => {
+      if (!started && audioRef.current) {
+        audioRef.current.play().catch(() => {});
+        setStarted(true);
+      }
+    };
+    window.addEventListener('click', handleFirstClick, { once: true });
+    return () => window.removeEventListener('click', handleFirstClick);
+  }, [started]);
 
   return (
     <ClickSpark sparkColor='#fff' sparkSize={12} sparkRadius={25} sparkCount={10} duration={300}>
       <div className="bg-black min-h-screen text-white selection:bg-white selection:text-black overflow-x-hidden">
-        {/* Removed audio element */}
+        <audio ref={audioRef} src="/song.mp3" loop />
 
         {/* NAVBAR */}
         <nav className="fixed top-6 left-0 right-0 z-[100] px-6" aria-label="Main Navigation">
@@ -85,11 +123,11 @@ useEffect(() => {
                 <span className="font-heading text-lg italic">SF</span>
               </div>
               <span className="font-body text-xs font-medium tracking-widest hidden md:flex items-center gap-2">
-  <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-  AVAILABLE FOR WORK
-</span>
+                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                AVAILABLE FOR WORK
+              </span>
             </div>
-            <div className="hidden md:flex liquid-glass px-6 py-2.5 rounded-full backdrop-blur-md items-center gap-8">
+            <div className="hidden md:flex liquid-glass px-6 py-2.5 rounded-full items-center gap-8 backdrop-blur-md">
               <a href="#home" className="text-sm font-body font-medium text-white/70 hover:text-white transition-colors">Home</a>
               <a href="#about" className="text-sm font-body font-medium text-white/70 hover:text-white transition-colors">About</a>
               <button onClick={() => setShowResume(true)} className="text-sm font-body font-medium text-white/70 hover:text-white transition-colors cursor-pointer">Resume</button>
@@ -98,6 +136,24 @@ useEffect(() => {
               <a href="#certifications" className="text-sm font-body font-medium text-white/70 hover:text-white transition-colors">Certs</a>
             </div>
             <div className="flex items-center gap-3">
+              <button
+                onClick={() => {
+                  const audio = audioRef.current;
+                  if (!audio) return;
+                  if (muted) {
+                    audio.muted = false;
+                    audio.play().catch(() => {});
+                    setMuted(false);
+                  } else {
+                    audio.muted = true;
+                    audio.pause();
+                    setMuted(true);
+                  }
+                }}
+                className="hidden md:flex liquid-glass w-10 h-10 rounded-full items-center justify-center text-white/70 hover:text-white transition-colors text-lg"
+              >
+                {muted ? '🔇' : '🔊'}
+              </button>
               <a
                 href="#contact"
                 className="hidden md:flex relative text-sm font-medium rounded-full h-10 pl-6 pr-14 group transition-all duration-500 hover:pl-14 hover:pr-6 overflow-hidden cursor-pointer bg-white text-black items-center"
@@ -136,6 +192,7 @@ useEffect(() => {
             </motion.div>
           )}
         </AnimatePresence>
+
         {/* HERO SECTION */}
         <section id="home" className="relative h-[1000px] flex items-start justify-center pt-[200px] px-6 overflow-hidden bg-black">
           <div className="absolute top-[15%] left-0 w-full z-0 opacity-40">
@@ -160,30 +217,30 @@ useEffect(() => {
           <div className="absolute inset-0 bg-black/10 z-0 pointer-events-none" />
           <div className="absolute bottom-0 left-0 right-0 h-[400px] bg-gradient-to-t from-black via-black/80 to-transparent z-[1]" />
           <div className="relative z-10 max-w-4xl text-center flex flex-col items-center">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="liquid-glass rounded-full px-4 py-1.5 mb-4 flex items-center gap-2">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="liquid-glass rounded-full px-4 py-1.5 mb-8 flex items-center gap-2">
               <span className="bg-white text-black text-[10px] uppercase font-bold px-2 py-0.5 rounded-full">New</span>
               <span className="text-xs font-body font-medium text-white/80">M.Sc Artificial Intelligence Student</span>
             </motion.div>
+            <div className="mb-8">
+              <BlurText text="Sahaya Savari F" delay={200} animateBy="words" direction="top" className="text-6xl md:text-8xl lg:text-[7rem] font-heading italic text-white tracking-[-4px] leading-[0.8] mb-4" />
+              <motion.div initial={{ opacity: 0, filter: 'blur(10px)' }} animate={{ opacity: 1, filter: 'blur(0px)' }} transition={{ delay: 0.6, duration: 1 }} className="flex flex-wrap items-center justify-center gap-3 mb-8 w-full px-4">
+                <span className="font-heading italic text-3xl md:text-4xl text-white/60">I am an</span>
+                <RotatingText
+                  texts={['AI Developer', 'Python Developer', 'Machine Learning Eng', 'AI Builder']}
+                  mainClassName="px-3 py-1 liquid-glass text-white overflow-hidden rounded-lg font-bold not-italic text-2xl md:text-3xl"
+                  staggerFrom="last"
+                  initial={{ y: "100%" }}
+                  animate={{ y: 0 }}
+                  exit={{ y: "-120%" }}
+                  staggerDuration={0.025}
+                  splitLevelClassName="overflow-hidden pb-0.5"
+                  transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                  rotationInterval={2000}
+                />
+              </motion.div>
+            </div>
 
-            <BlurText text="Sahaya Savari F" delay={200} animateBy="words" direction="top" className="text-6xl md:text-8xl lg:text-[7rem] font-heading italic text-white tracking-[-4px] leading-[0.8] mb-2" />
-
-            <motion.div initial={{ opacity: 0, filter: 'blur(10px)' }} animate={{ opacity: 1, filter: 'blur(0px)' }} transition={{ delay: 0.6, duration: 1 }} className="flex flex-wrap items-center justify-center gap-3 mb-6">
-              <span className="font-heading italic text-3xl md:text-4xl text-white/60">I am a</span>
-              <RotatingText
-                texts={['AI Developer', 'Backend Builder', 'M.Sc AI Student', 'Problem Solver']}
-                mainClassName="px-3 py-1 liquid-glass text-white overflow-hidden rounded-lg font-bold not-italic text-2xl md:text-3xl min-w-max"
-                staggerFrom="last"
-                initial={{ y: "100%" }}
-                animate={{ y: 0 }}
-                exit={{ y: "-120%" }}
-                staggerDuration={0.025}
-                splitLevelClassName="overflow-hidden pb-0.5"
-                transition={{ type: "spring", damping: 30, stiffness: 400 }}
-                rotationInterval={2000}
-              />
-            </motion.div>
-
-            <motion.p initial={{ opacity: 0, filter: 'blur(10px)' }} animate={{ opacity: 1, filter: 'blur(0px)' }} transition={{ delay: 0.8, duration: 0.8 }} className="text-white/60 font-body font-light text-lg md:text-xl max-w-2xl mb-8 leading-relaxed">
+            <motion.p initial={{ opacity: 0, filter: 'blur(10px)' }} animate={{ opacity: 1, filter: 'blur(0px)' }} transition={{ delay: 0.8, duration: 0.8 }} className="text-white/60 font-body font-light text-lg md:text-xl max-w-2xl mb-12 leading-relaxed">
               Focused on machine learning, intelligent applications, backend development, and solving real-world problems through technology.
             </motion.p>
 
@@ -194,23 +251,11 @@ useEffect(() => {
               <a href="#about" className="text-white/60 hover:text-white font-body font-medium text-sm flex items-center gap-2 transition-all px-8 py-4">
                 Explore Skills <Play className="w-4 h-4 fill-current" />
               </a>
-              <button onClick={() => setShowResume(true)} className="liquid-glass px-8 py-4 rounded-full font-body font-medium text-sm text-white/80 hover:text-white flex items-center gap-2 transition-all hover:scale-105 active:scale-95">
-                View Resume
-              </button>
             </motion.div>
           </div>
           <div className="absolute bottom-16 left-0 right-0 z-10 flex flex-col items-center gap-6 px-6">
-            <div className="liquid-glass px-4 py-1.5 rounded-full text-[10px] uppercase tracking-widest font-bold text-white/40">Core pillars</div>
-            <div className="flex items-center gap-12 md:gap-24">
-              <div className="flex flex-col items-center gap-1">
-                <span className="font-heading italic text-4xl md:text-6xl text-white/80">Data</span>
-                <div className="w-1.5 h-1.5 rounded-full bg-white/40" />
-              </div>
-              <div className="flex flex-col items-center gap-1">
-                <span className="font-heading italic text-4xl md:text-6xl text-white/80">AI</span>
-                <div className="w-1.5 h-1.5 rounded-full bg-white/40" />
-              </div>
-            </div>
+            <div className="liquid-glass px-4 py-1.5 rounded-full text-[10px] uppercase tracking-widest font-bold text-white/40">What I work with</div>
+            <FocusText prefix="Data AI Analytics" focusText="GenAI" className="mb-8" />
           </div>
         </section>
 
@@ -334,88 +379,66 @@ useEffect(() => {
         {/* PROJECTS GRID */}
         <section id="projects" className="py-32 px-6 bg-black relative">
           <div className="max-w-screen-xl mx-auto">
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-8">
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
               <div>
                 <div className="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-4">Selected Work</div>
                 <h2 className="text-5xl md:text-6xl font-heading italic text-white tracking-tight leading-[0.9]">AI-Powered <br/> Projects.</h2>
               </div>
               <p className="text-white/50 font-body font-light max-w-xs md:text-right">Ask me for live demos, code samples, or walkthroughs of any project.</p>
             </div>
+            
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {PROJECTS.map((p, i) => (
-                <motion.div key={i} onClick={() => setSelectedProject(p)} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="liquid-glass-strong rounded-3xl p-8 group flex flex-col hover:-translate-y-2 transition-transform cursor-pointer">
-                  <div className="flex justify-between items-start mb-12">
-                    <div className="liquid-glass px-3 py-1 rounded-full text-[10px] text-white/50 font-bold uppercase tracking-wider">{p.tag}</div>
-                    {p.link && <div className="w-10 h-10 liquid-glass-strong rounded-full flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors"><ArrowUpRight className="w-5 h-5" /></div>}
-                  </div>
-                  <h3 className="font-heading italic text-3xl text-white mb-4">{p.title}</h3>
-                  <p className="text-white/50 font-body font-light text-sm leading-relaxed mb-8 flex-grow">{p.desc}</p>
-                  <div className="flex items-center gap-2 text-[10px] text-white/40 font-mono"><Terminal className="w-3 h-3" />{p.stack}</div>
-                </motion.div>
-              ))}
-            </div>
-
-            <AnimatePresence>
-              {selectedProject && (
-                <motion.div 
-                  initial={{ opacity: 0 }} 
-                  animate={{ opacity: 1 }} 
-                  exit={{ opacity: 0 }} 
-                  onClick={() => setSelectedProject(null)}
-                  className="fixed inset-0 z-[200] flex items-center justify-center px-4 bg-black/60 backdrop-blur-md"
-                >
-                  <motion.div 
-                    initial={{ scale: 0.95, opacity: 0 }} 
-                    animate={{ scale: 1, opacity: 1 }} 
-                    exit={{ scale: 0.95, opacity: 0 }} 
-                    onClick={(e) => e.stopPropagation()}
-                    className="liquid-glass-strong bg-black/80 rounded-[2rem] p-8 md:p-12 max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-white/20"
+              {PROJECTS.map((p, i) => {
+                const theme = p.theme || {};
+                return (
+                  <motion.a 
+                    key={i} 
+                    href={p.link || '#'} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    initial={{ opacity: 0, y: 20 }} 
+                    whileInView={{ opacity: 1, y: 0 }} 
+                    viewport={{ once: true }} 
+                    transition={{ delay: i * 0.1 }} 
+                    className="rounded-3xl p-8 group flex flex-col hover:-translate-y-2 transition-transform cursor-pointer border border-white/10"
+                    style={{
+                      background: theme.bg || 'rgba(255, 255, 255, 0.01)',
+                      boxShadow: theme.glow ? `0 0 30px ${theme.glow}, inset 0 1px 1px rgba(255, 255, 255, 0.15)` : 'inset 0 1px 1px rgba(255, 255, 255, 0.15)',
+                      backdropFilter: 'blur(20px)',
+                    }}
                   >
-                    <div className="flex justify-between items-start mb-8">
-                      <div>
-                        <div className="liquid-glass px-3 py-1 rounded-full text-[10px] text-white/50 font-bold uppercase tracking-wider inline-block mb-4">{selectedProject.tag}</div>
-                        <h3 className="font-heading italic text-4xl md:text-5xl text-white">{selectedProject.title}</h3>
+                    <div className="flex justify-between items-start mb-12">
+                      <div 
+                        className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider"
+                        style={{
+                          background: theme.tagBg || 'rgba(255, 255, 255, 0.1)',
+                          color: theme.tagText || 'rgba(255, 255, 255, 0.5)',
+                          border: `1px solid ${theme.border || 'rgba(255, 255, 255, 0.2)'}`,
+                        }}
+                      >
+                        {p.tag}
                       </div>
-                      <button autoFocus onClick={() => setSelectedProject(null)} className="w-10 h-10 liquid-glass rounded-full flex items-center justify-center text-white/50 hover:text-white hover:bg-white/10 transition-colors">✕</button>
+                      <div 
+                        className="w-10 h-10 rounded-full flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors"
+                        style={{
+                          background: theme.iconBg || 'rgba(255, 255, 255, 0.1)',
+                          color: theme.iconColor || '#fff',
+                          border: `1px solid ${theme.border || 'rgba(255, 255, 255, 0.2)'}`,
+                        }}
+                      >
+                        <ArrowUpRight className="w-5 h-5" />
+                      </div>
                     </div>
-                    
-                    <p className="text-white/70 font-body text-lg leading-relaxed mb-10">
-                      {selectedProject.longDesc || selectedProject.desc}
-                    </p>
-                    
-                    {selectedProject.metrics && (
-                      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-10">
-                        {selectedProject.metrics.map((m: any, idx: number) => (
-                          <div key={idx} className="liquid-glass p-4 rounded-2xl">
-                            <div className="text-[10px] text-white/40 uppercase tracking-wider mb-1">{m.label}</div>
-                            <div className="text-sm text-white/90 font-medium">{m.value}</div>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                    
-                    {selectedProject.features && (
-                      <div className="mb-10">
-                        <h4 className="text-white font-heading italic text-2xl mb-4">Key Features</h4>
-                        <ul className="space-y-3">
-                          {selectedProject.features.map((f: string, idx: number) => (
-                            <li key={idx} className="flex items-start gap-3 text-white/60 font-body text-sm">
-                              <span className="text-white mt-1"><ArrowUpRight className="w-3 h-3" /></span> {f}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                    
-                    {selectedProject.link && (
-                      <a href={selectedProject.link} target="_blank" rel="noopener noreferrer" className="liquid-glass-strong w-full py-4 rounded-xl font-body font-medium text-sm flex items-center justify-center gap-2 hover:bg-white hover:text-black transition-colors">
-                        View Live Project <ExternalLink className="w-4 h-4" />
-                      </a>
-                    )}
-                  </motion.div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+                    <h3 className="font-heading italic text-3xl text-white mb-4">{p.title}</h3>
+                    <p className="text-white/70 font-body font-light text-sm leading-relaxed mb-8 flex-grow">{p.desc}</p>
+                    <div className="flex items-center gap-2 text-[10px] font-mono" style={{ color: theme.iconColor || 'rgba(255, 255, 255, 0.4)' }}>
+                      <Terminal className="w-3 h-3" />
+                      {p.stack}
+                    </div>
+                  </motion.a>
+                );
+              })}
+            </div>
           </div>
         </section>
 
@@ -504,10 +527,10 @@ useEffect(() => {
                 baseItemSize={50}
                 magnification={70}
                 items={[
-                  { icon: <Linkedin size={20} />, label: 'LinkedIn', href: 'https://www.linkedin.com/in/sahayasavari', ariaLabel: 'LinkedIn Profile' },
-                  { icon: <Github size={20} />, label: 'GitHub', href: 'https://github.com/sahaya-savari', ariaLabel: 'GitHub Profile' },
-                  { icon: <ExternalLink size={20} />, label: 'Resume', href: '/resume.pdf', ariaLabel: 'Download Resume' },
-                  { icon: <Mail size={20} />, label: 'Email', href: 'mailto:sahayasavari@gmail.com', ariaLabel: 'Send Email' },
+                  { icon: <Linkedin size={20} />, label: 'LinkedIn', onClick: () => window.open('https://www.linkedin.com/in/sahayasavari', '_blank') },
+                  { icon: <Github size={20} />, label: 'GitHub', onClick: () => window.open('https://github.com/sahaya-savari', '_blank') },
+                  { icon: <ExternalLink size={20} />, label: 'Resume', onClick: () => window.open('/resume.pdf', '_blank') },
+                  { icon: <Mail size={20} />, label: 'Email', onClick: () => window.open('mailto:sahayasavari@gmail.com') },
                 ]}
               />
               <div className="text-white/20 font-body text-[10px] uppercase tracking-widest">© 2026 Sahaya Savari F — Built with AI</div>
@@ -519,9 +542,11 @@ useEffect(() => {
       
       <AnimatePresence>
         {showResume && (
-          <Suspense fallback={<div className="fixed inset-0 z-[300] bg-black/80 flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white/50"></div></div>}>
-            <ResumeViewer onClose={() => setShowResume(false)} />
-          </Suspense>
+          <ErrorBoundary>
+            <Suspense fallback={<div className="fixed inset-0 z-[300] bg-black/80 flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white/50"></div></div>}>
+              <ResumeViewer onClose={() => setShowResume(false)} />
+            </Suspense>
+          </ErrorBoundary>
         )}
       </AnimatePresence>
     </ClickSpark>

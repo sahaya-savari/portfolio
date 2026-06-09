@@ -14,7 +14,16 @@ export const PROJECTS = [
       { label: "Focus", value: "Behavioral AI" },
       { label: "Platform", value: "Web App" }
     ],
-    features: ["Habit Pattern Recognition", "AI-Generated Routine Suggestions", "Real-time Progress Dashboard", "Push Notifications"]
+    features: ["Habit Pattern Recognition", "AI-Generated Routine Suggestions", "Real-time Progress Dashboard", "Push Notifications"],
+    theme: {
+      bg: "linear-gradient(180deg, rgba(88,28,135,0.4) 0%, rgba(15,23,42,0.8) 100%)",
+      border: "rgba(168,85,247,0.3)",
+      glow: "rgba(168,85,247,0.15)",
+      tagBg: "rgba(168,85,247,0.2)",
+      tagText: "#d8b4fe",
+      iconBg: "rgba(168,85,247,0.15)",
+      iconColor: "#d8b4fe",
+    }
   },
   { 
     title: "PrepMind AI", 
@@ -28,7 +37,16 @@ export const PROJECTS = [
       { label: "Focus", value: "EdTech AI" },
       { label: "Status", value: "In Development" }
     ],
-    features: ["Dynamic Quiz Generation", "Context-Aware Summarization", "Adaptive Difficulty Scaling", "Upload-to-Learn Pipeline"]
+    features: ["Dynamic Quiz Generation", "Context-Aware Summarization", "Adaptive Difficulty Scaling", "Upload-to-Learn Pipeline"],
+    theme: {
+      bg: "linear-gradient(180deg, rgba(6,78,59,0.4) 0%, rgba(15,23,42,0.8) 100%)",
+      border: "rgba(16,185,129,0.3)",
+      glow: "rgba(16,185,129,0.15)",
+      tagBg: "rgba(16,185,129,0.2)",
+      tagText: "#6ee7b7",
+      iconBg: "rgba(16,185,129,0.15)",
+      iconColor: "#6ee7b7",
+    }
   },
   { 
     title: "Portfolio Website", 
@@ -42,7 +60,16 @@ export const PROJECTS = [
       { label: "Performance", value: "Sub-second Load" },
       { label: "Design", value: "Glassmorphism" }
     ],
-    features: ["Hardware Accelerated Animations", "Responsive CSS Grid", "Custom Dock Navigation", "Semantic Accessibility"]
+    features: ["Hardware Accelerated Animations", "Responsive CSS Grid", "Custom Dock Navigation", "Semantic Accessibility"],
+    theme: {
+      bg: "linear-gradient(180deg, rgba(159,18,57,0.4) 0%, rgba(15,23,42,0.8) 100%)",
+      border: "rgba(244,63,94,0.3)",
+      glow: "rgba(244,63,94,0.15)",
+      tagBg: "rgba(244,63,94,0.2)",
+      tagText: "#fda4af",
+      iconBg: "rgba(244,63,94,0.15)",
+      iconColor: "#fda4af",
+    }
   }
 ];
 
