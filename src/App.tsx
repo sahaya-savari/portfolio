@@ -5,7 +5,7 @@ import React, { useEffect, useRef, useState, lazy, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, Play, Database, Brain, Code, ChevronDown, Mail, Linkedin, ExternalLink, Award, Terminal, Github, MapPin, Check, Menu, X } from 'lucide-react';
 import { PROJECTS, STATS, CERTIFICATIONS } from './data';
-import Hls from 'hls.js';
+
 import BlurText from './components/BlurText';
 import ErrorBoundary from './components/ErrorBoundary';
 import FocusText from './components/FocusText';
@@ -19,14 +19,19 @@ const HlsVideo = ({ src, className, style, desaturated = false }: { src: string;
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-    let hls: Hls | null = null;
-    if (Hls.isSupported()) {
-      hls = new Hls();
-      hls.loadSource(src);
-      hls.attachMedia(video);
-    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-      video.src = src;
-    }
+    let hls: any = null;
+    const initHls = async () => {
+      const HlsModule = await import('hls.js');
+      const Hls = HlsModule.default;
+      if (Hls.isSupported()) {
+        hls = new Hls();
+        hls.loadSource(src);
+        hls.attachMedia(video);
+      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = src;
+      }
+    };
+    initHls();
     return () => {
       if (hls) {
         hls.destroy();
@@ -51,7 +56,7 @@ const HlsVideo = ({ src, className, style, desaturated = false }: { src: string;
     return () => observer.disconnect();
   }, []);
 
-  return <video ref={videoRef} className={className} style={{ ...style, filter: desaturated ? 'saturate(0)' : 'none', transform: 'translate3d(0, 0, 0)', willChange: 'transform, filter' }} autoPlay loop muted playsInline />;
+  return <video ref={videoRef} className={className} style={{ ...style, filter: desaturated ? 'saturate(0)' : 'none', transform: 'translate3d(0, 0, 0)', willChange: 'transform, filter' }} autoPlay loop muted playsInline aria-hidden="true" />;
 };
 
 const SkillAccordion = ({ title, children, icon: Icon }: { title: string; children: React.ReactNode; icon: any }) => {
@@ -92,19 +97,17 @@ export default function App() {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         if (mobileMenuOpen) setMobileMenuOpen(false);
-        if (showResume) setShowResume(false);
-        if (selectedProject) setSelectedProject(null);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [mobileMenuOpen, showResume, selectedProject]);
+  }, [mobileMenuOpen]);
 
 
 
   return (
     <ClickSpark sparkColor='#fff' sparkSize={12} sparkRadius={25} sparkCount={10} duration={300}>
-      <div className="bg-black min-h-screen text-white selection:bg-white selection:text-black overflow-x-hidden">
+      <main className="bg-black min-h-screen text-white selection:bg-white selection:text-black overflow-x-hidden">
 
         {/* NAVBAR */}
         <nav className="fixed top-6 left-0 right-0 z-[100] px-6" aria-label="Main Navigation">
@@ -167,7 +170,7 @@ export default function App() {
         </AnimatePresence>
 
         {/* HERO SECTION */}
-        <section id="home" className="relative h-[1000px] flex items-start justify-center pt-[200px] px-6 overflow-hidden bg-black">
+        <section id="home" aria-label="Hero" className="relative h-[1000px] flex items-start justify-center pt-[200px] px-6 overflow-hidden bg-black">
           <div className="absolute top-[15%] left-0 w-full z-0 opacity-40">
             <div className="relative w-full">
               <img 
@@ -183,7 +186,8 @@ export default function App() {
                 playsInline 
                 preload="auto"
                 onCanPlay={() => setIsHeroLoaded(true)}
-                className={`relative w-full h-auto object-contain transition-opacity duration-1000 ease-in-out ${isHeroLoaded ? 'opacity-100' : 'opacity-0'}`} 
+                className={`relative w-full h-auto object-contain transition-opacity duration-1000 ease-in-out ${isHeroLoaded ? 'opacity-100' : 'opacity-0'}`}
+                aria-hidden="true"
               />
             </div>
           </div>
@@ -541,7 +545,7 @@ export default function App() {
           </div>
         </footer>
 
-      </div>
+      </main>
       
       <AnimatePresence>
         {showResume && (
