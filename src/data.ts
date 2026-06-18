@@ -209,22 +209,43 @@ export const JOURNEY = [
   {
     year: "Present",
     title: "M.Sc. Artificial Intelligence",
-    org: "Academic Studies",
-    desc: "Currently pursuing advanced studies focusing on Generative AI, LLMs, and scalable machine learning architectures.",
+    org: "St. Joseph's College (Autonomous)",
+    desc: "Currently pursuing advanced academic studies focusing on Generative AI, LLMs, neural networks, and scalable machine learning architectures.",
     icon: "Brain"
   },
   {
-    year: "Recent",
-    title: "Generative AI Developer",
-    org: "Independent Projects",
-    desc: "Built full-stack AI applications including PrepMind AI and Daily Spark, integrating Python backends with modern React frontends.",
+    year: "March 2026",
+    title: "Introduction to Machine Learning",
+    org: "IIT Madras / NPTEL",
+    desc: "Earned IIT Madras certification in Machine Learning fundamentals, covering supervised algorithms, statistical models, and loss optimizations.",
+    icon: "Database"
+  },
+  {
+    year: "March 2026",
+    title: "Yuva AI for All",
+    org: "NIELIT / Skill India",
+    desc: "Completed national skill training on Prompt Engineering, LLM parameters, Generative AI applications, and Responsible AI models.",
+    icon: "Brain"
+  },
+  {
+    year: "August 2024",
+    title: "IBM Data Analyst Specialization",
+    org: "IBM Coursera",
+    desc: "Rigorous 9-course program covering exploratory data analysis, dashboard building, SQL querying, and Cognos Business Intelligence.",
+    icon: "Database"
+  },
+  {
+    year: "Self-Paced",
+    title: "Backend Development & Algorithms",
+    org: "Boot.dev Progression",
+    desc: "Active self-directed developer pathway studying data structures, Python algorithms, clean architecture, and API design.",
     icon: "Code"
   },
   {
-    year: "Past",
-    title: "IT & Data Analytics",
-    org: "Certifications",
-    desc: "Completed IBM Data Analyst Course, Honor's Diploma in IT, and mastered Excel Data Analysis for robust data foundations.",
-    icon: "Database"
+    year: "Foundational",
+    title: "Web Development & Software Engineering",
+    org: "HodoLabs Training",
+    desc: "Initial software development baseline learning HTML/CSS structures, Javascript control flow, and Git repository management.",
+    icon: "Code"
   }
 ];

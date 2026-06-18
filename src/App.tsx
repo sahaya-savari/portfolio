@@ -10,6 +10,8 @@ import BlurText from './components/BlurText';
 import ErrorBoundary from './components/ErrorBoundary';
 import FocusText from './components/FocusText';
 import LearningJourney from './components/LearningJourney';
+import SkillsMatrix from './components/SkillsMatrix';
+import DevDashboard from './components/DevDashboard';
 
 const ResumeViewer = lazy(() => import('./components/ResumeViewer'));
 const ProjectModal = lazy(() => import('./components/ProjectModal'));
@@ -376,15 +378,67 @@ export default function App() {
                     <li>• Full-stack projects from concept to deployment.</li>
                   </ul>
                 </div>
-                <div className="lg:col-span-2 liquid-glass rounded-3xl p-10 mt-6 overflow-hidden relative">
-                  <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
-                    <div>
-                      <h4 className="font-heading italic text-3xl text-white mb-2">Looking for</h4>
-                      <p className="text-white/50 font-body font-light max-w-md">Opportunities to work on AI projects, internships, and collaborations that push the boundaries of intelligent systems.</p>
+                <div className="lg:col-span-2 liquid-glass rounded-3xl p-8 md:p-10 mt-6 overflow-hidden relative border border-white/10">
+                  <div className="relative z-10 grid md:grid-cols-2 gap-8 items-start">
+                    
+                    {/* Left Panel: Currently Seeking Banner */}
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-2">
+                        <span className="w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse" aria-hidden="true"></span>
+                        <h4 className="font-mono text-xs tracking-widest text-green-400 uppercase font-bold">Currently Seeking</h4>
+                      </div>
+                      <h5 className="font-heading italic text-3xl text-white leading-tight">
+                        AI, ML, & Data Engineering Internships
+                      </h5>
+                      <p className="text-white/60 font-body font-light text-sm leading-relaxed">
+                        Looking for summer/fall 2026 co-ops or internship roles focused on machine learning pipelines, LLM prompt engineering, and intelligent web applications.
+                      </p>
+                      
+                      <div className="grid grid-cols-2 gap-4 text-xs font-mono text-white/50 border-t border-white/10 pt-4">
+                        <div>
+                          <span className="text-white/30 block text-[9px] uppercase tracking-wider mb-1">Availability</span>
+                          <span className="text-white">Summer / Fall 2026</span>
+                        </div>
+                        <div>
+                          <span className="text-white/30 block text-[9px] uppercase tracking-wider mb-1">Location Flexibility</span>
+                          <span className="text-white">Madurai, Remote, Relocation Open</span>
+                        </div>
+                      </div>
                     </div>
-                    <a href="#contact" className="bg-white text-black px-8 py-3 rounded-full font-body font-medium text-sm inline-flex items-center gap-2 hover:scale-105 transition-transform shrink-0 min-h-[48px]" aria-label="Let's connect — jump to contact section">
-                      Let's Connect <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
-                    </a>
+                    
+                    {/* Right Panel: Recruiter Snapshot Card */}
+                    <div className="space-y-5 md:border-l md:border-white/10 md:pl-8">
+                      <h4 className="font-mono text-xs tracking-widest text-blue-400 uppercase font-bold">Professional Snapshot</h4>
+                      
+                      <div className="space-y-4">
+                        <div>
+                          <span className="text-white/30 block font-mono text-[9px] uppercase tracking-wider mb-1">Key Strengths</span>
+                          <span className="text-white/80 font-body text-sm block font-medium">Python ML Pipelines · Context-Injected Prompts · Full-Stack React/TS</span>
+                        </div>
+                        <div>
+                          <span className="text-white/30 block font-mono text-[9px] uppercase tracking-wider mb-1">Value Contribution</span>
+                          <span className="text-white/80 font-body text-sm block font-light leading-relaxed">Building end-to-end intelligent apps (PrepMind AI, Daily Spark) and validating data workflows.</span>
+                        </div>
+                      </div>
+
+                      <div className="flex flex-wrap gap-3 pt-2">
+                        <button 
+                          onClick={() => setShowResume(true)}
+                          className="bg-white text-black px-5 py-2.5 rounded-full font-body font-semibold text-xs inline-flex items-center gap-1.5 hover:scale-105 transition-transform cursor-pointer min-h-[38px]"
+                          aria-label="Open Resume PDF viewer"
+                        >
+                          View Resume <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
+                        </button>
+                        <a 
+                          href="#contact"
+                          className="liquid-glass px-5 py-2.5 rounded-full font-body font-semibold text-xs inline-flex items-center gap-1.5 hover:scale-105 transition-transform border border-white/10 min-h-[38px] text-white"
+                          aria-label="Scroll to contact information"
+                        >
+                          Contact Me
+                        </a>
+                      </div>
+                    </div>
+                    
                   </div>
                   <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 blur-[100px] rounded-full -translate-y-1/2 translate-x-1/2" aria-hidden="true" />
                 </div>
@@ -470,6 +524,7 @@ export default function App() {
                   </div>
                 </div>
               </div>
+              <SkillsMatrix />
             </div>
           </section>
 
@@ -592,6 +647,7 @@ export default function App() {
                     </div>
                   ))}
                 </div>
+                <DevDashboard />
               </div>
             </div>
           </section>
