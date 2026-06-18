@@ -161,7 +161,7 @@ export const FEATURED_CREDENTIALS: FeaturedCredential[] = [
     credentialId: "",
     verifyUrl: "",
     skills: [],
-    desc: ""
+    desc: "Awaiting official certification validation and credential links."
   },
   {
     prefix: "🏅",
