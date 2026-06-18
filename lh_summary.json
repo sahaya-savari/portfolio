@@ -1,0 +1,155 @@
+{
+  "averages": {
+    "perf": "21.00",
+    "a11y": "31.33",
+    "bp": "33.33",
+    "seo": "33.33",
+    "lcp": "1856.57",
+    "cls": "0.00",
+    "inp": "1925.69",
+    "tbt": "76.67",
+    "si": "1999.62"
+  },
+  "a11yIssues": [
+    {
+      "id": "aria-required-parent",
+      "title": "`[role]`s are not contained by their required parent element",
+      "description": "Some ARIA child roles must be contained by specific parent roles to properly perform their intended accessibility functions. [Learn more about ARIA roles and required parent element](https://dequeuniversity.com/rules/axe/4.12/aria-required-parent).",
+      "details": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "node",
+            "valueType": "node",
+            "subItemsHeading": {
+              "key": "relatedNode",
+              "valueType": "node"
+            },
+            "label": "Failing Elements"
+          }
+        ],
+        "items": [
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-0-BUTTON",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,MAIN,5,SECTION,0,DIV,2,DIV,1,DIV,0,BUTTON",
+              "selector": "div.max-w-screen-xl > div > div.flex > button.whitespace-nowrap",
+              "boundingRect": {
+                "top": 11973,
+                "bottom": 12019,
+                "left": 32,
+                "right": 189,
+                "width": 157,
+                "height": 46
+              },
+              "snippet": "<button role=\"tab\" aria-selected=\"true\" class=\"whitespace-nowrap flex items-center gap-2 px-5 py-3 rounded-full text-sm f…\">",
+              "nodeLabel": "Data Analytics",
+              "explanation": "Fix any of the following:\n  Required ARIA parent role not present: tablist"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-1-BUTTON",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,MAIN,5,SECTION,0,DIV,2,DIV,1,DIV,1,BUTTON",
+              "selector": "div.max-w-screen-xl > div > div.flex > button.whitespace-nowrap",
+              "boundingRect": {
+                "top": 11973,
+                "bottom": 12019,
+                "left": 197,
+                "right": 287,
+                "width": 89,
+                "height": 46
+              },
+              "snippet": "<button role=\"tab\" aria-selected=\"false\" class=\"whitespace-nowrap flex items-center gap-2 px-5 py-3 rounded-full text-sm f…\">",
+              "nodeLabel": "Information Technology",
+              "explanation": "Fix any of the following:\n  Required ARIA parent role not present: tablist"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-2-BUTTON",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,MAIN,5,SECTION,0,DIV,2,DIV,1,DIV,2,BUTTON",
+              "selector": "div.max-w-screen-xl > div > div.flex > button.whitespace-nowrap",
+              "boundingRect": {
+                "top": 11973,
+                "bottom": 12019,
+                "left": 295,
+                "right": 380,
+                "width": 85,
+                "height": 46
+              },
+              "snippet": "<button role=\"tab\" aria-selected=\"false\" class=\"whitespace-nowrap flex items-center gap-2 px-5 py-3 rounded-full text-sm f…\">",
+              "nodeLabel": "Business Intelligence",
+              "explanation": "Fix any of the following:\n  Required ARIA parent role not present: tablist"
+            }
+          }
+        ],
+        "debugData": {
+          "type": "debugdata",
+          "impact": "critical",
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag131",
+            "EN-301-549",
+            "EN-9.1.3.1",
+            "RGAAv4",
+            "RGAA-9.3.1"
+          ]
+        }
+      }
+    },
+    {
+      "id": "heading-order",
+      "title": "Heading elements are not in a sequentially-descending order",
+      "description": "Properly ordered headings that do not skip levels convey the semantic structure of the page, making it easier to navigate and understand when using assistive technologies. [Learn more about heading order](https://dequeuniversity.com/rules/axe/4.12/heading-order).",
+      "details": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "node",
+            "valueType": "node",
+            "subItemsHeading": {
+              "key": "relatedNode",
+              "valueType": "node"
+            },
+            "label": "Failing Elements"
+          }
+        ],
+        "items": [
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-3-H4",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,MAIN,3,SECTION,1,DIV,0,DIV,2,DIV,1,DIV,0,DIV,0,H4",
+              "selector": "div.w-full > div.p-8 > div.mb-8 > h4.font-heading",
+              "boundingRect": {
+                "top": 7709,
+                "bottom": 7773,
+                "left": 105,
+                "right": 307,
+                "width": 202,
+                "height": 64
+              },
+              "snippet": "<h4 class=\"font-heading italic text-2xl text-white\">",
+              "nodeLabel": "Research & Learning Focus",
+              "explanation": "Fix any of the following:\n  Heading order invalid"
+            }
+          }
+        ],
+        "debugData": {
+          "type": "debugdata",
+          "impact": "moderate",
+          "tags": [
+            "cat.semantics",
+            "best-practice"
+          ]
+        }
+      }
+    }
+  ],
+  "bpIssues": []
+}

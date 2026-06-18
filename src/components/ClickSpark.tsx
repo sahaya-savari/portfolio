@@ -1,4 +1,4 @@
-import { useRef, useEffect, useCallback } from 'react';
+import { useRef, useEffect, useCallback, useState } from 'react';
 
 const ClickSpark = ({
   sparkColor = '#fff',
@@ -13,8 +13,19 @@ const ClickSpark = ({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const sparksRef = useRef<any[]>([]);
   const isAnimatingRef = useRef<boolean>(false);
+  const [isDisabled, setIsDisabled] = useState(true); // Default to true to prevent initial hydrate mismatch/blocking
 
-  // Keep references to configuration values to prevent stale closures in the drawing loop
+  // Evaluate performance constraints on mount
+  useEffect(() => {
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // Disable on devices with 4 or fewer logical processors (often low-end/mobile CPUs)
+    const isLowEnd = (navigator.hardwareConcurrency || 4) <= 4;
+    
+    // Performance priority: Only enable if it's a capable desktop device
+    setIsDisabled(isMobile || isReducedMotion || isLowEnd);
+  }, []);
+
   const configRef = useRef({
     sparkColor,
     sparkSize,
@@ -47,6 +58,8 @@ const ClickSpark = ({
   }, []);
 
   useEffect(() => {
+    if (isDisabled) return;
+    
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -56,9 +69,9 @@ const ClickSpark = ({
     };
 
     resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('resize', resizeCanvas, { passive: true });
     return () => window.removeEventListener('resize', resizeCanvas);
-  }, []);
+  }, [isDisabled]);
 
   const draw = useCallback((timestamp: number) => {
     const canvas = canvasRef.current;
@@ -106,26 +119,35 @@ const ClickSpark = ({
   }, [easeFunc]);
 
   useEffect(() => {
-    const handleClick = (e: MouseEvent) => {
-      const { sparkCount } = configRef.current;
-      const now = performance.now();
-      const newSparks = Array.from({ length: sparkCount }, (_, i) => ({
-        x: e.clientX,
-        y: e.clientY,
-        angle: (2 * Math.PI * i) / sparkCount,
-        startTime: now
-      }));
-      sparksRef.current.push(...newSparks);
+    if (isDisabled) return;
 
-      if (!isAnimatingRef.current) {
-        isAnimatingRef.current = true;
-        requestAnimationFrame(draw);
-      }
+    const handleClick = (e: MouseEvent) => {
+      // Defer to prevent blocking React's synthetic event handler (INP fix)
+      setTimeout(() => {
+        const { sparkCount } = configRef.current;
+        const now = performance.now();
+        const newSparks = Array.from({ length: sparkCount }, (_, i) => ({
+          x: e.clientX,
+          y: e.clientY,
+          angle: (2 * Math.PI * i) / sparkCount,
+          startTime: now
+        }));
+        sparksRef.current.push(...newSparks);
+
+        if (!isAnimatingRef.current) {
+          isAnimatingRef.current = true;
+          requestAnimationFrame(draw);
+        }
+      }, 0);
     };
 
-    window.addEventListener('click', handleClick);
+    window.addEventListener('click', handleClick, { passive: true });
     return () => window.removeEventListener('click', handleClick);
-  }, [draw]);
+  }, [draw, isDisabled]);
+
+  if (isDisabled) {
+    return <>{children}</>;
+  }
 
   return (
     <div style={{ position: 'relative', width: '100%', minHeight: '100vh' }}>

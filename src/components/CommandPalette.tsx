@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Hash, FileText, BookOpen, ExternalLink, Moon, Sparkles, FolderGit } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Search, FileText, BookOpen, ExternalLink, FolderGit } from 'lucide-react';
 import { PROJECTS } from '../data';
 import { BLOG_POSTS } from '../blogData';
 
