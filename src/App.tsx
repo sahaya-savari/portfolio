@@ -3,8 +3,8 @@ import Dock from './components/Dock';
 import ClickSpark from './components/ClickSpark';
 import React, { useEffect, useRef, useState, useCallback, lazy, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, Play, Database, Brain, Code, ChevronDown, Mail, Linkedin, ExternalLink, Award, Terminal, Github, MapPin, Check, Menu, X } from 'lucide-react';
-import { PROJECTS, STATS, CERTIFICATIONS } from './data';
+import { ArrowUpRight, Play, Database, Brain, Code, ChevronDown, Mail, Linkedin, ExternalLink, Award, Terminal, Github, MapPin, Check, Menu, X, BookOpen, Search } from 'lucide-react';
+import { PROJECTS, STATS, CERTIFICATIONS, FEATURED_CREDENTIALS } from './data';
 
 import BlurText from './components/BlurText';
 import ErrorBoundary from './components/ErrorBoundary';
@@ -13,6 +13,8 @@ import LearningJourney from './components/LearningJourney';
 
 const ResumeViewer = lazy(() => import('./components/ResumeViewer'));
 const ProjectModal = lazy(() => import('./components/ProjectModal'));
+const BlogModal = lazy(() => import('./components/BlogModal'));
+const CommandPalette = lazy(() => import('./components/CommandPalette'));
 
 const HlsVideo = ({ src, className, style, desaturated = false }: { src: string; className?: string; style?: React.CSSProperties; desaturated?: boolean }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -109,11 +111,25 @@ export default function App() {
   const [activePillar, setActivePillar] = useState<'Data' | 'AI'>('Data');
   const [copied, setCopied] = useState(false);
   const [showResume, setShowResume] = useState(false);
+  const [showBlog, setShowBlog] = useState(false);
+  const [showCommandPalette, setShowCommandPalette] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isHeroLoaded, setIsHeroLoaded] = useState(false);
   const [selectedProject, setSelectedProject] = useState<any>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const mobileMenuToggleRef = useRef<HTMLButtonElement>(null);
+
+  // Ctrl + K Spotlight listener
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        setShowCommandPalette(prev => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -186,11 +202,15 @@ export default function App() {
                   <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" aria-hidden="true"></span>
                   AVAILABLE FOR WORK
                 </span>
+                <span className="font-body text-[10px] font-mono text-white/40 hidden lg:flex items-center gap-1.5 ml-4 px-2 py-1 rounded border border-white/10 bg-white/5">
+                  Press <kbd className="font-semibold text-white/70">Ctrl + K</kbd> for quick nav
+                </span>
               </div>
               <div className="hidden md:flex liquid-glass px-6 py-2.5 rounded-full items-center gap-8 backdrop-blur-md" role="menubar">
                 <a href="#home" role="menuitem" className="text-sm font-body font-medium text-white/70 hover:text-white transition-colors">Home</a>
                 <a href="#about" role="menuitem" className="text-sm font-body font-medium text-white/70 hover:text-white transition-colors">About</a>
                 <button onClick={() => setShowResume(true)} role="menuitem" className="text-sm font-body font-medium text-white/70 hover:text-white transition-colors cursor-pointer">Resume</button>
+                <button onClick={() => setShowBlog(true)} role="menuitem" className="text-sm font-body font-medium text-white/70 hover:text-white transition-colors cursor-pointer">Blog</button>
                 <a href="#skills" role="menuitem" className="text-sm font-body font-medium text-white/70 hover:text-white transition-colors">Skills</a>
                 <a href="#projects" role="menuitem" className="text-sm font-body font-medium text-white/70 hover:text-white transition-colors">Projects</a>
                 <a href="#certifications" role="menuitem" className="text-sm font-body font-medium text-white/70 hover:text-white transition-colors">Certs</a>
@@ -238,6 +258,7 @@ export default function App() {
                 <a href="#home" onClick={() => setMobileMenuOpen(false)} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Home</a>
                 <a href="#about" onClick={() => setMobileMenuOpen(false)} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">About</a>
                 <button onClick={() => { setShowResume(true); setMobileMenuOpen(false); }} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors cursor-pointer min-h-[48px]">Resume</button>
+                <button onClick={() => { setShowBlog(true); setMobileMenuOpen(false); }} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors cursor-pointer min-h-[48px]">Blog</button>
                 <a href="#skills" onClick={() => setMobileMenuOpen(false)} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Skills</a>
                 <a href="#projects" onClick={() => setMobileMenuOpen(false)} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Projects</a>
                 <a href="#certifications" onClick={() => setMobileMenuOpen(false)} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Certs</a>
@@ -583,20 +604,136 @@ export default function App() {
                 <h2 className="text-5xl md:text-6xl font-heading italic text-white tracking-tight leading-[0.9]">Certificates & Courses</h2>
                 <p className="text-white/50 font-body font-light mt-6 max-w-xl mx-auto">Focused on building practical, project-ready skills in AI, machine learning, and software development.</p>
               </div>
-              <div className="grid md:grid-cols-3 gap-8">
-                {CERTIFICATIONS.map(({ icon, title, items }) => (
-                  <div key={title} className="space-y-6">
-                    <h3 className="font-heading italic text-2xl flex items-center gap-3 text-white/80">{icon} {title}</h3>
-                    <div className="space-y-3">
-                      {items.map((c: any) => (
-                        <div key={c.name} className="liquid-glass p-4 rounded-2xl flex items-center gap-4">
-                          <Award className="w-5 h-5 text-white/40 shrink-0" aria-hidden="true" />
-                          <span className="text-sm font-body font-light text-white/60">{c.name}</span>
+
+              {/* FEATURED CREDENTIALS SUBSECTION */}
+              <div className="mb-24">
+                <div className="flex items-center gap-3 justify-center mb-10">
+                  <Award className="w-6 h-6 text-white/50 animate-pulse" aria-hidden="true" />
+                  <h3 className="font-heading italic text-3xl text-white tracking-tight">Featured Credentials</h3>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+                  {FEATURED_CREDENTIALS.map((cred, i) => (
+                    <motion.div
+                      key={cred.title}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.1 }}
+                      className="liquid-glass p-6 rounded-[2rem] flex flex-col justify-between border border-white/10 hover:-translate-y-1 transition-transform group relative"
+                      style={{
+                        background: 'rgba(255, 255, 255, 0.02)',
+                        boxShadow: 'inset 0 1px 1px rgba(255, 255, 255, 0.1)',
+                        backdropFilter: 'blur(20px)',
+                      }}
+                    >
+                      <div>
+                        <div className="flex items-center justify-between mb-4 gap-2">
+                          <span className="text-3xl select-none filter drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]" role="img" aria-label="Credential badge">{cred.prefix}</span>
+                          <span className="text-[10px] font-mono uppercase tracking-widest text-white/40 text-right">{cred.issuer}</span>
                         </div>
-                      ))}
+                        <h4 className="font-heading italic text-xl md:text-2xl text-white mb-3 leading-tight tracking-tight">{cred.title}</h4>
+                        {cred.desc && (
+                          <p className="text-white/60 font-body font-light text-xs leading-relaxed mb-4">
+                            {cred.desc}
+                          </p>
+                        )}
+                        
+                        {(cred.issueDate || cred.credentialId || cred.score || cred.credits) && (
+                          <div className="grid grid-cols-2 gap-x-3 gap-y-2 text-[10px] font-mono text-white/50 mb-4 border-t border-white/5 pt-3">
+                            {cred.issueDate && (
+                              <div>
+                                <span className="text-white/30 block text-[8px] uppercase tracking-wider">Issued</span>
+                                {cred.issueDate}
+                              </div>
+                            )}
+                            {cred.credentialId && (
+                              <div className="truncate" title={cred.credentialId}>
+                                <span className="text-white/30 block text-[8px] uppercase tracking-wider">
+                                  {cred.issuer.includes("NIELIT") ? "Certificate No." : "ID"}
+                                </span>
+                                {cred.credentialId}
+                              </div>
+                            )}
+                            {cred.score && (
+                              <div>
+                                <span className="text-white/30 block text-[8px] uppercase tracking-wider">Score</span>
+                                {cred.score}
+                              </div>
+                            )}
+                            {cred.credits && (
+                              <div>
+                                <span className="text-white/30 block text-[8px] uppercase tracking-wider">Credits</span>
+                                {cred.credits}
+                              </div>
+                            )}
+                          </div>
+                        )}
+                        
+                        {cred.skills && cred.skills.length > 0 && (
+                          <div className="flex flex-wrap gap-1.5 mb-6">
+                            {cred.skills.map((s) => (
+                              <span key={s} className="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[9px] font-mono text-white/60">
+                                {s}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                      
+                      {/* Actions */}
+                      {(cred.verifyUrl || cred.linkedinUrl || cred.pdfPath) && (
+                        <div className="space-y-2 mt-auto pt-4 border-t border-white/5">
+                          {cred.verifyUrl && (
+                            <a
+                              href={cred.verifyUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="w-full flex items-center justify-center gap-1.5 px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 text-white text-xs font-body font-medium transition-all duration-300 border border-white/10 min-h-[38px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
+                              aria-label={`Verify ${cred.title} credential`}
+                            >
+                              <span>Verify Credential</span>
+                              <ArrowUpRight className="w-3.5 h-3.5 text-white/60 group-hover:text-white" />
+                            </a>
+                          )}
+                          {cred.linkedinUrl && (
+                            <a
+                              href={cred.linkedinUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="w-full flex items-center justify-center gap-1.5 px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 text-white text-xs font-body font-medium transition-all duration-300 border border-white/10 min-h-[38px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
+                              aria-label={`View ${cred.title} credential on LinkedIn`}
+                            >
+                              <span>View Credential</span>
+                              <ExternalLink className="w-3.5 h-3.5 text-white/60 group-hover:text-white" />
+                            </a>
+                          )}
+                        </div>
+                      )}
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              {/* EXISTING CATEGORIES */}
+              <div>
+                <div className="flex items-center gap-3 justify-center mb-10">
+                  <h3 className="font-heading italic text-3xl text-white/60 tracking-tight">Browse by Category</h3>
+                </div>
+                <div className="grid md:grid-cols-3 gap-8 text-left">
+                  {CERTIFICATIONS.map(({ icon, title, items }) => (
+                    <div key={title} className="space-y-6">
+                      <h4 className="font-heading italic text-2xl flex items-center gap-3 text-white/80">{icon} {title}</h4>
+                      <div className="space-y-3">
+                        {items.map((c: any) => (
+                          <div key={c.name} className="liquid-glass p-4 rounded-2xl flex items-center gap-4">
+                            <Award className="w-5 h-5 text-white/40 shrink-0" aria-hidden="true" />
+                            <span className="text-sm font-body font-light text-white/60">{c.name}</span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </section>
@@ -636,6 +773,8 @@ export default function App() {
                 items={[
                   { icon: <Linkedin size={20} aria-hidden="true" />, label: 'LinkedIn', onClick: () => window.open('https://www.linkedin.com/in/sahayasavari', '_blank'), ariaLabel: 'Visit LinkedIn profile' },
                   { icon: <Github size={20} aria-hidden="true" />, label: 'GitHub', onClick: () => window.open('https://github.com/sahaya-savari', '_blank'), ariaLabel: 'Visit GitHub profile' },
+                  { icon: <BookOpen size={20} aria-hidden="true" />, label: 'Blog', onClick: () => setShowBlog(true), ariaLabel: 'Open technical blog' },
+                  { icon: <Search size={20} aria-hidden="true" />, label: 'Search', onClick: () => setShowCommandPalette(true), ariaLabel: 'Open spotlight search command palette' },
                   { icon: <ExternalLink size={20} aria-hidden="true" />, label: 'Resume', onClick: () => window.open('/resume.pdf', '_blank'), ariaLabel: 'Open resume PDF in new tab' },
                   { icon: <Mail size={20} aria-hidden="true" />, label: 'Email', onClick: () => window.open('mailto:sahayasavari@gmail.com'), ariaLabel: 'Send email to Sahaya Savari' },
                 ]}
@@ -662,6 +801,31 @@ export default function App() {
           <ErrorBoundary>
             <Suspense fallback={<div className="fixed inset-0 z-[400] bg-black/80 flex items-center justify-center" role="status"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white/50" aria-hidden="true"></div><span className="sr-only">Loading project details...</span></div>}>
               <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
+            </Suspense>
+          </ErrorBoundary>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {showBlog && (
+          <ErrorBoundary>
+            <Suspense fallback={<div className="fixed inset-0 z-[400] bg-black/80 flex items-center justify-center" role="status"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white/50" aria-hidden="true"></div><span className="sr-only">Loading blog viewer...</span></div>}>
+              <BlogModal onClose={() => setShowBlog(false)} />
+            </Suspense>
+          </ErrorBoundary>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {showCommandPalette && (
+          <ErrorBoundary>
+            <Suspense fallback={<div className="fixed inset-0 z-[500] bg-black/80 flex items-center justify-center" role="status"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white/50" aria-hidden="true"></div><span className="sr-only">Loading command palette...</span></div>}>
+              <CommandPalette 
+                onClose={() => setShowCommandPalette(false)} 
+                onSelectProject={(proj) => setSelectedProject(proj)}
+                onOpenBlog={() => setShowBlog(true)}
+                onOpenResume={() => setShowResume(true)}
+              />
             </Suspense>
           </ErrorBoundary>
         )}

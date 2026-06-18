@@ -1,10 +1,75 @@
 import { useEffect, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { X, ExternalLink, Github } from 'lucide-react';
+import { X, ExternalLink, Github, Cpu, Database, Layout, ArrowRight } from 'lucide-react';
 
 interface ProjectModalProps {
   project: any;
   onClose: () => void;
+}
+
+function ArchitectureDiagram({ title }: { title: string }) {
+  if (title === "Daily Spark") {
+    return (
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 py-6 bg-white/5 rounded-2xl border border-white/10 my-4 text-sm">
+        <div className="px-4 py-3 rounded-xl bg-white/5 border border-white/10 flex flex-col items-center gap-1 w-40 text-center">
+          <Layout className="w-5 h-5 text-purple-400" />
+          <span className="font-semibold text-white">React Frontend</span>
+          <span className="text-xs text-white/50">Client App</span>
+        </div>
+        <ArrowRight className="w-5 h-5 text-white/30 rotate-90 sm:rotate-0 shrink-0" />
+        <div className="px-4 py-3 rounded-xl bg-white/5 border border-white/10 flex flex-col items-center gap-1 w-48 text-center">
+          <Database className="w-5 h-5 text-blue-400" />
+          <span className="font-semibold text-white">Firebase Realtime DB</span>
+          <span className="text-xs text-white/50">Data Store & Auth</span>
+        </div>
+        <ArrowRight className="w-5 h-5 text-white/30 rotate-90 sm:rotate-0 shrink-0" />
+        <div className="px-4 py-3 rounded-xl bg-white/5 border border-white/10 flex flex-col items-center gap-1 w-40 text-center">
+          <Cpu className="w-5 h-5 text-emerald-400" />
+          <span className="font-semibold text-white">Python Backend</span>
+          <span className="text-xs text-white/50">Behavioral Engine</span>
+        </div>
+      </div>
+    );
+  }
+  if (title === "PrepMind AI") {
+    return (
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 py-6 bg-white/5 rounded-2xl border border-white/10 my-4 text-sm">
+        <div className="px-4 py-3 rounded-xl bg-white/5 border border-white/10 flex flex-col items-center gap-1 w-40 text-center">
+          <Layout className="w-5 h-5 text-emerald-400" />
+          <span className="font-semibold text-white">React Frontend</span>
+          <span className="text-xs text-white/50">Adaptive UI</span>
+        </div>
+        <ArrowRight className="w-5 h-5 text-white/30 rotate-90 sm:rotate-0 shrink-0" />
+        <div className="px-4 py-3 rounded-xl bg-white/5 border border-white/10 flex flex-col items-center gap-1 w-40 text-center">
+          <Cpu className="w-5 h-5 text-purple-400" />
+          <span className="font-semibold text-white">Python Pipeline</span>
+          <span className="text-xs text-white/50">Context Engine</span>
+        </div>
+        <ArrowRight className="w-5 h-5 text-white/30 rotate-90 sm:rotate-0 shrink-0" />
+        <div className="px-4 py-3 rounded-xl bg-white/5 border border-white/10 flex flex-col items-center gap-1 w-40 text-center">
+          <Database className="w-5 h-5 text-blue-400" />
+          <span className="font-semibold text-white">OpenAI API</span>
+          <span className="text-xs text-white/50">LLM Generation</span>
+        </div>
+      </div>
+    );
+  }
+  // Portfolio Website
+  return (
+    <div className="flex flex-col sm:flex-row items-center justify-center gap-4 py-6 bg-white/5 rounded-2xl border border-white/10 my-4 text-sm">
+      <div className="px-4 py-3 rounded-xl bg-white/5 border border-white/10 flex flex-col items-center gap-1 w-44 text-center">
+        <Layout className="w-5 h-5 text-blue-400" />
+        <span className="font-semibold text-white">Vite & React SPA</span>
+        <span className="text-xs text-white/50">Framer Motion UI</span>
+      </div>
+      <ArrowRight className="w-5 h-5 text-white/30 rotate-90 sm:rotate-0 shrink-0" />
+      <div className="px-4 py-3 rounded-xl bg-white/5 border border-white/10 flex flex-col items-center gap-1 w-44 text-center">
+        <Database className="w-5 h-5 text-purple-400" />
+        <span className="font-semibold text-white">Static Files / JSON</span>
+        <span className="text-xs text-white/50">Client-Side State</span>
+      </div>
+    </div>
+  );
 }
 
 export default function ProjectModal({ project, onClose }: ProjectModalProps) {
@@ -127,61 +192,69 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
         {/* Content Body */}
         <div className="p-6 md:p-8 grid md:grid-cols-3 gap-12">
           
-          {/* Left Column: Details */}
-          <div className="md:col-span-2 space-y-12">
+          {/* Left Column: Case Study Details */}
+          <div className="md:col-span-2 space-y-10">
             
-            <section>
-              <h3 className="text-xl font-heading italic text-white mb-4 flex items-center gap-2">Overview</h3>
-              <p className="text-white/70 font-body font-light text-lg leading-relaxed">
+            {/* Overview / Solution */}
+            <section className="space-y-3">
+              <h3 className="text-lg font-mono tracking-widest uppercase text-white/40">Overview & Solution</h3>
+              <p className="text-white/80 font-body font-light text-lg leading-relaxed">
                 {project.longDesc}
               </p>
             </section>
 
-            <section>
-              <h3 className="text-xl font-heading italic text-white mb-4 flex items-center gap-2">The Problem</h3>
-              <p className="text-white/70 font-body font-light leading-relaxed">
+            {/* Problem */}
+            <section className="space-y-3">
+              <h3 className="text-lg font-mono tracking-widest uppercase text-white/40">The Problem</h3>
+              <div className="p-5 rounded-2xl bg-red-500/5 border border-red-500/10 text-white/80 font-body font-light leading-relaxed">
                 {project.problem}
-              </p>
+              </div>
             </section>
 
-            <section>
-              <h3 className="text-xl font-heading italic text-white mb-4 flex items-center gap-2">Architecture & Solution</h3>
-              <p className="text-white/70 font-body font-light leading-relaxed">
+            {/* Current Architecture */}
+            <section className="space-y-3">
+              <h3 className="text-lg font-mono tracking-widest uppercase text-white/40">Current Architecture</h3>
+              <p className="text-white/80 font-body font-light leading-relaxed">
                 {project.architecture}
               </p>
+              <ArchitectureDiagram title={project.title} />
             </section>
 
-            <section>
-              <h3 className="text-xl font-heading italic text-white mb-4 flex items-center gap-2">Challenges</h3>
-              <p className="text-white/70 font-body font-light leading-relaxed">
-                {project.challenges}
-              </p>
-            </section>
-
+            {/* Challenges & What I Learned */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <section>
-                <h3 className="text-xl font-heading italic text-white mb-4 flex items-center gap-2">Results</h3>
-                <p className="text-white/70 font-body font-light leading-relaxed">
-                  {project.results}
+              <section className="space-y-3">
+                <h3 className="text-lg font-mono tracking-widest uppercase text-white/40">Challenges</h3>
+                <p className="text-white/80 font-body font-light leading-relaxed">
+                  {project.challenges}
                 </p>
               </section>
 
-              <section>
-                <h3 className="text-xl font-heading italic text-white mb-4 flex items-center gap-2">Lessons Learned</h3>
-                <p className="text-white/70 font-body font-light leading-relaxed">
+              <section className="space-y-3">
+                <h3 className="text-lg font-mono tracking-widest uppercase text-white/40">What I Learned</h3>
+                <p className="text-white/80 font-body font-light leading-relaxed">
                   {project.lessonsLearned}
                 </p>
               </section>
             </div>
+
+            {/* Future Roadmap */}
+            {project.futureImprovements && (
+              <section className="space-y-3 pt-6 border-t border-white/5">
+                <h3 className="text-lg font-mono tracking-widest uppercase text-purple-400">Future Roadmap</h3>
+                <div className="p-5 rounded-2xl bg-purple-500/5 border border-purple-500/10 text-white/80 font-body font-light leading-relaxed">
+                  {project.futureImprovements}
+                </div>
+              </section>
+            )}
             
           </div>
 
-          {/* Right Column: Meta */}
+          {/* Right Column: Meta Info */}
           <div className="space-y-8">
             <div className="liquid-glass p-6 rounded-2xl border border-white/5 space-y-6">
               
               <div>
-                <h4 className="text-sm font-mono text-white/40 tracking-widest uppercase mb-4">Tech Stack</h4>
+                <h4 className="text-xs font-mono text-white/40 tracking-widest uppercase mb-4">Tech Stack</h4>
                 <div className="flex flex-wrap gap-2">
                   {project.techStack?.map((tech: string) => (
                     <span key={tech} className="px-3 py-1.5 rounded-lg bg-white/5 text-sm text-white/80 font-body font-medium border border-white/10">
@@ -192,12 +265,12 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               </div>
 
               <div className="pt-6 border-t border-white/10">
-                <h4 className="text-sm font-mono text-white/40 tracking-widest uppercase mb-4">Key Features</h4>
+                <h4 className="text-xs font-mono text-white/40 tracking-widest uppercase mb-4">Key Features</h4>
                 <ul className="space-y-3">
                   {project.features?.map((feature: string) => (
                     <li key={feature} className="text-sm text-white/70 font-body flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-white/30 mt-1.5 shrink-0" aria-hidden="true" />
-                      {feature}
+                      <span className="w-1.5 h-1.5 rounded-full bg-white/30 mt-2 shrink-0" aria-hidden="true" />
+                      <span>{feature}</span>
                     </li>
                   ))}
                 </ul>

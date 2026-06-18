@@ -22,6 +22,7 @@ export const PROJECTS = [
     challenges: "Developing a performant algorithm capable of processing daily user habits in real-time without draining device battery.",
     results: "Successfully built an MVP that demonstrates personalized AI-generated nudges based on user behavior.",
     lessonsLearned: "Optimizing state management is critical when handling continuous real-time data streams from Firebase.",
+    futureImprovements: "Implement local SQLite database caching for faster offline loads, set up cross-device authentication sync, and integrate local notification reminders.",
     theme: {
       bg: "linear-gradient(180deg, rgba(88,28,135,0.4) 0%, rgba(15,23,42,0.8) 100%)",
       border: "rgba(168,85,247,0.3)",
@@ -52,6 +53,7 @@ export const PROJECTS = [
     challenges: "Ensuring the LLM does not hallucinate facts during quiz generation by implementing strict system prompts and context injection.",
     results: "Achieved high accuracy in generated flashcard relevance compared to manual textbook extraction.",
     lessonsLearned: "Prompt engineering requires rigorous testing; structuring LLM output into strict JSON formats is essential for reliable frontend rendering.",
+    futureImprovements: "Support local document embedding with Vector Stores, optimize OpenAI context windows, and enable speech-to-text notes transcription.",
     theme: {
       bg: "linear-gradient(180deg, rgba(6,78,59,0.4) 0%, rgba(15,23,42,0.8) 100%)",
       border: "rgba(16,185,129,0.3)",
@@ -82,6 +84,7 @@ export const PROJECTS = [
     challenges: "Achieving 60fps glassmorphism and spring animations without causing layout thrashing on mobile devices.",
     results: "Perfect performance score with seamless cross-browser layout stability.",
     lessonsLearned: "Using absolute DOM offset measurements instead of relying on offsetParent trees resolves critical layout bugs in complex tracks.",
+    futureImprovements: "Add full offline-first capabilities using Service Workers, introduce a theme preference toggler (dark/light), and automate build performance testing in CI.",
     theme: {
       bg: "linear-gradient(180deg, rgba(30,58,138,0.4) 0%, rgba(15,23,42,0.8) 100%)",
       border: "rgba(59,130,246,0.3)",
@@ -94,10 +97,93 @@ export const PROJECTS = [
   }
 ];
 
+export interface FeaturedCredential {
+  prefix: string;
+  title: string;
+  issuer: string;
+  issueDate?: string;
+  credentialId?: string;
+  verifyUrl?: string;
+  linkedinUrl?: string;
+  pdfPath?: string;
+  score?: string;
+  credits?: string | number;
+  skills?: string[];
+  desc?: string;
+}
+
+export const FEATURED_CREDENTIALS: FeaturedCredential[] = [
+  {
+    prefix: "🥇",
+    title: "IBM Data Analyst Specialization",
+    issuer: "IBM (Coursera)",
+    issueDate: "August 28, 2024",
+    credentialId: "DDWFE1NB25DZ",
+    verifyUrl: "https://www.coursera.org/account/accomplishments/specialization/DDWFE1NB25DZ",
+    skills: [
+      "Python",
+      "SQL",
+      "Microsoft Excel",
+      "Data Analysis",
+      "Data Visualization",
+      "Dashboard Creation",
+      "Data Storytelling",
+      "IBM Cognos Analytics",
+      "Data Wrangling",
+      "Exploratory Data Analysis"
+    ],
+    desc: "Completed the IBM Data Analyst Professional Certificate covering Excel, SQL, Python, Data Visualization, Dashboards, Data Analysis, Relational Databases, Jupyter Notebooks, and IBM Cognos Analytics through hands-on projects and real-world datasets."
+  },
+  {
+    prefix: "🥈",
+    title: "Introduction to Machine Learning (Tamil)",
+    issuer: "NPTEL / IIT Madras",
+    issueDate: "March 2026",
+    credentialId: "NPTEL26CS73S470101904",
+    verifyUrl: "https://nptel.ac.in/noc/E_Certificate/NOC26CS73S47010190403177914",
+    score: "53%",
+    credits: 3,
+    skills: [
+      "Machine Learning",
+      "Artificial Intelligence",
+      "Classification",
+      "Regression",
+      "Model Evaluation",
+      "Data Analysis"
+    ],
+    desc: "Completed NPTEL IIT Madras certification in Introduction to Machine Learning (Tamil), covering machine learning fundamentals, classification, regression, model evaluation, and practical AI concepts."
+  },
+  {
+    prefix: "🥉",
+    title: "Web Development and Software Engineering",
+    issuer: "HodoLabs",
+    issueDate: "",
+    credentialId: "",
+    verifyUrl: "",
+    skills: [],
+    desc: ""
+  },
+  {
+    prefix: "🏅",
+    title: "Yuva AI for All",
+    issuer: "National Institute of Electronics and Information Technology (NIELIT)",
+    issueDate: "March 2026",
+    credentialId: "2026030427766558-105732",
+    verifyUrl: "",
+    skills: [
+      "Prompt Engineering",
+      "Accurate Prompting",
+      "Generative AI",
+      "Responsible AI"
+    ],
+    desc: "Completed a Government of India Skill India initiative course covering Generative AI fundamentals, prompt engineering, responsible AI practices, and practical AI applications."
+  }
+];
+
 export const STATS = [
   ['M.Sc', 'AI Student'],
   ['3', 'Major Projects'],
-  ['3', 'Certifications'],
+  ['4', 'Featured Credentials'],
   ['Daily', 'Learning Focus']
 ];
 
