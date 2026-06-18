@@ -13,6 +13,13 @@ interface HeroSectionProps {
 const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
   const [isHeroLoaded, setIsHeroLoaded] = useState(false);
 
+  useEffect(() => {
+    if (isHeroLoaded) {
+      const skeleton = document.getElementById('static-hero-skeleton');
+      if (skeleton) skeleton.remove();
+    }
+  }, [isHeroLoaded]);
+
   return (
     <section id="home" aria-label="Introduction" className="relative min-h-[100svh] flex flex-col px-6 overflow-hidden bg-black">
       <div className="absolute top-[15%] left-0 w-full z-0 opacity-40" aria-hidden="true">
