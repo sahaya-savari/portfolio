@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect, useRef, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m as motion, AnimatePresence  } from 'framer-motion';
 import { X, Search, Calendar, Clock, ArrowLeft, Tag, BookOpen } from 'lucide-react';
 import { BLOG_POSTS, BlogPost } from '../blogData';
 

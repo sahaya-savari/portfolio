@@ -69,6 +69,7 @@ export default function FocusText({ className = "" }: FocusTextProps) {
                 key={word}
                 ref={(el) => { itemRefs.current[index] = el; }}
                 className="relative shrink-0 flex items-center justify-center px-2 py-2 md:px-4 md:py-4"
+                style={{ willChange: "transform, filter, opacity" }}
                 animate={{
                   scale: isActive ? 1.15 : 0.85,
                   opacity: isActive ? 1 : 0.4,

@@ -1,4 +1,4 @@
-import React, { useState, memo } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import { motion } from 'framer-motion';
 import { Play } from 'lucide-react';
 import RotatingText from '../components/RotatingText';
@@ -13,26 +13,13 @@ interface HeroSectionProps {
 const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
   const [isHeroLoaded, setIsHeroLoaded] = useState(false);
 
-  useEffect(() => {
-    if (isHeroLoaded) {
-      const skeleton = document.getElementById('static-hero-skeleton');
-      if (skeleton) skeleton.remove();
-    }
-  }, [isHeroLoaded]);
+  // The static skeleton remains in the DOM as z-index -1 to act as the poster image
 
   return (
-    <section id="home" aria-label="Introduction" className="relative min-h-[100svh] flex flex-col px-6 overflow-hidden bg-black">
+    <section id="home" aria-label="Introduction" className="relative min-h-[100svh] flex flex-col px-6 overflow-hidden bg-transparent">
       <div className="absolute top-[15%] left-0 w-full z-0 opacity-40" aria-hidden="true">
         <div className="relative w-full">
-          {/* Explicit width/height added to solve CLS */}
-          <img 
-            src="https://image.mux.com/9JXDljEVWYwWu01PUkAemafDugK89o01BR6zqJ3aS9u00A/thumbnail.webp?time=0&width=800" 
-            alt="Hero background poster" 
-            width={1920}
-            height={1080}
-            className={`absolute top-0 left-0 w-full h-auto object-contain transition-opacity duration-1000 ease-in-out ${isHeroLoaded ? 'opacity-0' : 'opacity-100'}`}
-            fetchPriority="high"
-          />
+          {/* Static Hero skeleton in index.html acts as the poster to prevent LCP invalidation */}
           <video 
             src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260307_083826_e938b29f-a43a-41ec-a153-3d4730578ab8.mp4" 
             autoPlay 

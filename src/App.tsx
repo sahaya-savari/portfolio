@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect, useRef, lazy, Suspense } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m as motion, AnimatePresence  } from 'framer-motion';
 import { ArrowUpRight, Menu, X } from 'lucide-react';
 
 import ClickSpark from './components/ClickSpark';
