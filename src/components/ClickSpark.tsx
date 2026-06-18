@@ -131,6 +131,7 @@ const ClickSpark = ({
     <div style={{ position: 'relative', width: '100%', minHeight: '100vh' }}>
       <canvas
         ref={canvasRef}
+        aria-hidden="true"
         style={{
           position: 'fixed',
           top: 0,

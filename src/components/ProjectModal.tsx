@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { X, ExternalLink, Github } from 'lucide-react';
 
@@ -8,6 +8,21 @@ interface ProjectModalProps {
 }
 
 export default function ProjectModal({ project, onClose }: ProjectModalProps) {
+  const modalRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const previouslyFocusedRef = useRef<HTMLElement | null>(null);
+
+  // Store the element that had focus before the modal opened
+  useEffect(() => {
+    previouslyFocusedRef.current = document.activeElement as HTMLElement;
+    // Focus close button on open
+    setTimeout(() => closeButtonRef.current?.focus(), 100);
+    return () => {
+      // Return focus to triggering element on close
+      previouslyFocusedRef.current?.focus();
+    };
+  }, []);
+
   // Close on Escape key
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -19,7 +34,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [onClose]);
 
-  // Trap focus (simple implementation)
+  // Lock body scroll
   useEffect(() => {
     const originalStyle = window.getComputedStyle(document.body).overflow;
     document.body.style.overflow = 'hidden';
@@ -28,12 +43,46 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
     };
   }, []);
 
+  // Focus trap
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key !== 'Tab') return;
+    const modal = modalRef.current;
+    if (!modal) return;
+
+    const focusableElements = modal.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
+    );
+    if (focusableElements.length === 0) return;
+
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    if (e.shiftKey) {
+      if (document.activeElement === firstElement) {
+        e.preventDefault();
+        lastElement.focus();
+      }
+    } else {
+      if (document.activeElement === lastElement) {
+        e.preventDefault();
+        firstElement.focus();
+      }
+    }
+  }, []);
+
   if (!project) return null;
+
+  const titleId = `project-modal-title-${project.title.replace(/\s+/g, '-').toLowerCase()}`;
 
   return (
     <div 
       className="fixed inset-0 z-[400] flex items-center justify-center p-4 md:p-6"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby={titleId}
       onClick={onClose}
+      onKeyDown={handleKeyDown}
+      ref={modalRef}
     >
       <motion.div 
         initial={{ opacity: 0 }}
@@ -63,14 +112,15 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 {project.tag}
               </span>
             </div>
-            <h2 className="text-3xl md:text-5xl font-heading italic text-white tracking-tight">{project.title}</h2>
+            <h2 id={titleId} className="text-3xl md:text-5xl font-heading italic text-white tracking-tight">{project.title}</h2>
           </div>
           <button 
+            ref={closeButtonRef}
             onClick={onClose}
             className="w-10 h-10 liquid-glass rounded-full flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-colors shrink-0"
-            aria-label="Close modal"
+            aria-label="Close project details"
           >
-            <X className="w-5 h-5" />
+            <X className="w-5 h-5" aria-hidden="true" />
           </button>
         </div>
 
@@ -146,7 +196,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 <ul className="space-y-3">
                   {project.features?.map((feature: string) => (
                     <li key={feature} className="text-sm text-white/70 font-body flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-white/30 mt-1.5 shrink-0" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-white/30 mt-1.5 shrink-0" aria-hidden="true" />
                       {feature}
                     </li>
                   ))}
@@ -155,13 +205,13 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
               <div className="pt-6 border-t border-white/10 flex flex-col gap-3">
                 {project.link && (
-                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="w-full liquid-glass-strong py-3 rounded-xl flex items-center justify-center gap-2 text-white font-medium hover:bg-white/20 transition-colors">
-                    <ExternalLink className="w-4 h-4" /> Live Demo
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="w-full liquid-glass-strong py-3 rounded-xl flex items-center justify-center gap-2 text-white font-medium hover:bg-white/20 transition-colors" aria-label={`View live demo of ${project.title}`}>
+                    <ExternalLink className="w-4 h-4" aria-hidden="true" /> Live Demo
                   </a>
                 )}
                 {project.github && (
-                  <a href={project.github} target="_blank" rel="noopener noreferrer" className="w-full liquid-glass py-3 rounded-xl flex items-center justify-center gap-2 text-white/80 hover:text-white hover:bg-white/10 transition-colors">
-                    <Github className="w-4 h-4" /> View Source
+                  <a href={project.github} target="_blank" rel="noopener noreferrer" className="w-full liquid-glass py-3 rounded-xl flex items-center justify-center gap-2 text-white/80 hover:text-white hover:bg-white/10 transition-colors" aria-label={`View source code of ${project.title} on GitHub`}>
+                    <Github className="w-4 h-4" aria-hidden="true" /> View Source
                   </a>
                 )}
               </div>

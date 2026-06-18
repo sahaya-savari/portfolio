@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 import { Download, ZoomIn, ZoomOut, Maximize, X, Loader2 } from 'lucide-react';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
@@ -19,6 +19,20 @@ const ResumeViewer: React.FC<ResumeViewerProps> = ({ onClose, pdfUrl = `${(impor
   const [numPages, setNumPages] = useState<number | null>(null);
   const [scale, setScale] = useState(1.0);
   const [isLoading, setIsLoading] = useState(true);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const previouslyFocusedRef = useRef<HTMLElement | null>(null);
+
+  // Store the element that had focus before the modal opened
+  useEffect(() => {
+    previouslyFocusedRef.current = document.activeElement as HTMLElement;
+    // Focus close button on open
+    setTimeout(() => closeButtonRef.current?.focus(), 100);
+    return () => {
+      // Return focus to triggering element on close
+      previouslyFocusedRef.current?.focus();
+    };
+  }, []);
 
   // Close on Escape key
   useEffect(() => {
@@ -31,13 +45,40 @@ const ResumeViewer: React.FC<ResumeViewerProps> = ({ onClose, pdfUrl = `${(impor
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [onClose]);
 
-  // Trap focus (simple implementation)
+  // Lock body scroll
   useEffect(() => {
     const originalStyle = window.getComputedStyle(document.body).overflow;
     document.body.style.overflow = 'hidden';
     return () => {
       document.body.style.overflow = originalStyle;
     };
+  }, []);
+
+  // Focus trap
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key !== 'Tab') return;
+    const modal = modalRef.current;
+    if (!modal) return;
+
+    const focusableElements = modal.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
+    );
+    if (focusableElements.length === 0) return;
+
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    if (e.shiftKey) {
+      if (document.activeElement === firstElement) {
+        e.preventDefault();
+        lastElement.focus();
+      }
+    } else {
+      if (document.activeElement === lastElement) {
+        e.preventDefault();
+        firstElement.focus();
+      }
+    }
   }, []);
 
   function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
@@ -52,7 +93,12 @@ const ResumeViewer: React.FC<ResumeViewerProps> = ({ onClose, pdfUrl = `${(impor
   return (
     <div 
       className="fixed inset-0 z-[300] flex flex-col items-center justify-start bg-black/80 backdrop-blur-md pt-20 pb-6 px-4"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Resume Viewer"
+      ref={modalRef}
       onClick={onClose}
+      onKeyDown={handleKeyDown}
     >
       {/* Controls Bar */}
       <div 
@@ -64,24 +110,24 @@ const ResumeViewer: React.FC<ResumeViewerProps> = ({ onClose, pdfUrl = `${(impor
           <span className="text-white/50 font-body text-[10px] uppercase tracking-widest mt-1">M.Sc Artificial Intelligence • Resume</span>
         </div>
         <div className="flex items-center gap-2 border-r border-white/20 pr-6">
-          <button onClick={zoomOut} className="w-10 h-10 liquid-glass rounded-full flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-colors" aria-label="Zoom Out">
-            <ZoomOut className="w-4 h-4" />
+          <button onClick={zoomOut} className="w-10 h-10 liquid-glass rounded-full flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-colors" aria-label="Zoom out">
+            <ZoomOut className="w-4 h-4" aria-hidden="true" />
           </button>
-          <span className="text-white/60 font-mono text-xs w-12 text-center">{Math.round(scale * 100)}%</span>
-          <button onClick={zoomIn} className="w-10 h-10 liquid-glass rounded-full flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-colors" aria-label="Zoom In">
-            <ZoomIn className="w-4 h-4" />
+          <span className="text-white/60 font-mono text-xs w-12 text-center" aria-live="polite" aria-atomic="true">{Math.round(scale * 100)}%</span>
+          <button onClick={zoomIn} className="w-10 h-10 liquid-glass rounded-full flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-colors" aria-label="Zoom in">
+            <ZoomIn className="w-4 h-4" aria-hidden="true" />
           </button>
-          <button onClick={fitWidth} className="w-10 h-10 liquid-glass rounded-full flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-colors ml-2" aria-label="Fit Width">
-            <Maximize className="w-4 h-4" />
+          <button onClick={fitWidth} className="w-10 h-10 liquid-glass rounded-full flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-colors ml-2" aria-label="Fit to width">
+            <Maximize className="w-4 h-4" aria-hidden="true" />
           </button>
         </div>
         
         <div className="flex items-center gap-4">
-          <a href={pdfUrl} download className="w-10 h-10 liquid-glass rounded-full flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-colors" aria-label="Download Resume">
-            <Download className="w-4 h-4" />
+          <a href={pdfUrl} download className="w-10 h-10 liquid-glass rounded-full flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-colors" aria-label="Download resume as PDF">
+            <Download className="w-4 h-4" aria-hidden="true" />
           </a>
-          <button onClick={onClose} className="w-10 h-10 liquid-glass-strong rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors bg-white/10" aria-label="Close Viewer">
-            <X className="w-4 h-4" />
+          <button ref={closeButtonRef} onClick={onClose} className="w-10 h-10 liquid-glass-strong rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors bg-white/10" aria-label="Close resume viewer">
+            <X className="w-4 h-4" aria-hidden="true" />
           </button>
         </div>
       </div>
@@ -92,15 +138,16 @@ const ResumeViewer: React.FC<ResumeViewerProps> = ({ onClose, pdfUrl = `${(impor
         onClick={e => e.stopPropagation()}
       >
         {isLoading && (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <Loader2 className="w-10 h-10 text-white/50 animate-spin" />
+          <div className="absolute inset-0 flex items-center justify-center" role="status">
+            <Loader2 className="w-10 h-10 text-white/50 animate-spin" aria-hidden="true" />
+            <span className="sr-only">Loading resume...</span>
           </div>
         )}
         
         <Document
           file={pdfUrl}
           onLoadSuccess={onDocumentLoadSuccess}
-          loading={<div className="h-[800px] w-full max-w-2xl bg-white/5 rounded-xl animate-pulse" />}
+          loading={<div className="h-[800px] w-full max-w-2xl bg-white/5 rounded-xl animate-pulse" role="status"><span className="sr-only">Loading resume document...</span></div>}
           className="flex flex-col items-center"
         >
           {Array.from(new Array(numPages), (_, index) => (
@@ -110,15 +157,7 @@ const ResumeViewer: React.FC<ResumeViewerProps> = ({ onClose, pdfUrl = `${(impor
                 scale={scale}
                 renderTextLayer={true}
                 renderAnnotationLayer={true}
-                loading={<div className="h-[800px] w-full max-w-2xl bg-white/5 rounded-xl animate-pulse" />}
-                inputRef={(el) => {
-                  if (el) {
-                    setTimeout(() => {
-                      const textLayers = document.querySelectorAll('.react-pdf__Page__textContent');
-                      textLayers.forEach(layer => layer.remove());
-                    }, 100);
-                  }
-                }}
+                loading={<div className="h-[800px] w-full max-w-2xl bg-white/5 rounded-xl animate-pulse" role="status"><span className="sr-only">Loading page {index + 1}...</span></div>}
               />
             </div>
           ))}

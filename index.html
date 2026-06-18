@@ -4,11 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://sahayasavari.web.app/" />
     <meta name="google-site-verification" content="IJzhN0nUhEDDHG8dAdPHmZ8RHjAXKiCUQ31NGLGD-I4" /> 
     <!-- Preconnect to Google Fonts for faster loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600&family=Instrument+Serif:ital@1&display=swap" />
+    <!-- Preload hero poster for faster LCP -->
+    <link rel="preload" as="image" href="https://image.mux.com/9JXDljEVWYwWu01PUkAemafDugK89o01BR6zqJ3aS9u00A/thumbnail.webp?time=0" />
     <meta name="description" content="Portfolio of Sahaya Savari F, M.Sc Artificial Intelligence Student. Focused on machine learning, intelligent applications, and backend development." />
     <meta name="keywords" content="Sahaya Savari F, AI Developer, M.Sc Artificial Intelligence, Machine Learning, Backend Builder, Problem Solver" />
     <meta name="author" content="Sahaya Savari F" />
@@ -19,17 +24,62 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://sahayasavari.web.app/" />
     <meta property="og:image" content="https://sahayasavari.web.app/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Sahaya Savari F — AI Developer portfolio preview" />
+    <meta property="og:site_name" content="Sahaya Savari F Portfolio" />
+    <meta property="og:locale" content="en_US" />
     
     <!-- Twitter Card Metadata -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Sahaya Savari F — AI Developer & M.Sc Artificial Intelligence" />
     <meta name="twitter:description" content="Portfolio of Sahaya Savari F, M.Sc Artificial Intelligence Student. Focused on machine learning, intelligent applications, and backend development." />
     <meta name="twitter:image" content="https://sahayasavari.web.app/og-image.jpg" />
+    <meta name="twitter:image:alt" content="Sahaya Savari F — AI Developer portfolio preview" />
+    <meta name="twitter:creator" content="@sahayasavari" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Sahaya Savari F",
+      "url": "https://sahayasavari.web.app",
+      "jobTitle": "AI Developer",
+      "description": "M.Sc Artificial Intelligence Student focused on machine learning, intelligent applications, and backend development.",
+      "email": "sahayasavari@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Madurai",
+        "addressRegion": "Tamil Nadu",
+        "addressCountry": "IN"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/sahayasavari",
+        "https://github.com/sahaya-savari"
+      ],
+      "knowsAbout": [
+        "Artificial Intelligence",
+        "Machine Learning",
+        "Python",
+        "React",
+        "TypeScript",
+        "TensorFlow",
+        "Natural Language Processing"
+      ]
+    }
+    </script>
     
     <title>Sahaya Savari F — AI Developer & M.Sc Artificial Intelligence</title>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <div style="padding:2rem;text-align:center;color:#fff;background:#000;font-family:sans-serif;">
+        <h1>Sahaya Savari F — AI Developer</h1>
+        <p>This portfolio requires JavaScript to display interactive content. Please enable JavaScript or visit my <a href="https://www.linkedin.com/in/sahayasavari" style="color:#93c5fd;">LinkedIn profile</a>.</p>
+      </div>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

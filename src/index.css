@@ -30,6 +30,36 @@
   body {
     @apply bg-black text-foreground antialiased selection:bg-white selection:text-black;
   }
+
+  /* Accessible focus indicator for keyboard navigation */
+  *:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.7);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Reduce motion for vestibular sensitivity */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* Screen-reader only utility */
+@utility sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
 
 @utility liquid-glass {
@@ -41,7 +71,6 @@
   position: relative;
   overflow: hidden;
   transform: translate3d(0, 0, 0);
-  will-change: transform;
 
   &::before {
     content: '';
@@ -68,7 +97,6 @@
   position: relative;
   overflow: hidden;
   transform: translate3d(0, 0, 0);
-  will-change: transform;
 
   &::before {
     content: '';
@@ -101,5 +129,3 @@
 @utility btn-rounded {
   @apply font-body rounded-full transition-all duration-300;
 }
-
-

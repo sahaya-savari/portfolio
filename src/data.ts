@@ -103,19 +103,19 @@ export const STATS = [
 
 export const CERTIFICATIONS = [
   { 
-    icon: React.createElement(Database, { className: "w-5 h-5" }), 
+    icon: React.createElement(Database, { className: "w-5 h-5", "aria-hidden": true }), 
     title: 'Data Analytics', 
-    items: [{ name: "IBM Data Analyst Course", link: "#" }] 
+    items: [{ name: "IBM Data Analyst Course" }] 
   },
   { 
-    icon: React.createElement(Code, { className: "w-5 h-5" }), 
+    icon: React.createElement(Code, { className: "w-5 h-5", "aria-hidden": true }), 
     title: 'Information Technology', 
-    items: [{ name: "Honor's Diploma in Information Technology", link: "#" }] 
+    items: [{ name: "Honor's Diploma in Information Technology" }] 
   },
   { 
-    icon: React.createElement(Brain, { className: "w-5 h-5" }), 
+    icon: React.createElement(Brain, { className: "w-5 h-5", "aria-hidden": true }), 
     title: 'Business Intelligence', 
-    items: [{ name: "Mastering Excel Data Analysis & Dashboard Reporting", link: "#" }] 
+    items: [{ name: "Mastering Excel Data Analysis & Dashboard Reporting" }] 
   }
 ];
 

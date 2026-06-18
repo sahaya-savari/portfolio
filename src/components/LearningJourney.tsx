@@ -4,16 +4,16 @@ import { Brain, Code, Database } from 'lucide-react';
 import { JOURNEY } from '../data';
 
 const iconMap: Record<string, React.ReactNode> = {
-  Brain: <Brain className="w-5 h-5 text-[#d8b4fe]" />,
-  Code: <Code className="w-5 h-5 text-[#6ee7b7]" />,
-  Database: <Database className="w-5 h-5 text-[#fda4af]" />,
+  Brain: <Brain className="w-5 h-5 text-[#d8b4fe]" aria-hidden="true" />,
+  Code: <Code className="w-5 h-5 text-[#6ee7b7]" aria-hidden="true" />,
+  Database: <Database className="w-5 h-5 text-[#fda4af]" aria-hidden="true" />,
 };
 
 export default function LearningJourney() {
   return (
-    <div className="w-full max-w-4xl mx-auto px-4 py-12 relative">
+    <div className="w-full max-w-4xl mx-auto px-4 py-12 relative" role="list" aria-label="Learning journey timeline">
       {/* Background glowing line */}
-      <div className="absolute left-8 md:left-1/2 top-12 bottom-12 w-px bg-white/10 hidden md:block"></div>
+      <div className="absolute left-8 md:left-1/2 top-12 bottom-12 w-px bg-white/10 hidden md:block" aria-hidden="true"></div>
       
       <div className="space-y-16">
         {JOURNEY.map((item, index) => {
@@ -21,6 +21,7 @@ export default function LearningJourney() {
           return (
             <motion.div 
               key={index}
+              role="listitem"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -29,8 +30,8 @@ export default function LearningJourney() {
                 isEven ? "md:flex-row-reverse" : ""
               }`}
             >
-              {/* Center Node */}
-              <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 flex flex-col items-center justify-center z-10 hidden md:flex">
+              {/* Center Node — desktop only */}
+              <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 items-center justify-center z-10 hidden md:flex" aria-hidden="true">
                 <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center"
                      style={{
                        background: 'rgba(255, 255, 255, 0.05)',
@@ -68,7 +69,7 @@ export default function LearningJourney() {
                     {item.year}
                   </div>
                   <h3 className="font-heading italic text-2xl text-white mb-2">{item.title}</h3>
-                  <h4 className="font-sans text-sm text-white/60 mb-6 font-medium">{item.org}</h4>
+                  <p className="font-sans text-sm text-white/60 mb-6 font-medium">{item.org}</p>
                   <p className="text-white/60 font-body font-light text-sm leading-relaxed">
                     {item.desc}
                   </p>

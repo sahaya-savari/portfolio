@@ -29,9 +29,16 @@
   outline: none;
   color: rgba(255,255,255,0.7);
   will-change: width, height;
+  /* Ensure minimum 44x44px touch target on mobile */
+  min-width: 44px;
+  min-height: 44px;
 }
 .dock-item:hover {
   color: #fff;
+}
+.dock-item:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.7);
+  outline-offset: 2px;
 }
 .dock-icon {
   display: flex;

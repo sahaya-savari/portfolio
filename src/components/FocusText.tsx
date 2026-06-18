@@ -46,7 +46,7 @@ export default function FocusText({ className = "" }: FocusTextProps) {
   }, [activeIndex]);
 
   return (
-    <div className={`relative w-full overflow-hidden h-[200px] flex items-center ${className}`}>
+    <div className={`relative w-full overflow-hidden h-[100px] md:h-[140px] flex items-center ${className}`}>
       
       {/* 
         This wrapper is positioned exactly in the horizontal center of the screen.

@@ -14,6 +14,7 @@ const BlurText = ({
   text = '',
   delay = 200,
   className = '',
+  as: Component = 'p',
   animateBy = 'words',
   direction = 'top',
   threshold = 0.1,
@@ -26,7 +27,7 @@ const BlurText = ({
 }: any) => {
   const elements = animateBy === 'words' ? text.split(' ') : text.split('');
   const [inView, setInView] = useState(false);
-  const ref = useRef<HTMLParagraphElement>(null);
+  const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
     if (!ref.current) return;
@@ -67,7 +68,7 @@ const BlurText = ({
   );
 
   return (
-    <p ref={ref} className={className} style={{ display: 'flex', flexWrap: 'wrap' }}>
+    <Component ref={ref} className={className} style={{ display: 'flex', flexWrap: 'wrap' }}>
       {elements.map((segment: string, index: number) => {
         const animateKeyframes = buildKeyframes(fromSnapshot, toSnapshots);
         const spanTransition: any = {
@@ -90,7 +91,7 @@ const BlurText = ({
           </motion.span>
         );
       })}
-    </p>
+    </Component>
   );
 };
 

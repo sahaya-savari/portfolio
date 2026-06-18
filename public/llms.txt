@@ -1,0 +1,53 @@
+# Sahaya Savari F
+
+> AI Developer & M.Sc Artificial Intelligence Student
+
+## About
+
+Sahaya Savari F is an AI Developer pursuing M.Sc in Artificial Intelligence at St. Joseph's College (Autonomous), Trichy, India. Focused on building intelligent systems, machine learning solutions, and modern full-stack applications.
+
+## Skills
+
+- Artificial Intelligence: Machine Learning, Deep Learning (TensorFlow, PyTorch), Natural Language Processing, Computer Vision, LLM Integration, Prompt Engineering
+- Python Development: Flask, FastAPI, Pandas, NumPy, API Development, Automation
+- Web Development: React, TypeScript, Tailwind CSS, Framer Motion, Vite, Full-stack Architecture
+- Data & Databases: SQL, Data Visualization (Matplotlib, Seaborn), Database Design
+
+## Projects
+
+### Daily Spark
+- Type: Productivity App
+- Stack: Python, Firebase, React, AI/ML, TypeScript
+- Description: A daily motivation and habit-tracking application that helps users build positive routines with AI-powered personalized suggestions. Tracks daily habits and analyzes user behavior patterns to generate personalized daily routines and motivational nudges.
+- Link: https://daily-spark-app-da74b.web.app
+
+### PrepMind AI
+- Type: AI Education Platform
+- Stack: Python, OpenAI API, React, Tailwind CSS
+- Description: An intelligent study companion that generates practice questions, summaries, and personalized learning paths using AI. Transforms static study materials into interactive, adaptive learning experiences.
+- Status: In Development
+
+### Portfolio Website
+- Type: Web Development
+- Stack: React, TypeScript, Tailwind CSS, Framer Motion, Vite
+- Description: A modern, animated portfolio website featuring liquid glass design, hardware-accelerated animations, and responsive layout architecture.
+- Link: https://sahayasavari.web.app
+- Source: https://github.com/sahaya-savari/portfolio
+
+## Certifications
+
+- IBM Data Analyst Course (Data Analytics)
+- Honor's Diploma in Information Technology
+- Mastering Excel Data Analysis & Dashboard Reporting (Business Intelligence)
+
+## Education
+
+- M.Sc. Artificial Intelligence — St. Joseph's College (Autonomous), Trichy (Current)
+
+## Contact
+
+- Email: sahayasavari@gmail.com
+- LinkedIn: https://www.linkedin.com/in/sahayasavari
+- GitHub: https://github.com/sahaya-savari
+- Location: Madurai, Tamil Nadu, India
+- Portfolio: https://sahayasavari.web.app
