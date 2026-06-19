@@ -1,39 +1,35 @@
 # 🚀 Sahaya Savari F — Portfolio
 
-A modern portfolio website showcasing my projects, technical skills, certifications, and journey in Artificial Intelligence.
+A modern portfolio website showcasing my projects, technical skills, certifications, and journey in Artificial Intelligence. Built with a focus on performance, accessibility, and exceptional user experience.
 
 <p align="center">
-  <a href="https://sahayasavari.web.app">🌐 Live Portfolio</a> •
+  <a href="https://sahayasavari.web.app">🌐 Live Demo</a> •
   <a href="https://github.com/sahaya-savari">💻 GitHub</a> •
   <a href="https://www.linkedin.com/in/sahayasavarif">💼 LinkedIn</a>
 </p>
 
 ---
 
-## About
+## 🎯 Project Overview
 
-I am **Sahaya Savari F**, an **M.Sc Artificial Intelligence student** at **St. Joseph's College (Autonomous), Tiruchirappalli**.
+This portfolio serves as my central hub for projects, certifications, technical skills, and professional achievements. I am **Sahaya Savari F**, an **M.Sc Artificial Intelligence student** at **St. Joseph's College (Autonomous), Tiruchirappalli**. I enjoy building practical software solutions using Artificial Intelligence, Machine Learning, Python, Backend Development, Data Analytics, and Modern Web Technologies.
 
-I enjoy building practical software solutions using Artificial Intelligence, Machine Learning, Python, Backend Development, Data Analytics, and Modern Web Technologies.
-
-This portfolio serves as my central hub for projects, certifications, technical skills, and professional achievements.
+The project is designed to be a fast, responsive, and recruiter-ready progressive web application that highlights my core competencies and practical experience.
 
 ---
 
-## Features
+## 🏗️ Architecture
 
-* Premium Glassmorphism UI
-* Fully Responsive Design
-* In-App Resume Viewer
-* Interactive Project Showcase
-* Smooth Animations
-* Accessibility Improvements
-* Firebase Hosting Deployment
-* Performance Optimizations
+The application follows a modern frontend architecture:
+- **Component-Driven UI**: Built with React functional components and hooks for modularity and reusability.
+- **Client-Side Routing**: Implemented for seamless navigation without full page reloads.
+- **Responsive Layout System**: Utilizes Tailwind CSS utility classes to ensure a fluid experience across all device sizes (320px to 1440px+).
+- **Asset Optimization**: Uses lazy-loading and optimized media formats (like HLS video streaming) to ensure minimal initial load times.
+- **State Management**: React state hooks manage UI interactions like modals, resume viewing, and mobile navigation.
 
 ---
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 | Category        | Technologies            |
 | --------------- | ----------------------- |
@@ -48,157 +44,87 @@ This portfolio serves as my central hub for projects, certifications, technical 
 
 ---
 
-## Featured Projects
+## ✨ Features
 
-### Daily Spark
-
-Offline-first habit tracking and streak management application.
-
-#### Highlights
-
-* Daily streak tracking
-* Calendar visualization
-* Local-first storage
-* Backup and restore
-* Notifications support
-
-**Live Demo**
-
-https://daily-spark-app-da74b.web.app
-
-**GitHub**
-
-https://github.com/sahaya-savari/daily-spark
+* **Premium Glassmorphism UI**: Modern aesthetic with blur effects and depth.
+* **Fully Responsive Design**: Optimized for mobile, tablet, and desktop viewing.
+* **In-App Resume Viewer**: Allows recruiters to view, zoom, and download the resume without leaving the site.
+* **Interactive Project Showcase**: Detailed project highlights with live demos and repository links.
+* **Smooth Animations**: Powered by Framer Motion and GSAP for a dynamic feel.
+* **Accessibility First**: ARIA labels, semantic HTML, and high contrast ratios.
+* **SEO Optimized**: Meta tags, structured schema, and fast loading times.
 
 ---
 
-### PrepMind AI
+## 📂 Project Structure
 
-AI-powered learning platform focused on improving student preparation and learning workflows.
-
-#### Technologies
-
-* Artificial Intelligence
-* React
-* Backend APIs
-* Modern Web Technologies
-
----
-
-### Personal Portfolio
-
-Professional portfolio website showcasing projects, certifications, skills, and resume.
-
-#### Highlights
-
-* Resume Preview Modal
-* Interactive UI
-* Responsive Design
-* Firebase Deployment
-
-**Live Demo**
-
-https://sahayasavari.web.app
-
-**GitHub**
-
-https://github.com/sahaya-savari/portfolio
+```text
+portfolio/
+├── public/                 # Static assets (images, PDFs, SVGs)
+├── src/
+│   ├── assets/             # Internal assets
+│   ├── components/         # Reusable UI components
+│   ├── sections/           # Major page sections (Hero, Projects, Certifications)
+│   ├── App.tsx             # Main application layout and routing
+│   ├── index.css           # Global styles and Tailwind directives
+│   └── main.tsx            # Application entry point
+├── package.json            # Dependencies and scripts
+├── vite.config.ts          # Vite build configuration
+└── firebase.json           # Firebase hosting configuration
+```
 
 ---
 
-## Certifications
+## ⚡ Performance Metrics
 
-* IBM Data Analyst Course
-* Honor's Diploma in Information Technology
-* Mastering Excel Data Analysis & Dashboard Reporting
+The application has been rigorously audited and optimized to achieve top-tier Lighthouse scores across both Mobile and Desktop platforms. Key optimizations include:
+- Absolute positioning and fixed height constraints to eliminate Cumulative Layout Shift (CLS).
+- Lazy loading for heavy assets like the HLS video player.
+- Minimized bundle size through tree-shaking and optimized dependencies.
 
----
-
-## Education
-
-### M.Sc Artificial Intelligence
-
-**St. Joseph's College (Autonomous)**
-
-Tiruchirappalli, Tamil Nadu
-
-Expected Graduation: **2026**
+**Target Metrics:**
+- **Performance**: 90+ (Desktop) / 70+ (Mobile)
+- **Accessibility**: 100
+- **Best Practices**: 100
+- **SEO**: 100
 
 ---
 
-## Resume
+## 🚀 Deployment
 
-The portfolio includes a built-in Resume Viewer that allows recruiters to:
+The project is configured for seamless deployment to **Firebase Hosting**.
 
-* View Resume
-* Zoom In
-* Zoom Out
-* Navigate Pages
-* Download Resume
-
-Without leaving the website.
-
----
-
-## Getting Started
-
-### Clone Repository
-
+### Local Development
 ```bash
 git clone https://github.com/sahaya-savari/portfolio.git
 cd portfolio
-```
-
-### Install Dependencies
-
-```bash
 npm install
-```
-
-### Run Development Server
-
-```bash
 npm run dev
 ```
 
-### Build Production Version
-
+### Production Build
 ```bash
 npm run build
 ```
 
-### Preview Production Build
-
+### Deploy to Firebase
 ```bash
-npm run preview
-```
-
----
-
-## Deployment
-
-Deploy to Firebase Hosting:
-
-```bash
-npm run build
 npx firebase deploy
 ```
 
 ---
 
-## Connect With Me
+## 🔗 Live Demo
 
-**Portfolio**
+Experience the live portfolio here: **[https://sahayasavari.web.app](https://sahayasavari.web.app)**
 
-https://sahayasavari.web.app
+---
 
-**LinkedIn**
+## 📫 Contact Information
 
-https://www.linkedin.com/in/sahayasavarif
-
-**GitHub**
-
-https://github.com/sahaya-savari
+* **Email**: Contact me via LinkedIn
+* **LinkedIn**: [linkedin.com/in/sahayasavarif](https://www.linkedin.com/in/sahayasavarif)
+* **GitHub**: [github.com/sahaya-savari](https://github.com/sahaya-savari)
 
 ---
 
