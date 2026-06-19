@@ -15,15 +15,15 @@ export default function LearningJourney() {
       {/* Background glowing line */}
       <div className="absolute left-8 md:left-1/2 top-12 bottom-12 w-px bg-white/10 hidden md:block" aria-hidden="true"></div>
       
-      <div className="space-y-16">
+      <div className="space-y-10 md:space-y-16">
         {JOURNEY.map((item, index) => {
           const isEven = index % 2 === 0;
           return (
             <motion.div 
               key={index}
               role="listitem"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ delay: index * 0.2 }}
               className={`flex flex-col md:flex-row relative items-center gap-8 md:gap-0 ${
@@ -58,7 +58,7 @@ export default function LearningJourney() {
               {/* Content Card */}
               <div className={`w-full md:w-1/2 ${isEven ? 'md:pl-16' : 'md:pr-16'}`}>
                 <div 
-                  className="p-8 rounded-3xl border border-white/10 transition-transform hover:-translate-y-1"
+                  className="p-6 md:p-8 rounded-2xl md:rounded-3xl border border-white/10 transition-transform hover:-translate-y-1"
                   style={{
                     background: 'rgba(255, 255, 255, 0.02)',
                     backdropFilter: 'blur(20px)',

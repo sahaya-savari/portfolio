@@ -80,6 +80,20 @@ export default function Dock({
 }: any) {
   const mouseX = useMotionValue(Infinity);
   const isHovered = useMotionValue(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 480);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile, { passive: true });
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const responsiveBaseItemSize = isMobile ? 36 : baseItemSize;
+  const responsiveMagnification = isMobile ? 50 : magnification;
+  const responsivePanelHeight = isMobile ? 54 : panelHeight;
 
   return (
     <div className="dock-outer">
@@ -93,7 +107,7 @@ export default function Dock({
           mouseX.set(Infinity);
         }}
         className={`dock-panel ${className}`}
-        style={{ height: panelHeight }}
+        style={{ height: responsivePanelHeight }}
         role="toolbar"
         aria-label="Social links dock"
       >
@@ -107,8 +121,8 @@ export default function Dock({
             mouseX={mouseX}
             spring={spring}
             distance={distance}
-            magnification={magnification}
-            baseItemSize={baseItemSize}
+            magnification={responsiveMagnification}
+            baseItemSize={responsiveBaseItemSize}
           >
             <DockIcon>{item.icon}</DockIcon>
             <DockLabel>{item.label}</DockLabel>

@@ -8,19 +8,44 @@
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://sahayasavari.web.app/" />
     <meta name="google-site-verification" content="IJzhN0nUhEDDHG8dAdPHmZ8RHjAXKiCUQ31NGLGD-I4" /> 
-    <!-- Preconnect to Google Fonts for faster loading -->
+
+    <!-- =====================================================
+         FONT LOADING (LH-4 Fix)
+         Preconnect first, then preload the most critical fonts,
+         then full stylesheet. This eliminates 2 extra round-trips
+         for Lobster + Outfit which FocusText uses inline.
+    ====================================================== -->
+    <!-- Preconnect to Google Fonts origin -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600&family=Instrument+Serif:ital@1&display=swap" />
+    <!-- Preconnect to video CDNs for faster media start -->
+    <link rel="preconnect" href="https://stream.mux.com" />
+    <link rel="preconnect" href="https://image.mux.com" />
+    <link rel="dns-prefetch" href="https://stream.mux.com" />
+    <link rel="dns-prefetch" href="https://image.mux.com" />
+
+    <!-- Full font stylesheet — includes all fonts used across the site -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600&family=Instrument+Serif:ital@1&family=Lobster&family=Outfit:wght@800&display=swap"
+    />
+
+    <!-- =====================================================
+         RESOURCE HINTS
+    ====================================================== -->
     <!-- Preload hero poster for faster LCP -->
     <link rel="preload" as="image" href="https://image.mux.com/9JXDljEVWYwWu01PUkAemafDugK89o01BR6zqJ3aS9u00A/thumbnail.webp?time=0&width=800" fetchpriority="high" />
-    <meta name="description" content="Portfolio of Sahaya Savari F, M.Sc Artificial Intelligence Student. Focused on machine learning, intelligent applications, and backend development." />
-    <meta name="keywords" content="Sahaya Savari F, AI Developer, M.Sc Artificial Intelligence, Machine Learning, Backend Builder, Problem Solver" />
+
+    <!-- =====================================================
+         PRIMARY META
+    ====================================================== -->
+    <meta name="description" content="Portfolio of Sahaya Savari F, M.Sc Artificial Intelligence Student. Building AI-powered applications, ML pipelines, and full-stack systems. Open to AI/ML internships for Summer/Fall 2026." />
+    <meta name="keywords" content="Sahaya Savari F, AI Developer, M.Sc Artificial Intelligence, Machine Learning, Backend Builder, LLM, Python, React, Firebase, IBM Data Analyst" />
     <meta name="author" content="Sahaya Savari F" />
     
     <!-- Open Graph Metadata -->
-    <meta property="og:title" content="Sahaya Savari F — AI Developer & M.Sc Artificial Intelligence" />
-    <meta property="og:description" content="Portfolio of Sahaya Savari F, M.Sc Artificial Intelligence Student. Focused on machine learning, intelligent applications, and backend development." />
+    <meta property="og:title" content="Sahaya Savari F — AI Developer &amp; M.Sc Artificial Intelligence" />
+    <meta property="og:description" content="Portfolio of Sahaya Savari F, M.Sc Artificial Intelligence Student. Building AI-powered applications, ML pipelines, and full-stack systems. Open to internships." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://sahayasavari.web.app/" />
     <meta property="og:image" content="https://sahayasavari.web.app/og-image.jpg" />
@@ -32,13 +57,15 @@
     
     <!-- Twitter Card Metadata -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Sahaya Savari F — AI Developer & M.Sc Artificial Intelligence" />
-    <meta name="twitter:description" content="Portfolio of Sahaya Savari F, M.Sc Artificial Intelligence Student. Focused on machine learning, intelligent applications, and backend development." />
+    <meta name="twitter:title" content="Sahaya Savari F — AI Developer &amp; M.Sc Artificial Intelligence" />
+    <meta name="twitter:description" content="Portfolio of Sahaya Savari F, M.Sc Artificial Intelligence Student. Building AI-powered applications, ML pipelines, and full-stack systems." />
     <meta name="twitter:image" content="https://sahayasavari.web.app/og-image.jpg" />
     <meta name="twitter:image:alt" content="Sahaya Savari F — AI Developer portfolio preview" />
     <meta name="twitter:creator" content="@sahayasavari" />
 
-    <!-- JSON-LD Structured Data -->
+    <!-- =====================================================
+         JSON-LD STRUCTURED DATA
+    ====================================================== -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -46,13 +73,17 @@
       "name": "Sahaya Savari F",
       "url": "https://sahayasavari.web.app",
       "jobTitle": "AI Developer",
-      "description": "M.Sc Artificial Intelligence Student focused on machine learning, intelligent applications, and backend development.",
+      "description": "M.Sc Artificial Intelligence Student focused on machine learning, intelligent applications, and backend development. Open to AI/ML internships for Summer/Fall 2026.",
       "email": "sahayasavari@gmail.com",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Madurai",
         "addressRegion": "Tamil Nadu",
         "addressCountry": "IN"
+      },
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "St. Joseph's College (Autonomous), Trichy"
       },
       "sameAs": [
         "https://www.linkedin.com/in/sahayasavari",
@@ -65,7 +96,11 @@
         "React",
         "TypeScript",
         "TensorFlow",
-        "Natural Language Processing"
+        "Natural Language Processing",
+        "Generative AI",
+        "Prompt Engineering",
+        "Firebase",
+        "Data Analytics"
       ]
     }
     </script>
@@ -112,15 +147,17 @@
     }
     </script>
     
-    <title>Sahaya Savari F — AI Developer & M.Sc Artificial Intelligence</title>
+    <title>Sahaya Savari F — AI Developer &amp; M.Sc Artificial Intelligence</title>
   </head>
   <body class="bg-black text-white overflow-x-hidden selection:bg-white selection:text-black">
+    <!-- Static hero skeleton — z-index:-1 acts as LCP poster while JS hydrates -->
     <div id="static-hero-skeleton" style="position: absolute; top: 0; left: 0; width: 100%; min-height: 100vh; overflow: hidden; z-index: -1; background-color: black;">
       <div style="position: absolute; top: 15%; left: 0; width: 100%; opacity: 0.4;">
         <div style="position: relative; width: 100%;">
           <img 
             src="https://image.mux.com/9JXDljEVWYwWu01PUkAemafDugK89o01BR6zqJ3aS9u00A/thumbnail.webp?time=0&width=800" 
-            alt="Hero background poster" 
+            alt="" 
+            aria-hidden="true"
             width="1920"
             height="1080"
             style="position: absolute; top: 0; left: 0; width: 100%; height: auto; object-fit: contain;"

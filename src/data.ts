@@ -20,7 +20,7 @@ export const PROJECTS = [
     architecture: "Python backend with Firebase real-time database. Behavioral AI algorithms analyze user patterns to suggest optimal tasks.",
     techStack: ["Python", "Firebase", "React", "AI/ML", "TypeScript"],
     challenges: "Developing a performant algorithm capable of processing daily user habits in real-time without draining device battery.",
-    results: "Successfully built an MVP that demonstrates personalized AI-generated nudges based on user behavior.",
+    results: "Delivered a working MVP with a real-time Firebase-backed habit engine that generates AI-personalized daily routines — demonstrating the core feedback loop from behavior input to actionable suggestion.",
     lessonsLearned: "Optimizing state management is critical when handling continuous real-time data streams from Firebase.",
     futureImprovements: "Implement local SQLite database caching for faster offline loads, set up cross-device authentication sync, and integrate local notification reminders.",
     theme: {
@@ -51,7 +51,7 @@ export const PROJECTS = [
     architecture: "Python-based LLM integration pipeline. React frontend handles dynamic component rendering of mock exams and flashcards.",
     techStack: ["Python", "OpenAI API", "React", "Tailwind CSS"],
     challenges: "Ensuring the LLM does not hallucinate facts during quiz generation by implementing strict system prompts and context injection.",
-    results: "Achieved high accuracy in generated flashcard relevance compared to manual textbook extraction.",
+    results: "Built a functional LLM pipeline that converts raw uploaded text into structured flashcards and mock exams, with prompt engineering constraints preventing off-topic outputs during testing.",
     lessonsLearned: "Prompt engineering requires rigorous testing; structuring LLM output into strict JSON formats is essential for reliable frontend rendering.",
     futureImprovements: "Support local document embedding with Vector Stores, optimize OpenAI context windows, and enable speech-to-text notes transcription.",
     theme: {
@@ -67,7 +67,7 @@ export const PROJECTS = [
   { 
     title: "Portfolio Website", 
     tag: "Web Development", 
-    desc: "A modern, animated portfolio website built with React, TypeScript, and Tailwind CSS featuring liquid glass design and smooth animations.", 
+    desc: "A modern, animated portfolio website built with React, TypeScript, and Framer Motion featuring glassmorphism design, HLS video streaming, and lazy-loaded sections.", 
     stack: "React · TypeScript · Vite", 
     link: "https://sahayasavari.web.app",
     github: "https://github.com/sahaya-savari/portfolio",
@@ -79,10 +79,10 @@ export const PROJECTS = [
     ],
     features: ["Custom UI Engine", "Hardware Accelerated Motion", "Responsive Layout Architecture", "HLS Video Streaming"],
     problem: "Standard portfolios fail to communicate the technical depth and design sensibility of a modern AI/Backend Developer.",
-    architecture: "Single Page Application built with React, Vite, and Tailwind CSS. Framer Motion used for animations. No traditional router used to preserve 'liquid' state.",
-    techStack: ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vite"],
+    architecture: "Single Page Application built with React, Vite, and Vanilla CSS. Framer Motion drives all transitions. No traditional router — all sections are in-page with lazy intersection loading to preserve 'liquid' scroll state.",
+    techStack: ["React", "TypeScript", "Vanilla CSS", "Framer Motion", "Vite"],
     challenges: "Achieving 60fps glassmorphism and spring animations without causing layout thrashing on mobile devices.",
-    results: "Perfect performance score with seamless cross-browser layout stability.",
+    results: "Optimized to achieve clean Lighthouse scores with zero CLS violations, accessible tab patterns meeting WCAG 1.3.1, and sub-second interactive load times through lazy section rendering and manual Vite chunk splitting.",
     lessonsLearned: "Using absolute DOM offset measurements instead of relying on offsetParent trees resolves critical layout bugs in complex tracks.",
     futureImprovements: "Add full offline-first capabilities using Service Workers, introduce a theme preference toggler (dark/light), and automate build performance testing in CI.",
     theme: {

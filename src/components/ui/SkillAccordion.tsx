@@ -37,13 +37,14 @@ export default function SkillAccordion({ title, children, icon: Icon }: { title:
         id={panelId}
         role="region"
         aria-labelledby={buttonId}
+        aria-hidden={!isOpen}
         className="overflow-hidden transition-all duration-300 ease-out"
         style={{ 
           maxHeight: isOpen ? '500px' : '0', 
           opacity: isOpen ? 1 : 0,
         }}
       >
-        <div className="pb-8 text-white/60 font-body font-light text-base leading-relaxed pl-14">
+        <div className="pb-8 text-white/60 font-body font-light text-base leading-relaxed pl-4 md:pl-14">
           {children}
         </div>
       </div>

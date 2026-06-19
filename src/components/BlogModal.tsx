@@ -316,6 +316,9 @@ export default function BlogModal({ onClose }: BlogModalProps) {
                       <div 
                         key={post.id}
                         onClick={() => setActivePost(post)}
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setActivePost(post); } }}
                         className="liquid-glass p-6 rounded-2xl border border-white/5 flex flex-col justify-between hover:border-white/20 hover:bg-white/5 transition-all duration-300 cursor-pointer group"
                       >
                         <div>

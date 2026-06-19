@@ -22,6 +22,20 @@ const ResumeViewer: React.FC<ResumeViewerProps> = ({ onClose, pdfUrl = `${(impor
   const modalRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const previouslyFocusedRef = useRef<HTMLElement | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [containerWidth, setContainerWidth] = useState<number | undefined>(undefined);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const observer = new ResizeObserver((entries) => {
+      if (entries[0]) {
+        // Subtract 24px (12px padding on each side) to keep margins inside PDF Container
+        setContainerWidth(Math.max(100, entries[0].contentRect.width - 24));
+      }
+    });
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   // Store the element that had focus before the modal opened
   useEffect(() => {
@@ -102,7 +116,7 @@ const ResumeViewer: React.FC<ResumeViewerProps> = ({ onClose, pdfUrl = `${(impor
     >
       {/* Controls Bar */}
       <div 
-        className="liquid-glass-strong bg-black/90 p-4 rounded-full flex items-center gap-6 mb-6 shadow-2xl border border-white/20 fixed top-6 z-[310]"
+        className="liquid-glass-strong bg-black/90 px-3 py-3 md:px-4 rounded-2xl md:rounded-full flex flex-wrap items-center justify-center gap-2 md:gap-6 mb-6 shadow-2xl border border-white/20 fixed top-4 left-4 right-4 md:top-6 md:left-auto md:right-auto md:w-auto z-[310]"
         onClick={e => e.stopPropagation()}
       >
         <div className="hidden md:flex flex-col border-r border-white/20 pr-6 mr-2">
@@ -134,6 +148,7 @@ const ResumeViewer: React.FC<ResumeViewerProps> = ({ onClose, pdfUrl = `${(impor
 
       {/* PDF Container */}
       <div 
+        ref={containerRef}
         className="relative overflow-y-auto w-full max-w-4xl flex-grow flex flex-col items-center hide-scrollbar rounded-xl"
         onClick={e => e.stopPropagation()}
       >
@@ -155,6 +170,7 @@ const ResumeViewer: React.FC<ResumeViewerProps> = ({ onClose, pdfUrl = `${(impor
               <Page
                 pageNumber={index + 1}
                 scale={scale}
+                width={containerWidth ? Math.min(containerWidth, 800) : undefined}
                 renderTextLayer={true}
                 renderAnnotationLayer={true}
                 loading={<div className="h-[800px] w-full max-w-2xl bg-white/5 rounded-xl animate-pulse" role="status"><span className="sr-only">Loading page {index + 1}...</span></div>}

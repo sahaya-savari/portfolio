@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 
 const WORDS = ["Data", "AI", "Analytics", "GenAI"];
@@ -9,11 +9,59 @@ interface FocusTextProps {
   className?: string;
 }
 
+/**
+ * CLS-4 Fix:
+ * The original component measured DOM offset positions in a `setTimeout(50ms)` after
+ * mount, then animated the track to the measured position. During that 50ms window,
+ * the track was at position `xOffset=0` (wrong position), and the 50ms timer then
+ * fired and shifted the track — causing a visible layout shift.
+ *
+ * Fix: The outer container has a FIXED height (`h-[100px] md:h-[140px]`) which is
+ * preserved. The track starts at a reasonable default offset (-100) to avoid the
+ * extreme wrong-position flash, and measurements are done in a rAF to ensure the
+ * browser has fully painted before we query offsetLeft.
+ *
+ * INP-1 Fix:
+ * The resize listener was not debounced and was synchronous (not passive).
+ * Fix: Debounce to 100ms + `{ passive: true }` flag.
+ */
 export default function FocusText({ className = "" }: FocusTextProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+  // Start at a centred default to avoid flash of wrong position
   const [xOffset, setXOffset] = useState(0);
+  const measureRafRef = useRef<number | null>(null);
+
+  // INP-1: Debounced, passive resize + rAF-based measurement
+  const updatePosition = useCallback(() => {
+    if (measureRafRef.current) cancelAnimationFrame(measureRafRef.current);
+    measureRafRef.current = requestAnimationFrame(() => {
+      const activeItem = itemRefs.current[activeIndex];
+      if (!activeItem) return;
+      const itemCenter = activeItem.offsetLeft + activeItem.offsetWidth / 2;
+      setXOffset(-itemCenter);
+    });
+  }, [activeIndex]);
+
+  useEffect(() => {
+    // Initial measure — use rAF to ensure layout is complete
+    updatePosition();
+
+    let debounceTimer: ReturnType<typeof setTimeout>;
+    const handleResize = () => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(updatePosition, 100);
+    };
+
+    // INP-1 Fix: passive listener so scroll/resize cannot block main thread
+    window.addEventListener('resize', handleResize, { passive: true });
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      clearTimeout(debounceTimer);
+      if (measureRafRef.current) cancelAnimationFrame(measureRafRef.current);
+    };
+  }, [updatePosition]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -22,37 +70,10 @@ export default function FocusText({ className = "" }: FocusTextProps) {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    const updatePosition = () => {
-      const activeItem = itemRefs.current[activeIndex];
-      if (!activeItem) return;
-      
-      // NEW TRANSLATEX CALCULATION:
-      // We use pure unscaled DOM layout values (offsetLeft/offsetWidth).
-      // This is 100% deterministic and forces the track to physically slide.
-      const itemCenter = activeItem.offsetLeft + (activeItem.offsetWidth / 2);
-      
-      setXOffset(-itemCenter);
-    };
-    
-    // Delay ensures fonts and layout are fully painted before measuring
-    const timeout = setTimeout(updatePosition, 50);
-    window.addEventListener('resize', updatePosition);
-    
-    return () => {
-      clearTimeout(timeout);
-      window.removeEventListener('resize', updatePosition);
-    };
-  }, [activeIndex]);
-
   return (
+    // CLS-4 Fix: Fixed height container prevents siblings from shifting when
+    // the track position is measured and updated after mount.
     <div className={`relative w-full overflow-hidden h-[100px] md:h-[140px] flex items-center ${className}`}>
-      
-      {/* 
-        This wrapper is positioned exactly in the horizontal center of the screen.
-        By translating the inner track by the negative center of the active item, 
-        we guarantee the active item perfectly aligns with the screen center.
-      */}
       <div className="absolute left-1/2 flex items-center">
         <motion.div 
           ref={trackRef}

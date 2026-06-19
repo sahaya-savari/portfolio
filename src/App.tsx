@@ -110,15 +110,15 @@ export default function App() {
                 <a href="#home" className="w-10 h-10 liquid-glass-strong rounded-full flex items-center justify-center border border-white/20" aria-label="Sahaya Savari F — Go to top">
                   <span className="font-heading text-lg italic" aria-hidden="true">SF</span>
                 </a>
-                <span className="font-body text-xs font-medium tracking-widest hidden md:flex items-center gap-2">
+                <span className="font-body text-xs font-medium tracking-widest hidden lg:flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" aria-hidden="true"></span>
                   AVAILABLE FOR WORK
                 </span>
-                <span className="font-body text-[10px] font-mono text-white/40 hidden lg:flex items-center gap-1.5 ml-4 px-2 py-1 rounded border border-white/10 bg-white/5">
+                <span className="font-body text-[10px] font-mono text-white/65 hidden lg:flex items-center gap-1.5 ml-4 px-2 py-1 rounded border border-white/10 bg-white/5">
                   Press <kbd className="font-semibold text-white/70">Ctrl + K</kbd> for quick nav
                 </span>
               </div>
-              <div className="hidden md:flex liquid-glass px-6 py-2.5 rounded-full items-center gap-8 backdrop-blur-md" role="menubar">
+              <div className="hidden md:flex liquid-glass px-4 lg:px-6 py-2.5 rounded-full items-center gap-3 lg:gap-8 backdrop-blur-md" role="menubar">
                 <a href="#home" role="menuitem" className="text-sm font-body font-medium text-white/70 hover:text-white transition-colors">Home</a>
                 <a href="#about" role="menuitem" className="text-sm font-body font-medium text-white/70 hover:text-white transition-colors">About</a>
                 <button onClick={() => setShowResume(true)} role="menuitem" className="text-sm font-body font-medium text-white/70 hover:text-white transition-colors cursor-pointer">Resume</button>

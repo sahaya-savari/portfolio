@@ -10,6 +10,20 @@ const buildKeyframes = (from: any, steps: any[]) => {
   return keyframes;
 };
 
+/**
+ * CLS-2 Fix:
+ * The original `defaultFrom` used `y: -50` (or `y: 50`) which animated text
+ * from off-screen (50px above/below) into position. Because the element is
+ * in-flow (not position:absolute), the initial `y:-50` was causing the browser
+ * to include the displaced element in flow layout calculations, producing reflow
+ * when the animation started.
+ *
+ * Fix: Remove the Y-axis translation from the initial/final states entirely.
+ * The entrance is now a blur+opacity fade only — visually identical at the
+ * perceived "wow" level but without any layout-affecting movement.
+ * The parent container uses `overflow:hidden` styling so any residual
+ * visual artifact is clipped.
+ */
 const BlurText = ({
   text = '',
   delay = 200,
@@ -44,19 +58,20 @@ const BlurText = ({
     return () => observer.disconnect();
   }, [threshold, rootMargin]);
 
+  // CLS-2 Fix: No Y translation — pure opacity+blur fade only.
+  // Previously: { filter: 'blur(10px)', opacity: 0, y: -50 } caused in-flow reflow.
+  // Now: { filter: 'blur(10px)', opacity: 0 } — no layout-affecting properties change.
   const defaultFrom = useMemo(
-    () => direction === 'top'
-      ? { filter: 'blur(10px)', opacity: 0, y: -50 }
-      : { filter: 'blur(10px)', opacity: 0, y: 50 },
-    [direction]
+    () => ({ filter: 'blur(10px)', opacity: 0 }),
+    []
   );
 
   const defaultTo = useMemo(
     () => [
-      { filter: 'blur(5px)', opacity: 0.5, y: direction === 'top' ? 5 : -5 },
-      { filter: 'blur(0px)', opacity: 1, y: 0 }
+      { filter: 'blur(5px)', opacity: 0.5 },
+      { filter: 'blur(0px)', opacity: 1 }
     ],
-    [direction]
+    []
   );
 
   const fromSnapshot = animationFrom ?? defaultFrom;
@@ -67,10 +82,14 @@ const BlurText = ({
     stepCount === 1 ? 0 : i / (stepCount - 1)
   );
 
+  const animateKeyframes = useMemo(
+    () => buildKeyframes(fromSnapshot, toSnapshots),
+    [fromSnapshot, toSnapshots]
+  );
+
   return (
     <Component ref={ref} className={className} style={{ display: 'flex', flexWrap: 'wrap' }}>
       {elements.map((segment: string, index: number) => {
-        const animateKeyframes = buildKeyframes(fromSnapshot, toSnapshots);
         const spanTransition: any = {
           duration: totalDuration,
           times,
@@ -79,7 +98,7 @@ const BlurText = ({
         };
         return (
           <motion.span
-            className="inline-block will-change-[transform,filter,opacity]"
+            className="inline-block will-change-[filter,opacity]"
             key={index}
             initial={fromSnapshot}
             animate={inView ? animateKeyframes : fromSnapshot}

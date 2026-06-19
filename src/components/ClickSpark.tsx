@@ -1,5 +1,17 @@
 import { useRef, useEffect, useCallback, useState } from 'react';
 
+/**
+ * CLS-5 Fix:
+ * The previous implementation rendered two fundamentally different DOM structures:
+ *   - Disabled: <>{children}</> — no wrapper
+ *   - Enabled:  <div style="position:relative; width:100%; minHeight:100vh">{children}</div>
+ *
+ * This caused a page-level layout context switch on mount (after the performance
+ * check resolved), shifting ALL content below by the div's margin/padding.
+ *
+ * Fix: Always render children in a plain fragment regardless of enabled/disabled state.
+ * The canvas is absolutely/fixed positioned so it never affects document flow.
+ */
 const ClickSpark = ({
   sparkColor = '#fff',
   sparkSize = 10,
@@ -13,16 +25,13 @@ const ClickSpark = ({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const sparksRef = useRef<any[]>([]);
   const isAnimatingRef = useRef<boolean>(false);
-  const [isDisabled, setIsDisabled] = useState(true); // Default to true to prevent initial hydrate mismatch/blocking
+  const [isDisabled, setIsDisabled] = useState(true);
 
   // Evaluate performance constraints on mount
   useEffect(() => {
     const isMobile = window.matchMedia('(max-width: 768px)').matches;
     const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    // Disable on devices with 4 or fewer logical processors (often low-end/mobile CPUs)
     const isLowEnd = (navigator.hardwareConcurrency || 4) <= 4;
-    
-    // Performance priority: Only enable if it's a capable desktop device
     setIsDisabled(isMobile || isReducedMotion || isLowEnd);
   }, []);
 
@@ -59,7 +68,6 @@ const ClickSpark = ({
 
   useEffect(() => {
     if (isDisabled) return;
-    
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -67,7 +75,6 @@ const ClickSpark = ({
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
-
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas, { passive: true });
     return () => window.removeEventListener('resize', resizeCanvas);
@@ -75,18 +82,11 @@ const ClickSpark = ({
 
   const draw = useCallback((timestamp: number) => {
     const canvas = canvasRef.current;
-    if (!canvas) {
-      isAnimatingRef.current = false;
-      return;
-    }
+    if (!canvas) { isAnimatingRef.current = false; return; }
     const ctx = canvas.getContext('2d');
-    if (!ctx) {
-      isAnimatingRef.current = false;
-      return;
-    }
+    if (!ctx) { isAnimatingRef.current = false; return; }
 
     const { sparkColor, sparkSize, sparkRadius, duration, easing, extraScale } = configRef.current;
-
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     sparksRef.current = sparksRef.current.filter(spark => {
@@ -100,7 +100,6 @@ const ClickSpark = ({
       const y1 = spark.y + distance * Math.sin(spark.angle);
       const x2 = spark.x + (distance + lineLength) * Math.cos(spark.angle);
       const y2 = spark.y + (distance + lineLength) * Math.sin(spark.angle);
-      
       ctx.strokeStyle = sparkColor;
       ctx.lineWidth = 2;
       ctx.beginPath();
@@ -133,7 +132,6 @@ const ClickSpark = ({
           startTime: now
         }));
         sparksRef.current.push(...newSparks);
-
         if (!isAnimatingRef.current) {
           isAnimatingRef.current = true;
           requestAnimationFrame(draw);
@@ -145,28 +143,28 @@ const ClickSpark = ({
     return () => window.removeEventListener('click', handleClick);
   }, [draw, isDisabled]);
 
-  if (isDisabled) {
-    return <>{children}</>;
-  }
-
+  // CLS-5 Fix: ALWAYS render children in a fragment — never in a wrapping div.
+  // The canvas overlay is position:fixed so it never affects document flow.
   return (
-    <div style={{ position: 'relative', width: '100%', minHeight: '100vh' }}>
-      <canvas
-        ref={canvasRef}
-        aria-hidden="true"
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100vw',
-          height: '100vh',
-          pointerEvents: 'none',
-          zIndex: 9999,
-          userSelect: 'none'
-        }}
-      />
+    <>
+      {!isDisabled && (
+        <canvas
+          ref={canvasRef}
+          aria-hidden="true"
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            pointerEvents: 'none',
+            zIndex: 9999,
+            userSelect: 'none'
+          }}
+        />
+      )}
       {children}
-    </div>
+    </>
   );
 };
 

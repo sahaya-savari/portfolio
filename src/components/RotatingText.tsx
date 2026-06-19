@@ -1,4 +1,4 @@
-import { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useState } from 'react';
+import { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import { m as motion, AnimatePresence  } from 'framer-motion';
 import './RotatingText.css';
 
@@ -29,6 +29,9 @@ const RotatingText = forwardRef((props: any, ref) => {
   } = props;
 
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  // INP-2: Gate interval — only run when element is in view
+  const isInViewRef = useRef(false);
+  const spanRef = useRef<HTMLSpanElement>(null);
 
   const splitIntoCharacters = (text: string) => {
     // @ts-ignore
@@ -116,17 +119,36 @@ const RotatingText = forwardRef((props: any, ref) => {
 
   useImperativeHandle(ref, () => ({ next, previous, jumpTo, reset }), [next, previous, jumpTo, reset]);
 
+  // INP-2 Fix: Observe visibility — pause interval when hero is off-screen
+  useEffect(() => {
+    const el = spanRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { isInViewRef.current = entry.isIntersecting; },
+      { rootMargin: '200px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  // INP-2 Fix: Only advance text when element is in view
   useEffect(() => {
     if (!auto) return;
-    const intervalId = setInterval(next, rotationInterval);
+    const intervalId = setInterval(() => {
+      if (isInViewRef.current) next();
+    }, rotationInterval);
     return () => clearInterval(intervalId);
   }, [next, rotationInterval, auto]);
 
+  // CLS-3 Fix: Removed `layout` prop from outer motion.span.
+  // The `layout` prop caused Framer Motion to measure and re-layout the entire
+  // component and its siblings on every text rotation (every 2 seconds), causing
+  // continuous CLS throughout the session.
   return (
-    <motion.span className={cn('text-rotate', mainClassName)} {...rest} layout transition={transition}>
+    <span ref={spanRef} className={cn('text-rotate', mainClassName)} style={(rest as any).style}>
       <span className="text-rotate-sr-only">{texts[currentTextIndex]}</span>
       <AnimatePresence mode={animatePresenceMode} initial={animatePresenceInitial}>
-        <motion.span key={currentTextIndex} className={cn(splitBy === 'lines' ? 'text-rotate-lines' : 'text-rotate')} layout aria-hidden="true">
+        <motion.span key={currentTextIndex} className={cn(splitBy === 'lines' ? 'text-rotate-lines' : 'text-rotate')} aria-hidden="true">
           {elements.map((wordObj: any, wordIndex: number, array: any[]) => {
             const previousCharsCount = array.slice(0, wordIndex).reduce((sum: number, word: any) => sum + word.characters.length, 0);
             return (
@@ -155,7 +177,7 @@ const RotatingText = forwardRef((props: any, ref) => {
           })}
         </motion.span>
       </AnimatePresence>
-    </motion.span>
+    </span>
   );
 });
 

@@ -54,7 +54,7 @@ const EVIDENCE_DATA: SkillEvidence[] = [
 
 export default function SkillsMatrix() {
   return (
-    <div className="w-full mt-24 space-y-8">
+    <div className="w-full mt-12 md:mt-24 space-y-8">
       <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-6 gap-4">
         <div>
           <h3 className="font-heading italic text-3xl text-white">Skills Evidence Matrix</h3>

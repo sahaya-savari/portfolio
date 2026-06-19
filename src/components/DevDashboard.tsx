@@ -14,7 +14,7 @@ export default function DevDashboard() {
   ];
 
   return (
-    <div className="w-full mt-20 text-left space-y-12">
+    <div className="w-full mt-10 md:mt-20 text-left space-y-8 md:space-y-12">
       
       {/* Metrics Row */}
       <div className="grid md:grid-cols-3 gap-6">
@@ -24,7 +24,7 @@ export default function DevDashboard() {
             <div key={idx} className="liquid-glass p-6 rounded-2xl border border-white/5 space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-blue-300">
-                  <Icon className="w-5 h-5" />
+                  <Icon className="w-5 h-5" aria-hidden="true" />
                 </div>
                 <div>
                   <span className="block text-[10px] font-mono text-white/40 uppercase tracking-wider">{stat.label}</span>
@@ -40,7 +40,7 @@ export default function DevDashboard() {
       </div>
 
       {/* Research & Topic Exploration */}
-      <div className="p-8 rounded-3xl border border-white/5 bg-white/[0.01] backdrop-blur-2xl">
+      <div className="p-5 md:p-8 rounded-2xl md:rounded-3xl border border-white/5 bg-white/[0.01] backdrop-blur-2xl">
         <div className="mb-8 border-b border-white/5 pb-4">
           <h3 className="font-heading italic text-2xl text-white">Research & Learning Focus</h3>
           <p className="text-white/40 font-body font-light text-xs mt-1">
