@@ -1,4 +1,4 @@
-import React, { useState, memo } from 'react';
+import { useState, memo } from 'react';
 import { Check, Mail, MapPin, Linkedin, Github, BookOpen, Search, ExternalLink } from 'lucide-react';
 import HlsVideo from '../components/HlsVideo';
 import Dock from '../components/Dock';

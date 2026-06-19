@@ -1,4 +1,4 @@
-import React, { useState, memo } from 'react';
+import { useState, memo } from 'react';
 import { Database, Brain, Code, Terminal } from 'lucide-react';
 import SkillAccordion from '../components/ui/SkillAccordion';
 import SectionBadge from '../components/ui/SectionBadge';

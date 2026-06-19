@@ -1,4 +1,4 @@
-import React, { useState, memo, lazy, Suspense } from 'react';
+import { useState, memo, lazy, Suspense } from 'react';
 import { Github, ArrowUpRight, Terminal } from 'lucide-react';
 import { PROJECTS } from '../data';
 import SectionBadge from '../components/ui/SectionBadge';
@@ -12,7 +12,7 @@ const ProjectsSection = memo(() => {
 
   return (
     <>
-      <section id="projects" aria-label="Selected projects" className="py-16 md:py-24 lg:py-32 px-6 bg-black relative">
+      <section aria-label="Selected projects" className="py-16 md:py-24 lg:py-32 px-6 bg-black relative">
         <div className="max-w-screen-xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-20 lg:mb-24 gap-8">
             <div>

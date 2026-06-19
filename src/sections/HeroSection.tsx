@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo } from 'react';
+import { useState, memo } from 'react';
 import { motion } from 'framer-motion';
 import { Play } from 'lucide-react';
 import RotatingText from '../components/RotatingText';
@@ -79,7 +79,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
         </div>
       </div>
 
-      <div className="absolute bottom-8 md:bottom-16 left-0 right-0 z-10 flex flex-col items-center gap-4 md:gap-6 shrink-0" aria-hidden="true">
+      <div className="absolute bottom-8 md:bottom-16 left-0 right-0 z-10 flex flex-col items-center gap-4 md:gap-6 shrink-0 pointer-events-none" aria-hidden="true">
         <div className="liquid-glass px-4 py-1.5 rounded-full text-[10px] uppercase tracking-widest font-bold text-white/40">What I work with</div>
         <FocusText prefix="Data AI Analytics" focusText="GenAI" className="" />
       </div>

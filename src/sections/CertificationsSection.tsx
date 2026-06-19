@@ -1,4 +1,4 @@
-import React, { useState, memo } from 'react';
+import { useState, memo } from 'react';
 import { Award, ExternalLink, ArrowUpRight } from 'lucide-react';
 import { CERTIFICATIONS, FEATURED_CREDENTIALS } from '../data';
 import SectionBadge from '../components/ui/SectionBadge';

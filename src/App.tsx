@@ -31,6 +31,34 @@ export default function App() {
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const mobileMenuToggleRef = useRef<HTMLButtonElement>(null);
 
+  const scrollToHashTarget = useCallback(() => {
+    const id = decodeURIComponent(window.location.hash.slice(1));
+    const target = id ? document.getElementById(id) : null;
+    if (!target) return undefined;
+
+    const alignToTarget = () => {
+      const scrollPaddingTop = parseFloat(
+        window.getComputedStyle(document.documentElement).scrollPaddingTop
+      ) || 0;
+      const top = target.getBoundingClientRect().top + window.scrollY - scrollPaddingTop;
+      window.scrollTo({ top: Math.max(0, top), behavior: 'auto' });
+    };
+
+    alignToTarget();
+
+    const startedAt = performance.now();
+    let rafId = 0;
+    const keepAlignedWhileLazySectionsMount = () => {
+      alignToTarget();
+      if (performance.now() - startedAt < 1200) {
+        rafId = requestAnimationFrame(keepAlignedWhileLazySectionsMount);
+      }
+    };
+
+    rafId = requestAnimationFrame(keepAlignedWhileLazySectionsMount);
+    return () => cancelAnimationFrame(rafId);
+  }, []);
+
   // Ctrl + K Spotlight listener
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -89,6 +117,22 @@ export default function App() {
     }
     return () => { document.body.style.overflow = ''; };
   }, [mobileMenuOpen]);
+
+  useEffect(() => {
+    let cancelScrollStabilizer: (() => void) | undefined;
+    const handleHashChange = () => {
+      cancelScrollStabilizer?.();
+      cancelScrollStabilizer = scrollToHashTarget();
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    if (window.location.hash) handleHashChange();
+
+    return () => {
+      cancelScrollStabilizer?.();
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, [scrollToHashTarget]);
 
   return (
     <ClickSpark sparkColor='#fff' sparkSize={12} sparkRadius={25} sparkCount={10} duration={300}>
@@ -190,9 +234,11 @@ export default function App() {
           <IntersectionLazy fallbackHeight="40vh">
             <StatsSection />
           </IntersectionLazy>
-          <IntersectionLazy fallbackHeight="150vh">
-            <ProjectsSection />
-          </IntersectionLazy>
+          <div id="projects">
+            <IntersectionLazy fallbackHeight="150vh">
+              <ProjectsSection />
+            </IntersectionLazy>
+          </div>
           <IntersectionLazy fallbackHeight="100vh">
             <CertificationsSection />
           </IntersectionLazy>
@@ -233,7 +279,7 @@ export default function App() {
                 onClose={() => setShowCommandPalette(false)} 
                 onOpenResume={() => setShowResume(true)}
                 onOpenBlog={() => setShowBlog(true)}
-                onSelectProject={(proj) => {
+                onSelectProject={() => {
                   window.location.hash = 'projects';
                 }}
               />

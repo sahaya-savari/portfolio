@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 import { STATS } from '../data';
 import HlsVideo from '../components/HlsVideo';
 import DevDashboard from '../components/DevDashboard';

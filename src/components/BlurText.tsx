@@ -30,7 +30,6 @@ const BlurText = ({
   className = '',
   as: Component = 'p',
   animateBy = 'words',
-  direction = 'top',
   threshold = 0.1,
   rootMargin = '0px',
   animationFrom,

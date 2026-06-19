@@ -9,15 +9,10 @@ function cn(...classes: any[]) {
 const RotatingText = forwardRef((props: any, ref) => {
   const {
     texts,
-    transition = { type: 'spring', damping: 25, stiffness: 300 },
     initial = { y: '100%', opacity: 0 },
     animate = { y: 0, opacity: 1 },
     exit = { y: '-120%', opacity: 0 },
-    animatePresenceMode = 'wait',
-    animatePresenceInitial = false,
-    rotationInterval = 2000,
-    staggerDuration = 0,
-    staggerFrom = 'first',
+    rotationInterval = 3500,
     loop = true,
     auto = true,
     splitBy = 'characters',
@@ -69,23 +64,6 @@ const RotatingText = forwardRef((props: any, ref) => {
       needsSpace: i !== arr.length - 1
     }));
   }, [texts, currentTextIndex, splitBy]);
-
-  const getStaggerDelay = useCallback(
-    (index: number, totalChars: number) => {
-      if (staggerFrom === 'first') return index * staggerDuration;
-      if (staggerFrom === 'last') return (totalChars - 1 - index) * staggerDuration;
-      if (staggerFrom === 'center') {
-        const center = Math.floor(totalChars / 2);
-        return Math.abs(center - index) * staggerDuration;
-      }
-      if (staggerFrom === 'random') {
-        const randomIndex = Math.floor(Math.random() * totalChars);
-        return Math.abs(randomIndex - index) * staggerDuration;
-      }
-      return Math.abs(staggerFrom - index) * staggerDuration;
-    },
-    [staggerFrom, staggerDuration]
-  );
 
   const handleIndexChange = useCallback(
     (newIndex: number) => {
@@ -147,36 +125,47 @@ const RotatingText = forwardRef((props: any, ref) => {
   return (
     <span ref={spanRef} className={cn('text-rotate', mainClassName)} style={(rest as any).style}>
       <span className="text-rotate-sr-only">{texts[currentTextIndex]}</span>
-      <AnimatePresence mode={animatePresenceMode} initial={animatePresenceInitial}>
-        <motion.span key={currentTextIndex} className={cn(splitBy === 'lines' ? 'text-rotate-lines' : 'text-rotate')} aria-hidden="true">
-          {elements.map((wordObj: any, wordIndex: number, array: any[]) => {
-            const previousCharsCount = array.slice(0, wordIndex).reduce((sum: number, word: any) => sum + word.characters.length, 0);
-            return (
-              <span key={wordIndex} className={cn('text-rotate-word', splitLevelClassName)}>
-                {wordObj.characters.map((char: string, charIndex: number) => (
-                  <motion.span
-                    key={charIndex}
-                    initial={initial}
-                    animate={animate}
-                    exit={exit}
-                    transition={{
-                      ...transition,
-                      delay: getStaggerDelay(
-                        previousCharsCount + charIndex,
-                        array.reduce((sum: number, word: any) => sum + word.characters.length, 0)
-                      )
-                    }}
-                    className={cn('text-rotate-element', elementLevelClassName)}
-                  >
-                    {char}
-                  </motion.span>
-                ))}
-                {wordObj.needsSpace && <span className="text-rotate-space"> </span>}
-              </span>
-            );
-          })}
-        </motion.span>
-      </AnimatePresence>
+     <AnimatePresence mode="wait" initial={false}>
+  <motion.span
+    key={currentTextIndex}
+    className={cn(
+      splitBy === 'lines'
+        ? 'text-rotate-lines'
+        : 'text-rotate'
+    )}
+    aria-hidden="true"
+  >
+    {elements.map((wordObj: any, wordIndex: number) => (
+      <span
+        key={wordIndex}
+        className={cn('text-rotate-word', splitLevelClassName)}
+      >
+        {wordObj.characters.map((char: string, charIndex: number) => (
+          <motion.span
+            key={charIndex}
+            initial={initial}
+            animate={animate}
+            exit={exit}
+            transition={{
+              type: 'spring',
+              damping: 30,
+              stiffness: 400,
+            }}
+            className={cn(
+              'text-rotate-element',
+              elementLevelClassName
+            )}
+          >
+            {char}
+          </motion.span>
+        ))}
+        {wordObj.needsSpace && (
+          <span className="text-rotate-space"> </span>
+        )}
+      </span>
+    ))}
+  </motion.span>
+</AnimatePresence>
     </span>
   );
 });
