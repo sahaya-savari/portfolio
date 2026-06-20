@@ -11,31 +11,13 @@
 
     <!-- =====================================================
          FONT LOADING (LH-4 Fix)
-         Preconnect first, then preload the most critical fonts,
-         then full stylesheet. This eliminates 2 extra round-trips
-         for Lobster + Outfit which FocusText uses inline.
+         Fonts are now self-hosted to reduce external dependencies
     ====================================================== -->
-    <!-- Preconnect to Google Fonts origin -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <!-- Preconnect to video CDNs for faster media start -->
     <link rel="preconnect" href="https://stream.mux.com" />
     <link rel="preconnect" href="https://image.mux.com" />
     <link rel="dns-prefetch" href="https://stream.mux.com" />
     <link rel="dns-prefetch" href="https://image.mux.com" />
-
-    <!-- Preload the font stylesheet -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600&family=Instrument+Serif:ital@1&family=Lobster&family=Outfit:wght@800&display=swap" />
-    
-    <!-- Full font stylesheet — loaded asynchronously -->
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600&family=Instrument+Serif:ital@1&family=Lobster&family=Outfit:wght@800&display=swap"
-      media="print" onload="this.media='all'"
-    />
-    <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600&family=Instrument+Serif:ital@1&family=Lobster&family=Outfit:wght@800&display=swap" />
-    </noscript>
 
     <!-- =====================================================
          RESOURCE HINTS
@@ -154,6 +136,19 @@
     }
     </script>
     
+    <script type="speculationrules">
+    {
+      "prefetch": [
+        {
+          "where": {
+            "href_matches": "/*"
+          },
+          "eagerness": "moderate"
+        }
+      ]
+    }
+    </script>
+    
     <title>Sahaya Savari F - AI Developer &amp; M.Sc Artificial Intelligence</title>
   </head>
   <body class="bg-black text-white overflow-x-hidden selection:bg-white selection:text-black">
@@ -166,8 +161,7 @@
         <div style="position: relative; width: 100%;">
           <img 
             src="https://image.mux.com/9JXDljEVWYwWu01PUkAemafDugK89o01BR6zqJ3aS9u00A/thumbnail.webp?time=0&width=800" 
-            alt="" 
-            aria-hidden="true"
+            alt="Sahaya Savari F - AI Developer Hero Background" 
             width="1920"
             height="1080"
             style="position: absolute; top: 0; left: 0; width: 100%; height: auto; object-fit: contain;"

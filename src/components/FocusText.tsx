@@ -116,7 +116,7 @@ export default function FocusText({ className = "" }: FocusTextProps) {
                   <span 
                     className="text-4xl md:text-5xl lg:text-6xl leading-none text-white whitespace-nowrap z-10"
                     style={{
-                      fontFamily: isGenAI ? '"Lobster", cursive' : '"Outfit", sans-serif',
+                      fontFamily: isGenAI ? 'var(--font-heading)' : 'var(--font-body)',
                       fontWeight: isGenAI ? 'normal' : 800,
                       fontStyle: isGenAI ? 'italic' : 'normal',
                       WebkitFontSmoothing: 'antialiased'
