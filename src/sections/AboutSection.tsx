@@ -30,23 +30,40 @@ const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="liquid-glass-strong rounded-3xl p-8 backdrop-blur-2xl">
-            <div className="w-10 h-10 liquid-glass rounded-full flex items-center justify-center mb-6" aria-hidden="true"><Brain className="w-5 h-5 text-white" /></div>
-            <h3 className="font-heading italic text-2xl text-white mb-4">How I think</h3>
-            <ul className="space-y-4 text-sm text-white/50 font-body font-light">
-              <li>• Understand the problem deeply before writing code.</li>
-              <li>• Design for simplicity, reliability, and scalability.</li>
-              <li>• Blend AI, clean architecture, and great UX.</li>
-            </ul>
+          <div className="md:col-span-2 liquid-glass rounded-3xl p-8 overflow-hidden relative border border-white/10">
+             <h3 className="font-heading italic text-3xl text-white mb-6">Recruiter Quick Scan</h3>
+             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div>
+                  <h4 className="text-[10px] uppercase tracking-widest text-white/40 mb-2">What I Do</h4>
+                  <p className="text-sm font-body text-white/80 font-light">Build AI-powered full-stack apps and machine learning pipelines.</p>
+                </div>
+                <div>
+                  <h4 className="text-[10px] uppercase tracking-widest text-white/40 mb-2">What I Know</h4>
+                  <p className="text-sm font-body text-white/80 font-light">Python, React, TypeScript, Prompt Engineering, SQL, Firebase.</p>
+                </div>
+                <div>
+                  <h4 className="text-[10px] uppercase tracking-widest text-white/40 mb-2">What I'm Learning</h4>
+                  <p className="text-sm font-body text-white/80 font-light">Advanced Deep Learning, Vector Databases, System Design.</p>
+                </div>
+                <div>
+                  <h4 className="text-[10px] uppercase tracking-widest text-white/40 mb-2">What I'm Looking For</h4>
+                  <p className="text-sm font-body text-white/80 font-light">Summer/Fall 2026 AI/ML or Software Engineering Internships.</p>
+                </div>
+             </div>
           </div>
-          <div className="liquid-glass-strong rounded-3xl p-8 backdrop-blur-2xl">
-            <div className="w-10 h-10 liquid-glass rounded-full flex items-center justify-center mb-6" aria-hidden="true"><Terminal className="w-5 h-5 text-white" /></div>
-            <h3 className="font-heading italic text-2xl text-white mb-4">What I build</h3>
-            <ul className="space-y-4 text-sm text-white/50 font-body font-light">
-              <li>• AI-powered applications that solve daily challenges.</li>
-              <li>• Machine learning models for real-world use cases.</li>
-              <li>• Full-stack projects from concept to deployment.</li>
-            </ul>
+
+          <div className="md:col-span-2 liquid-glass-strong rounded-3xl p-8 backdrop-blur-2xl">
+            <h3 className="font-heading italic text-3xl text-white mb-6">Why Work With Me</h3>
+            <div className="grid md:grid-cols-2 gap-8">
+              <ul className="space-y-4 text-sm text-white/70 font-body font-light">
+                <li><strong className="text-white font-medium">Problem Solving:</strong> I deeply understand requirements before writing code, prioritizing scalable architecture over quick hacks.</li>
+                <li><strong className="text-white font-medium">AI & Full-Stack Synergy:</strong> I don't just train models; I integrate them into accessible, production-ready web applications.</li>
+              </ul>
+              <ul className="space-y-4 text-sm text-white/70 font-body font-light">
+                <li><strong className="text-white font-medium">Continuous Learning:</strong> I rapidly adapt to new tech stacks, evidenced by my self-directed transition into AI and Data Analytics.</li>
+                <li><strong className="text-white font-medium">Verifiable Output:</strong> Every skill I claim is backed by a deployed project, a certified credential, or an academic result.</li>
+              </ul>
+            </div>
           </div>
           <div className="md:col-span-2 liquid-glass rounded-3xl p-8 mt-8 overflow-hidden relative border border-white/10">
             <div className="relative z-10 grid md:grid-cols-2 gap-8 items-start">

@@ -22,7 +22,8 @@ const StatsSection = memo(() => {
         <div className="liquid-glass-strong rounded-2xl md:rounded-[3rem] p-6 md:p-12 backdrop-blur-3xl text-center">
           <div className="mb-8">
             <SectionBadge>Snapshot</SectionBadge>
-            <h2 className="text-[clamp(1.75rem,5vw,3rem)] font-heading italic text-white tracking-tight">Creative Mind. AI Heart.</h2>
+            <h2 className="text-[clamp(1.75rem,5vw,3rem)] font-heading italic text-white tracking-tight mb-4">Creative Mind. AI Heart.</h2>
+            <p className="text-white/60 font-body font-light text-sm max-w-md mx-auto">A quick look at the numbers behind my continuous learning and building journey.</p>
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-12">
             {STATS.map(([num, label]) => (

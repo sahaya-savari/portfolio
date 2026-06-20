@@ -13,7 +13,8 @@ const SkillsSection = memo(() => {
       <div className="max-w-screen-xl mx-auto">
         <div className="mb-12">
           <SectionBadge>Capabilities</SectionBadge>
-          <h2 className="text-fluid-section-heading font-heading italic text-white tracking-tight leading-[0.9]">Core Proficiencies <br/> & Technical Pillars.</h2>
+          <h2 className="text-fluid-section-heading font-heading italic text-white tracking-tight leading-[0.9] mb-4">Core Proficiencies <br/> & Technical Pillars.</h2>
+          <p className="text-white/60 font-body font-light text-lg max-w-xl">A structured overview of my technical capabilities across full-stack development and artificial intelligence.</p>
         </div>
 
         <div className="mb-16">

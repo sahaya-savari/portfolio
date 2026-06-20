@@ -76,6 +76,33 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
               View Projects <Play className="w-4 h-4 fill-current" aria-hidden="true" />
             </a>
           </motion.div>
+
+          {/* Executive Summary Panel */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ delay: 1.2, duration: 0.8 }}
+            className="mt-12 liquid-glass p-[1px] rounded-2xl w-full max-w-3xl"
+          >
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 px-6 py-5 bg-black/40 backdrop-blur-xl rounded-2xl">
+              <div className="text-left md:border-r border-white/10 pr-2">
+                <span className="block text-[9px] text-white/40 uppercase tracking-widest mb-1.5">Education</span>
+                <span className="block text-xs font-medium text-white/90">M.Sc Artificial Intelligence</span>
+              </div>
+              <div className="text-left md:border-r border-white/10 pr-2">
+                <span className="block text-[9px] text-white/40 uppercase tracking-widest mb-1.5">Focus</span>
+                <span className="block text-xs font-medium text-white/90">AI & Full-Stack Dev</span>
+              </div>
+              <div className="text-left md:border-r border-white/10 pr-2">
+                <span className="block text-[9px] text-white/40 uppercase tracking-widest mb-1.5">Certification</span>
+                <span className="block text-xs font-medium text-white/90">IBM Data Analyst</span>
+              </div>
+              <div className="text-left">
+                <span className="block text-[9px] text-green-400/70 uppercase tracking-widest mb-1.5">Status</span>
+                <span className="block text-xs font-medium text-green-400">Open to Opportunities</span>
+              </div>
+            </div>
+          </motion.div>
         </div>
 
         {/* Moved outside max-w-4xl to give FocusText full section width, preventing clipping */}
