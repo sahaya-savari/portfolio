@@ -73,58 +73,62 @@ export default function FocusText({ className = "" }: FocusTextProps) {
   return (
     // CLS-4 Fix: Fixed height container prevents siblings from shifting when
     // the track position is measured and updated after mount.
-    <div className={`relative w-full overflow-hidden h-[100px] md:h-[140px] flex items-center ${className}`}>
-      <div className="absolute left-1/2 flex items-center">
-        <motion.div 
-          ref={trackRef}
-          className="relative flex items-center gap-6 md:gap-10"
-          animate={{ x: xOffset }}
-          transition={{ type: "spring", stiffness: 90, damping: 20 }}
-        >
-          {WORDS.map((word, index) => {
-            const isActive = index === activeIndex;
-            const isGenAI = word === "GenAI";
-            
-            return (
-              <motion.div
-                key={word}
-                ref={(el) => { itemRefs.current[index] = el; }}
-                className="relative shrink-0 flex items-center justify-center px-2 py-2 md:px-4 md:py-4"
-                style={{ willChange: "transform, filter, opacity" }}
-                animate={{
-                  scale: isActive ? 1.15 : 0.85,
-                  opacity: isActive ? 1 : 0.4,
-                  filter: isActive ? 'blur(0px)' : 'blur(4px)',
-                }}
-                transition={{ duration: 0.5 }}
-              >
-                {/* Focus Brackets - Only visible on active item */}
-                <motion.div 
-                  className="absolute inset-0 pointer-events-none"
-                  animate={{ opacity: isActive ? 1 : 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className="absolute top-0 left-0 w-4 h-4 md:w-6 md:h-6 border-t-2 md:border-t-4 border-l-2 md:border-l-4 border-white rounded-tl-lg" />
-                  <div className="absolute top-0 right-0 w-4 h-4 md:w-6 md:h-6 border-t-2 md:border-t-4 border-r-2 md:border-r-4 border-white rounded-tr-lg" />
-                  <div className="absolute bottom-0 left-0 w-4 h-4 md:w-6 md:h-6 border-b-2 md:border-b-4 border-l-2 md:border-l-4 border-white rounded-bl-lg" />
-                  <div className="absolute bottom-0 right-0 w-4 h-4 md:w-6 md:h-6 border-b-2 md:border-b-4 border-r-2 md:border-r-4 border-white rounded-br-lg" />
-                </motion.div>
-
-                <span 
-                  className="text-4xl md:text-5xl lg:text-6xl leading-none text-white whitespace-nowrap z-10"
-                  style={{
-                    fontFamily: isGenAI ? '"Lobster", cursive' : '"Outfit", sans-serif',
-                    fontWeight: isGenAI ? 'normal' : 800,
-                    fontStyle: isGenAI ? 'italic' : 'normal',
-                    WebkitFontSmoothing: 'antialiased'
+    <div className={`relative w-full h-[100px] md:h-[140px] flex items-center ${className}`}>
+      {/* Centered wide container to prevent browser layout clipping */}
+      <div className="absolute left-1/2 -translate-x-1/2 w-[2000px] flex items-center justify-center pointer-events-none">
+        {/* Centering anchor for the track */}
+        <div className="relative w-0 h-0 flex items-center justify-start overflow-visible pointer-events-auto">
+          <motion.div 
+            ref={trackRef}
+            className="absolute left-0 flex items-center gap-6 md:gap-10 whitespace-nowrap"
+            animate={{ x: xOffset }}
+            transition={{ type: "spring", stiffness: 90, damping: 20 }}
+          >
+            {WORDS.map((word, index) => {
+              const isActive = index === activeIndex;
+              const isGenAI = word === "GenAI";
+              
+              return (
+                <motion.div
+                  key={word}
+                  ref={(el) => { itemRefs.current[index] = el; }}
+                  className="relative shrink-0 flex items-center justify-center px-4 py-2 md:px-8 md:py-4"
+                  style={{ willChange: "transform, filter, opacity" }}
+                  animate={{
+                    scale: isActive ? 1.15 : 0.85,
+                    opacity: isActive ? 1 : 0.4,
+                    filter: isActive ? 'blur(0px)' : 'blur(4px)',
                   }}
+                  transition={{ duration: 0.5 }}
                 >
-                  {word}
-                </span>
-              </motion.div>
-            );
-          })}
-        </motion.div>
+                  {/* Focus Brackets - Only visible on active item */}
+                  <motion.div 
+                    className="absolute inset-0 pointer-events-none"
+                    animate={{ opacity: isActive ? 1 : 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="absolute top-0 left-0 w-4 h-4 md:w-6 md:h-6 border-t-2 md:border-t-4 border-l-2 md:border-l-4 border-white rounded-tl-lg" />
+                    <div className="absolute top-0 right-0 w-4 h-4 md:w-6 md:h-6 border-t-2 md:border-t-4 border-r-2 md:border-r-4 border-white rounded-tr-lg" />
+                    <div className="absolute bottom-0 left-0 w-4 h-4 md:w-6 md:h-6 border-b-2 md:border-b-4 border-l-2 md:border-l-4 border-white rounded-bl-lg" />
+                    <div className="absolute bottom-0 right-0 w-4 h-4 md:w-6 md:h-6 border-b-2 md:border-b-4 border-r-2 md:border-r-4 border-white rounded-br-lg" />
+                  </motion.div>
+
+                  <span 
+                    className="text-4xl md:text-5xl lg:text-6xl leading-none text-white whitespace-nowrap z-10"
+                    style={{
+                      fontFamily: isGenAI ? '"Lobster", cursive' : '"Outfit", sans-serif',
+                      fontWeight: isGenAI ? 'normal' : 800,
+                      fontStyle: isGenAI ? 'italic' : 'normal',
+                      WebkitFontSmoothing: 'antialiased'
+                    }}
+                  >
+                    {word}
+                  </span>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </div>
       </div>
     </div>
   );

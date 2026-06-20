@@ -118,6 +118,18 @@ const RotatingText = forwardRef((props: any, ref) => {
     return () => clearInterval(intervalId);
   }, [next, rotationInterval, auto]);
 
+  const parentVariants = {
+    initial: {},
+    animate: {},
+    exit: {},
+  };
+
+  const childVariants = {
+    initial: initial,
+    animate: animate,
+    exit: exit,
+  };
+
   // CLS-3 Fix: Removed `layout` prop from outer motion.span.
   // The `layout` prop caused Framer Motion to measure and re-layout the entire
   // component and its siblings on every text rotation (every 2 seconds), causing
@@ -125,47 +137,49 @@ const RotatingText = forwardRef((props: any, ref) => {
   return (
     <span ref={spanRef} className={cn('text-rotate', mainClassName)} style={(rest as any).style}>
       <span className="text-rotate-sr-only">{texts[currentTextIndex]}</span>
-     <AnimatePresence mode="wait" initial={false}>
-  <motion.span
-    key={currentTextIndex}
-    className={cn(
-      splitBy === 'lines'
-        ? 'text-rotate-lines'
-        : 'text-rotate'
-    )}
-    aria-hidden="true"
-  >
-    {elements.map((wordObj: any, wordIndex: number) => (
-      <span
-        key={wordIndex}
-        className={cn('text-rotate-word', splitLevelClassName)}
-      >
-        {wordObj.characters.map((char: string, charIndex: number) => (
-          <motion.span
-            key={charIndex}
-            initial={initial}
-            animate={animate}
-            exit={exit}
-            transition={{
-              type: 'spring',
-              damping: 30,
-              stiffness: 400,
-            }}
-            className={cn(
-              'text-rotate-element',
-              elementLevelClassName
-            )}
-          >
-            {char}
-          </motion.span>
-        ))}
-        {wordObj.needsSpace && (
-          <span className="text-rotate-space"> </span>
-        )}
-      </span>
-    ))}
-  </motion.span>
-</AnimatePresence>
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.span
+          key={currentTextIndex}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          variants={parentVariants}
+          className={cn(
+            splitBy === 'lines'
+              ? 'text-rotate-lines'
+              : 'text-rotate'
+          )}
+          aria-hidden="true"
+        >
+          {elements.map((wordObj: any, wordIndex: number) => (
+            <span
+              key={wordIndex}
+              className={cn('text-rotate-word', splitLevelClassName)}
+            >
+              {wordObj.characters.map((char: string, charIndex: number) => (
+                <motion.span
+                  key={charIndex}
+                  variants={childVariants}
+                  transition={{
+                    type: 'spring',
+                    damping: 30,
+                    stiffness: 400,
+                  }}
+                  className={cn(
+                    'text-rotate-element',
+                    elementLevelClassName
+                  )}
+                >
+                  {char}
+                </motion.span>
+              ))}
+              {wordObj.needsSpace && (
+                <span className="text-rotate-space"> </span>
+              )}
+            </span>
+          ))}
+        </motion.span>
+      </AnimatePresence>
     </span>
   );
 });

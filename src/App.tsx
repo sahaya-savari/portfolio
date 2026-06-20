@@ -148,7 +148,7 @@ export default function App() {
 
         {/* NAVBAR */}
         <header>
-          <nav className="fixed top-6 left-0 right-0 z-[100] px-6" aria-label="Main navigation">
+          <nav className="fixed top-4 md:top-6 left-0 right-0 z-[100] px-4 md:px-6" aria-label="Main navigation">
             <div className="max-w-screen-xl mx-auto flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <a href="#home" className="w-10 h-10 liquid-glass-strong rounded-full flex items-center justify-center border border-white/20" aria-label="Sahaya Savari F — Go to top">
@@ -206,7 +206,7 @@ export default function App() {
               aria-modal="true"
               aria-label="Navigation menu"
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[105] bg-black/90 backdrop-blur-2xl flex flex-col items-center justify-center"
+              className="fixed inset-0 z-[105] bg-black/90 backdrop-blur-2xl flex flex-col items-center justify-center overflow-y-auto p-6"
               onClick={() => setMobileMenuOpen(false)}
               onKeyDown={handleMobileMenuKeyDown}
             >

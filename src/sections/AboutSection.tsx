@@ -10,7 +10,7 @@ interface AboutSectionProps {
 
 const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
   return (
-    <section id="about" aria-label="About me" className="relative py-16 md:py-24 lg:py-32 px-6 overflow-hidden">
+    <section id="about" aria-label="About me" className="relative py-16 px-6 overflow-hidden">
       <div className="absolute inset-0 z-0" aria-hidden="true">
         <HlsVideo 
           src="https://stream.mux.com/9JXDljEVWYwWu01PUkAemafDugK89o01BR6zqJ3aS9u00A.m3u8" 
@@ -23,7 +23,7 @@ const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
       <div className="relative z-10 max-w-screen-xl mx-auto grid lg:grid-cols-2 gap-12 md:gap-16 lg:gap-24 items-start">
         <div>
           <SectionBadge>About Me</SectionBadge>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-heading italic text-white tracking-tight leading-[0.9] mb-12">Building intelligent <br/> AI-powered solutions.</h2>
+          <h2 className="text-fluid-section-heading font-heading italic text-white tracking-tight leading-[0.9] mb-12">Building intelligent <br/> AI-powered solutions.</h2>
           <div className="space-y-8 text-white/60 font-body font-light text-lg leading-relaxed max-w-xl">
             <p>I am an AI Developer pursuing M.Sc in Artificial Intelligence at St. Joseph's College (Autonomous), Trichy, focused on building intelligent systems and machine learning solutions.</p>
             <p>I design and develop AI-powered applications that solve real problems, from smart study tools to daily productivity apps, with a passion for clean code and user-centric design.</p>
@@ -48,7 +48,7 @@ const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
               <li>• Full-stack projects from concept to deployment.</li>
             </ul>
           </div>
-          <div className="md:col-span-2 liquid-glass rounded-3xl p-8 md:p-10 mt-6 overflow-hidden relative border border-white/10">
+          <div className="md:col-span-2 liquid-glass rounded-3xl p-8 mt-8 overflow-hidden relative border border-white/10">
             <div className="relative z-10 grid md:grid-cols-2 gap-8 items-start">
               
               {/* Left Panel: Currently Seeking Banner */}
@@ -77,7 +77,7 @@ const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
               </div>
               
               {/* Right Panel: Recruiter Snapshot Card */}
-              <div className="space-y-5 border-t border-white/10 pt-6 mt-6 md:border-t-0 md:pt-0 md:mt-0 md:border-l md:border-white/10 md:pl-8">
+              <div className="space-y-4 border-t border-white/10 pt-6 mt-6 md:border-t-0 md:pt-0 md:mt-0 md:border-l md:border-white/10 md:pl-8">
                 <h4 className="font-mono text-xs tracking-widest text-blue-400 uppercase font-bold">Professional Snapshot</h4>
                 
                 <div className="space-y-4">

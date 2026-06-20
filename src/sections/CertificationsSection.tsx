@@ -12,11 +12,11 @@ const CertificationsSection = memo(() => {
   const getPanelId = (title: string) => `cert-panel-${title.toLowerCase().replace(/\s+/g, '-')}`;
 
   return (
-    <section id="certifications" aria-label="Certifications and courses" className="py-16 md:py-24 lg:py-32 px-6">
+    <section id="certifications" aria-label="Certifications and courses" className="py-16 px-6">
       <div className="max-w-screen-xl mx-auto">
-        <div className="mb-12 md:mb-20 lg:mb-24 text-center">
+        <div className="mb-12 text-center">
           <SectionBadge>Learning Journey</SectionBadge>
-          <h2 className="text-5xl md:text-6xl font-heading italic text-white tracking-tight leading-[0.9]">Certificates &amp; Courses</h2>
+          <h2 className="text-fluid-section-heading font-heading italic text-white tracking-tight leading-[0.9]">Certificates &amp; Courses</h2>
           <p className="text-white/50 font-body font-light mt-6 max-w-xl mx-auto">Focused on building practical, project-ready skills in AI, machine learning, and software development.</p>
         </div>
 
@@ -120,11 +120,28 @@ const CertificationsSection = memo(() => {
             <h3 className="font-heading italic text-3xl text-white/60 tracking-tight">Browse by Category</h3>
           </div>
           
-          {/* FIX A11y-1: role="tablist" must wrap all role="tab" buttons */}
+          {/* Mobile Category Dropdown Selector */}
+          <div className="block md:hidden mb-8 px-2">
+            <label htmlFor="cert-category-select" className="sr-only">Select Certification Category</label>
+            <select
+              id="cert-category-select"
+              value={activeTab}
+              onChange={(e) => setActiveTab(e.target.value)}
+              className="w-full bg-neutral-900 text-white border border-white/10 rounded-xl px-4 py-3 font-body text-sm outline-none focus:ring-2 focus:ring-white/20 min-h-[48px] backdrop-blur-md"
+            >
+              {CERTIFICATIONS.map(({ title }) => (
+                <option key={title} value={title} className="bg-black text-white">
+                  {title}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Desktop/Tablet Category Tabs */}
           <div
             role="tablist"
             aria-label="Certification categories"
-            className="flex overflow-x-auto hide-scrollbar gap-2 justify-start md:justify-center mb-8 px-2"
+            className="hidden md:flex overflow-x-auto hide-scrollbar gap-2 justify-center mb-8 px-2"
           >
             {CERTIFICATIONS.map(({ title, icon }) => {
               const tabId = getTabId(title);
@@ -149,7 +166,7 @@ const CertificationsSection = memo(() => {
             })}
           </div>
 
-          <div className="liquid-glass rounded-3xl p-6 md:p-8 min-h-[300px]">
+          <div className="liquid-glass rounded-3xl p-6 md:p-8">
             {/* FIX INP-3: Only render the active tab's content, not all hidden tabs */}
             {CERTIFICATIONS.map(({ title, items }) => {
               const tabId = getTabId(title);

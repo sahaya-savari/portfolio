@@ -12,12 +12,12 @@ const ProjectsSection = memo(() => {
 
   return (
     <>
-      <section aria-label="Selected projects" className="py-16 md:py-24 lg:py-32 px-6 bg-black relative">
+      <section aria-label="Selected projects" className="py-16 px-6 bg-black relative">
         <div className="max-w-screen-xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-20 lg:mb-24 gap-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-8">
             <div>
               <SectionBadge>Selected Work</SectionBadge>
-              <h2 className="text-5xl md:text-6xl font-heading italic text-white tracking-tight leading-[0.9]">AI-Powered <br/> Projects.</h2>
+              <h2 className="text-fluid-section-heading font-heading italic text-white tracking-tight leading-[0.9]">AI-Powered <br/> Projects.</h2>
             </div>
             <p className="text-white/60 font-body font-light max-w-xs md:text-right">Ask me for live demos, code samples, or walkthroughs of any project.</p>
           </div>
@@ -32,7 +32,7 @@ const ProjectsSection = memo(() => {
                   tabIndex={0}
                   onClick={() => setSelectedProject(p)}
                   onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelectedProject(p); } }}
-                  className="text-left w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 rounded-3xl p-5 md:p-8 group flex flex-col hover:-translate-y-2 transition-transform cursor-pointer border border-white/10"
+                  className="text-left w-full h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 rounded-3xl p-5 md:p-8 group flex flex-col hover:-translate-y-2 transition-transform cursor-pointer border border-white/10"
                   style={{
                     background: theme.bg || 'rgba(255, 255, 255, 0.01)',
                     boxShadow: theme.glow ? `0 0 30px ${theme.glow}, inset 0 1px 1px rgba(255, 255, 255, 0.15)` : 'inset 0 1px 1px rgba(255, 255, 255, 0.15)',
