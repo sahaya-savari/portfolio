@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect, useRef, lazy, Suspense } from 'react';
-import { m as motion, AnimatePresence  } from 'framer-motion';
+import { m as motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 import { ArrowUpRight, Menu, X } from 'lucide-react';
 
 import ClickSpark from './components/ClickSpark';
@@ -27,6 +27,7 @@ export default function App() {
   const [showBlog, setShowBlog] = useState(false);
   const [showCommandPalette, setShowCommandPalette] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const mobileMenuToggleRef = useRef<HTMLButtonElement>(null);
@@ -69,6 +70,31 @@ export default function App() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  // Active section tracking
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      let mostVisible = null;
+      let maxRatio = 0;
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
+          maxRatio = entry.intersectionRatio;
+          mostVisible = entry.target.id;
+        }
+      });
+      if (mostVisible) {
+        setActiveSection(mostVisible);
+      }
+    }, { threshold: [0.1, 0.5, 0.9], rootMargin: '-20% 0px -40% 0px' });
+
+    const sectionIds = ['home', 'about', 'skills', 'projects', 'certifications', 'contact'];
+    sectionIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -134,9 +160,23 @@ export default function App() {
     };
   }, [scrollToHashTarget]);
 
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
   return (
     <ClickSpark sparkColor='#fff' sparkSize={12} sparkRadius={25} sparkCount={10} duration={300}>
       <div className="bg-black min-h-screen text-white selection:bg-white selection:text-black overflow-x-hidden">
+        
+        {/* Scroll Progress Indicator */}
+        <motion.div
+          className="fixed top-0 left-0 right-0 h-[3px] bg-white/40 z-[200] origin-left"
+          style={{ scaleX }}
+          aria-hidden="true"
+        />
 
         {/* SKIP TO CONTENT LINK */}
         <a
@@ -158,18 +198,23 @@ export default function App() {
                   <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" aria-hidden="true"></span>
                   AVAILABLE FOR WORK
                 </span>
-                <span className="font-body text-[10px] font-mono text-white/65 hidden lg:flex items-center gap-1.5 ml-4 px-2 py-1 rounded border border-white/10 bg-white/5">
-                  Press <kbd className="font-semibold text-white/70">Ctrl + K</kbd> for quick nav
-                </span>
+                <button 
+                  onClick={() => setShowCommandPalette(true)}
+                  className="font-body text-[10px] font-mono text-white/80 hidden lg:flex items-center gap-2 ml-4 px-3 py-1.5 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 transition-colors cursor-pointer group"
+                  aria-label="Open command palette"
+                >
+                  <span className="opacity-70 group-hover:opacity-100 transition-opacity">Quick Search</span>
+                  <kbd className="font-semibold text-black bg-white/80 px-1.5 py-0.5 rounded text-[9px]">Ctrl K</kbd>
+                </button>
               </div>
               <div className="hidden md:flex liquid-glass px-4 lg:px-6 py-2.5 rounded-full items-center gap-3 lg:gap-8 backdrop-blur-md" role="menubar">
-                <a href="#home" role="menuitem" className="text-sm font-body font-medium text-white/70 hover:text-white transition-colors">Home</a>
-                <a href="#about" role="menuitem" className="text-sm font-body font-medium text-white/70 hover:text-white transition-colors">About</a>
-                <button onClick={() => setShowResume(true)} role="menuitem" className="text-sm font-body font-medium text-white/70 hover:text-white transition-colors cursor-pointer">Resume</button>
-                <button onClick={() => setShowBlog(true)} role="menuitem" className="text-sm font-body font-medium text-white/70 hover:text-white transition-colors cursor-pointer">Blog</button>
-                <a href="#skills" role="menuitem" className="text-sm font-body font-medium text-white/70 hover:text-white transition-colors">Skills</a>
-                <a href="#projects" role="menuitem" className="text-sm font-body font-medium text-white/70 hover:text-white transition-colors">Projects</a>
-                <a href="#certifications" role="menuitem" className="text-sm font-body font-medium text-white/70 hover:text-white transition-colors">Certs</a>
+                <a href="#home" role="menuitem" className={`text-sm font-body font-medium transition-colors ${activeSection === 'home' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Home</a>
+                <a href="#about" role="menuitem" className={`text-sm font-body font-medium transition-colors ${activeSection === 'about' ? 'text-white' : 'text-white/50 hover:text-white'}`}>About</a>
+                <button onClick={() => setShowResume(true)} role="menuitem" className="text-sm font-body font-medium text-white/50 hover:text-white transition-colors cursor-pointer">Resume</button>
+                <button onClick={() => setShowBlog(true)} role="menuitem" className="text-sm font-body font-medium text-white/50 hover:text-white transition-colors cursor-pointer">Blog</button>
+                <a href="#skills" role="menuitem" className={`text-sm font-body font-medium transition-colors ${activeSection === 'skills' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Skills</a>
+                <a href="#projects" role="menuitem" className={`text-sm font-body font-medium transition-colors ${activeSection === 'projects' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Projects</a>
+                <a href="#certifications" role="menuitem" className={`text-sm font-body font-medium transition-colors ${activeSection === 'certifications' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Certs</a>
               </div>
               <div className="flex items-center gap-3">
                 <a
