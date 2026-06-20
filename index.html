@@ -24,11 +24,18 @@
     <link rel="dns-prefetch" href="https://stream.mux.com" />
     <link rel="dns-prefetch" href="https://image.mux.com" />
 
-    <!-- Full font stylesheet — includes all fonts used across the site -->
+    <!-- Preload the font stylesheet -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600&family=Instrument+Serif:ital@1&family=Lobster&family=Outfit:wght@800&display=swap" />
+    
+    <!-- Full font stylesheet — loaded asynchronously -->
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600&family=Instrument+Serif:ital@1&family=Lobster&family=Outfit:wght@800&display=swap"
+      media="print" onload="this.media='all'"
     />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600&family=Instrument+Serif:ital@1&family=Lobster&family=Outfit:wght@800&display=swap" />
+    </noscript>
 
     <!-- =====================================================
          RESOURCE HINTS
