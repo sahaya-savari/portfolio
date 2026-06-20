@@ -31,34 +31,66 @@ const SkillsSection = memo(() => {
           <div className="space-y-2">
             <SkillAccordion title="Artificial Intelligence" icon={Brain}>
               <ul className="space-y-4">
-                <li>• Machine Learning model development and training.</li>
-                <li>• Deep Learning with TensorFlow and PyTorch.</li>
-                <li>• Natural Language Processing and text analysis.</li>
-                <li>• Computer Vision and image classification.</li>
-                <li>• LLM integration and prompt engineering.</li>
+                <li className="flex items-start justify-between gap-4 border-b border-white/5 pb-3">
+                  <span>• Machine Learning model development and training.</span>
+                  <span className="text-[9px] font-mono uppercase tracking-widest text-blue-400 border border-blue-500/30 bg-blue-500/10 px-1.5 py-0.5 rounded-full shrink-0">Advanced</span>
+                </li>
+                <li className="flex items-start justify-between gap-4 border-b border-white/5 pb-3">
+                  <span>• LLM integration and prompt engineering.</span>
+                  <span className="text-[9px] font-mono uppercase tracking-widest text-blue-400 border border-blue-500/30 bg-blue-500/10 px-1.5 py-0.5 rounded-full shrink-0">Advanced</span>
+                </li>
+                <li className="flex items-start justify-between gap-4 border-b border-white/5 pb-3">
+                  <span>• Natural Language Processing and text analysis.</span>
+                  <span className="text-[9px] font-mono uppercase tracking-widest text-purple-400 border border-purple-500/30 bg-purple-500/10 px-1.5 py-0.5 rounded-full shrink-0">Intermediate</span>
+                </li>
+                <li className="flex items-start justify-between gap-4">
+                  <span>• Computer Vision and image classification.</span>
+                  <span className="text-[9px] font-mono uppercase tracking-widest text-emerald-400 border border-emerald-500/30 bg-emerald-500/10 px-1.5 py-0.5 rounded-full shrink-0">Learning</span>
+                </li>
               </ul>
             </SkillAccordion>
             <SkillAccordion title="Python Development" icon={Code}>
               <ul className="space-y-4">
-                <li>• Backend development with Flask and FastAPI.</li>
-                <li>• Data processing with Pandas and NumPy.</li>
-                <li>• API development and third-party integrations.</li>
-                <li>• Automation scripts and task scheduling.</li>
+                <li className="flex items-start justify-between gap-4 border-b border-white/5 pb-3">
+                  <span>• Backend development with Flask and FastAPI.</span>
+                  <span className="text-[9px] font-mono uppercase tracking-widest text-blue-400 border border-blue-500/30 bg-blue-500/10 px-1.5 py-0.5 rounded-full shrink-0">Advanced</span>
+                </li>
+                <li className="flex items-start justify-between gap-4 border-b border-white/5 pb-3">
+                  <span>• Data processing with Pandas and NumPy.</span>
+                  <span className="text-[9px] font-mono uppercase tracking-widest text-blue-400 border border-blue-500/30 bg-blue-500/10 px-1.5 py-0.5 rounded-full shrink-0">Advanced</span>
+                </li>
+                <li className="flex items-start justify-between gap-4">
+                  <span>• API development and third-party integrations.</span>
+                  <span className="text-[9px] font-mono uppercase tracking-widest text-blue-400 border border-blue-500/30 bg-blue-500/10 px-1.5 py-0.5 rounded-full shrink-0">Advanced</span>
+                </li>
               </ul>
             </SkillAccordion>
             <SkillAccordion title="Web Development" icon={Terminal}>
               <ul className="space-y-4">
-                <li>• React and TypeScript for frontend development.</li>
-                <li>• Responsive UI design with Tailwind CSS.</li>
-                <li>• Full-stack application architecture.</li>
-                <li>• Version control with Git and GitHub.</li>
+                <li className="flex items-start justify-between gap-4 border-b border-white/5 pb-3">
+                  <span>• React and TypeScript for frontend development.</span>
+                  <span className="text-[9px] font-mono uppercase tracking-widest text-purple-400 border border-purple-500/30 bg-purple-500/10 px-1.5 py-0.5 rounded-full shrink-0">Intermediate</span>
+                </li>
+                <li className="flex items-start justify-between gap-4 border-b border-white/5 pb-3">
+                  <span>• Responsive UI design with Tailwind CSS.</span>
+                  <span className="text-[9px] font-mono uppercase tracking-widest text-blue-400 border border-blue-500/30 bg-blue-500/10 px-1.5 py-0.5 rounded-full shrink-0">Advanced</span>
+                </li>
+                <li className="flex items-start justify-between gap-4">
+                  <span>• Full-stack application architecture.</span>
+                  <span className="text-[9px] font-mono uppercase tracking-widest text-purple-400 border border-purple-500/30 bg-purple-500/10 px-1.5 py-0.5 rounded-full shrink-0">Intermediate</span>
+                </li>
               </ul>
             </SkillAccordion>
             <SkillAccordion title="Data & Databases" icon={Database}>
               <ul className="space-y-4">
-                <li>• SQL for data querying and management.</li>
-                <li>• Data visualization with Matplotlib and Seaborn.</li>
-                <li>• Database design and optimization.</li>
+                <li className="flex items-start justify-between gap-4 border-b border-white/5 pb-3">
+                  <span>• SQL for data querying and management.</span>
+                  <span className="text-[9px] font-mono uppercase tracking-widest text-blue-400 border border-blue-500/30 bg-blue-500/10 px-1.5 py-0.5 rounded-full shrink-0">Advanced</span>
+                </li>
+                <li className="flex items-start justify-between gap-4">
+                  <span>• Data visualization with Matplotlib and Seaborn.</span>
+                  <span className="text-[9px] font-mono uppercase tracking-widest text-purple-400 border border-purple-500/30 bg-purple-500/10 px-1.5 py-0.5 rounded-full shrink-0">Intermediate</span>
+                </li>
               </ul>
             </SkillAccordion>
           </div>

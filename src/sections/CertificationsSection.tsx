@@ -40,7 +40,15 @@ const CertificationsSection = memo(() => {
                 <div>
                   <div className="flex items-center justify-between mb-4 gap-2">
                     <span className="text-3xl select-none filter drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]" role="img" aria-label="Credential badge">{cred.prefix}</span>
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-white/40 text-right">{cred.issuer}</span>
+                    <div className="flex flex-col items-end gap-1">
+                      {cred.verifyUrl && cred.credentialId && (
+                        <span className="text-[8px] font-mono uppercase tracking-widest text-green-400 border border-green-500/30 bg-green-500/10 px-1.5 py-0.5 rounded-full flex items-center gap-1">
+                          <span className="w-1 h-1 rounded-full bg-green-400"></span>
+                          Verified
+                        </span>
+                      )}
+                      <span className="text-[10px] font-mono uppercase tracking-widest text-white/40 text-right">{cred.issuer}</span>
+                    </div>
                   </div>
                   <h4 className="font-heading italic text-xl md:text-2xl text-white mb-3 leading-tight tracking-tight">{cred.title}</h4>
                   {cred.desc && (
@@ -118,6 +126,36 @@ const CertificationsSection = memo(() => {
                     )}
                   </div>
                 )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* LEARNING JOURNEY TIMELINE */}
+        <div className="mb-16 lg:mb-24">
+          <div className="flex items-center gap-3 justify-center mb-10">
+            <h3 className="font-heading italic text-3xl text-white/60 tracking-tight">The Learning Journey</h3>
+          </div>
+          <div className="max-w-4xl mx-auto relative">
+            <div className="absolute top-0 bottom-0 left-[28px] md:left-1/2 w-[2px] bg-gradient-to-b from-white/0 via-white/10 to-white/0 -translate-x-1/2"></div>
+            
+            {[
+              { year: '2023', title: 'Foundations & Python', desc: 'Started with CS50P and automation scripts, building strong core programming logic.' },
+              { year: '2023', title: 'Web Development', desc: 'Learned full-stack architecture, React, and Firebase to bring ideas to the browser.' },
+              { year: '2024', title: 'Data Analytics', desc: 'Completed IBM Data Analyst Specialization, mastering SQL, Pandas, and visualization.' },
+              { year: '2024', title: 'Machine Learning', desc: 'Dived into Kaggle, TensorFlow, and Scikit-learn to build predictive models.' },
+              { year: '2025', title: 'Artificial Intelligence', desc: 'Pursuing M.Sc AI. Focusing on LLMs, Prompt Engineering, and intelligent pipelines.' }
+            ].map((item, index) => (
+              <div key={index} className={`relative flex items-center mb-8 last:mb-0 ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
+                <div className="hidden md:block w-1/2"></div>
+                <div className="absolute left-[28px] md:left-1/2 w-4 h-4 rounded-full bg-black border-2 border-white/20 -translate-x-1/2 flex items-center justify-center z-10 transition-colors hover:border-white/50">
+                  <div className="w-1.5 h-1.5 rounded-full bg-white/50"></div>
+                </div>
+                <div className="ml-12 md:ml-0 md:w-1/2 p-6 liquid-glass rounded-2xl md:mx-8 border border-white/5 hover:bg-white/5 transition-colors">
+                  <span className="text-[10px] font-mono text-white/40 uppercase tracking-widest">{item.year}</span>
+                  <h4 className="text-xl font-heading italic text-white mt-2 mb-2">{item.title}</h4>
+                  <p className="text-sm font-body text-white/60 leading-relaxed">{item.desc}</p>
+                </div>
               </div>
             ))}
           </div>
