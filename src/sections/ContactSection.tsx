@@ -68,7 +68,7 @@ const ContactSection = memo(({ setShowBlog, setShowCommandPalette }: ContactSect
           
           {/* Right Column: Copyright */}
           <div className="flex items-center justify-center md:justify-end text-white/20 font-body text-[10px] uppercase tracking-widest">
-            © {new Date().getFullYear()} Sahaya Savari F — Built with AI
+            © {new Date().getFullYear()} Sahaya Savari F — Designed & Built by Sahaya Savari F
           </div>
           
         </div>

@@ -8,6 +8,7 @@ export const PROJECTS = [
     desc: "A daily motivation and habit-tracking application that helps users build positive routines with AI-powered personalized suggestions.", 
     stack: "Python · AI · Mobile", 
     link: "https://daily-spark-app-da74b.web.app",
+    status: "Live",
     github: "https://github.com/sahaya-savari",
     longDesc: "Daily Spark is a comprehensive productivity ecosystem designed to overcome procrastination through intelligent intervention. By tracking daily habits and analyzing user behavior patterns, the AI engine generates personalized daily routines and motivational nudges tailored to the user's optimal performance windows.",
     metrics: [
@@ -20,7 +21,7 @@ export const PROJECTS = [
     architecture: "Python backend with Firebase real-time database. Behavioral AI algorithms analyze user patterns to suggest optimal tasks.",
     techStack: ["Python", "Firebase", "React", "AI/ML", "TypeScript"],
     challenges: "Developing a performant algorithm capable of processing daily user habits in real-time without draining device battery.",
-    results: "Delivered a working MVP with a real-time Firebase-backed habit engine that generates AI-personalized daily routines — demonstrating the core feedback loop from behavior input to actionable suggestion.",
+    results: "Shipped a working web app with Firebase Realtime Database powering a habit-tracking engine that generates AI-personalized daily routines. Demonstrates the full feedback loop from behavior input to actionable suggestion.",
     lessonsLearned: "Optimizing state management is critical when handling continuous real-time data streams from Firebase.",
     futureImprovements: "Implement local SQLite database caching for faster offline loads, set up cross-device authentication sync, and integrate local notification reminders.",
     theme: {
@@ -39,6 +40,7 @@ export const PROJECTS = [
     desc: "An intelligent study companion that generates practice questions, summaries, and personalized learning paths using AI.", 
     stack: "Python · LLMs · React", 
     link: "",
+    status: "In Development",
     github: "https://github.com/sahaya-savari",
     longDesc: "PrepMind AI transforms static study materials into highly interactive, adaptive learning experiences. Users can upload lecture notes or textbooks, and the underlying LLM dynamically generates flashcards, mock exams, and concept summaries that adapt to the user's demonstrated knowledge gaps.",
     metrics: [
@@ -51,7 +53,7 @@ export const PROJECTS = [
     architecture: "Python-based LLM integration pipeline. React frontend handles dynamic component rendering of mock exams and flashcards.",
     techStack: ["Python", "OpenAI API", "React", "Tailwind CSS"],
     challenges: "Ensuring the LLM does not hallucinate facts during quiz generation by implementing strict system prompts and context injection.",
-    results: "Built a functional LLM pipeline that converts raw uploaded text into structured flashcards and mock exams, with prompt engineering constraints preventing off-topic outputs during testing.",
+    results: "Built an LLM pipeline that converts uploaded text into structured flashcards and mock exams using context-injected prompts. Pydantic schema validation enforces strict output formatting, preventing malformed responses during generation.",
     lessonsLearned: "Prompt engineering requires rigorous testing; structuring LLM output into strict JSON formats is essential for reliable frontend rendering.",
     futureImprovements: "Support local document embedding with Vector Stores, optimize OpenAI context windows, and enable speech-to-text notes transcription.",
     theme: {
@@ -70,6 +72,7 @@ export const PROJECTS = [
     desc: "A modern, animated portfolio website built with React, TypeScript, and Framer Motion featuring glassmorphism design, HLS video streaming, and lazy-loaded sections.", 
     stack: "React · TypeScript · Vite", 
     link: "https://sahayasavari.web.app",
+    status: "Live",
     github: "https://github.com/sahaya-savari/portfolio",
     longDesc: "A masterclass in modern frontend development, this portfolio leverages Framer Motion for liquid-smooth animations and hardware-accelerated transitions. It features a custom glassmorphism design system, responsive grids, and an isolated state architecture for maximum performance.",
     metrics: [
@@ -82,7 +85,7 @@ export const PROJECTS = [
     architecture: "Single Page Application built with React, Vite, and Vanilla CSS. Framer Motion drives all transitions. No traditional router — all sections are in-page with lazy intersection loading to preserve 'liquid' scroll state.",
     techStack: ["React", "TypeScript", "Vanilla CSS", "Framer Motion", "Vite"],
     challenges: "Achieving 60fps glassmorphism and spring animations without causing layout thrashing on mobile devices.",
-    results: "Optimized to achieve clean Lighthouse scores with zero CLS violations, accessible tab patterns meeting WCAG 1.3.1, and sub-second interactive load times through lazy section rendering and manual Vite chunk splitting.",
+    results: "Built with lazy section rendering, manual Vite chunk splitting, and IntersectionObserver-based loading. Implements accessible tab patterns following WCAG 1.3.1 guidelines. Deployed on Firebase Hosting.",
     lessonsLearned: "Using absolute DOM offset measurements instead of relying on offsetParent trees resolves critical layout bugs in complex tracks.",
     futureImprovements: "Add full offline-first capabilities using Service Workers, introduce a theme preference toggler (dark/light), and automate build performance testing in CI.",
     theme: {
@@ -155,16 +158,6 @@ export const FEATURED_CREDENTIALS: FeaturedCredential[] = [
   },
   {
     prefix: "🥉",
-    title: "Web Development and Software Engineering",
-    issuer: "HodoLabs",
-    issueDate: "",
-    credentialId: "",
-    verifyUrl: "",
-    skills: [],
-    desc: "Awaiting official certification validation and credential links."
-  },
-  {
-    prefix: "🏅",
     title: "Yuva AI for All",
     issuer: "National Institute of Electronics and Information Technology (NIELIT)",
     issueDate: "March 2026",
@@ -181,10 +174,10 @@ export const FEATURED_CREDENTIALS: FeaturedCredential[] = [
 ];
 
 export const STATS = [
-  ['M.Sc', 'AI Student'],
+  ['M.Sc', 'Artificial Intelligence'],
   ['3', 'Major Projects'],
-  ['4', 'Featured Credentials'],
-  ['Daily', 'Learning Focus']
+  ['4', 'Certifications Earned'],
+  ['9', 'IBM Courses Completed']
 ];
 
 export const CERTIFICATIONS = [

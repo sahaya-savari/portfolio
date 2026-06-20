@@ -15,6 +15,17 @@ const SkillsSection = memo(() => {
           <SectionBadge>Capabilities</SectionBadge>
           <h2 className="text-fluid-section-heading font-heading italic text-white tracking-tight leading-[0.9]">Core Proficiencies <br/> & Technical Pillars.</h2>
         </div>
+
+        <div className="mb-16">
+          <div className="mb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div>
+              <SectionBadge>Verified Evidence</SectionBadge>
+              <p className="text-white/60 font-body font-light max-w-xl text-sm">Every skill listed is backed by a project, certification, or coursework.</p>
+            </div>
+          </div>
+          <SkillsMatrix />
+        </div>
+
         <div className="grid lg:grid-cols-2 gap-12 md:gap-16 lg:gap-24">
           <div className="space-y-2">
             <SkillAccordion title="Artificial Intelligence" icon={Brain}>
@@ -114,7 +125,6 @@ const SkillsSection = memo(() => {
             </div>
           </div>
         </div>
-        <SkillsMatrix />
       </div>
     </section>
   );

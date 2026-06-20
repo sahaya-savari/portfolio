@@ -138,6 +138,13 @@
   }
 }
 
+@utility section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08) 50%, transparent);
+  margin: 0 auto;
+  max-width: 80%;
+}
+
 /* Fluid Typography utilities using CSS clamp() */
 @utility text-fluid-hero-title {
   font-size: clamp(2.5rem, 8vw + 1rem, 7rem);

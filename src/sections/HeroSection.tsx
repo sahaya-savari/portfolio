@@ -42,8 +42,8 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
       <div className="relative z-10 flex-grow flex flex-col items-center justify-center pt-28 pb-16 md:pt-36 md:pb-24 w-full">
         <div className="max-w-4xl text-center flex flex-col items-center">
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="liquid-glass rounded-full px-4 py-1.5 mb-8 flex items-center gap-2">
-            <span className="bg-white text-black text-[10px] uppercase font-bold px-2 py-0.5 rounded-full">New</span>
-            <span className="text-xs font-body font-medium text-white/80">M.Sc Artificial Intelligence Student</span>
+            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" aria-hidden="true"></span>
+            <span className="text-xs font-body font-medium text-white/80">Open to Opportunities · Summer/Fall 2026</span>
           </motion.div>
           <div className="mb-6 md:mb-8">
             <BlurText as="h1" text="Sahaya Savari F" delay={200} animateBy="words" direction="top" className="text-fluid-hero-title font-heading italic text-white tracking-[-2px] md:tracking-[-4px] leading-[0.8] mb-4" />
@@ -65,7 +65,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
           </div>
 
           <motion.p initial={{ opacity: 0, filter: 'blur(10px)' }} animate={{ opacity: 1, filter: 'blur(0px)' }} transition={{ delay: 0.8, duration: 0.8 }} className="text-white/60 font-body font-light text-lg md:text-xl max-w-2xl mb-8 md:mb-12 leading-relaxed">
-            Building AI-powered applications, scalable backend systems, and modern full-stack experiences.
+            M.Sc Artificial Intelligence student building AI-powered applications — from LLM prompt pipelines to full-stack web apps. Open to Summer/Fall 2026 internships.
           </motion.p>
 
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.1, duration: 0.8 }} className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4">

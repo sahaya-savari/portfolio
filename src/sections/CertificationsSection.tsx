@@ -48,6 +48,15 @@ const CertificationsSection = memo(() => {
                       {cred.desc}
                     </p>
                   )}
+                  {cred.skills && cred.skills.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      {cred.skills.map(skill => (
+                        <span key={skill} className="px-2 py-0.5 rounded-full text-[9px] font-mono text-white/50 bg-white/5 border border-white/5">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                   
                   {(cred.issueDate || cred.credentialId || cred.score || cred.credits) && (
                     <div className="grid grid-cols-2 gap-x-3 gap-y-2 text-[10px] font-mono text-white/50 mb-4 border-t border-white/5 pt-3">

@@ -41,15 +41,25 @@ const ProjectsSection = memo(() => {
                   aria-label={`${p.title} — ${p.tag}. Click to view details.`}
                 >
                   <div className="flex justify-between items-start mb-6 md:mb-12">
-                    <div 
-                      className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider"
-                      style={{
-                        background: theme.tagBg || 'rgba(255, 255, 255, 0.1)',
-                        color: theme.tagText || 'rgba(255, 255, 255, 0.5)',
-                        border: `1px solid ${theme.border || 'rgba(255, 255, 255, 0.2)'}`,
-                      }}
-                    >
-                      {p.tag}
+                    <div className="flex gap-2">
+                      <div 
+                        className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider"
+                        style={{
+                          background: theme.tagBg || 'rgba(255, 255, 255, 0.1)',
+                          color: theme.tagText || 'rgba(255, 255, 255, 0.5)',
+                          border: `1px solid ${theme.border || 'rgba(255, 255, 255, 0.2)'}`,
+                        }}
+                      >
+                        {p.tag}
+                      </div>
+                      <div className={`px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border flex items-center gap-1.5 ${
+                        p.status === 'Live' 
+                          ? 'text-green-400 border-green-500/30 bg-green-500/10' 
+                          : 'text-amber-400 border-amber-500/30 bg-amber-500/10'
+                      }`}>
+                        <span className={`w-1.5 h-1.5 rounded-full ${p.status === 'Live' ? 'bg-green-400' : 'bg-amber-400'}`} aria-hidden="true"></span>
+                        {p.status}
+                      </div>
                     </div>
                     <div className="flex items-center gap-3">
                       {(p as any).github && (
@@ -84,9 +94,19 @@ const ProjectsSection = memo(() => {
                   </div>
                   <h3 className="font-heading italic text-3xl text-white mb-4">{p.title}</h3>
                   <p className="text-white/70 font-body font-light text-sm leading-relaxed mb-8 flex-grow">{p.desc}</p>
-                  <div className="flex items-center gap-2 text-[10px] font-mono" style={{ color: theme.iconColor || 'rgba(255, 255, 255, 0.4)' }}>
-                    <Terminal className="w-3 h-3" aria-hidden="true" />
-                    {p.stack}
+                  <div className="flex flex-col gap-2 mt-auto text-xs font-body border-l-2 pl-3 py-1" style={{ borderColor: theme.border || 'rgba(255,255,255,0.2)' }}>
+                    <div className="flex items-center">
+                      <span className="text-white/40 w-16 uppercase tracking-wider text-[9px]">Status</span>
+                      <span className="text-white/80">{p.status}</span>
+                    </div>
+                    <div className="flex items-center">
+                      <span className="text-white/40 w-16 uppercase tracking-wider text-[9px]">Category</span>
+                      <span className="text-white/80">{p.tag}</span>
+                    </div>
+                    <div className="flex items-center">
+                      <span className="text-white/40 w-16 uppercase tracking-wider text-[9px]">Stack</span>
+                      <span className="text-white/80">{p.stack.split(' · ').join(' • ')}</span>
+                    </div>
                   </div>
                 </div>
               );

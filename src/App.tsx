@@ -225,25 +225,31 @@ export default function App() {
 
         <main id="main-content">
           <HeroSection setShowResume={setShowResume} />
+          <div className="section-divider" aria-hidden="true" />
           <IntersectionLazy fallbackHeight="100vh">
             <AboutSection setShowResume={setShowResume} />
           </IntersectionLazy>
+          <div className="section-divider" aria-hidden="true" />
           <IntersectionLazy fallbackHeight="80vh">
             <SkillsSection />
           </IntersectionLazy>
+          <div className="section-divider" aria-hidden="true" />
           <IntersectionLazy fallbackHeight="40vh">
             <StatsSection />
           </IntersectionLazy>
+          <div className="section-divider" aria-hidden="true" />
           <div id="projects">
             <IntersectionLazy fallbackHeight="150vh">
               <ProjectsSection />
             </IntersectionLazy>
           </div>
+          <div className="section-divider" aria-hidden="true" />
           <IntersectionLazy fallbackHeight="100vh">
             <CertificationsSection />
           </IntersectionLazy>
         </main>
 
+        <div className="section-divider" aria-hidden="true" />
         <IntersectionLazy fallbackHeight="100vh">
           <ContactSection setShowBlog={setShowBlog} setShowCommandPalette={setShowCommandPalette} />
         </IntersectionLazy>
