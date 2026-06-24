@@ -60,7 +60,7 @@ const ContactSection = memo(({ setShowBlog, setShowCommandPalette }: ContactSect
                 { icon: <Github size={20} aria-hidden="true" />, label: 'GitHub', onClick: () => window.open('https://github.com/sahaya-savari', '_blank'), ariaLabel: 'Visit GitHub profile' },
                 { icon: <BookOpen size={20} aria-hidden="true" />, label: 'Blog', onClick: () => setShowBlog(true), ariaLabel: 'Open technical blog' },
                 { icon: <Search size={20} aria-hidden="true" />, label: 'Search', onClick: () => setShowCommandPalette(true), ariaLabel: 'Open spotlight search command palette' },
-                { icon: <ExternalLink size={20} aria-hidden="true" />, label: 'Resume', onClick: () => window.open('/resume.pdf', '_blank'), ariaLabel: 'Open resume PDF in new tab' },
+                { icon: <ExternalLink size={20} aria-hidden="true" />, label: 'Resume', onClick: () => window.open('/resume.pdf?v=2', '_blank'), ariaLabel: 'Open resume PDF in new tab' },
                 { icon: <Instagram size={20} aria-hidden="true" />, label: 'Instagram', onClick: () => window.open('https://www.instagram.com/_itz_me_santhoz/', '_blank'), ariaLabel: 'Visit Instagram profile' },
                 { icon: <Twitter size={20} aria-hidden="true" />, label: 'X (Twitter)', onClick: () => window.open('https://x.com/_Itz_me_santhoz', '_blank'), ariaLabel: 'Visit X profile' },
                 { icon: <Code2 size={20} aria-hidden="true" />, label: 'LeetCode', onClick: () => window.open('https://leetcode.com/u/sahaya_savari/', '_blank'), ariaLabel: 'Visit LeetCode profile' },

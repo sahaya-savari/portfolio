@@ -15,7 +15,7 @@ interface ResumeViewerProps {
   pdfUrl?: string;
 }
 
-const ResumeViewer: React.FC<ResumeViewerProps> = ({ onClose, pdfUrl = `${(import.meta as any).env.BASE_URL}resume.pdf` }) => {
+const ResumeViewer: React.FC<ResumeViewerProps> = ({ onClose, pdfUrl = `${(import.meta as any).env.BASE_URL}resume.pdf?v=2` }) => {
   const [numPages, setNumPages] = useState<number | null>(null);
   const [scale, setScale] = useState(1.0);
   const [isLoading, setIsLoading] = useState(true);
