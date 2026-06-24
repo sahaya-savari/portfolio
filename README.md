@@ -5,7 +5,7 @@ A modern portfolio website showcasing my projects, technical skills, certificati
 <p align="center">
   <a href="https://sahayasavari.web.app">🌐 Live Demo</a> •
   <a href="https://github.com/sahaya-savari">💻 GitHub</a> •
-  <a href="https://www.linkedin.com/in/sahayasavarif">💼 LinkedIn</a>
+  <a href="https://www.linkedin.com/in/sahaya-savari">💼 LinkedIn</a>
 </p>
 
 ---
@@ -123,7 +123,7 @@ Experience the live portfolio here: **[https://sahayasavari.web.app](https://sah
 ## 📫 Contact Information
 
 * **Email**: Contact me via LinkedIn
-* **LinkedIn**: [linkedin.com/in/sahayasavarif](https://www.linkedin.com/in/sahayasavarif)
+* **LinkedIn**: [linkedin.com/in/sahaya-savari](https://www.linkedin.com/in/sahaya-savari)
 * **GitHub**: [github.com/sahaya-savari](https://github.com/sahaya-savari)
 
 ---

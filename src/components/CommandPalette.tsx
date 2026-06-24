@@ -109,7 +109,10 @@ export default function CommandPalette({ onClose, onSelectProject, onOpenBlog, o
       { title: 'Certifications & Courses', url: '#certifications', sub: 'Scroll to IBM, NPTEL & NIELIT Certs' },
       { title: 'Contact / Socials', url: '#contact', sub: 'Scroll to Email and Location details' },
       { title: 'GitHub Profile', url: 'https://github.com/sahaya-savari', sub: 'Open GitHub in new tab' },
-      { title: 'LinkedIn Profile', url: 'https://www.linkedin.com/in/sahayasavari', sub: 'Open LinkedIn profile in new tab' }
+      { title: 'LinkedIn Profile', url: 'https://www.linkedin.com/in/sahaya-savari', sub: 'Open LinkedIn profile in new tab' },
+      { title: 'Instagram Profile', url: 'https://www.instagram.com/_itz_me_santhoz/', sub: 'Open Instagram in new tab' },
+      { title: 'X (Twitter) Profile', url: 'https://x.com/_Itz_me_santhoz', sub: 'Open X (Twitter) in new tab' },
+      { title: 'LeetCode Profile', url: 'https://leetcode.com/u/sahaya_savari/', sub: 'Open LeetCode in new tab' }
     ];
 
     links.forEach(lnk => {
