@@ -112,7 +112,9 @@ export default function CommandPalette({ onClose, onSelectProject, onOpenBlog, o
       { title: 'LinkedIn Profile', url: 'https://www.linkedin.com/in/sahaya-savari', sub: 'Open LinkedIn profile in new tab' },
       { title: 'Instagram Profile', url: 'https://www.instagram.com/_itz_me_santhoz/', sub: 'Open Instagram in new tab' },
       { title: 'X (Twitter) Profile', url: 'https://x.com/_Itz_me_santhoz', sub: 'Open X (Twitter) in new tab' },
-      { title: 'LeetCode Profile', url: 'https://leetcode.com/u/sahaya_savari/', sub: 'Open LeetCode in new tab' }
+      { title: 'LeetCode Profile', url: 'https://leetcode.com/u/sahaya_savari/', sub: 'Open LeetCode in new tab' },
+      { title: 'Portfolio Website', url: 'https://sahayasavari.web.app', sub: 'sahayasavari.web.app' },
+      { title: 'Email Contact', url: 'mailto:sahayasavari.info@gmail.com', sub: 'sahayasavari.info@gmail.com' }
     ];
 
     links.forEach(lnk => {
