@@ -13,6 +13,7 @@ function DockItem({ children, className = '', onClick, href, ariaLabel, mouseX, 
 
   const targetSize = useTransform(mouseDistance, [-distance, 0, distance], [baseItemSize, magnification, baseItemSize]);
   const size = useSpring(targetSize, spring);
+  const scale = useTransform(size, (s) => s / baseItemSize);
 
   const Component = href ? motion.a : motion.div;
   
@@ -20,7 +21,7 @@ function DockItem({ children, className = '', onClick, href, ariaLabel, mouseX, 
     <Component
       {...(href ? { href, target: "_blank", rel: "noopener noreferrer" } : {})}
       ref={ref as any}
-      style={{ width: size, height: size } as any}
+      style={{ width: baseItemSize, height: baseItemSize, scale } as any}
       onHoverStart={() => isHovered.set(1)}
       onHoverEnd={() => isHovered.set(0)}
       onFocus={() => isHovered.set(1)}
@@ -91,9 +92,9 @@ export default function Dock({
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  const responsiveBaseItemSize = isMobile ? 36 : baseItemSize;
-  const responsiveMagnification = isMobile ? 50 : magnification;
-  const responsivePanelHeight = isMobile ? 54 : panelHeight;
+  const responsiveBaseItemSize = isMobile ? 42 : baseItemSize;
+  const responsiveMagnification = isMobile ? 60 : magnification;
+  const responsivePanelHeight = isMobile ? 56 : panelHeight;
 
   return (
     <div className="dock-outer">

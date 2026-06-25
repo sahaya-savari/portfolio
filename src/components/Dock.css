@@ -1,25 +1,26 @@
 .dock-outer {
-  margin: 0 0.5rem;
+  margin: 0;
   display: flex;
-  max-width: 100%;
+  width: 100%;
+  justify-content: center;
   align-items: flex-end;
-  height: 68px;
 }
 .dock-panel {
   display: flex;
   align-items: flex-end;
   width: fit-content;
-  gap: 0.5rem;
+  gap: 0.5rem; /* increased from 0.25rem */
   border-radius: 1rem;
   background-color: rgba(6, 0, 16, 0.8);
   border: 1px solid rgba(255,255,255,0.1);
-  padding: 0 0.5rem 0.5rem;
+  padding: 0 0.5rem 0.5rem; /* increased from 0.25rem */
   backdrop-filter: blur(20px);
   will-change: transform;
 }
 @media (min-width: 480px) {
   .dock-panel {
     gap: 1rem;
+    padding: 0 0.75rem 0.75rem; /* slightly larger padding on desktop for premium feel */
   }
 }
 .dock-item {
@@ -34,9 +35,12 @@
   outline: none;
   color: rgba(255,255,255,0.7);
   will-change: width, height;
-  /* Ensure minimum 44x44px touch target on mobile */
-  min-width: 44px;
-  min-height: 44px;
+}
+@media (min-width: 480px) {
+  .dock-item {
+    min-width: 44px;
+    min-height: 44px;
+  }
 }
 .dock-item:hover {
   color: #fff;

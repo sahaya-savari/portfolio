@@ -12,7 +12,7 @@ const ContactSection = memo(({ setShowBlog, setShowCommandPalette }: ContactSect
   const [copied, setCopied] = useState(false);
 
   return (
-    <footer className="relative pt-16 pb-16 px-6 overflow-hidden bg-black" aria-label="Contact information">
+    <footer className="relative pt-16 pb-16 px-4 md:px-6 overflow-hidden bg-black" aria-label="Contact information">
       <div className="absolute inset-0 z-0" aria-hidden="true">
         <HlsVideo 
           src="https://stream.mux.com/8wrHPCX2dC3msyYU9ObwqNdm00u3ViXvOSHUMRYSEe5Q.m3u8" 
@@ -39,10 +39,10 @@ const ContactSection = memo(({ setShowBlog, setShowCommandPalette }: ContactSect
         </div>
         
         {/* Redesigned Balanced Footer Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 items-center pt-8 border-t border-white/10 gap-6 w-full text-center md:text-left">
+        <div className="grid grid-cols-1 lg:grid-cols-3 items-center pt-8 border-t border-white/10 gap-6 w-full text-center lg:text-left">
           
           {/* Left Column: Logo & Name */}
-          <div className="flex items-center justify-center md:justify-start gap-3">
+          <div className="flex items-center justify-center lg:justify-start gap-3">
             <div className="w-8 h-8 liquid-glass rounded-full flex items-center justify-center border border-white/20" aria-hidden="true">
               <span className="font-heading text-sm italic">S</span>
             </div>
@@ -50,7 +50,7 @@ const ContactSection = memo(({ setShowBlog, setShowCommandPalette }: ContactSect
           </div>
           
           {/* Middle Column: Social Links Dock (Centered) */}
-          <div className="flex justify-center items-center">
+          <div className="flex justify-center items-center min-w-0 w-full">
             <Dock
               panelHeight={68}
               baseItemSize={50}
@@ -58,19 +58,15 @@ const ContactSection = memo(({ setShowBlog, setShowCommandPalette }: ContactSect
               items={[
                 { icon: <Linkedin size={20} aria-hidden="true" />, label: 'LinkedIn', onClick: () => window.open('https://www.linkedin.com/in/sahaya-savari', '_blank'), ariaLabel: 'Visit LinkedIn profile' },
                 { icon: <Github size={20} aria-hidden="true" />, label: 'GitHub', onClick: () => window.open('https://github.com/sahaya-savari', '_blank'), ariaLabel: 'Visit GitHub profile' },
-                { icon: <BookOpen size={20} aria-hidden="true" />, label: 'Blog', onClick: () => setShowBlog(true), ariaLabel: 'Open technical blog' },
                 { icon: <Search size={20} aria-hidden="true" />, label: 'Search', onClick: () => setShowCommandPalette(true), ariaLabel: 'Open spotlight search command palette' },
                 { icon: <ExternalLink size={20} aria-hidden="true" />, label: 'Resume', onClick: () => window.open('/resume.pdf?v=2', '_blank'), ariaLabel: 'Open resume PDF in new tab' },
-                { icon: <Instagram size={20} aria-hidden="true" />, label: 'Instagram', onClick: () => window.open('https://www.instagram.com/_itz_me_santhoz/', '_blank'), ariaLabel: 'Visit Instagram profile' },
-                { icon: <Twitter size={20} aria-hidden="true" />, label: 'X (Twitter)', onClick: () => window.open('https://x.com/_Itz_me_santhoz', '_blank'), ariaLabel: 'Visit X profile' },
-                { icon: <Code2 size={20} aria-hidden="true" />, label: 'LeetCode', onClick: () => window.open('https://leetcode.com/u/sahaya_savari/', '_blank'), ariaLabel: 'Visit LeetCode profile' },
                 { icon: <Mail size={20} aria-hidden="true" />, label: 'Email', onClick: () => window.open('mailto:sahayasavari.info@gmail.com'), ariaLabel: 'Send email to Sahaya Savari' },
               ]}
             />
           </div>
           
           {/* Right Column: Copyright */}
-          <div className="flex items-center justify-center md:justify-end text-white/20 font-body text-[10px] uppercase tracking-widest">
+          <div className="flex items-center justify-center lg:justify-end text-white/20 font-body text-[10px] uppercase tracking-widest">
             © {new Date().getFullYear()} Sahaya Savari F — Designed & Built by Sahaya Savari F
           </div>
           
