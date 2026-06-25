@@ -271,13 +271,17 @@ export default function App() {
         <main id="main-content">
           <HeroSection setShowResume={setShowResume} />
           <div className="section-divider" aria-hidden="true" />
-          <IntersectionLazy fallbackHeight="100vh">
-            <AboutSection setShowResume={setShowResume} />
-          </IntersectionLazy>
+          <div id="about">
+            <IntersectionLazy fallbackHeight="100vh">
+              <AboutSection setShowResume={setShowResume} />
+            </IntersectionLazy>
+          </div>
           <div className="section-divider" aria-hidden="true" />
-          <IntersectionLazy fallbackHeight="80vh">
-            <SkillsSection />
-          </IntersectionLazy>
+          <div id="skills">
+            <IntersectionLazy fallbackHeight="80vh">
+              <SkillsSection />
+            </IntersectionLazy>
+          </div>
           <div className="section-divider" aria-hidden="true" />
           <IntersectionLazy fallbackHeight="40vh">
             <StatsSection />
@@ -289,15 +293,19 @@ export default function App() {
             </IntersectionLazy>
           </div>
           <div className="section-divider" aria-hidden="true" />
-          <IntersectionLazy fallbackHeight="100vh">
-            <CertificationsSection />
-          </IntersectionLazy>
+          <div id="certifications">
+            <IntersectionLazy fallbackHeight="100vh">
+              <CertificationsSection />
+            </IntersectionLazy>
+          </div>
         </main>
 
         <div className="section-divider" aria-hidden="true" />
-        <IntersectionLazy fallbackHeight="100vh">
-          <ContactSection setShowBlog={setShowBlog} setShowCommandPalette={setShowCommandPalette} />
-        </IntersectionLazy>
+        <div id="contact">
+          <IntersectionLazy fallbackHeight="100vh">
+            <ContactSection setShowBlog={setShowBlog} setShowCommandPalette={setShowCommandPalette} />
+          </IntersectionLazy>
+        </div>
 
       </div>
       

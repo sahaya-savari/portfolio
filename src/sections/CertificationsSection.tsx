@@ -12,7 +12,7 @@ const CertificationsSection = memo(() => {
   const getPanelId = (title: string) => `cert-panel-${title.toLowerCase().replace(/\s+/g, '-')}`;
 
   return (
-    <section id="certifications" aria-label="Certifications and courses" className="py-16 px-6">
+    <section aria-label="Certifications and courses" className="py-16 px-6">
       <div className="max-w-screen-xl mx-auto">
         <div className="mb-12 text-center">
           <SectionBadge>Learning Journey</SectionBadge>

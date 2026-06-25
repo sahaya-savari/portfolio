@@ -50,7 +50,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
             <motion.div initial={{ opacity: 0, filter: 'blur(10px)' }} animate={{ opacity: 1, filter: 'blur(0px)' }} transition={{ delay: 0.6, duration: 1 }} className="flex flex-wrap items-center justify-center gap-3 w-full px-4">
               <span className="font-heading italic text-fluid-hero-role text-white/60">I am an</span>
               <RotatingText
-                texts={["M.Sc. AI Student", "Aspiring AI Engineer","Python Developer" ,"Data Analytics Enthusiast"]}
+                texts={["M.Sc. AI Student", "Aspiring AI Engineer","Python Developer" ,"Data Analyst"]}
                 mainClassName="px-3 py-1 liquid-glass text-white overflow-hidden rounded-lg font-bold not-italic text-fluid-hero-role inline-flex items-center justify-center"
                 staggerFrom="last"
                 initial={{ y: "100%" }}

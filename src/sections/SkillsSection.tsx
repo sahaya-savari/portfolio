@@ -9,7 +9,7 @@ const SkillsSection = memo(() => {
   const [activePillar, setActivePillar] = useState<'Data' | 'AI'>('Data');
 
   return (
-    <section id="skills" aria-label="Skills and capabilities" className="py-16 px-6">
+    <section aria-label="Skills and capabilities" className="py-16 px-6">
       <div className="max-w-screen-xl mx-auto">
         <div className="mb-12">
           <SectionBadge>Capabilities</SectionBadge>
@@ -38,6 +38,10 @@ const SkillsSection = memo(() => {
                 <li className="flex items-start justify-between gap-4 border-b border-white/5 pb-3">
                   <span>• LLM integration and prompt engineering.</span>
                   <span className="text-[9px] font-mono uppercase tracking-widest text-blue-400 border border-blue-500/30 bg-blue-500/10 px-1.5 py-0.5 rounded-full shrink-0">Advanced</span>
+                </li>
+                <li className="flex items-start justify-between gap-4 border-b border-white/5 pb-3">
+                  <span>• RAG Pipelines and context injection.</span>
+                  <span className="text-[9px] font-mono uppercase tracking-widest text-purple-400 border border-purple-500/30 bg-purple-500/10 px-1.5 py-0.5 rounded-full shrink-0">Intermediate</span>
                 </li>
                 <li className="flex items-start justify-between gap-4 border-b border-white/5 pb-3">
                   <span>• Natural Language Processing and text analysis.</span>

@@ -9,7 +9,7 @@ export const PROJECTS = [
     stack: "Python · AI · Mobile", 
     link: "https://daily-spark-app-da74b.web.app",
     status: "Live",
-    github: "https://github.com/sahaya-savari",
+    github: "https://github.com/sahaya-savari/daily-spark",
     longDesc: "Daily Spark is a comprehensive productivity ecosystem designed to overcome procrastination through intelligent intervention. By tracking daily habits and analyzing user behavior patterns, the AI engine generates personalized daily routines and motivational nudges tailored to the user's optimal performance windows.",
     metrics: [
       { label: "Core Tech", value: "Python, Firebase" },

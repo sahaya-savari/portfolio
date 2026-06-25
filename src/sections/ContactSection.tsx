@@ -12,7 +12,7 @@ const ContactSection = memo(({ setShowBlog, setShowCommandPalette }: ContactSect
   const [copied, setCopied] = useState(false);
 
   return (
-    <footer id="contact" className="relative pt-16 pb-16 px-6 overflow-hidden bg-black" aria-label="Contact information">
+    <footer className="relative pt-16 pb-16 px-6 overflow-hidden bg-black" aria-label="Contact information">
       <div className="absolute inset-0 z-0" aria-hidden="true">
         <HlsVideo 
           src="https://stream.mux.com/8wrHPCX2dC3msyYU9ObwqNdm00u3ViXvOSHUMRYSEe5Q.m3u8" 

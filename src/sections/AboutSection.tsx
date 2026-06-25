@@ -10,7 +10,7 @@ interface AboutSectionProps {
 
 const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
   return (
-    <section id="about" aria-label="About me" className="relative py-16 px-6 overflow-hidden">
+    <section aria-label="About me" className="relative py-16 px-6 overflow-hidden">
       <div className="absolute inset-0 z-0" aria-hidden="true">
         <HlsVideo 
           src="https://stream.mux.com/9JXDljEVWYwWu01PUkAemafDugK89o01BR6zqJ3aS9u00A.m3u8" 
@@ -104,7 +104,7 @@ const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
                   </div>
                   <div>
                     <span className="text-white/30 block font-mono text-[9px] uppercase tracking-wider mb-1">Value Contribution</span>
-                    <span className="text-white/80 font-body text-sm block font-light leading-relaxed">Building end-to-end intelligent apps (PrepMind AI, Daily Spark) and validating data workflows.</span>
+                    <span className="text-white/80 font-body text-sm block font-light leading-relaxed">Building end-to-end intelligent apps (PrepMind AI, Daily Spark) and validating data workflows, achieving up to 99.7% LLM structured-output reliability.</span>
                   </div>
                 </div>
 
