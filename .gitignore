@@ -32,3 +32,8 @@ dist-ssr/
 # Firebase
 .firebase/
 
+# Generated reports & scratch files
+lighthouse-report*.json
+scratch_*.json
+*.tmp
+.tmp-*
