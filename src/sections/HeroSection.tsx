@@ -11,13 +11,13 @@ interface HeroSectionProps {
 }
 
 // Mux poster — same image already preloaded in index.html
-const HERO_POSTER = 'https://image.mux.com/9JXDljEVWYwWu01PUkAemafDugK89o01BR6zqJ3aS9u00A/thumbnail.webp?time=0&width=800';
+const HERO_POSTER = 'https://image.mux.com/9JXDljEVWYwWu01PUkAemafDugK89o01BR6zqJ3aS9u00A/thumbnail.webp?time=0&width=400';
 
 const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
   return (
-    <section id="home" aria-label="Introduction" className="relative min-h-screen flex flex-col px-6 overflow-hidden bg-transparent">
+    <section id="home" aria-label="Introduction" className="relative min-h-[100dvh] flex flex-col px-6 overflow-hidden bg-transparent">
       <div className="absolute top-[15%] left-0 w-full z-0 opacity-40" aria-hidden="true">
         <div className="relative w-full">
           {/*
@@ -66,21 +66,23 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6, duration: 1 }}
-              className="flex flex-wrap items-center justify-center gap-3 w-full px-4"
+              className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-2 sm:gap-3 w-full px-4"
             >
               <span className="font-heading italic text-fluid-hero-role text-white/60">I am an</span>
-              <RotatingText
-                texts={["M.Sc. AI Student", "Aspiring AI Engineer", "Python Developer", "Data Analyst"]}
-                mainClassName="px-3 py-1 liquid-glass text-white overflow-hidden rounded-lg font-bold not-italic text-fluid-hero-role inline-flex items-center justify-center"
-                staggerFrom="last"
-                initial={{ y: "100%" }}
-                animate={{ y: 0 }}
-                exit={{ y: "-120%" }}
-                staggerDuration={0.025}
-                splitLevelClassName="overflow-hidden pb-0.5"
-                transition={{ type: "spring", damping: 30, stiffness: 400 }}
-                rotationInterval={2000}
-              />
+              <div className="w-[280px] sm:w-auto text-center sm:text-left flex justify-center sm:justify-start">
+                <RotatingText
+                  texts={["M.Sc. AI Student", "Aspiring AI Engineer", "Python Developer", "Data Analyst"]}
+                  mainClassName="px-3 py-1 liquid-glass text-white overflow-hidden rounded-lg font-bold not-italic text-fluid-hero-role inline-flex items-center justify-center"
+                  staggerFrom="last"
+                  initial={{ y: "100%" }}
+                  animate={{ y: 0 }}
+                  exit={{ y: "-120%" }}
+                  staggerDuration={0.025}
+                  splitLevelClassName="overflow-hidden pb-0.5"
+                  transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                  rotationInterval={2000}
+                />
+              </div>
             </motion.div>
           </div>
 
