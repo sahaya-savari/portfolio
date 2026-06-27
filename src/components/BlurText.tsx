@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 import { useEffect, useRef, useState, useMemo } from 'react';
 
 const buildKeyframes = (from: any, steps: any[]) => {

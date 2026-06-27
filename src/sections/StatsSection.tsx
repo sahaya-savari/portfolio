@@ -14,7 +14,6 @@ const StatsSection = memo(() => {
           desaturated 
           width={1920}
           height={1080}
-          onCanPlay={() => {}}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black via-black/40 to-black" />
       </div>

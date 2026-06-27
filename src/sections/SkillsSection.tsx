@@ -1,16 +1,33 @@
-import { useState, memo } from 'react';
+import { useState, memo, lazy, Suspense } from 'react';
 import { Database, Brain, Code, Terminal } from 'lucide-react';
 import { m as motion, AnimatePresence } from 'framer-motion';
 import SkillAccordion from '../components/ui/SkillAccordion';
 import SectionBadge from '../components/ui/SectionBadge';
 import SkillsMatrix from '../components/SkillsMatrix';
 
+const Galaxy = lazy(() => import('../components/ui/Galaxy/Galaxy'));
+
 const SkillsSection = memo(() => {
   const [activePillar, setActivePillar] = useState<'Data' | 'AI'>('Data');
 
   return (
-    <section aria-label="Skills and capabilities" className="py-16 px-6">
-      <div className="max-w-screen-xl mx-auto">
+    <section id="skills" aria-label="Skills and capabilities" className="py-16 px-6 relative overflow-hidden">
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <Suspense fallback={null}>
+          <Galaxy
+            transparent={true}
+            density={0.7}
+            glowIntensity={0.15}
+            saturation={0.22}
+            rotationSpeed={0.015}
+            starSpeed={0.15}
+            twinkleIntensity={0.12}
+            mouseInteraction={true}
+            mouseRepulsion={true}
+          />
+        </Suspense>
+      </div>
+      <div className="max-w-screen-xl mx-auto relative z-10">
         <div className="mb-12">
           <SectionBadge>Capabilities</SectionBadge>
           <h2 className="text-fluid-section-heading font-heading italic text-white tracking-tight leading-[0.9] mb-4">Core Proficiencies <br/> & Technical Pillars.</h2>

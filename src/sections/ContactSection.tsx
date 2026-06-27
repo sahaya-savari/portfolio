@@ -1,5 +1,5 @@
 import { useState, memo } from 'react';
-import { Check, Mail, MapPin, Linkedin, Github, BookOpen, Search, ExternalLink, Instagram, Twitter, Code2 } from 'lucide-react';
+import { Check, Mail, MapPin, Linkedin, Github, Search, ExternalLink } from 'lucide-react';
 import HlsVideo from '../components/HlsVideo';
 import Dock from '../components/Dock';
 

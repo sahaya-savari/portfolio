@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { Brain, Terminal } from 'lucide-react';
+
 import HlsVideo from '../components/HlsVideo';
 import SectionBadge from '../components/ui/SectionBadge';
 import Button from '../components/ui/Button';

@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
+import { memo } from 'react';
 
 const WORDS = ["Data", "AI", "Analytics", "GenAI"];
 
@@ -25,13 +26,15 @@ interface FocusTextProps {
  * The resize listener was not debounced and was synchronous (not passive).
  * Fix: Debounce to 100ms + `{ passive: true }` flag.
  */
-export default function FocusText({ className = "" }: FocusTextProps) {
+function FocusText({ className = "" }: FocusTextProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
   // Start at a centred default to avoid flash of wrong position
   const [xOffset, setXOffset] = useState(0);
   const measureRafRef = useRef<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(true);
 
   // INP-1: Debounced, passive resize + rAF-based measurement
   const updatePosition = useCallback(() => {
@@ -64,16 +67,27 @@ export default function FocusText({ className = "" }: FocusTextProps) {
   }, [updatePosition]);
 
   useEffect(() => {
+    if (!containerRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0 }
+    );
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible) return;
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % WORDS.length);
     }, 2500);
     return () => clearInterval(interval);
-  }, []);
+  }, [isVisible]);
 
   return (
     // CLS-4 Fix: Fixed height container prevents siblings from shifting when
     // the track position is measured and updated after mount.
-    <div className={`relative w-full h-[100px] md:h-[140px] flex items-center ${className}`}>
+    <div ref={containerRef} className={`relative w-full h-[100px] md:h-[140px] flex items-center ${className}`}>
       {/* Centered wide container to prevent browser layout clipping */}
       <div className="absolute left-1/2 -translate-x-1/2 w-[2000px] flex items-center justify-center pointer-events-none">
         {/* Centering anchor for the track */}
@@ -133,3 +147,5 @@ export default function FocusText({ className = "" }: FocusTextProps) {
     </div>
   );
 }
+
+export default memo(FocusText);

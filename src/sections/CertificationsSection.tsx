@@ -12,7 +12,7 @@ const CertificationsSection = memo(() => {
   const getPanelId = (title: string) => `cert-panel-${title.toLowerCase().replace(/\s+/g, '-')}`;
 
   return (
-    <section aria-label="Certifications and courses" className="py-16 px-6">
+    <section id="certificates" aria-label="Certifications and courses" className="py-16 px-6 relative">
       <div className="max-w-screen-xl mx-auto">
         <div className="mb-12 text-center">
           <SectionBadge>Learning Journey</SectionBadge>
@@ -30,7 +30,7 @@ const CertificationsSection = memo(() => {
             {FEATURED_CREDENTIALS.map((cred) => (
               <div
                 key={cred.title}
-                className="liquid-glass p-6 rounded-[2rem] flex flex-col justify-between border border-white/10 hover:-translate-y-1 transition-transform group relative"
+                className="certificate-card cursor-target liquid-glass p-6 rounded-[2rem] flex flex-col justify-between border border-white/10 hover:-translate-y-1 transition-transform group relative"
                 style={{
                   background: 'rgba(255, 255, 255, 0.02)',
                   boxShadow: 'inset 0 1px 1px rgba(255, 255, 255, 0.1)',
@@ -39,7 +39,7 @@ const CertificationsSection = memo(() => {
               >
                 <div>
                   <div className="flex items-center justify-between mb-4 gap-2">
-                    <span className="text-3xl select-none filter drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]" role="img" aria-label="Credential badge">{cred.prefix}</span>
+                    <span className="text-3xl select-none" role="img" aria-label="Credential badge">{cred.prefix}</span>
                     <div className="flex flex-col items-end gap-1">
                       {cred.verifyUrl && cred.credentialId && (
                         <span className="text-[8px] font-mono uppercase tracking-widest text-green-400 border border-green-500/30 bg-green-500/10 px-1.5 py-0.5 rounded-full flex items-center gap-1">
@@ -230,7 +230,7 @@ const CertificationsSection = memo(() => {
                   className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
                 >
                   {isActive && items.map((c: any) => (
-                    <div key={c.name} className="bg-white/5 border border-white/10 p-4 rounded-2xl flex items-center gap-4 hover:bg-white/10 transition-colors">
+                    <div key={c.name} className="certificate-card cursor-target bg-white/5 border border-white/10 p-4 rounded-2xl flex items-center gap-4 hover:bg-white/10 transition-colors">
                       <Award className="w-5 h-5 text-white/40 shrink-0" aria-hidden="true" />
                       <span className="text-sm font-body font-light text-white/80">{c.name}</span>
                     </div>

@@ -1,4 +1,5 @@
 import { CheckCircle, FolderGit, Award, Briefcase } from 'lucide-react';
+import { memo } from 'react';
 
 interface SkillEvidence {
   skill: string;
@@ -52,7 +53,7 @@ const EVIDENCE_DATA: SkillEvidence[] = [
   }
 ];
 
-export default function SkillsMatrix() {
+const SkillsMatrix = memo(function SkillsMatrix() {
   return (
     <div className="w-full mt-12 md:mt-24 space-y-8">
       <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-6 gap-4">
@@ -68,7 +69,7 @@ export default function SkillsMatrix() {
         {EVIDENCE_DATA.map((data, idx) => (
           <div 
             key={idx}
-            className="liquid-glass p-6 rounded-2xl border border-white/5 flex flex-col justify-between hover:border-white/20 transition-all duration-300 group"
+            className="liquid-glass p-6 rounded-2xl border border-white/5 flex flex-col justify-between hover:border-white/20 transition-colors duration-300 group"
           >
             <div>
               <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/5">
@@ -109,4 +110,6 @@ export default function SkillsMatrix() {
       </div>
     </div>
   );
-}
+});
+
+export default SkillsMatrix;
