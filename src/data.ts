@@ -1,7 +1,43 @@
 import React from 'react';
 import { Brain, Database, Code } from 'lucide-react';
 
-export const PROJECTS = [
+export interface ProjectMetric {
+  label: string;
+  value: string;
+}
+
+export interface ProjectTheme {
+  bg: string;
+  border: string;
+  glow: string;
+  tagBg: string;
+  tagText: string;
+  iconBg: string;
+  iconColor: string;
+}
+
+export interface Project {
+  title: string;
+  tag: string;
+  desc: string;
+  stack: string;
+  link: string;
+  status: string;
+  github: string;
+  longDesc: string;
+  metrics: ProjectMetric[];
+  features: string[];
+  problem: string;
+  architecture: string;
+  techStack: string[];
+  challenges: string;
+  results: string;
+  lessonsLearned: string;
+  futureImprovements?: string;
+  theme: ProjectTheme;
+}
+
+export const PROJECTS: Project[] = [
   { 
     title: "Daily Spark", 
     tag: "Productivity App", 
@@ -82,8 +118,8 @@ export const PROJECTS = [
     ],
     features: ["Custom UI Engine", "Hardware Accelerated Motion", "Responsive Layout Architecture", "HLS Video Streaming"],
     problem: "Standard portfolios fail to communicate the technical depth and design sensibility of a modern AI/Backend Developer.",
-    architecture: "Single Page Application built with React, Vite, and Vanilla CSS. Framer Motion drives all transitions. No traditional router — all sections are in-page with lazy intersection loading to preserve 'liquid' scroll state.",
-    techStack: ["React", "TypeScript", "Vanilla CSS", "Framer Motion", "Vite"],
+    architecture: "Single Page Application built with React, Vite, and Tailwind CSS. Framer Motion drives all transitions. No traditional router — all sections are in-page with lazy intersection loading to preserve 'liquid' scroll state.",
+    techStack: ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vite"],
     challenges: "Achieving 60fps glassmorphism and spring animations without causing layout thrashing on mobile devices.",
     results: "Built with lazy section rendering, manual Vite chunk splitting, and IntersectionObserver-based loading. Implements accessible tab patterns following WCAG 1.3.1 guidelines. Deployed on Firebase Hosting.",
     lessonsLearned: "Using absolute DOM offset measurements instead of relying on offsetParent trees resolves critical layout bugs in complex tracks.",
@@ -189,7 +225,7 @@ export const CERTIFICATIONS = [
   { 
     icon: React.createElement(Code, { className: "w-5 h-5", "aria-hidden": true }), 
     title: 'Information Technology', 
-    items: [{ name: "Honor's Diploma in Information Technology" }] 
+    items: [{ name: "Honours Diploma in Information Technology" }] 
   },
   { 
     icon: React.createElement(Brain, { className: "w-5 h-5", "aria-hidden": true }), 

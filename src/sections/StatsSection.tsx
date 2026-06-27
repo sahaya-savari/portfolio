@@ -28,7 +28,7 @@ const StatsSection = memo(() => {
             {STATS.map(([num, label]) => (
               <div key={label as string} className="flex flex-col items-center">
                 <span className="text-5xl md:text-6xl lg:text-7xl font-heading italic text-white mb-2">{num}</span>
-                <span className="text-white/40 font-body font-light text-sm uppercase tracking-widest">{label}</span>
+                <span className="text-white/60 font-body font-light text-sm uppercase tracking-widest">{label}</span>
               </div>
             ))}
           </div>

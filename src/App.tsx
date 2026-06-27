@@ -73,6 +73,16 @@ export default function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
+  // Fade out static skeleton after hydration
+  useEffect(() => {
+    const skeleton = document.getElementById('static-hero-skeleton');
+    if (skeleton) {
+      skeleton.style.transition = 'opacity 0.8s ease-in-out';
+      skeleton.style.opacity = '0';
+      setTimeout(() => skeleton.remove(), 800);
+    }
+  }, []);
+
   // Active section tracking
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -181,7 +191,7 @@ export default function App() {
           cursorColorOnTarget="#FFFFFF"
         />
       </Suspense>
-      <div className="bg-black min-h-screen text-white selection:bg-white selection:text-black overflow-x-hidden">
+      <div className="bg-transparent min-h-screen text-white selection:bg-white selection:text-black overflow-x-hidden">
         
         {/* Scroll Progress Indicator */}
         <motion.div
@@ -219,14 +229,14 @@ export default function App() {
                   <kbd className="font-semibold text-black bg-white/80 px-1.5 py-0.5 rounded text-[9px]">Ctrl K</kbd>
                 </button>
               </div>
-              <div className="hidden md:flex liquid-glass px-4 lg:px-6 py-2.5 rounded-full items-center gap-3 lg:gap-8 backdrop-blur-md" role="menubar">
-                <a href="#home" role="menuitem" className={`text-sm font-body font-medium transition-colors ${activeSection === 'home' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Home</a>
-                <a href="#about" role="menuitem" className={`text-sm font-body font-medium transition-colors ${activeSection === 'about' ? 'text-white' : 'text-white/50 hover:text-white'}`}>About</a>
-                <button onClick={() => setShowResume(true)} role="menuitem" className="text-sm font-body font-medium text-white/50 hover:text-white transition-colors cursor-pointer">Resume</button>
-                <button onClick={() => setShowBlog(true)} role="menuitem" className="text-sm font-body font-medium text-white/50 hover:text-white transition-colors cursor-pointer">Blog</button>
-                <a href="#skills" role="menuitem" className={`text-sm font-body font-medium transition-colors ${activeSection === 'skills' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Skills</a>
-                <a href="#projects" role="menuitem" className={`text-sm font-body font-medium transition-colors ${activeSection === 'projects' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Projects</a>
-                <a href="#certifications" role="menuitem" className={`text-sm font-body font-medium transition-colors ${activeSection === 'certifications' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Certs</a>
+              <div className="hidden md:flex liquid-glass px-4 lg:px-6 py-2.5 rounded-full items-center gap-3 lg:gap-8 backdrop-blur-md">
+                <a href="#home" className={`text-sm font-body font-medium transition-colors ${activeSection === 'home' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Home</a>
+                <a href="#about" className={`text-sm font-body font-medium transition-colors ${activeSection === 'about' ? 'text-white' : 'text-white/50 hover:text-white'}`}>About</a>
+                <button onClick={() => setShowResume(true)} className="text-sm font-body font-medium text-white/50 hover:text-white transition-colors cursor-pointer">Resume</button>
+                <button onClick={() => setShowBlog(true)} className="text-sm font-body font-medium text-white/50 hover:text-white transition-colors cursor-pointer">Blog</button>
+                <a href="#skills" className={`text-sm font-body font-medium transition-colors ${activeSection === 'skills' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Skills</a>
+                <a href="#projects" className={`text-sm font-body font-medium transition-colors ${activeSection === 'projects' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Projects</a>
+                <a href="#certifications" className={`text-sm font-body font-medium transition-colors ${activeSection === 'certifications' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Certs</a>
               </div>
               <div className="flex items-center gap-3">
                 <a

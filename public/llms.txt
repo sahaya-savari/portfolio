@@ -19,7 +19,7 @@ Sahaya Savari F is an AI Developer pursuing M.Sc in Artificial Intelligence at S
 - Type: Productivity App
 - Stack: Python, Firebase, React, AI/ML, TypeScript
 - Description: A daily motivation and habit-tracking application that helps users build positive routines with AI-powered personalized suggestions. Tracks daily habits and analyzes user behavior patterns to generate personalized daily routines and motivational nudges.
-- Link: https://daily-spark-app-da74b.web.app
+- Link: [Daily Spark](https://daily-spark-app-da74b.web.app)
 
 ### PrepMind AI
 - Type: AI Education Platform
@@ -31,8 +31,8 @@ Sahaya Savari F is an AI Developer pursuing M.Sc in Artificial Intelligence at S
 - Type: Web Development
 - Stack: React, TypeScript, Tailwind CSS, Framer Motion, Vite
 - Description: A modern, animated portfolio website featuring liquid glass design, hardware-accelerated animations, and responsive layout architecture.
-- Link: https://sahayasavari.web.app
-- Source: https://github.com/sahaya-savari/portfolio
+- Link: [Portfolio](https://sahayasavari.web.app)
+- Source: [GitHub Repo](https://github.com/sahaya-savari/portfolio)
 
 ## Certifications
 
@@ -46,8 +46,8 @@ Sahaya Savari F is an AI Developer pursuing M.Sc in Artificial Intelligence at S
 
 ## Contact
 
-- Email: sahayasavari.info@gmail.com
-- LinkedIn: https://www.linkedin.com/in/sahaya-savari
-- GitHub: https://github.com/sahaya-savari
+- Email: [sahayasavari.info@gmail.com](mailto:sahayasavari.info@gmail.com)
+- LinkedIn: [Sahaya Savari](https://www.linkedin.com/in/sahaya-savari)
+- GitHub: [sahaya-savari](https://github.com/sahaya-savari)
 - Location: Madurai, Tamil Nadu, India
-- Portfolio: https://sahayasavari.web.app
+- Portfolio: [Sahaya Savari Portfolio](https://sahayasavari.web.app)

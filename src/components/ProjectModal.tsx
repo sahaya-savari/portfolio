@@ -2,8 +2,10 @@ import { useEffect, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { X, ExternalLink, Github, Cpu, Database, Layout, ArrowRight } from 'lucide-react';
 
+import { Project } from '../data';
+
 interface ProjectModalProps {
-  project: any;
+  project: Project;
   onClose: () => void;
 }
 

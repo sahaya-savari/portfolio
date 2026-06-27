@@ -34,19 +34,19 @@ const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
              <h3 className="font-heading italic text-3xl text-white mb-6">Recruiter Quick Scan</h3>
              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div>
-                  <h4 className="text-[10px] uppercase tracking-widest text-white/40 mb-2">What I Do</h4>
+                  <h4 className="text-[10px] uppercase tracking-widest text-white/60 mb-2">What I Do</h4>
                   <p className="text-sm font-body text-white/80 font-light">Build AI-powered full-stack apps and machine learning pipelines.</p>
                 </div>
                 <div>
-                  <h4 className="text-[10px] uppercase tracking-widest text-white/40 mb-2">What I Know</h4>
+                  <h4 className="text-[10px] uppercase tracking-widest text-white/60 mb-2">What I Know</h4>
                   <p className="text-sm font-body text-white/80 font-light">Python, React, TypeScript, Prompt Engineering, SQL, Firebase.</p>
                 </div>
                 <div>
-                  <h4 className="text-[10px] uppercase tracking-widest text-white/40 mb-2">What I'm Learning</h4>
+                  <h4 className="text-[10px] uppercase tracking-widest text-white/60 mb-2">What I'm Learning</h4>
                   <p className="text-sm font-body text-white/80 font-light">Advanced Deep Learning, Vector Databases, System Design.</p>
                 </div>
                 <div>
-                  <h4 className="text-[10px] uppercase tracking-widest text-white/40 mb-2">What I'm Looking For</h4>
+                  <h4 className="text-[10px] uppercase tracking-widest text-white/60 mb-2">What I'm Looking For</h4>
                   <p className="text-sm font-body text-white/80 font-light">Summer/Fall 2026 AI/ML or Software Engineering Internships.</p>
                 </div>
              </div>
@@ -83,11 +83,11 @@ const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
                 
                 <div className="grid grid-cols-2 gap-4 text-xs font-mono text-white/50 border-t border-white/10 pt-4">
                   <div>
-                    <span className="text-white/30 block text-[9px] uppercase tracking-wider mb-1">Availability</span>
+                    <span className="text-white/60 block text-[9px] uppercase tracking-wider mb-1">Availability</span>
                     <span className="text-white">Summer / Fall 2026</span>
                   </div>
                   <div>
-                    <span className="text-white/30 block text-[9px] uppercase tracking-wider mb-1">Location Flexibility</span>
+                    <span className="text-white/60 block text-[9px] uppercase tracking-wider mb-1">Location Flexibility</span>
                     <span className="text-white">Madurai, Remote, Relocation Open</span>
                   </div>
                 </div>
@@ -99,11 +99,11 @@ const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
                 
                 <div className="space-y-4">
                   <div>
-                    <span className="text-white/30 block font-mono text-[9px] uppercase tracking-wider mb-1">Key Strengths</span>
+                    <span className="text-white/60 block font-mono text-[9px] uppercase tracking-wider mb-1">Key Strengths</span>
                     <span className="text-white/80 font-body text-sm block font-medium">Python ML Pipelines · Context-Injected Prompts · Full-Stack React/TS</span>
                   </div>
                   <div>
-                    <span className="text-white/30 block font-mono text-[9px] uppercase tracking-wider mb-1">Value Contribution</span>
+                    <span className="text-white/60 block font-mono text-[9px] uppercase tracking-wider mb-1">Value Contribution</span>
                     <span className="text-white/80 font-body text-sm block font-light leading-relaxed">Building end-to-end intelligent apps (PrepMind AI, Daily Spark) and validating data workflows, achieving up to 99.7% LLM structured-output reliability.</span>
                   </div>
                 </div>

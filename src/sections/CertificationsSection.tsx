@@ -47,7 +47,7 @@ const CertificationsSection = memo(() => {
                           Verified
                         </span>
                       )}
-                      <span className="text-[10px] font-mono uppercase tracking-widest text-white/40 text-right">{cred.issuer}</span>
+                      <span className="text-[10px] font-mono uppercase tracking-widest text-white/60 text-right">{cred.issuer}</span>
                     </div>
                   </div>
                   <h4 className="font-heading italic text-xl md:text-2xl text-white mb-3 leading-tight tracking-tight">{cred.title}</h4>
@@ -70,13 +70,13 @@ const CertificationsSection = memo(() => {
                     <div className="grid grid-cols-2 gap-x-3 gap-y-2 text-[10px] font-mono text-white/50 mb-4 border-t border-white/5 pt-3">
                       {cred.issueDate && (
                         <div>
-                          <span className="text-white/30 block text-[8px] uppercase tracking-wider">Issued</span>
+                          <span className="text-white/60 block text-[8px] uppercase tracking-wider">Issued</span>
                           {cred.issueDate}
                         </div>
                       )}
                       {cred.credentialId && (
                         <div className="truncate" title={cred.credentialId}>
-                          <span className="text-white/30 block text-[8px] uppercase tracking-wider">
+                          <span className="text-white/60 block text-[8px] uppercase tracking-wider">
                             {cred.issuer.includes("NIELIT") ? "Certificate No." : "ID"}
                           </span>
                           {cred.credentialId}
@@ -84,13 +84,13 @@ const CertificationsSection = memo(() => {
                       )}
                       {cred.score && (
                         <div>
-                          <span className="text-white/30 block text-[8px] uppercase tracking-wider">Score</span>
+                          <span className="text-white/60 block text-[8px] uppercase tracking-wider">Score</span>
                           {cred.score}
                         </div>
                       )}
                       {cred.credits && (
                         <div>
-                          <span className="text-white/30 block text-[8px] uppercase tracking-wider">Credits</span>
+                          <span className="text-white/60 block text-[8px] uppercase tracking-wider">Credits</span>
                           {cred.credits}
                         </div>
                       )}
@@ -152,7 +152,7 @@ const CertificationsSection = memo(() => {
                   <div className="w-1.5 h-1.5 rounded-full bg-white/50"></div>
                 </div>
                 <div className="ml-12 md:ml-0 md:w-1/2 p-6 liquid-glass rounded-2xl md:mx-8 border border-white/5 hover:bg-white/5 transition-colors">
-                  <span className="text-[10px] font-mono text-white/40 uppercase tracking-widest">{item.year}</span>
+                  <span className="text-[10px] font-mono text-white/60 uppercase tracking-widest">{item.year}</span>
                   <h4 className="text-xl font-heading italic text-white mt-2 mb-2">{item.title}</h4>
                   <p className="text-sm font-body text-white/60 leading-relaxed">{item.desc}</p>
                 </div>

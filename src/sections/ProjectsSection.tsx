@@ -1,6 +1,6 @@
 import { useState, memo, lazy, Suspense, useEffect, useRef } from 'react';
 import { Github, ArrowUpRight } from 'lucide-react';
-import { PROJECTS } from '../data';
+import { PROJECTS, Project } from '../data';
 import SectionBadge from '../components/ui/SectionBadge';
 import ErrorBoundary from '../components/ErrorBoundary';
 import './ProjectsSection.css';
@@ -10,7 +10,34 @@ const ProjectModal = lazy(() => import('../components/ProjectModal'));
 
 // ─── Pixel animation engine (inlined from React Bits PixelCard) ─────────────
 class Pixel {
-  constructor(canvas, context, x, y, color, speed, delay) {
+  width: number;
+  height: number;
+  ctx: CanvasRenderingContext2D;
+  x: number;
+  y: number;
+  color: string;
+  speed: number;
+  size: number;
+  sizeStep: number;
+  minSize: number;
+  maxSizeInteger: number;
+  maxSize: number;
+  delay: number;
+  counter: number;
+  counterStep: number;
+  isIdle: boolean;
+  isReverse: boolean;
+  isShimmer: boolean;
+
+  constructor(
+    canvas: HTMLCanvasElement,
+    context: CanvasRenderingContext2D,
+    x: number,
+    y: number,
+    color: string,
+    speed: number,
+    delay: number
+  ) {
     this.width = canvas.width;
     this.height = canvas.height;
     this.ctx = context;
@@ -56,12 +83,18 @@ class Pixel {
   }
 }
 
-function usePixelCanvas({ gap = 8, speed = 18, colors = '#ffffff,#d4d4d8,#a1a1aa,#71717a' } = {}) {
-  const canvasRef = useRef(null);
-  const containerRef = useRef(null);
-  const pixelsRef = useRef([]);
-  const animRef = useRef(null);
-  const prevTimeRef = useRef(performance.now());
+interface PixelCanvasProps {
+  gap?: number;
+  speed?: number;
+  colors?: string;
+}
+
+function usePixelCanvas({ gap = 8, speed = 18, colors = '#ffffff,#d4d4d8,#a1a1aa,#71717a' }: PixelCanvasProps = {}) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const pixelsRef = useRef<Pixel[]>([]);
+  const animRef = useRef<number | null>(null);
+  const prevTimeRef = useRef<number>(performance.now());
   const reducedMotion = useRef(
     typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
   ).current;
@@ -91,7 +124,7 @@ function usePixelCanvas({ gap = 8, speed = 18, colors = '#ffffff,#d4d4d8,#a1a1aa
     pixelsRef.current = pxs;
   };
 
-  const animate = (fnName) => {
+  const animate = (fnName: 'appear' | 'disappear') => {
     animRef.current = requestAnimationFrame(() => animate(fnName));
     const now = performance.now();
     const passed = now - prevTimeRef.current;
@@ -105,11 +138,11 @@ function usePixelCanvas({ gap = 8, speed = 18, colors = '#ffffff,#d4d4d8,#a1a1aa
       px[fnName]();
       if (!px.isIdle) allIdle = false;
     }
-    if (allIdle) cancelAnimationFrame(animRef.current);
+    if (allIdle && animRef.current) cancelAnimationFrame(animRef.current);
   };
 
-  const trigger = (fnName) => {
-    cancelAnimationFrame(animRef.current);
+  const trigger = (fnName: 'appear' | 'disappear') => {
+    if (animRef.current) cancelAnimationFrame(animRef.current);
     animRef.current = requestAnimationFrame(() => animate(fnName));
   };
 
@@ -117,7 +150,10 @@ function usePixelCanvas({ gap = 8, speed = 18, colors = '#ffffff,#d4d4d8,#a1a1aa
     init();
     const ro = new ResizeObserver(init);
     if (containerRef.current) ro.observe(containerRef.current);
-    return () => { ro.disconnect(); cancelAnimationFrame(animRef.current); };
+    return () => {
+      ro.disconnect();
+      if (animRef.current) cancelAnimationFrame(animRef.current);
+    };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -125,7 +161,7 @@ function usePixelCanvas({ gap = 8, speed = 18, colors = '#ffffff,#d4d4d8,#a1a1aa
 }
 
 // ─── Featured (large) project card ──────────────────────────────────────────
-const FeaturedCard = ({ p, onClick }: { p: any; onClick: () => void }) => {
+const FeaturedCard = ({ p, onClick }: { p: Project; onClick: () => void }) => {
   const { canvasRef, containerRef, trigger } = usePixelCanvas();
 
   return (
@@ -164,7 +200,7 @@ const FeaturedCard = ({ p, onClick }: { p: any; onClick: () => void }) => {
           <p className="text-white/70 font-body font-light text-base md:text-lg leading-relaxed mb-8 max-w-xl">{p.desc}</p>
           <div className="flex flex-col sm:flex-row gap-4 text-xs font-body border-l-2 border-white/20 pl-4 py-2">
             <div className="flex items-center gap-2">
-              <span className="text-white/40 uppercase tracking-wider text-[9px]">Stack:</span>
+              <span className="text-white/60 uppercase tracking-wider text-[9px]">Stack:</span>
               <span className="text-white/80">{p.stack.split(' · ').join(' • ')}</span>
             </div>
           </div>
@@ -199,7 +235,7 @@ const FeaturedCard = ({ p, onClick }: { p: any; onClick: () => void }) => {
 };
 
 // ─── Grid project card ───────────────────────────────────────────────────────
-const GridCard = ({ p, onClick }: { p: any; onClick: () => void }) => {
+const GridCard = ({ p, onClick }: { p: Project; onClick: () => void }) => {
   const { canvasRef, containerRef, trigger } = usePixelCanvas();
 
   return (
@@ -262,15 +298,15 @@ const GridCard = ({ p, onClick }: { p: any; onClick: () => void }) => {
         <p className="text-white/70 font-body font-light text-sm leading-relaxed mb-8 flex-grow">{p.desc}</p>
         <div className="flex flex-col gap-2 mt-auto text-xs font-body border-l-2 border-white/20 pl-3 py-1">
           <div className="flex items-center">
-            <span className="text-white/40 w-16 uppercase tracking-wider text-[9px]">Status</span>
+            <span className="text-white/60 w-16 uppercase tracking-wider text-[9px]">Status</span>
             <span className="text-white/80">{p.status}</span>
           </div>
           <div className="flex items-center">
-            <span className="text-white/40 w-16 uppercase tracking-wider text-[9px]">Category</span>
+            <span className="text-white/60 w-16 uppercase tracking-wider text-[9px]">Category</span>
             <span className="text-white/80">{p.tag}</span>
           </div>
           <div className="flex items-center">
-            <span className="text-white/40 w-16 uppercase tracking-wider text-[9px]">Stack</span>
+            <span className="text-white/60 w-16 uppercase tracking-wider text-[9px]">Stack</span>
             <span className="text-white/80">{p.stack.split(' · ').join(' • ')}</span>
           </div>
         </div>
@@ -281,7 +317,7 @@ const GridCard = ({ p, onClick }: { p: any; onClick: () => void }) => {
 
 // ─── Section ─────────────────────────────────────────────────────────────────
 const ProjectsSection = memo(() => {
-  const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
     <>

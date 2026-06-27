@@ -114,15 +114,15 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
           >
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 px-6 py-5 bg-black/40 backdrop-blur-xl rounded-2xl">
               <div className="text-left md:border-r border-white/10 pr-2">
-                <span className="block text-[9px] text-white/40 uppercase tracking-widest mb-1.5">Education</span>
+                <span className="block text-[9px] text-white/60 uppercase tracking-widest mb-1.5">Education</span>
                 <span className="block text-xs font-medium text-white/90">M.Sc Artificial Intelligence</span>
               </div>
               <div className="text-left md:border-r border-white/10 pr-2">
-                <span className="block text-[9px] text-white/40 uppercase tracking-widest mb-1.5">Focus</span>
+                <span className="block text-[9px] text-white/60 uppercase tracking-widest mb-1.5">Focus</span>
                 <span className="block text-xs font-medium text-white/90">AI & Full-Stack Dev</span>
               </div>
               <div className="text-left md:border-r border-white/10 pr-2">
-                <span className="block text-[9px] text-white/40 uppercase tracking-widest mb-1.5">Certification</span>
+                <span className="block text-[9px] text-white/60 uppercase tracking-widest mb-1.5">Certification</span>
                 <span className="block text-xs font-medium text-white/90">IBM Data Analyst</span>
               </div>
               <div className="text-left">
@@ -141,7 +141,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
           className="mt-8 md:mt-12 flex flex-col items-center gap-4 shrink-0 pointer-events-none w-full"
           aria-hidden="true"
         >
-          <div className="liquid-glass px-4 py-1.5 rounded-full text-[10px] uppercase tracking-widest font-bold text-white/40">What I work with</div>
+          <div className="liquid-glass px-4 py-1.5 rounded-full text-[10px] uppercase tracking-widest font-bold text-white/60">What I work with</div>
           <FocusText prefix="Data AI Analytics" focusText="GenAI" className="" />
         </motion.div>
       </div>
