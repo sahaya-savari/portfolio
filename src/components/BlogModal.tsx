@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect, useRef, useCallback } from 'react';
 import { m as motion, AnimatePresence  } from 'framer-motion';
 import { X, Search, Calendar, Clock, ArrowLeft, Tag, BookOpen } from 'lucide-react';
 import { BLOG_POSTS, BlogPost } from '../blogData';
+import { lockScroll, unlockScroll } from '../utils/scrollLock';
 
 interface BlogModalProps {
   onClose: () => void;
@@ -91,11 +92,8 @@ export default function BlogModal({ onClose }: BlogModalProps) {
   }, [onClose, activePost]);
 
   useEffect(() => {
-    const originalStyle = window.getComputedStyle(document.body).overflow;
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = originalStyle;
-    };
+    lockScroll();
+    return () => unlockScroll();
   }, []);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {

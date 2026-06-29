@@ -3,6 +3,7 @@ import { m as motion } from 'framer-motion';
 import { X, ExternalLink, Github, Cpu, Database, Layout, ArrowRight } from 'lucide-react';
 
 import { Project } from '../data';
+import { lockScroll, unlockScroll } from '../utils/scrollLock';
 
 interface ProjectModalProps {
   project: Project;
@@ -103,11 +104,8 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
   // Lock body scroll
   useEffect(() => {
-    const originalStyle = window.getComputedStyle(document.body).overflow;
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = originalStyle;
-    };
+    lockScroll();
+    return () => unlockScroll();
   }, []);
 
   // Focus trap

@@ -3,6 +3,7 @@ import { m as motion, AnimatePresence } from 'framer-motion';
 import { Search, FileText, BookOpen, ExternalLink, FolderGit, Command, CornerDownLeft } from 'lucide-react';
 import { PROJECTS } from '../data';
 import { BLOG_POSTS } from '../blogData';
+import { lockScroll, unlockScroll } from '../utils/scrollLock';
 
 interface CommandPaletteProps {
   onClose: () => void;
@@ -32,11 +33,8 @@ export default function CommandPalette({ onClose, onSelectProject, onOpenBlog, o
     inputRef.current?.focus();
     
     // Lock scroll
-    const originalStyle = window.getComputedStyle(document.body).overflow;
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = originalStyle;
-    };
+    lockScroll();
+    return () => unlockScroll();
   }, []);
 
   // Build items dynamically

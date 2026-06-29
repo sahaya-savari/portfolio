@@ -4,6 +4,7 @@ import { ArrowUpRight, Menu, X, Search } from 'lucide-react';
 
 import ClickSpark from './components/ClickSpark';
 import ErrorBoundary from './components/ErrorBoundary';
+import { lockScroll, unlockScroll } from './utils/scrollLock';
 
 
 // Import Sections
@@ -148,11 +149,9 @@ export default function App() {
   // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
+      lockScroll();
+      return () => unlockScroll();
     }
-    return () => { document.body.style.overflow = ''; };
   }, [mobileMenuOpen]);
 
   useEffect(() => {

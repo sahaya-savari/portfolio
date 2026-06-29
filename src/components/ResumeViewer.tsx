@@ -3,6 +3,7 @@ import { Document, Page, pdfjs } from 'react-pdf';
 import { Download, ZoomIn, ZoomOut, Maximize, X, Loader2 } from 'lucide-react';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
+import { lockScroll, unlockScroll } from '../utils/scrollLock';
 
 // @ts-ignore
 import pdfWorker from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
@@ -61,11 +62,8 @@ const ResumeViewer: React.FC<ResumeViewerProps> = ({ onClose, pdfUrl = `${(impor
 
   // Lock body scroll
   useEffect(() => {
-    const originalStyle = window.getComputedStyle(document.body).overflow;
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = originalStyle;
-    };
+    lockScroll();
+    return () => unlockScroll();
   }, []);
 
   // Focus trap
