@@ -37,7 +37,7 @@ const CertificationsSection = memo(() => {
             {FEATURED_CREDENTIALS.map((cred) => (
               <div
                 key={cred.title}
-                className="certificate-card cursor-target liquid-glass p-6 rounded-[2rem] flex flex-col justify-between border border-white/10 hover:-translate-y-1 transition-transform group relative"
+                className="certificate-card liquid-glass p-6 rounded-[2rem] flex flex-col justify-between border border-white/10 hover:-translate-y-1 transition-transform group relative"
                 style={{
                   background: 'rgba(255, 255, 255, 0.02)',
                   boxShadow: 'inset 0 1px 1px rgba(255, 255, 255, 0.1)',
@@ -238,7 +238,7 @@ const CertificationsSection = memo(() => {
                   className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
                 >
                   {isActive && items.map((c: any) => (
-                    <div key={c.name} className="certificate-card cursor-target bg-white/5 border border-white/10 p-4 rounded-2xl flex items-center gap-4 hover:bg-white/10 transition-colors">
+                    <div key={c.name} className="certificate-card bg-white/5 border border-white/10 p-4 rounded-2xl flex items-center gap-4 hover:bg-white/10 transition-colors">
                       <Award className="w-5 h-5 text-white/40 shrink-0" aria-hidden="true" />
                       <span className="text-sm font-body font-light text-white/80">{c.name}</span>
                     </div>
