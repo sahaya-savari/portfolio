@@ -84,6 +84,7 @@ const TargetCursor = ({
     const originalCursor = document.body.style.cursor;
     if (hideDefaultCursor) {
       document.body.style.cursor = 'none';
+      document.body.classList.add('hide-default-cursor');
     }
 
     const cursor = cursorRef.current;
@@ -374,6 +375,7 @@ const TargetCursor = ({
       }
 
       document.body.style.cursor = originalCursor;
+      document.body.classList.remove('hide-default-cursor');
       isActiveRef.current = false;
       targetCornerPositionsRef.current = null;
       activeStrengthRef.current = 0;

@@ -66,3 +66,10 @@
   }
 }
 
+/* Hide default browser cursor globally on all elements when custom cursor is active */
+body.hide-default-cursor,
+body.hide-default-cursor * {
+  cursor: none !important;
+}
+
+
