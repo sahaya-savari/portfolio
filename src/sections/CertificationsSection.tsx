@@ -37,7 +37,7 @@ const CertificationsSection = memo(() => {
             {FEATURED_CREDENTIALS.map((cred) => (
               <div
                 key={cred.title}
-                className="certificate-card liquid-glass p-6 rounded-[2rem] flex flex-col justify-between border border-white/10 hover:-translate-y-1 transition-transform group relative"
+                className="certificate-card liquid-glass p-6 rounded-[2rem] flex flex-col justify-between border border-white/10 hover:-translate-y-1 transition-transform group relative cursor-target"
                 style={{
                   background: 'rgba(255, 255, 255, 0.02)',
                   boxShadow: 'inset 0 1px 1px rgba(255, 255, 255, 0.1)',

@@ -30,7 +30,7 @@ const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="md:col-span-2 liquid-glass rounded-3xl p-8 overflow-hidden relative border border-white/10">
+          <div className="md:col-span-2 liquid-glass rounded-3xl p-8 overflow-hidden relative border border-white/10 cursor-target">
              <h3 className="font-heading italic text-3xl text-white mb-6">Recruiter Quick Scan</h3>
              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div>
@@ -52,7 +52,7 @@ const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
              </div>
           </div>
 
-          <div className="md:col-span-2 liquid-glass-strong rounded-3xl p-8 backdrop-blur-2xl">
+          <div className="md:col-span-2 liquid-glass-strong rounded-3xl p-8 backdrop-blur-2xl cursor-target">
             <h3 className="font-heading italic text-3xl text-white mb-6">Why Work With Me</h3>
             <div className="grid md:grid-cols-2 gap-8">
               <ul className="space-y-4 text-sm text-white/70 font-body font-light">
@@ -65,7 +65,7 @@ const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
               </ul>
             </div>
           </div>
-          <div className="md:col-span-2 liquid-glass rounded-3xl p-8 mt-8 overflow-hidden relative border border-white/10">
+          <div className="md:col-span-2 liquid-glass rounded-3xl p-8 mt-8 overflow-hidden relative border border-white/10 cursor-target">
             <div className="relative z-10 grid md:grid-cols-2 gap-8 items-start">
               
               {/* Left Panel: Currently Seeking Banner */}

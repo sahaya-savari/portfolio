@@ -5,6 +5,7 @@ import { ArrowUpRight, Menu, X, Search } from 'lucide-react';
 import ClickSpark from './components/ClickSpark';
 import ErrorBoundary from './components/ErrorBoundary';
 import { lockScroll, unlockScroll } from './utils/scrollLock';
+const TargetCursor = lazy(() => import('./components/ui/TargetCursor/TargetCursor'));
 
 
 // Import Sections
@@ -178,7 +179,18 @@ export default function App() {
   });
 
   return (
-    <ClickSpark sparkColor='#fff' sparkSize={12} sparkRadius={25} sparkCount={10} duration={300}>
+    <ClickSpark sparkColor='#FFFFFF' sparkSize={8} sparkRadius={14} sparkCount={8} duration={350}>
+      <Suspense fallback={null}>
+        <TargetCursor
+          targetSelector=".cursor-target"
+          spinDuration={2}
+          hideDefaultCursor
+          parallaxOn
+          hoverDuration={0.2}
+          cursorColor="#FFFFFF"
+          cursorColorOnTarget="#C084FC"
+        />
+      </Suspense>
       <div className="bg-transparent min-h-screen text-white selection:bg-white selection:text-black overflow-x-hidden">
         
         {/* Scroll Progress Indicator */}

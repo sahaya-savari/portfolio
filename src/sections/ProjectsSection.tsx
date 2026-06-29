@@ -175,7 +175,7 @@ const FeaturedCard = ({ p, onClick }: { p: Project; onClick: () => void }) => {
       onMouseLeave={() => trigger('disappear')}
       onFocus={() => trigger('appear')}
       onBlur={() => trigger('disappear')}
-      className="project-card-featured group"
+      className="project-card-featured group cursor-target"
       aria-label={`${p.title} — ${p.tag}. Click to view details.`}
     >
       {/* Pixel canvas — sits at z-0 behind all content */}
@@ -249,7 +249,7 @@ const GridCard = ({ p, onClick }: { p: Project; onClick: () => void }) => {
       onMouseLeave={() => trigger('disappear')}
       onFocus={() => trigger('appear')}
       onBlur={() => trigger('disappear')}
-      className="project-card-grid group"
+      className="project-card-grid group cursor-target"
       aria-label={`${p.title} — ${p.tag}. Click to view details.`}
     >
       {/* Pixel canvas — sits at z-0 */}

@@ -1,10 +1,11 @@
 import { useState, memo } from 'react';
 import { m as motion } from 'framer-motion';
-import { Play } from 'lucide-react';
+import { Play, ArrowUpRight } from 'lucide-react';
 import RotatingText from '../components/RotatingText';
 import BlurText from '../components/BlurText';
 import FocusText from '../components/FocusText';
 import Button from '../components/ui/Button';
+import { RainbowButton } from '../components/magicui/rainbow-button';
 
 interface HeroSectionProps {
   setShowResume: (show: boolean) => void;
@@ -97,9 +98,10 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
           </motion.p>
 
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.1, duration: 0.8 }} className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4">
-            <Button variant="secondary" icon onClick={() => setShowResume(true)} aria-label="View my resume">
+            <RainbowButton onClick={() => setShowResume(true)} aria-label="View my resume">
               View Resume
-            </Button>
+              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" aria-hidden="true" />
+            </RainbowButton>
             <a href="#projects" className="text-white/60 hover:text-white font-body font-medium text-sm flex items-center gap-2 transition-all px-8 py-4 bg-white/5 rounded-full backdrop-blur-md border border-white/10 hover:bg-white/10 min-h-[48px]" aria-label="View my projects">
               View Projects <Play className="w-4 h-4 fill-current" aria-hidden="true" />
             </a>
