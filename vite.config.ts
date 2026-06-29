@@ -50,10 +50,7 @@ export default defineConfig({
           if (id.includes('hls.js') || id.includes('hls/')) {
             return 'hls';
           }
-          // GSAP — only loads when TargetCursor lazy-imports
-          if (id.includes('gsap')) {
-            return 'gsap';
-          }
+
           // OGL (Galaxy WebGL) — only loads when Skills/hero section is visible
           if (id.includes('ogl')) {
             return 'ogl';

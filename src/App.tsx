@@ -4,7 +4,7 @@ import { ArrowUpRight, Menu, X, Search } from 'lucide-react';
 
 import ClickSpark from './components/ClickSpark';
 import ErrorBoundary from './components/ErrorBoundary';
-const TargetCursor = lazy(() => import('./components/ui/TargetCursor/TargetCursor'));
+
 
 // Import Sections
 import HeroSection from './sections/HeroSection';
@@ -180,17 +180,6 @@ export default function App() {
 
   return (
     <ClickSpark sparkColor='#fff' sparkSize={12} sparkRadius={25} sparkCount={10} duration={300}>
-      <Suspense fallback={null}>
-        <TargetCursor
-          targetSelector="a, button, [role='button'], .cursor-target, label[for], select, summary"
-          spinDuration={2}
-          hideDefaultCursor={true}
-          parallaxOn={true}
-          hoverDuration={0.18}
-          cursorColor="#FFFFFF"
-          cursorColorOnTarget="#FFFFFF"
-        />
-      </Suspense>
       <div className="bg-transparent min-h-screen text-white selection:bg-white selection:text-black overflow-x-hidden">
         
         {/* Scroll Progress Indicator */}
