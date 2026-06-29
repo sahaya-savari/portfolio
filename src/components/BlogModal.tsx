@@ -286,6 +286,7 @@ export default function BlogModal({ onClose }: BlogModalProps) {
                       <select 
                         value={selectedCategory}
                         onChange={e => setSelectedCategory(e.target.value)}
+                        aria-label="Filter by category"
                         className="bg-slate-900 border border-white/10 text-white font-body text-xs rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-white/30 cursor-pointer"
                       >
                         {categories.map(cat => (
@@ -299,6 +300,7 @@ export default function BlogModal({ onClose }: BlogModalProps) {
                       <select 
                         value={selectedTag}
                         onChange={e => setSelectedTag(e.target.value)}
+                        aria-label="Filter by tag"
                         className="bg-slate-900 border border-white/10 text-white font-body text-xs rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-white/30 cursor-pointer"
                       >
                         {tags.map(t => (

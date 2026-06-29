@@ -3,7 +3,6 @@ import { fileURLToPath } from "url";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
-import viteCompression from "vite-plugin-compression";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -12,10 +11,10 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
-    // Gzip for wide compatibility
-    viteCompression({ algorithm: "gzip", ext: ".gz" }),
-    // Brotli for modern browsers (smaller by ~15–25%)
-    viteCompression({ algorithm: "brotliCompress", ext: ".br" }),
+    // Note: vite-plugin-compression removed — Firebase Hosting automatically
+    // applies Brotli/Gzip compression at the CDN edge, making pre-compression
+    // redundant. The plugin also had a Windows path bug that produced broken
+    // output paths (dist/D:/...) so compressed files were never served.
   ],
   base: '/',
   resolve: {
@@ -31,7 +30,11 @@ export default defineConfig({
     // Use esbuild for fast, small output
     minify: 'esbuild',
     // Target modern browsers — enables more aggressive dead-code elimination
-    target: ['es2020', 'chrome90', 'firefox90', 'safari14'],
+    // Raised from es2020/chrome90 to es2022/chrome105 for smaller output
+    // (class fields, nullish coalescing, optional chaining emit natively)
+    target: ['es2022', 'chrome105', 'firefox104', 'safari16'],
+    // Disable modulepreload polyfill — all target browsers support it natively
+    modulePreload: { polyfill: false },
     rollupOptions: {
       output: {
         manualChunks: (id) => {

@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect, useRef, lazy, Suspense } from 'react';
 import { m as motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
-import { ArrowUpRight, Menu, X } from 'lucide-react';
+import { ArrowUpRight, Menu, X, Search } from 'lucide-react';
 
 import ClickSpark from './components/ClickSpark';
 import ErrorBoundary from './components/ErrorBoundary';
@@ -222,11 +222,12 @@ export default function App() {
                 </span>
                 <button 
                   onClick={() => setShowCommandPalette(true)}
-                  className="font-body text-[10px] font-mono text-white/80 hidden lg:flex items-center gap-2 ml-4 px-3 py-1.5 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 transition-colors cursor-pointer group"
+                  className="font-body text-[11px] font-medium text-white/60 hidden lg:flex items-center gap-2.5 ml-4 px-3.5 py-2 rounded-full border border-white/10 bg-white/[0.03] hover:bg-white/[0.08] hover:text-white hover:border-white/20 transition-all duration-300 shadow-sm cursor-pointer group"
                   aria-label="Open command palette"
                 >
-                  <span className="opacity-70 group-hover:opacity-100 transition-opacity">Quick Search</span>
-                  <kbd className="font-semibold text-black bg-white/80 px-1.5 py-0.5 rounded text-[9px]">Ctrl K</kbd>
+                  <Search size={12} className="opacity-60 group-hover:opacity-100 transition-opacity" />
+                  <span className="group-hover:text-white transition-colors">Search</span>
+                  <kbd className="font-mono text-[9px] text-white/40 bg-white/[0.07] border border-white/[0.08] px-1.5 py-0.5 rounded-md group-hover:text-white/60 group-hover:bg-white/[0.1] transition-all">Ctrl K</kbd>
                 </button>
               </div>
               <div className="hidden md:flex liquid-glass px-4 lg:px-6 py-2.5 rounded-full items-center gap-3 lg:gap-8 backdrop-blur-md">

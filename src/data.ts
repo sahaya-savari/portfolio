@@ -1,5 +1,5 @@
-import React from 'react';
-import { Brain, Database, Code } from 'lucide-react';
+// Pure data module — no React or component dependencies.
+// Icon identifiers are resolved at render time in CertificationsSection.
 
 export interface ProjectMetric {
   label: string;
@@ -218,63 +218,20 @@ export const STATS = [
 
 export const CERTIFICATIONS = [
   { 
-    icon: React.createElement(Database, { className: "w-5 h-5", "aria-hidden": true }), 
+    icon: 'database', 
     title: 'Data Analytics', 
     items: [{ name: "IBM Data Analyst Course" }] 
   },
   { 
-    icon: React.createElement(Code, { className: "w-5 h-5", "aria-hidden": true }), 
+    icon: 'code', 
     title: 'Information Technology', 
     items: [{ name: "Honours Diploma in Information Technology" }] 
   },
   { 
-    icon: React.createElement(Brain, { className: "w-5 h-5", "aria-hidden": true }), 
+    icon: 'brain', 
     title: 'Business Intelligence', 
     items: [{ name: "Mastering Excel Data Analysis & Dashboard Reporting" }] 
   }
 ];
 
-export const JOURNEY = [
-  {
-    year: "Present",
-    title: "M.Sc. Artificial Intelligence",
-    org: "St. Joseph's College (Autonomous)",
-    desc: "Currently pursuing advanced academic studies focusing on Generative AI, LLMs, neural networks, and scalable machine learning architectures.",
-    icon: "Brain"
-  },
-  {
-    year: "March 2026",
-    title: "Introduction to Machine Learning",
-    org: "IIT Madras / NPTEL",
-    desc: "Earned IIT Madras certification in Machine Learning fundamentals, covering supervised algorithms, statistical models, and loss optimizations.",
-    icon: "Database"
-  },
-  {
-    year: "March 2026",
-    title: "Yuva AI for All",
-    org: "NIELIT / Skill India",
-    desc: "Completed national skill training on Prompt Engineering, LLM parameters, Generative AI applications, and Responsible AI models.",
-    icon: "Brain"
-  },
-  {
-    year: "August 2024",
-    title: "IBM Data Analyst Specialization",
-    org: "IBM Coursera",
-    desc: "Rigorous 9-course program covering exploratory data analysis, dashboard building, SQL querying, and Cognos Business Intelligence.",
-    icon: "Database"
-  },
-  {
-    year: "Self-Paced",
-    title: "Backend Development & Algorithms",
-    org: "Boot.dev Progression",
-    desc: "Active self-directed developer pathway studying data structures, Python algorithms, clean architecture, and API design.",
-    icon: "Code"
-  },
-  {
-    year: "Foundational",
-    title: "Web Development & Software Engineering",
-    org: "HodoLabs Training",
-    desc: "Initial software development baseline learning HTML/CSS structures, Javascript control flow, and Git repository management.",
-    icon: "Code"
-  }
-];
+

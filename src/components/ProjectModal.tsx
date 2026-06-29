@@ -1,5 +1,5 @@
 import { useEffect, useRef, useCallback } from 'react';
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 import { X, ExternalLink, Github, Cpu, Database, Layout, ArrowRight } from 'lucide-react';
 
 import { Project } from '../data';

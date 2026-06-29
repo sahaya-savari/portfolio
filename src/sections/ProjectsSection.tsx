@@ -1,5 +1,5 @@
-import { useState, memo, lazy, Suspense, useEffect, useRef } from 'react';
-import { Github, ArrowUpRight } from 'lucide-react';
+import { useState, memo, lazy, Suspense, useEffect, useRef, useMemo } from 'react';
+import { Github, ArrowUpRight, Search } from 'lucide-react';
 import { PROJECTS, Project } from '../data';
 import SectionBadge from '../components/ui/SectionBadge';
 import ErrorBoundary from '../components/ErrorBoundary';
@@ -316,13 +316,61 @@ const GridCard = ({ p, onClick }: { p: Project; onClick: () => void }) => {
 };
 
 // ─── Section ─────────────────────────────────────────────────────────────────
+// ─── Section ─────────────────────────────────────────────────────────────────
+const CATEGORIES = [
+  'All',
+  'AI / ML',
+  'Python',
+  'React',
+  'Firebase',
+  'Full Stack',
+  'Data Analytics'
+];
+
 const ProjectsSection = memo(() => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [search, setSearch] = useState('');
+  const [activeCategory, setActiveCategory] = useState('All');
+
+  const filteredProjects = useMemo(() => {
+    return PROJECTS.filter(p => {
+      // Category match logic
+      let matchesCategory = false;
+      if (activeCategory === 'All') {
+        matchesCategory = true;
+      } else if (activeCategory === 'AI / ML') {
+        matchesCategory = p.stack.toLowerCase().includes('ai') || p.techStack.some(t => /ai|ml|llm|openai/i.test(t));
+      } else if (activeCategory === 'Python') {
+        matchesCategory = p.stack.toLowerCase().includes('python') || p.techStack.some(t => /python/i.test(t));
+      } else if (activeCategory === 'React') {
+        matchesCategory = p.stack.toLowerCase().includes('react') || p.techStack.some(t => /react/i.test(t));
+      } else if (activeCategory === 'Firebase') {
+        matchesCategory = p.techStack.some(t => /firebase/i.test(t));
+      } else if (activeCategory === 'Full Stack') {
+        matchesCategory = p.stack.toLowerCase().includes('vite') || p.techStack.some(t => /typescript|tailwind|vite/i.test(t));
+      } else if (activeCategory === 'Data Analytics') {
+        matchesCategory = p.techStack.some(t => /analytics|sql/i.test(t)) || p.title === 'Daily Spark';
+      }
+
+      // Search match logic (matches title, desc, stack, techStack array, or tag)
+      const q = search.toLowerCase();
+      const matchesSearch = !search ||
+        p.title.toLowerCase().includes(q) ||
+        p.desc.toLowerCase().includes(q) ||
+        p.tag.toLowerCase().includes(q) ||
+        p.stack.toLowerCase().includes(q) ||
+        p.techStack.some(t => t.toLowerCase().includes(q));
+
+      return matchesCategory && matchesSearch;
+    });
+  }, [search, activeCategory]);
 
   return (
     <>
-      <section aria-label="Selected projects" className="py-16 px-6 relative overflow-hidden projects-section-bg">
+      <section id="projects" aria-label="Selected projects" className="py-16 px-6 relative overflow-hidden projects-section-bg">
         <div className="max-w-screen-xl mx-auto relative z-10">
+          
+          {/* Header Row */}
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-8">
             <div>
               <SectionBadge>Selected Work</SectionBadge>
@@ -331,18 +379,79 @@ const ProjectsSection = memo(() => {
             <p className="text-white/60 font-body font-light max-w-xs md:text-right">Ask me for live demos, code samples, or walkthroughs of any project.</p>
           </div>
 
-          {/* FEATURED FLAGSHIP SPOTLIGHT */}
-          <div className="mb-6">
-            {PROJECTS.slice(0, 1).map((p, i) => (
-              <FeaturedCard key={`featured-${i}`} p={p} onClick={() => setSelectedProject(p)} />
-            ))}
+          {/* Interactive Controls Filter Bar */}
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10 pb-6 border-b border-white/[0.06]">
+            
+            {/* Search Input field */}
+            <div className="relative w-full md:max-w-xs">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" aria-hidden="true" />
+              <input
+                type="text"
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+                placeholder="Search stack, title, or keywords..."
+                className="w-full pl-10 pr-4 py-2.5 rounded-full bg-white/[0.03] border border-white/10 text-white font-body text-xs placeholder:text-white/30 focus:outline-none focus:border-white/30 focus:bg-white/[0.05] transition-all"
+                aria-label="Search projects"
+              />
+            </div>
+
+            {/* Category Quick Tags Selector */}
+            <div className="flex flex-wrap gap-2 items-center" role="tablist" aria-label="Project categories">
+              {CATEGORIES.map(cat => {
+                const isActive = activeCategory === cat;
+                return (
+                  <button
+                    key={cat}
+                    role="tab"
+                    aria-selected={isActive}
+                    onClick={() => setActiveCategory(cat)}
+                    className={`px-4 py-2 rounded-full text-xs font-body font-medium transition-all cursor-pointer min-h-[36px] ${
+                      isActive 
+                        ? 'bg-white text-black border-transparent shadow' 
+                        : 'bg-white/[0.03] text-white/60 border border-white/10 hover:bg-white/[0.06] hover:text-white'
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {PROJECTS.slice(1).map((p, i) => (
-              <GridCard key={i} p={p} onClick={() => setSelectedProject(p)} />
-            ))}
-          </div>
+          {/* Dynamic Grid Results Container */}
+          {filteredProjects.length > 0 ? (
+            <div className="space-y-6">
+              
+              {/* Flagship featured card (always render first matched project as featured) */}
+              <FeaturedCard p={filteredProjects[0]} onClick={() => setSelectedProject(filteredProjects[0])} />
+
+              {/* Grid cards for subsequent matches */}
+              {filteredProjects.length > 1 && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {filteredProjects.slice(1).map((p, i) => (
+                    <GridCard key={p.title} p={p} onClick={() => setSelectedProject(p)} />
+                  ))}
+                </div>
+              )}
+            </div>
+          ) : (
+            /* Elegant Glassmorphic Empty State */
+            <div className="flex flex-col items-center justify-center py-20 px-6 rounded-3xl border border-white/10 bg-white/[0.01] backdrop-blur-xl text-center space-y-4">
+              <Search className="w-10 h-10 text-white/20" aria-hidden="true" />
+              <div>
+                <h3 className="font-heading italic text-2xl text-white">No Matching Projects</h3>
+                <p className="text-white/40 font-body font-light text-sm mt-1 max-w-sm">
+                  We couldn't find any projects matching "<span className="text-white/60">{search}</span>" in this filter category. Try another keyword.
+                </p>
+              </div>
+              <button
+                onClick={() => { setSearch(''); setActiveCategory('All'); }}
+                className="px-5 py-2.5 rounded-full bg-white/5 border border-white/10 text-white/80 hover:text-white hover:bg-white/10 text-xs font-body transition-colors cursor-pointer"
+              >
+                Reset Search Filters
+              </button>
+            </div>
+          )}
         </div>
       </section>
 

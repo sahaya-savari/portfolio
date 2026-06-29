@@ -101,9 +101,7 @@ const HlsVideo = ({
       className={className} 
       style={{ 
         ...style, 
-        filter: desaturated ? 'saturate(0)' : 'none', 
-        transform: 'translate3d(0, 0, 0)', 
-        willChange: 'transform, filter' 
+        filter: desaturated ? 'saturate(0)' : undefined,
       }} 
       width={width}
       height={height}

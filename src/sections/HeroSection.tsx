@@ -105,29 +105,106 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
             </a>
           </motion.div>
 
-          {/* Executive Summary Panel */}
+          {/* Recruiter Quick View Card */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2, duration: 0.8 }}
-            className="mt-12 liquid-glass p-[1px] rounded-2xl w-full max-w-3xl"
+            className="mt-12 w-full max-w-4xl rounded-3xl border border-white/[0.08]"
+            style={{
+              background: 'rgba(10, 10, 14, 0.65)',
+              backdropFilter: 'blur(20px)',
+              boxShadow: '0 0 0 1px rgba(255,255,255,0.02), 0 20px 50px rgba(0,0,0,0.4)',
+            }}
           >
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 px-6 py-5 bg-black/40 backdrop-blur-xl rounded-2xl">
-              <div className="text-left md:border-r border-white/10 pr-2">
-                <span className="block text-[9px] text-white/60 uppercase tracking-widest mb-1.5">Education</span>
-                <span className="block text-xs font-medium text-white/90">M.Sc Artificial Intelligence</span>
+            <div className="grid md:grid-cols-3 gap-8 p-6 md:p-8 text-left">
+              {/* Left Column: Core Credentials & Bio info */}
+              <div className="md:col-span-2 space-y-6">
+                <div className="flex items-center justify-between border-b border-white/[0.06] pb-4">
+                  <div>
+                    <h2 className="text-white font-heading italic text-lg leading-none">Recruiter Quick View</h2>
+                    <span className="text-[10px] text-white/40 font-body uppercase tracking-wider block mt-1.5">Candidate profile summary</span>
+                  </div>
+                  <span className="text-[9px] font-mono text-green-400 border border-green-500/20 px-2 py-0.5 rounded bg-green-500/5 flex items-center gap-1.5 shrink-0">
+                    <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" aria-hidden="true" />
+                    Available Summer/Fall 2026
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-2 gap-x-4 gap-y-4 text-xs font-body">
+                  <div>
+                    <span className="block text-[9px] text-white/30 uppercase tracking-widest mb-1">Education</span>
+                    <span className="text-white/80 font-medium">M.Sc. Artificial Intelligence</span>
+                  </div>
+                  <div>
+                    <span className="block text-[9px] text-white/30 uppercase tracking-widest mb-1">Location</span>
+                    <span className="text-white/80 font-medium">Trichy / Madurai, India</span>
+                  </div>
+                  <div>
+                    <span className="block text-[9px] text-white/30 uppercase tracking-widest mb-1">Target Roles</span>
+                    <span className="text-white/80 font-medium">AI/ML, Python, Full Stack</span>
+                  </div>
+                  <div>
+                    <span className="block text-[9px] text-white/30 uppercase tracking-widest mb-1">Preference</span>
+                    <span className="text-white/80 font-medium">Open to Remote / Relocation</span>
+                  </div>
+                </div>
+
+                <div className="pt-2">
+                  <span className="block text-[9px] font-body text-white/30 uppercase tracking-widest mb-2">Primary Stack</span>
+                  <div className="flex flex-wrap gap-1.5">
+                    {['Python', 'AI/ML (LLMs)', 'SQL', 'React', 'Firebase', 'Data Analytics'].map(skill => (
+                      <span key={skill} className="px-2.5 py-1 rounded bg-white/[0.04] border border-white/[0.08] text-[10px] font-mono text-white/70">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
-              <div className="text-left md:border-r border-white/10 pr-2">
-                <span className="block text-[9px] text-white/60 uppercase tracking-widest mb-1.5">Focus</span>
-                <span className="block text-xs font-medium text-white/90">AI & Full-Stack Dev</span>
-              </div>
-              <div className="text-left md:border-r border-white/10 pr-2">
-                <span className="block text-[9px] text-white/60 uppercase tracking-widest mb-1.5">Certification</span>
-                <span className="block text-xs font-medium text-white/90">IBM Data Analyst</span>
-              </div>
-              <div className="text-left">
-                <span className="block text-[9px] text-green-400/70 uppercase tracking-widest mb-1.5">Status</span>
-                <span className="block text-xs font-medium text-green-400">Open to Opportunities</span>
+
+              {/* Right Column: CTA Actions */}
+              <div className="flex flex-col justify-center gap-4 bg-white/[0.01] border-t md:border-t-0 md:border-l border-white/[0.06] pt-6 md:pt-0 md:pl-8">
+                {/* 1-Click Resume Download */}
+                <a
+                  href="/resume.pdf?v=2"
+                  download="Sahaya_Savari_Resume.pdf"
+                  className="w-full text-center text-xs font-body font-semibold px-4 py-3.5 rounded-full bg-white text-black hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer"
+                  aria-label="Download PDF Resume directly"
+                >
+                  Download PDF Resume
+                </a>
+
+                {/* Get in Touch CTA */}
+                <a
+                  href="#contact"
+                  className="w-full text-center text-xs font-body font-medium px-4 py-3.5 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 text-white/90 hover:text-white transition-all flex items-center justify-center gap-2 cursor-pointer"
+                  aria-label="Navigate to contact section"
+                >
+                  Get In Touch
+                </a>
+
+                {/* Profiles row */}
+                <div className="flex items-center justify-center gap-6 mt-2">
+                  <a
+                    href="https://github.com/sahaya-savari"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white/40 hover:text-white transition-colors text-xs font-body flex items-center gap-1.5"
+                    aria-label="Open Github in new tab"
+                  >
+                    GitHub
+                  </a>
+                  <span className="text-white/10" aria-hidden="true">|</span>
+                  <a
+                    href="https://www.linkedin.com/in/sahaya-savari"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white/40 hover:text-white transition-colors text-xs font-body flex items-center gap-1.5"
+                    aria-label="Open LinkedIn profile in new tab"
+                  >
+                    LinkedIn
+                  </a>
+                </div>
               </div>
             </div>
           </motion.div>

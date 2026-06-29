@@ -1,7 +1,14 @@
 import { useState, memo } from 'react';
-import { Award, ExternalLink, ArrowUpRight } from 'lucide-react';
+import { Award, ExternalLink, ArrowUpRight, Database, Code, Brain } from 'lucide-react';
 import { CERTIFICATIONS, FEATURED_CREDENTIALS } from '../data';
 import SectionBadge from '../components/ui/SectionBadge';
+
+// Resolve string icon identifiers from data.ts to actual components
+const ICON_MAP: Record<string, React.ComponentType<{ className?: string; 'aria-hidden'?: boolean }>> = {
+  database: Database,
+  code: Code,
+  brain: Brain,
+};
 
 const CertificationsSection = memo(() => {
   // Fix: Converted the massive vertical grid into an interactive Tab system.
@@ -193,6 +200,7 @@ const CertificationsSection = memo(() => {
             {CERTIFICATIONS.map(({ title, icon }) => {
               const tabId = getTabId(title);
               const panelId = getPanelId(title);
+              const IconComponent = ICON_MAP[icon];
               return (
                 <button
                   key={title}
@@ -207,7 +215,7 @@ const CertificationsSection = memo(() => {
                       : 'liquid-glass text-white/70 hover:text-white border-white/10'
                   }`}
                 >
-                  {icon} {title}
+                  {IconComponent && <IconComponent className="w-5 h-5" aria-hidden={true} />} {title}
                 </button>
               );
             })}
