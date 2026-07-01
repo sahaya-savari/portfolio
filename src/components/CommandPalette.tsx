@@ -109,7 +109,7 @@ export default function CommandPalette({ onClose, onSelectProject, onOpenBlog, o
       { title: 'Instagram Profile', url: 'https://www.instagram.com/_itz_me_santhoz/', sub: 'Open Instagram in new tab' },
       { title: 'X (Twitter) Profile', url: 'https://x.com/_Itz_me_santhoz', sub: 'Open X (Twitter) in new tab' },
       { title: 'LeetCode Profile', url: 'https://leetcode.com/u/sahaya_savari/', sub: 'Open LeetCode in new tab' },
-      { title: 'Portfolio Website', url: 'https://sahayasavari.web.app', sub: 'sahayasavari.web.app' },
+      { title: 'Portfolio Website', url: 'https://www.sahayasavari.me', sub: 'www.sahayasavari.me' },
       { title: 'Email Contact', url: 'mailto:sahayasavari.info@gmail.com', sub: 'sahayasavari.info@gmail.com' }
     ];
 

@@ -107,7 +107,7 @@ export const PROJECTS: Project[] = [
     tag: "Web Development", 
     desc: "A modern, animated portfolio website built with React, TypeScript, and Framer Motion featuring glassmorphism design, HLS video streaming, and lazy-loaded sections.", 
     stack: "React · TypeScript · Vite", 
-    link: "https://sahayasavari.web.app",
+    link: "https://www.sahayasavari.me",
     status: "Live",
     github: "https://github.com/sahaya-savari/portfolio",
     longDesc: "A masterclass in modern frontend development, this portfolio leverages Framer Motion for liquid-smooth animations and hardware-accelerated transitions. It features a custom glassmorphism design system, responsive grids, and an isolated state architecture for maximum performance.",

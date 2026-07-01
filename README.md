@@ -3,7 +3,7 @@
 A modern portfolio website showcasing my projects, technical skills, certifications, and journey in Artificial Intelligence. Built with a focus on performance, accessibility, and exceptional user experience.
 
 <p align="center">
-  <a href="https://sahayasavari.web.app">🌐 Live Demo</a> •
+  <a href="https://www.sahayasavari.me">🌐 Live Demo</a> •
   <a href="https://github.com/sahaya-savari">💻 GitHub</a> •
   <a href="https://www.linkedin.com/in/sahaya-savari">💼 LinkedIn</a>
 </p>
@@ -116,7 +116,7 @@ npx firebase deploy
 
 ## 🔗 Live Demo
 
-Experience the live portfolio here: **[https://sahayasavari.web.app](https://sahayasavari.web.app)**
+Experience the live portfolio here: **[https://www.sahayasavari.me](https://www.sahayasavari.me)**
 
 ---
 
