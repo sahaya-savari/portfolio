@@ -4,7 +4,6 @@ import { Play, ArrowUpRight } from 'lucide-react';
 import RotatingText from '../components/RotatingText';
 import BlurText from '../components/BlurText';
 import FocusText from '../components/FocusText';
-import Button from '../components/ui/Button';
 import { RainbowButton } from '../components/magicui/rainbow-button';
 
 interface HeroSectionProps {

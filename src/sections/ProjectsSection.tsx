@@ -1,12 +1,9 @@
-import { useState, memo, lazy, Suspense, useEffect, useRef, useMemo } from 'react';
+import { useState, memo, useEffect, useRef, useMemo } from 'react';
 import { Github, ArrowUpRight, Search } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { PROJECTS, Project } from '../data';
 import SectionBadge from '../components/ui/SectionBadge';
-import ErrorBoundary from '../components/ErrorBoundary';
 import './ProjectsSection.css';
-
-// Lazy load the modal to keep initial bundle small
-const ProjectModal = lazy(() => import('../components/ProjectModal'));
 
 // ─── Pixel animation engine (inlined from React Bits PixelCard) ─────────────
 class Pixel {
@@ -31,13 +28,14 @@ class Pixel {
 
   constructor(
     canvas: HTMLCanvasElement,
-    context: CanvasRenderingContext2D,
+    context: CanvasRenderingContext2D | null,
     x: number,
     y: number,
     color: string,
     speed: number,
     delay: number
   ) {
+    if (!context) throw new Error("Could not get 2d context for PixelCard");
     this.width = canvas.width;
     this.height = canvas.height;
     this.ctx = context;
@@ -328,9 +326,14 @@ const CATEGORIES = [
 ];
 
 const ProjectsSection = memo(() => {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const navigate = useNavigate();
   const [search, setSearch] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
+
+  const handleProjectClick = (p: Project) => {
+    const id = p.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    navigate(`/projects/${id}`);
+  };
 
   const filteredProjects = useMemo(() => {
     return PROJECTS.filter(p => {
@@ -423,13 +426,13 @@ const ProjectsSection = memo(() => {
             <div className="space-y-6">
               
               {/* Flagship featured card (always render first matched project as featured) */}
-              <FeaturedCard p={filteredProjects[0]} onClick={() => setSelectedProject(filteredProjects[0])} />
+              <FeaturedCard p={filteredProjects[0]} onClick={() => handleProjectClick(filteredProjects[0])} />
 
               {/* Grid cards for subsequent matches */}
               {filteredProjects.length > 1 && (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {filteredProjects.slice(1).map((p, i) => (
-                    <GridCard key={p.title} p={p} onClick={() => setSelectedProject(p)} />
+                  {filteredProjects.slice(1).map((p) => (
+                    <GridCard key={p.title} p={p} onClick={() => handleProjectClick(p)} />
                   ))}
                 </div>
               )}
@@ -454,14 +457,6 @@ const ProjectsSection = memo(() => {
           )}
         </div>
       </section>
-
-      {selectedProject && (
-        <ErrorBoundary>
-          <Suspense fallback={<div className="fixed inset-0 z-[300] bg-black/80 flex items-center justify-center" role="status"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white/50" aria-hidden="true"></div><span className="sr-only">Loading project viewer...</span></div>}>
-            <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
-          </Suspense>
-        </ErrorBoundary>
-      )}
     </>
   );
 });

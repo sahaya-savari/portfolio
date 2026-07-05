@@ -13,7 +13,7 @@ function DockItem({ children, className = '', onClick, href, ariaLabel, mouseX, 
 
   const targetSize = useTransform(mouseDistance, [-distance, 0, distance], [baseItemSize, magnification, baseItemSize]);
   const size = useSpring(targetSize, spring);
-  const scale = useTransform(size, (s) => s / baseItemSize);
+  const scale = useTransform(size, (s) => (s as unknown as number) / baseItemSize);
 
   const Component = href ? motion.a : motion.div;
   

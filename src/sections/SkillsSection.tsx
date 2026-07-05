@@ -5,6 +5,7 @@ import SkillAccordion from '../components/ui/SkillAccordion';
 import SectionBadge from '../components/ui/SectionBadge';
 import SkillsMatrix from '../components/SkillsMatrix';
 
+// @ts-ignore
 const Galaxy = lazy(() => import('../components/ui/Galaxy/Galaxy'));
 
 const SkillsSection = memo(() => {

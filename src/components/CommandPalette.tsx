@@ -1,12 +1,13 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
-import { m as motion, AnimatePresence } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 import { Search, FileText, BookOpen, ExternalLink, FolderGit, Command, CornerDownLeft } from 'lucide-react';
 import { PROJECTS } from '../data';
 import { lockScroll, unlockScroll } from '../utils/scrollLock';
 
+import { useNavigate } from 'react-router-dom';
+
 interface CommandPaletteProps {
   onClose: () => void;
-  onSelectProject: (project: any) => void;
   onOpenResume: () => void;
 }
 
@@ -19,7 +20,8 @@ interface CommandItem {
   action: () => void;
 }
 
-export default function CommandPalette({ onClose, onSelectProject, onOpenResume }: CommandPaletteProps) {
+export default function CommandPalette({ onClose, onOpenResume }: CommandPaletteProps) {
+  const navigate = useNavigate();
   const [search, setSearch] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -65,15 +67,16 @@ export default function CommandPalette({ onClose, onSelectProject, onOpenResume 
     });
 
     // Projects
-    PROJECTS.forEach(proj => {
+    PROJECTS.forEach(project => {
       list.push({
-        id: `project-${proj.title.toLowerCase().replace(/\s+/g, '-')}`,
-        title: proj.title,
-        subtitle: proj.desc,
+        id: `project-${project.title.toLowerCase()}`,
+        title: project.title,
+        subtitle: project.desc,
         category: 'Projects',
         icon: FolderGit,
         action: () => {
-          onSelectProject(proj);
+          const id = project.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+          navigate(`/projects/${id}`);
           onClose();
         }
       });
@@ -118,7 +121,7 @@ export default function CommandPalette({ onClose, onSelectProject, onOpenResume 
     });
 
     return list;
-  }, [onSelectProject, onOpenResume, onClose]);
+  }, [navigate, onOpenResume, onClose]);
 
   // Filter items
   const filtered = useMemo(() => {
