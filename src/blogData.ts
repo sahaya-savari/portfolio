@@ -12,66 +12,52 @@ export interface BlogPost {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
-    id: "ai-prompt-structuring",
-    title: "Context Injection & Deterministic Output: Prompt Engineering in PrepMind AI",
-    slug: "context-injection-prompt-engineering",
+    id: "rag-pipeline-llama-3",
+    title: "Building a RAG Pipeline with Llama 3",
+    slug: "building-rag-pipeline-llama-3",
     category: "AI Learning Log",
-    tags: ["LLMs", "Prompt Engineering", "Python", "JSON Schemas"],
-    publishDate: "2026-05-12",
-    readTime: "4 min read",
-    excerpt: "An architectural deep-dive into crafting strict context-injected prompts and validation layers to eliminate LLM hallucinations and output malformed response payloads during dynamic quiz generation.",
-    content: `### Objective
-The core requirement of PrepMind AI is to dynamically generate study aids (flashcards, mock exams, and summaries) from user-uploaded textbooks or lecture notes. When prompting an LLM to generate multiple-choice questions (MCQs), the major risks are **hallucination** (inventing facts not in the text) and **schema invalidity** (failing to return parsing-compliant JSON).
+    tags: ["LLMs", "RAG", "Llama 3", "Python"],
+    publishDate: "2026-06-20",
+    readTime: "6 min read",
+    excerpt: "A comprehensive guide on constructing a Retrieval-Augmented Generation pipeline using Llama 3, vector databases, and efficient chunking strategies for accurate document querying.",
+    content: `### Introduction
+Retrieval-Augmented Generation (RAG) is transforming how we interact with private documents by grounding Large Language Models in verifiable facts. This post explores building a robust RAG pipeline with Llama 3.
 
-### 1. The Prompt Architecture
-To solve this, I designed a multi-phase system prompt that combines role identification, text bounding, output schemas, and zero-shot task description:
+### 1. Document Ingestion & Chunking
+The foundation of any RAG system is how you process your documents. We use Semantic Chunking instead of fixed-size splitting to ensure context remains intact. By analyzing sentence embeddings, we only split when there is a significant semantic shift.
 
-\`\`\`json
-{
-  "system_instructions": "You are an expert academic evaluator. Extract facts ONLY from the user-provided context below. Do not assume or extrapolate.",
-  "format_instruction": "Return a JSON array of objects. Each object must strictly match: { 'question': string, 'options': [string, string, string, string], 'correct_answer_index': number, 'explanation': string }"
-}
-\`\`\`
+### 2. Vector Embeddings
+We generate embeddings using dense retrieval models, storing them in a vector database for millisecond-latency cosine similarity searches.
 
-By wrapping user notes inside strict boundary tokens like \`[START_CONTEXT]\` and \`[END_CONTEXT]\`, we explicitly limit the model's attention span. 
+### 3. Llama 3 Generation
+Once the top-K relevant chunks are retrieved, they are injected into Llama 3's context window. Strict system prompts are used to ensure Llama 3 only answers based on the provided context, eliminating hallucinations.
 
-### 2. Output Validation & Fallbacks
-Even with JSON mode enabled, networks sometimes output trailing commas or incomplete JSON blocks under token limits. 
-In the Python pipeline, I added a schema validation layer using \`pydantic\`. If the output fails parsing:
-1. A regex cleaning parser attempts to fix minor trailing syntax errors.
-2. If that fails, a fast retry query is issued with the error traceback, forcing the model to correct its structure.
-
-### 3. Results & Key Takeaways
-- **Hallucinations** dropped to nearly zero by explicitly instructing the model to output \`Not mentioned in context\` if details were missing.
-- Structured format reliability reached **99.7%** using Pydantic-based validation and schema forcing.`
+### Conclusion
+By combining Llama 3's powerful reasoning capabilities with a well-structured RAG pipeline, we can build highly accurate, context-aware AI applications.`
   },
   {
-    id: "portfolio-animation-fps",
-    title: "Fluid Framer Motion: Overcoming Layout Reflows & Achieving 60 FPS",
-    slug: "fluid-framer-motion-layout-reflows",
+    id: "modern-react-architecture",
+    title: "Modern React Architecture Patterns",
+    slug: "modern-react-architecture-patterns",
     category: "Engineering Journal",
-    tags: ["React", "CSS Transitions", "Framer Motion", "Web Performance"],
-    publishDate: "2026-06-15",
+    tags: ["React", "TypeScript", "Architecture", "Frontend"],
+    publishDate: "2026-07-01",
     readTime: "5 min read",
-    excerpt: "How I resolved mobile layout overlapping, container clipping, and animation stutters in this React portfolio by transitioning from CSS grid-resizing to absolute offsets and hardware-accelerated transforms.",
-    content: `### The Challenge
-When rendering modern web interfaces with backdrop-blurs (glassmorphism) and complex spring animations (like the dock and the rotating letters), the browser's main thread can quickly become choked by **layout reflows**. 
+    excerpt: "Exploring modern React architecture patterns for scalability, state isolation, and maximum rendering performance in complex single-page applications.",
+    content: `### The Challenge of Scale
+As React applications grow, maintaining performance and readability becomes increasingly difficult. Uncontrolled state propagation and deeply nested component trees can lead to render thrashing.
 
-Specifically, animating elements that alter document flow (e.g., changing \`height\`, \`margin\`, or \`flex-basis\`) triggers browser recalculation for all descendants. On mobile engines, this drops rendering speed below 30 FPS.
+### 1. State Isolation
+Instead of relying on massive global contexts or Redux stores for everything, modern architecture favors state isolation. By keeping state as close to where it's used as possible, we minimize unnecessary re-renders.
 
-### 1. Solution: Transforming GPU Layers
-To keep animations fluid, I adhered to the core rule: **Only animate \`transform\` (scale, translate, rotate) and \`opacity\`**. These properties run on the compositor layer and are handled directly by the GPU, bypassing reflows.
+### 2. Custom Hooks as Controllers
+We extract business logic and side effects into custom hooks. This separates the UI rendering layer from the data management layer, making components easier to test and reason about.
 
-For the modal open-and-close sequences:
-- I used \`layoutId\` in Framer Motion to seamlessly morph components from their small card forms to fullscreen dialogues.
-- I set up absolute position overlays to isolate the modal container from the body document layout tree, preventing the main text column from shifting when the overlay rendered.
+### 3. Suspense & Lazy Loading
+For optimal bundle sizes, code-splitting at the route and component level using \`React.lazy\` and \`Suspense\` ensures that users only download the JavaScript necessary for their current view.
 
-### 2. Preventing Text Layout Clipping
-A major bug identified during responsiveness testing was overlapping texts during rotating state updates. I resolved this by:
-- Setting static height boundaries on wrappers containing variable-length rotating text.
-- Using \`mode="wait"\` on \`AnimatePresence\` to ensure the outgoing item is fully unmounted from the DOM layout before the incoming item starts its transition, ensuring no collision ever occurs.
-
-### 3. Metric Success
-Using Chrome DevTools Performance Profiling, rendering frame rates maintained a steady **60 FPS** line on mobile viewports with no layout shifts (CLS = 0).`
+### Conclusion
+Adopting these modern architecture patterns leads to more maintainable, scalable, and performant React applications.`
   }
 ];
+

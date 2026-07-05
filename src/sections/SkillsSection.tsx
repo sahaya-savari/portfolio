@@ -20,7 +20,6 @@ const SkillsSection = memo(() => {
             glowIntensity={0.15}
             saturation={0.22}
             rotationSpeed={0.015}
-            starSpeed={0.15}
             twinkleIntensity={0.12}
             mouseInteraction={true}
             mouseRepulsion={true}

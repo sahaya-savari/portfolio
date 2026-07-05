@@ -86,6 +86,8 @@ const TargetCursor = ({
       document.body.style.cursor = 'none';
       document.body.classList.add('hide-default-cursor');
     }
+    
+    gsap.set(cursorRef.current, { opacity: 0 });
 
     const cursor = cursorRef.current;
     cornersRef.current = cursor.querySelectorAll('.target-cursor-corner');
@@ -167,8 +169,22 @@ const TargetCursor = ({
     tickerFnRef.current = tickerFn;
 
     let moveRaf = null;
+    let isHoveringSkills = false;
     const moveHandler = e => {
       lastMousePos.current = { x: e.clientX, y: e.clientY };
+      
+      const overSkills = !!e.target.closest('#skills');
+      if (overSkills !== isHoveringSkills) {
+        isHoveringSkills = overSkills;
+        if (overSkills) {
+          gsap.to(cursorRef.current, { opacity: 1, duration: 0.2 });
+          document.body.classList.add('hide-default-cursor');
+        } else {
+          gsap.to(cursorRef.current, { opacity: 0, duration: 0.2 });
+          document.body.classList.remove('hide-default-cursor');
+        }
+      }
+
       if (moveRaf) return;
       moveRaf = requestAnimationFrame(() => {
         moveCursor(lastMousePos.current.x, lastMousePos.current.y);

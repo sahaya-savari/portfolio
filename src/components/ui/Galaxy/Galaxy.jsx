@@ -21,7 +21,6 @@ uniform float uTime;
 uniform vec3 uResolution;
 uniform vec2 uFocal;
 uniform vec2 uRotation;
-uniform float uStarSpeed;
 uniform float uDensity;
 uniform float uHueShift;
 uniform float uSpeed;
@@ -38,7 +37,6 @@ uniform bool uTransparent;
 
 varying vec2 vUv;
 
-#define NUM_LAYER 4.0
 #define STAR_COLOR_CUTOFF 0.2
 #define MAT45 mat2(0.7071, -0.7071, 0.7071, 0.7071)
 #define PERIOD 3.0
@@ -93,7 +91,7 @@ vec3 StarLayer(vec2 uv) {
       vec2 si = id + vec2(float(x), float(y));
       float seed = Hash21(si);
       float size = fract(seed * 345.32);
-      float glossLocal = tri(uStarSpeed / (PERIOD * seed + 1.0));
+      float glossLocal = tri(1.0 / (PERIOD * seed + 1.0));
       float flareSize = smoothstep(0.9, 1.0, size) * glossLocal;
 
       float red = smoothstep(STAR_COLOR_CUTOFF, 1.0, Hash21(si + 1.0)) + STAR_COLOR_CUTOFF;
@@ -152,12 +150,9 @@ void main() {
 
   vec3 col = vec3(0.0);
 
-  for (float i = 0.0; i < 1.0; i += 1.0 / NUM_LAYER) {
-    float depth = fract(i + uStarSpeed * uSpeed);
-    float scale = mix(20.0 * uDensity, 0.5 * uDensity, depth);
-    float fade = depth * smoothstep(1.0, 0.9, depth);
-    col += StarLayer(uv * scale + i * 453.32) * fade;
-  }
+  // Single layer of floating particles instead of a dense zooming grid
+  float scale = 3.0 * uDensity;
+  col += StarLayer(uv * scale);
 
   if (uTransparent) {
     float alpha = length(col);
@@ -173,7 +168,6 @@ void main() {
 export default function Galaxy({
   focal = [0.5, 0.5],
   rotation = [1.0, 0.0],
-  starSpeed = 0.5,
   density = 1,
   hueShift = 140,
   disableAnimation = false,
@@ -248,7 +242,6 @@ export default function Galaxy({
         },
         uFocal: { value: new Float32Array(focal) },
         uRotation: { value: new Float32Array(rotation) },
-        uStarSpeed: { value: starSpeed },
         uDensity: { value: density },
         uHueShift: { value: hueShift },
         uSpeed: { value: speed },
@@ -296,7 +289,6 @@ export default function Galaxy({
 
       if (!shouldDisableAnimation) {
         program.uniforms.uTime.value = t * 0.001;
-        program.uniforms.uStarSpeed.value = (t * 0.001 * starSpeed) / 10.0;
       }
 
       const lerpFactor = 0.05;
@@ -345,7 +337,6 @@ export default function Galaxy({
   }, [
     focal,
     rotation,
-    starSpeed,
     density,
     hueShift,
     disableAnimation,

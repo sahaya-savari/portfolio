@@ -184,7 +184,7 @@ export default function App() {
         <TargetCursor
           targetSelector=".cursor-target"
           spinDuration={2}
-          hideDefaultCursor
+          hideDefaultCursor={false}
           parallaxOn
           hoverDuration={0.2}
           cursorColor="#FFFFFF"

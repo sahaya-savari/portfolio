@@ -190,7 +190,7 @@ export default function BlogModal({ onClose }: BlogModalProps) {
             <div>
               <h2 id="blog-modal-title" className="text-2xl md:text-3xl font-heading italic text-white tracking-tight flex items-center gap-2">
                 <BookOpen className="w-6 h-6 text-blue-400" />
-                {activePost ? 'Reading Log' : 'Technical Logs'}
+                {activePost ? 'Reading Log' : 'Sahaya Savari Blog'}
               </h2>
             </div>
           </div>

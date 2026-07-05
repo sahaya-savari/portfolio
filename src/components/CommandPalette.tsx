@@ -56,8 +56,8 @@ export default function CommandPalette({ onClose, onSelectProject, onOpenBlog, o
 
     list.push({
       id: 'action-blog',
-      title: 'Open Technical Blog',
-      subtitle: 'Read learning logs and engineering journals',
+      title: 'Sahaya Savari Blog',
+      subtitle: 'A personal learning blog sharing practical guides on AI, Web Development, and Tech.',
       category: 'Actions',
       icon: BookOpen,
       action: () => {
