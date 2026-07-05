@@ -22,12 +22,10 @@ const ContactSection = lazy(() => import('./sections/ContactSection'));
 
 // Lazy load heavy global modals
 const ResumeViewer = lazy(() => import('./components/ResumeViewer'));
-const BlogModal = lazy(() => import('./components/BlogModal'));
 const CommandPalette = lazy(() => import('./components/CommandPalette'));
 
 export default function App() {
   const [showResume, setShowResume] = useState(false);
-  const [showBlog, setShowBlog] = useState(false);
   const [showCommandPalette, setShowCommandPalette] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -234,7 +232,7 @@ export default function App() {
                 <a href="#home" className={`text-sm font-body font-medium transition-colors ${activeSection === 'home' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Home</a>
                 <a href="#about" className={`text-sm font-body font-medium transition-colors ${activeSection === 'about' ? 'text-white' : 'text-white/50 hover:text-white'}`}>About</a>
                 <button onClick={() => setShowResume(true)} className="text-sm font-body font-medium text-white/50 hover:text-white transition-colors cursor-pointer">Resume</button>
-                <button onClick={() => setShowBlog(true)} className="text-sm font-body font-medium text-white/50 hover:text-white transition-colors cursor-pointer">Blog</button>
+                <a href="https://blog.sahayasavari.me" className="text-sm font-body font-medium text-white/50 hover:text-white transition-colors cursor-pointer">Blog</a>
                 <a href="#skills" className={`text-sm font-body font-medium transition-colors ${activeSection === 'skills' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Skills</a>
                 <a href="#projects" className={`text-sm font-body font-medium transition-colors ${activeSection === 'projects' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Projects</a>
                 <a href="#certifications" className={`text-sm font-body font-medium transition-colors ${activeSection === 'certifications' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Certs</a>
@@ -282,7 +280,7 @@ export default function App() {
                 <a href="#home" onClick={() => setMobileMenuOpen(false)} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Home</a>
                 <a href="#about" onClick={() => setMobileMenuOpen(false)} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">About</a>
                 <button onClick={() => { setShowResume(true); setMobileMenuOpen(false); }} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors cursor-pointer min-h-[48px]">Resume</button>
-                <button onClick={() => { setShowBlog(true); setMobileMenuOpen(false); }} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors cursor-pointer min-h-[48px]">Blog</button>
+                <a href="https://blog.sahayasavari.me" onClick={() => setMobileMenuOpen(false)} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors cursor-pointer min-h-[48px] flex items-center">Blog</a>
                 <a href="#skills" onClick={() => setMobileMenuOpen(false)} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Skills</a>
                 <a href="#projects" onClick={() => setMobileMenuOpen(false)} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Projects</a>
                 <a href="#certifications" onClick={() => setMobileMenuOpen(false)} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Certs</a>
@@ -326,7 +324,7 @@ export default function App() {
         <div className="section-divider" aria-hidden="true" />
         <div id="contact">
           <IntersectionLazy fallbackHeight="100vh">
-            <ContactSection setShowBlog={setShowBlog} setShowCommandPalette={setShowCommandPalette} />
+            <ContactSection setShowCommandPalette={setShowCommandPalette} />
           </IntersectionLazy>
         </div>
 
@@ -344,23 +342,12 @@ export default function App() {
       </AnimatePresence>
 
       <AnimatePresence>
-        {showBlog && (
-          <ErrorBoundary>
-            <Suspense fallback={<div className="fixed inset-0 z-[300] bg-black/80 flex items-center justify-center" role="status"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white/50" aria-hidden="true"></div><span className="sr-only">Loading blog...</span></div>}>
-              <BlogModal onClose={() => setShowBlog(false)} />
-            </Suspense>
-          </ErrorBoundary>
-        )}
-      </AnimatePresence>
-
-      <AnimatePresence>
         {showCommandPalette && (
           <ErrorBoundary>
             <Suspense fallback={<div className="fixed inset-0 z-[300] bg-black/80 flex items-center justify-center" role="status"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white/50" aria-hidden="true"></div><span className="sr-only">Loading search...</span></div>}>
               <CommandPalette 
                 onClose={() => setShowCommandPalette(false)} 
                 onOpenResume={() => setShowResume(true)}
-                onOpenBlog={() => setShowBlog(true)}
                 onSelectProject={() => {
                   window.location.hash = 'projects';
                 }}

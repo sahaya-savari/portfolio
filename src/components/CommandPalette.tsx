@@ -2,13 +2,11 @@ import { useState, useEffect, useRef, useMemo } from 'react';
 import { m as motion, AnimatePresence } from 'framer-motion';
 import { Search, FileText, BookOpen, ExternalLink, FolderGit, Command, CornerDownLeft } from 'lucide-react';
 import { PROJECTS } from '../data';
-import { BLOG_POSTS } from '../blogData';
 import { lockScroll, unlockScroll } from '../utils/scrollLock';
 
 interface CommandPaletteProps {
   onClose: () => void;
   onSelectProject: (project: any) => void;
-  onOpenBlog: () => void;
   onOpenResume: () => void;
 }
 
@@ -21,7 +19,7 @@ interface CommandItem {
   action: () => void;
 }
 
-export default function CommandPalette({ onClose, onSelectProject, onOpenBlog, onOpenResume }: CommandPaletteProps) {
+export default function CommandPalette({ onClose, onSelectProject, onOpenResume }: CommandPaletteProps) {
   const [search, setSearch] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -61,7 +59,7 @@ export default function CommandPalette({ onClose, onSelectProject, onOpenBlog, o
       category: 'Actions',
       icon: BookOpen,
       action: () => {
-        onOpenBlog();
+        window.location.href = 'https://blog.sahayasavari.me';
         onClose();
       }
     });
@@ -76,21 +74,6 @@ export default function CommandPalette({ onClose, onSelectProject, onOpenBlog, o
         icon: FolderGit,
         action: () => {
           onSelectProject(proj);
-          onClose();
-        }
-      });
-    });
-
-    // Blog articles
-    BLOG_POSTS.forEach(post => {
-      list.push({
-        id: `article-${post.id}`,
-        title: post.title,
-        subtitle: `${post.category} · ${post.readTime}`,
-        category: 'Articles',
-        icon: BookOpen,
-        action: () => {
-          onOpenBlog();
           onClose();
         }
       });
@@ -135,7 +118,7 @@ export default function CommandPalette({ onClose, onSelectProject, onOpenBlog, o
     });
 
     return list;
-  }, [onSelectProject, onOpenBlog, onOpenResume, onClose]);
+  }, [onSelectProject, onOpenResume, onClose]);
 
   // Filter items
   const filtered = useMemo(() => {

@@ -184,7 +184,7 @@ const FeaturedCard = ({ p, onClick }: { p: Project; onClick: () => void }) => {
       {/* All card content — z-10 above canvas */}
       <div className="project-card-content grid lg:grid-cols-2 gap-8 items-center">
         <div>
-          <div className="flex flex-wrap gap-2 mb-6 md:mb-8">
+          <div className="flex flex-wrap gap-2 mb-6 md:mb-8 min-h-[68px] sm:min-h-[28px] items-start">
             <div className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-purple-400 border border-purple-500/30 bg-purple-500/10">
               Flagship Project
             </div>
@@ -257,7 +257,7 @@ const GridCard = ({ p, onClick }: { p: Project; onClick: () => void }) => {
 
       {/* Card content — z-10 */}
       <div className="project-card-content">
-        <div className="flex justify-between items-start mb-6 md:mb-12">
+        <div className="flex justify-between items-start mb-6 md:mb-12 min-h-[84px] sm:min-h-[44px]">
           <div className="flex flex-wrap gap-2">
             <div className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-white/50 border border-white/15 bg-white/5">
               {p.tag}

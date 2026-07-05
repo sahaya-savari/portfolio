@@ -4,11 +4,10 @@ import HlsVideo from '../components/HlsVideo';
 import Dock from '../components/Dock';
 
 interface ContactSectionProps {
-  setShowBlog: (v: boolean) => void;
   setShowCommandPalette: (v: boolean) => void;
 }
 
-const ContactSection = memo(({ setShowBlog, setShowCommandPalette }: ContactSectionProps) => {
+const ContactSection = memo(({ setShowCommandPalette }: ContactSectionProps) => {
   const [copied, setCopied] = useState(false);
 
   return (
