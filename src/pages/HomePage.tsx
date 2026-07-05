@@ -9,6 +9,7 @@ import IntersectionLazy from '../components/IntersectionLazy';
 const AboutSection = lazy(() => import('../sections/AboutSection'));
 const SkillsSection = lazy(() => import('../sections/SkillsSection'));
 const ProjectsSection = lazy(() => import('../sections/ProjectsSection'));
+const BlogSection = lazy(() => import('../sections/BlogSection'));
 const StatsSection = lazy(() => import('../sections/StatsSection'));
 const CertificationsSection = lazy(() => import('../sections/CertificationsSection'));
 const ContactSection = lazy(() => import('../sections/ContactSection'));
@@ -60,6 +61,12 @@ export default function HomePage() {
       <div id="projects">
         <IntersectionLazy fallbackHeight="150vh">
           <ProjectsSection />
+        </IntersectionLazy>
+      </div>
+      <div className="section-divider" aria-hidden="true" />
+      <div id="blog">
+        <IntersectionLazy fallbackHeight="80vh">
+          <BlogSection />
         </IntersectionLazy>
       </div>
       <div className="section-divider" aria-hidden="true" />

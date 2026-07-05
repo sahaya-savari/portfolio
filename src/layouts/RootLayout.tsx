@@ -2,6 +2,7 @@ import React, { useState, useCallback, useEffect, useRef, lazy, Suspense } from 
 import { m as motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 import { ArrowUpRight, Menu, X, Search, Sparkles } from 'lucide-react';
 import { Outlet, useNavigate, useLocation, Link } from 'react-router-dom';
+import { BLOG_URL } from '../data';
 
 import ClickSpark from '../components/ClickSpark';
 import ErrorBoundary from '../components/ErrorBoundary';
@@ -100,7 +101,7 @@ export default function RootLayout() {
       }
     }, { threshold: [0.1, 0.5, 0.9], rootMargin: '-20% 0px -40% 0px' });
 
-    const sectionIds = ['home', 'about', 'skills', 'projects', 'certifications', 'contact'];
+    const sectionIds = ['home', 'about', 'skills', 'projects', 'blog', 'certifications', 'contact'];
     sectionIds.forEach(id => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
@@ -233,7 +234,7 @@ export default function RootLayout() {
                 <a href="#home" onClick={(e) => handleNavClick(e, '#home')} className={`text-sm font-body font-medium transition-colors ${activeSection === 'home' && location.pathname === '/' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Home</a>
                 <a href="#about" onClick={(e) => handleNavClick(e, '#about')} className={`text-sm font-body font-medium transition-colors ${activeSection === 'about' && location.pathname === '/' ? 'text-white' : 'text-white/50 hover:text-white'}`}>About</a>
                 <button onClick={() => setShowResume(true)} className="text-sm font-body font-medium text-white/50 hover:text-white transition-colors cursor-pointer">Resume</button>
-                <a href="https://blog.sahayasavari.me" className="text-sm font-body font-medium text-white/50 hover:text-white transition-colors cursor-pointer">Blog</a>
+                <a href="#blog" onClick={(e) => handleNavClick(e, '#blog')} className={`text-sm font-body font-medium transition-colors ${activeSection === 'blog' && location.pathname === '/' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Blog</a>
                 <a href="#skills" onClick={(e) => handleNavClick(e, '#skills')} className={`text-sm font-body font-medium transition-colors ${activeSection === 'skills' && location.pathname === '/' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Skills</a>
                 <a href="#projects" onClick={(e) => handleNavClick(e, '#projects')} className={`text-sm font-body font-medium transition-colors ${activeSection === 'projects' && location.pathname === '/' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Projects</a>
                 <a href="#certifications" onClick={(e) => handleNavClick(e, '#certifications')} className={`text-sm font-body font-medium transition-colors ${activeSection === 'certifications' && location.pathname === '/' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Certs</a>
@@ -282,7 +283,7 @@ export default function RootLayout() {
                 <a href="#home" onClick={(e) => handleNavClick(e, '#home')} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Home</a>
                 <a href="#about" onClick={(e) => handleNavClick(e, '#about')} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">About</a>
                 <button onClick={() => { setShowResume(true); setMobileMenuOpen(false); }} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors cursor-pointer min-h-[48px]">Resume</button>
-                <a href="https://blog.sahayasavari.me" onClick={() => setMobileMenuOpen(false)} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors cursor-pointer min-h-[48px] flex items-center">Blog</a>
+                <a href="#blog" onClick={(e) => handleNavClick(e, '#blog')} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Blog</a>
                 <a href="#skills" onClick={(e) => handleNavClick(e, '#skills')} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Skills</a>
                 <a href="#projects" onClick={(e) => handleNavClick(e, '#projects')} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Projects</a>
                 <a href="#certifications" onClick={(e) => handleNavClick(e, '#certifications')} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Certs</a>

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { m as motion } from 'framer-motion';
 import { Search, FileText, BookOpen, ExternalLink, FolderGit, Command, CornerDownLeft } from 'lucide-react';
-import { PROJECTS } from '../data';
+import { PROJECTS, BLOG_URL } from '../data';
 import { lockScroll, unlockScroll } from '../utils/scrollLock';
 
 import { useNavigate } from 'react-router-dom';
@@ -61,7 +61,11 @@ export default function CommandPalette({ onClose, onOpenResume }: CommandPalette
       category: 'Actions',
       icon: BookOpen,
       action: () => {
-        window.location.href = 'https://blog.sahayasavari.me';
+        if (window.location.pathname !== '/') {
+          navigate('/#blog');
+        } else {
+          window.location.hash = 'blog';
+        }
         onClose();
       }
     });

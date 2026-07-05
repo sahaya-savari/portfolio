@@ -1,6 +1,48 @@
 // Pure data module — no React or component dependencies.
 // Icon identifiers are resolved at render time in CertificationsSection.
 
+export const BLOG_URL = 'https://blog.sahayasavari.me';
+
+export interface Article {
+  title: string;
+  excerpt: string;
+  date: string;
+  readingTime: number;
+  image: string;
+  url: string;
+  category: string;
+}
+
+export const ARTICLES: Article[] = [
+  {
+    title: "Getting Started with React",
+    excerpt: "A comprehensive guide to building modern web applications with React, covering components, hooks, and best practices.",
+    date: "January 15, 2026",
+    readingTime: 2,
+    image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&h=600&fit=crop",
+    url: `${BLOG_URL}/blog/getting-started-with-react`,
+    category: "React",
+  },
+  {
+    title: "Web Performance Optimization",
+    excerpt: "Techniques and strategies to make your web applications faster and more efficient.",
+    date: "December 15, 2025",
+    readingTime: 1,
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=600&fit=crop",
+    url: `${BLOG_URL}/blog/web-performance-optimization`,
+    category: "React",
+  },
+  {
+    title: "Python for Data Science",
+    excerpt: "Exploring Python libraries and tools essential for data science and analysis.",
+    date: "December 28, 2025",
+    readingTime: 2,
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+    url: `${BLOG_URL}/blog/python-for-data-science`,
+    category: "Python",
+  }
+];
+
 export interface ProjectMetric {
   label: string;
   value: string;
