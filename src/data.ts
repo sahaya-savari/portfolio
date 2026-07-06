@@ -83,12 +83,12 @@ export const PROJECTS: Project[] = [
   { 
     title: "Daily Spark", 
     tag: "Productivity App", 
-    desc: "A daily motivation and habit-tracking application that helps users build positive routines with AI-powered personalized suggestions.", 
+    desc: "A daily motivation and habit-tracking application built with Python, Firebase, React, and TypeScript that helps users build positive routines with AI-powered personalized suggestions.", 
     stack: "Python · AI · Mobile", 
     link: "https://daily-spark-app-da74b.web.app",
     status: "Live",
     github: "https://github.com/sahaya-savari/daily-spark",
-    longDesc: "Daily Spark is a comprehensive productivity ecosystem designed to overcome procrastination through intelligent intervention. By tracking daily habits and analyzing user behavior patterns, the AI engine generates personalized daily routines and motivational nudges tailored to the user's optimal performance windows.",
+    longDesc: "Daily Spark is a comprehensive productivity ecosystem designed to overcome procrastination through intelligent intervention. By tracking daily habits and analyzing user behavior patterns, the Artificial Intelligence engine generates personalized daily routines and motivational nudges tailored to the user's optimal performance windows.",
     metrics: [
       { label: "Core Tech", value: "Python, Firebase" },
       { label: "Focus", value: "Behavioral AI" },
@@ -115,7 +115,7 @@ export const PROJECTS: Project[] = [
   { 
     title: "PrepMind AI", 
     tag: "AI Education", 
-    desc: "An intelligent study companion that generates practice questions, summaries, and personalized learning paths using AI.", 
+    desc: "An Artificial Intelligence study companion that uses Python LLM pipelines, React, and prompt engineering to generate practice questions, summaries, and personalized learning paths.", 
     stack: "Python · LLMs · React", 
     link: "",
     status: "In Development",
@@ -147,9 +147,9 @@ export const PROJECTS: Project[] = [
   { 
     title: "Portfolio Website", 
     tag: "Web Development", 
-    desc: "A modern, animated portfolio website built with React, TypeScript, and Framer Motion featuring glassmorphism design, HLS video streaming, and lazy-loaded sections.", 
+    desc: "A modern AI Engineer portfolio website built with React, TypeScript, Vite, and Framer Motion featuring glassmorphism design, HLS video streaming, and lazy-loaded sections.", 
     stack: "React · TypeScript · Vite", 
-    link: "https://www.sahayasavari.me",
+    link: "https://sahayasavari.me",
     status: "Live",
     github: "https://github.com/sahaya-savari/portfolio",
     longDesc: "A masterclass in modern frontend development, this portfolio leverages Framer Motion for liquid-smooth animations and hardware-accelerated transitions. It features a custom glassmorphism design system, responsive grids, and an isolated state architecture for maximum performance.",
@@ -159,7 +159,7 @@ export const PROJECTS: Project[] = [
       { label: "Design", value: "Glassmorphism" }
     ],
     features: ["Custom UI Engine", "Hardware Accelerated Motion", "Responsive Layout Architecture", "HLS Video Streaming"],
-    problem: "Standard portfolios fail to communicate the technical depth and design sensibility of a modern AI/Backend Developer.",
+    problem: "Standard portfolios fail to communicate the technical depth and design sensibility of a modern AI Engineer, Python Developer, and Full Stack Developer.",
     architecture: "Single Page Application built with React, Vite, and Tailwind CSS. Framer Motion drives all transitions. No traditional router — all sections are in-page with lazy intersection loading to preserve 'liquid' scroll state.",
     techStack: ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vite"],
     challenges: "Achieving 60fps glassmorphism and spring animations without causing layout thrashing on mobile devices.",

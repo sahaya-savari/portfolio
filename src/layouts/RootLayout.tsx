@@ -2,7 +2,6 @@ import React, { useState, useCallback, useEffect, useRef, lazy, Suspense } from 
 import { m as motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 import { ArrowUpRight, Menu, X, Search, Sparkles } from 'lucide-react';
 import { Outlet, useNavigate, useLocation, Link } from 'react-router-dom';
-import { BLOG_URL } from '../data';
 
 import ClickSpark from '../components/ClickSpark';
 import ErrorBoundary from '../components/ErrorBoundary';
@@ -19,6 +18,7 @@ export default function RootLayout() {
   const [showCommandPalette, setShowCommandPalette] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [enableTargetCursor, setEnableTargetCursor] = useState(false);
 
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const mobileMenuToggleRef = useRef<HTMLButtonElement>(null);
@@ -73,6 +73,14 @@ export default function RootLayout() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  useEffect(() => {
+    const query = window.matchMedia('(pointer: fine) and (hover: hover)');
+    const syncCursorCapability = () => setEnableTargetCursor(query.matches);
+    syncCursorCapability();
+    query.addEventListener('change', syncCursorCapability);
+    return () => query.removeEventListener('change', syncCursorCapability);
   }, []);
 
   // Fade out static skeleton after hydration
@@ -180,17 +188,19 @@ export default function RootLayout() {
 
   return (
     <ClickSpark sparkColor='#FFFFFF' sparkSize={8} sparkRadius={14} sparkCount={8} duration={350}>
-      <Suspense fallback={null}>
-        <TargetCursor
-          targetSelector=".cursor-target"
-          spinDuration={2}
-          hideDefaultCursor={false}
-          parallaxOn
-          hoverDuration={0.2}
-          cursorColor="#FFFFFF"
-          cursorColorOnTarget="#C084FC"
-        />
-      </Suspense>
+      {enableTargetCursor && (
+        <Suspense fallback={null}>
+          <TargetCursor
+            targetSelector=".cursor-target"
+            spinDuration={2}
+            hideDefaultCursor={false}
+            parallaxOn
+            hoverDuration={0.2}
+            cursorColor="#FFFFFF"
+            cursorColorOnTarget="#C084FC"
+          />
+        </Suspense>
+      )}
       <div className="bg-transparent min-h-screen text-white selection:bg-white selection:text-black overflow-x-hidden">
         
         {/* Scroll Progress Indicator */}

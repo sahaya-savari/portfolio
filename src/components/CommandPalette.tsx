@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { m as motion } from 'framer-motion';
 import { Search, FileText, BookOpen, ExternalLink, FolderGit, Command, CornerDownLeft } from 'lucide-react';
-import { PROJECTS, BLOG_URL } from '../data';
+import { PROJECTS } from '../data';
 import { lockScroll, unlockScroll } from '../utils/scrollLock';
 
 import { useNavigate } from 'react-router-dom';
@@ -96,10 +96,8 @@ export default function CommandPalette({ onClose, onOpenResume }: CommandPalette
       { title: 'Contact / Socials', url: '#contact', sub: 'Scroll to Email and Location details' },
       { title: 'GitHub Profile', url: 'https://github.com/sahaya-savari', sub: 'Open GitHub in new tab' },
       { title: 'LinkedIn Profile', url: 'https://www.linkedin.com/in/sahaya-savari', sub: 'Open LinkedIn profile in new tab' },
-      { title: 'Instagram Profile', url: 'https://www.instagram.com/_itz_me_santhoz/', sub: 'Open Instagram in new tab' },
-      { title: 'X (Twitter) Profile', url: 'https://x.com/_Itz_me_santhoz', sub: 'Open X (Twitter) in new tab' },
       { title: 'LeetCode Profile', url: 'https://leetcode.com/u/sahaya_savari/', sub: 'Open LeetCode in new tab' },
-      { title: 'Portfolio Website', url: 'https://www.sahayasavari.me', sub: 'www.sahayasavari.me' },
+      { title: 'Portfolio Website', url: 'https://sahayasavari.me', sub: 'sahayasavari.me' },
       { title: 'Email Contact', url: 'mailto:sahayasavari.info@gmail.com', sub: 'sahayasavari.info@gmail.com' }
     ];
 

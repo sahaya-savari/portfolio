@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Send, Sparkles, User, Bot } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
+import { SITE_URL } from '../seo';
 
 type Message = {
   id: string;
@@ -55,10 +56,10 @@ export default function AskSahayaAI() {
   const generateMockResponse = (query: string) => {
     const lowerQuery = query.toLowerCase();
     if (lowerQuery.includes('skills') || lowerQuery.includes('tech') || lowerQuery.includes('stack')) {
-      return "Sahaya is a Full-Stack Engineer primarily focused on React, TypeScript, and Python. He's also experienced with Vite, Tailwind CSS, FastAPI, and Firebase. You can check out his full skills section on the home page!";
+      return "Sahaya is an AI Engineer and Full Stack Developer focused on Artificial Intelligence, Machine Learning, Python, React, TypeScript, Firebase, Vite, Tailwind CSS, and FastAPI. You can check out his full skills section on the home page!";
     }
     if (lowerQuery.includes('experience') || lowerQuery.includes('work') || lowerQuery.includes('job')) {
-      return "Sahaya is currently a B.E. Computer Science student at Saveetha Engineering College (2022-2026). He has built several production-ready applications, including PrepMind AI and Daily Spark, demonstrating strong capabilities in both frontend and backend development.";
+      return "Sahaya is currently an M.Sc. Artificial Intelligence student at St. Joseph's College (Autonomous), Trichy. He has built production-style portfolio projects including PrepMind AI and Daily Spark, demonstrating Machine Learning, Python Developer, frontend, and backend capabilities.";
     }
     if (lowerQuery.includes('contact') || lowerQuery.includes('hire') || lowerQuery.includes('email')) {
       return "You can reach Sahaya via email at sahayasavari.f@gmail.com, or connect with him on LinkedIn (linkedin.com/in/sahayasavari). He's currently available for internships and entry-level roles!";
@@ -69,8 +70,9 @@ export default function AskSahayaAI() {
   return (
     <>
       <SEOHead 
-        title="Ask Sahaya AI | Interactive Assistant" 
-        description="Chat with Sahaya Savari F's AI assistant to learn more about his background, projects, and skills." 
+        title="Ask Sahaya AI | Portfolio Assistant for AI Engineering"
+        description="Chat with Sahaya Savari F's portfolio assistant to learn about his AI Engineer skills, Machine Learning projects, Python, React, TypeScript, and Firebase work."
+        url={`${SITE_URL}/ai`}
       />
       <div className="pt-32 pb-24 px-6 max-w-screen-md mx-auto min-h-screen flex flex-col bg-black text-white selection:bg-white selection:text-black">
         <Link to="/" className="inline-flex items-center gap-2 text-white/50 hover:text-white mb-8 transition-colors font-body text-sm self-start">

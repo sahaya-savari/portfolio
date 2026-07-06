@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Download, Mail, ExternalLink } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
+import { SITE_URL } from '../seo';
 
 export default function RecruiterMode() {
   useEffect(() => {
@@ -11,8 +12,9 @@ export default function RecruiterMode() {
   return (
     <>
       <SEOHead 
-        title="Sahaya Savari F | Recruiter Mode" 
-        description="A scannable, ATS-friendly summary of Sahaya Savari F's skills, experience, and projects for recruiters and hiring managers." 
+        title="Recruiter Summary | Sahaya Savari F AI Engineer Portfolio"
+        description="ATS-friendly recruiter summary for Sahaya Savari F, an AI Engineer, Python Developer, Full Stack Developer, and M.Sc. Artificial Intelligence student."
+        url={`${SITE_URL}/recruiter`}
       />
       <div className="pt-32 pb-24 px-6 max-w-screen-md mx-auto min-h-screen bg-black text-white selection:bg-white selection:text-black">
         <Link to="/" className="inline-flex items-center gap-2 text-white/50 hover:text-white mb-12 transition-colors font-body text-sm no-print">
@@ -23,7 +25,7 @@ export default function RecruiterMode() {
         <header className="mb-12 border-b border-white/10 pb-8 flex justify-between items-start">
           <div>
             <h1 className="text-4xl font-heading italic tracking-tight mb-2">Sahaya Savari F</h1>
-            <p className="text-xl font-body text-white/70 mb-4">Software Engineer / AI Enthusiast</p>
+            <p className="text-xl font-body text-white/70 mb-4">AI Engineer / Full Stack Developer</p>
             <div className="flex flex-wrap gap-4 text-sm font-body text-white/50">
               <span className="flex items-center gap-1.5"><Mail className="w-4 h-4" /> sahayasavari.f@gmail.com</span>
               <span className="flex items-center gap-1.5"><ExternalLink className="w-4 h-4" /> github.com/sahaya-savari</span>
@@ -42,7 +44,7 @@ export default function RecruiterMode() {
         <section className="mb-12">
           <h2 className="text-sm font-body font-bold text-white/40 uppercase tracking-widest mb-4">Professional Summary</h2>
           <p className="text-base font-body leading-relaxed text-white/80">
-            A passionate Software Engineering student with strong foundations in full-stack development, Python, and scalable web architectures. Proven ability to build performant, accessible, and user-centric applications using modern technologies like React, TypeScript, and FastAPI. Actively seeking internship or entry-level opportunities to contribute to high-impact engineering teams.
+            An M.Sc. Artificial Intelligence student with strong foundations in Machine Learning, Python development, full-stack development, and scalable web architectures. Proven ability to build performant, accessible, and user-centric applications using React, TypeScript, Firebase, and FastAPI. Actively seeking AI/ML, Python Developer, or Full Stack Developer internship opportunities for Summer/Fall 2026.
           </p>
         </section>
 
@@ -61,7 +63,7 @@ export default function RecruiterMode() {
             <div>
               <strong className="block text-white mb-2">Frontend</strong>
               <ul className="space-y-1 text-white/60">
-                <li>React.js (v18)</li>
+                <li>React</li>
                 <li>Tailwind CSS</li>
                 <li>Framer Motion</li>
                 <li>Vite</li>
@@ -107,10 +109,10 @@ export default function RecruiterMode() {
           <h2 className="text-sm font-body font-bold text-white/40 uppercase tracking-widest mb-4">Education</h2>
           <div>
             <div className="flex justify-between items-baseline mb-1">
-              <h3 className="text-lg font-bold font-body text-white">B.E. Computer Science and Engineering</h3>
-              <span className="text-sm font-body text-white/50">2022 – 2026</span>
+              <h3 className="text-lg font-bold font-body text-white">M.Sc. Artificial Intelligence</h3>
+              <span className="text-sm font-body text-white/50">Current</span>
             </div>
-            <p className="text-sm font-body text-white/70">Saveetha Engineering College, Chennai</p>
+            <p className="text-sm font-body text-white/70">St. Joseph's College (Autonomous), Trichy</p>
           </div>
         </section>
 

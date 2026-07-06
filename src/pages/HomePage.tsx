@@ -1,6 +1,7 @@
 import { lazy, useMemo } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import SEOHead from '../components/SEOHead';
+import { DEFAULT_DESCRIPTION, DEFAULT_TITLE, collegeSchema, personSchema, websiteSchema } from '../seo';
 
 // Import Sections
 import HeroSection from '../sections/HeroSection';
@@ -20,25 +21,21 @@ export default function HomePage() {
     setShowCommandPalette: (show: boolean) => void;
   }>();
 
-  const personSchema = useMemo(() => ({
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Sahaya Savari F",
-    "url": "https://sahayasavari.me",
-    "jobTitle": "Software Engineer",
-    "alumniOf": "Saveetha Engineering College",
-    "sameAs": [
-      "https://github.com/sahaya-savari",
-      "https://linkedin.com/in/sahayasavari"
-    ]
+  const homeSchema = useMemo(() => ({
+    '@context': 'https://schema.org',
+    '@graph': [
+      personSchema,
+      websiteSchema,
+      collegeSchema,
+    ],
   }), []);
 
   return (
     <>
       <SEOHead 
-        title="Sahaya Savari F | Software Engineer" 
-        description="Portfolio of Sahaya Savari F, a passionate Software Engineering student and full-stack developer specializing in React, TypeScript, and Python."
-        schema={personSchema}
+        title={DEFAULT_TITLE}
+        description={DEFAULT_DESCRIPTION}
+        schema={homeSchema}
       />
       <HeroSection setShowResume={setShowResume} />
       <div className="section-divider" aria-hidden="true" />

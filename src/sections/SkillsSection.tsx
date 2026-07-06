@@ -12,7 +12,7 @@ const SkillsSection = memo(() => {
   const [activePillar, setActivePillar] = useState<'Data' | 'AI'>('Data');
 
   return (
-    <section id="skills" aria-label="Skills and capabilities" className="py-16 px-6 relative overflow-hidden">
+    <section aria-label="Skills and capabilities" className="py-16 px-6 relative overflow-hidden">
       <div className="absolute inset-0 z-0 pointer-events-none">
         <Suspense fallback={null}>
           <Galaxy
@@ -31,7 +31,7 @@ const SkillsSection = memo(() => {
         <div className="mb-12">
           <SectionBadge>Capabilities</SectionBadge>
           <h2 className="text-fluid-section-heading font-heading italic text-white tracking-tight leading-[0.9] mb-4">Core Proficiencies <br/> & Technical Pillars.</h2>
-          <p className="text-white/60 font-body font-light text-lg max-w-xl">A structured overview of my technical capabilities across full-stack development and artificial intelligence.</p>
+          <p className="text-white/60 font-body font-light text-lg max-w-xl">A structured overview of my technical capabilities across Artificial Intelligence, Machine Learning, Python development, and full-stack development with React, TypeScript, and Firebase.</p>
         </div>
 
         <div className="mb-16">
@@ -49,11 +49,11 @@ const SkillsSection = memo(() => {
             <SkillAccordion title="Artificial Intelligence" icon={Brain}>
               <ul className="space-y-4">
                 <li className="flex items-start justify-between gap-4 border-b border-white/5 pb-3">
-                  <span>• Machine Learning model development and training.</span>
+                  <span>• Machine Learning model development, training, and evaluation for practical AI workflows.</span>
                   <span className="text-[9px] font-mono uppercase tracking-widest text-blue-400 border border-blue-500/30 bg-blue-500/10 px-1.5 py-0.5 rounded-full shrink-0">Advanced</span>
                 </li>
                 <li className="flex items-start justify-between gap-4 border-b border-white/5 pb-3">
-                  <span>• LLM integration and prompt engineering.</span>
+                  <span>• LLM integration, prompt engineering, and structured response validation.</span>
                   <span className="text-[9px] font-mono uppercase tracking-widest text-blue-400 border border-blue-500/30 bg-blue-500/10 px-1.5 py-0.5 rounded-full shrink-0">Advanced</span>
                 </li>
                 <li className="flex items-start justify-between gap-4 border-b border-white/5 pb-3">
@@ -73,7 +73,7 @@ const SkillsSection = memo(() => {
             <SkillAccordion title="Python Development" icon={Code}>
               <ul className="space-y-4">
                 <li className="flex items-start justify-between gap-4 border-b border-white/5 pb-3">
-                  <span>• Backend development with Flask and FastAPI.</span>
+                  <span>• Python Developer workflows for backend development with Flask and FastAPI.</span>
                   <span className="text-[9px] font-mono uppercase tracking-widest text-blue-400 border border-blue-500/30 bg-blue-500/10 px-1.5 py-0.5 rounded-full shrink-0">Advanced</span>
                 </li>
                 <li className="flex items-start justify-between gap-4 border-b border-white/5 pb-3">
@@ -89,7 +89,7 @@ const SkillsSection = memo(() => {
             <SkillAccordion title="Web Development" icon={Terminal}>
               <ul className="space-y-4">
                 <li className="flex items-start justify-between gap-4 border-b border-white/5 pb-3">
-                  <span>• React and TypeScript for frontend development.</span>
+                  <span>• React and TypeScript for accessible, responsive frontend development.</span>
                   <span className="text-[9px] font-mono uppercase tracking-widest text-purple-400 border border-purple-500/30 bg-purple-500/10 px-1.5 py-0.5 rounded-full shrink-0">Intermediate</span>
                 </li>
                 <li className="flex items-start justify-between gap-4 border-b border-white/5 pb-3">
@@ -97,7 +97,7 @@ const SkillsSection = memo(() => {
                   <span className="text-[9px] font-mono uppercase tracking-widest text-blue-400 border border-blue-500/30 bg-blue-500/10 px-1.5 py-0.5 rounded-full shrink-0">Advanced</span>
                 </li>
                 <li className="flex items-start justify-between gap-4">
-                  <span>• Full-stack application architecture.</span>
+                  <span>• Full Stack Developer architecture across client state, APIs, Firebase, and deployment.</span>
                   <span className="text-[9px] font-mono uppercase tracking-widest text-purple-400 border border-purple-500/30 bg-purple-500/10 px-1.5 py-0.5 rounded-full shrink-0">Intermediate</span>
                 </li>
               </ul>
@@ -147,7 +147,7 @@ const SkillsSection = memo(() => {
                   >
                     <h3 className="font-heading italic text-5xl md:text-6xl text-white mb-6 md:mb-8">Code meets logic.</h3>
                     <p className="text-white/50 font-body font-light text-base md:text-lg leading-relaxed max-w-md mx-auto">
-                      Building robust applications with Python, React, and modern web technologies that deliver clean, reliable experiences.
+                      Building robust portfolio and production-style applications with Python, React, TypeScript, Firebase, and modern web technologies that deliver clean, reliable experiences.
                     </p>
                     <div className="mt-8 md:mt-12 flex flex-wrap justify-center gap-3">
                       {['Python', 'React', 'TypeScript', 'Flask', 'SQL'].map(t => (
@@ -166,7 +166,7 @@ const SkillsSection = memo(() => {
                   >
                     <h3 className="font-heading italic text-5xl md:text-6xl text-white mb-6 md:mb-8">Intelligence by design.</h3>
                     <p className="text-white/50 font-body font-light text-base md:text-lg leading-relaxed max-w-md mx-auto">
-                      Developing AI and ML solutions that learn, adapt, and solve real-world problems with precision and purpose.
+                      Developing Artificial Intelligence and Machine Learning solutions that learn, adapt, and solve real-world problems with precision and purpose.
                     </p>
                     <div className="mt-8 md:mt-12 flex flex-wrap justify-center gap-3">
                       {['TensorFlow', 'PyTorch', 'NLP', 'LLMs', 'Computer Vision'].map(t => (

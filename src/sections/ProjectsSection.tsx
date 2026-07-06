@@ -370,7 +370,7 @@ const ProjectsSection = memo(() => {
 
   return (
     <>
-      <section id="projects" aria-label="Selected projects" className="py-16 px-6 relative overflow-hidden projects-section-bg">
+      <section aria-label="Selected projects" className="py-16 px-6 relative overflow-hidden projects-section-bg">
         <div className="max-w-screen-xl mx-auto relative z-10">
           
           {/* Header Row */}

@@ -30,9 +30,14 @@ export default function IntersectionLazy({ children, fallbackHeight = '100vh' }:
   useEffect(() => {
     if (hasIntersected) return;
 
+    const idleLoadTimer = window.setTimeout(() => {
+      setHasIntersected(true);
+    }, 1800);
+
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
+          window.clearTimeout(idleLoadTimer);
           setHasIntersected(true);
           observer.disconnect();
         }
@@ -41,7 +46,10 @@ export default function IntersectionLazy({ children, fallbackHeight = '100vh' }:
     );
 
     if (wrapperRef.current) observer.observe(wrapperRef.current);
-    return () => observer.disconnect();
+    return () => {
+      window.clearTimeout(idleLoadTimer);
+      observer.disconnect();
+    };
   }, [hasIntersected]);
 
   // Once content is mounted, use ResizeObserver to detect when height has stabilised.

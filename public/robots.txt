@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.sahayasavari.me/sitemap.xml
+Sitemap: https://sahayasavari.me/sitemap.xml

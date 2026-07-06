@@ -16,6 +16,7 @@ const ContactSection = memo(({ setShowCommandPalette }: ContactSectionProps) => 
         <HlsVideo 
           src="https://stream.mux.com/8wrHPCX2dC3msyYU9ObwqNdm00u3ViXvOSHUMRYSEe5Q.m3u8" 
           className="w-full h-full object-cover opacity-50"
+          poster="https://image.mux.com/8wrHPCX2dC3msyYU9ObwqNdm00u3ViXvOSHUMRYSEe5Q/thumbnail.webp?time=0&width=960"
           width={1920}
           height={1080}
         />
@@ -24,7 +25,7 @@ const ContactSection = memo(({ setShowCommandPalette }: ContactSectionProps) => 
       <div className="relative z-10 max-w-screen-xl mx-auto">
         <div className="text-center mb-16 md:mb-24 lg:mb-32">
           <h2 className="text-fluid-contact-heading font-heading italic text-white tracking-tight leading-[0.8] mb-8 md:mb-12">Let's Build <br/> Something.</h2>
-          <p className="text-white/60 font-body font-light text-xl max-w-2xl mx-auto mb-10 md:mb-16">I'm open to new projects, internships, and collaborations — especially where AI and machine learning can create real-world impact.</p>
+          <p className="text-white/60 font-body font-light text-xl max-w-2xl mx-auto mb-10 md:mb-16">I'm open to new projects, internships, and collaborations where AI, Machine Learning, Python, React, TypeScript, Firebase, and full-stack product thinking can create real-world impact.</p>
           <div className="flex flex-wrap justify-center gap-6">
             <button onClick={() => { navigator.clipboard.writeText('sahayasavari.info@gmail.com'); setCopied(true); setTimeout(() => setCopied(false), 2000); }} className="liquid-glass-strong px-8 py-4 rounded-full font-body font-medium text-lg flex items-center gap-3 hover:scale-105 transition-transform group cursor-pointer min-h-[48px]" aria-label="Copy email address to clipboard">
               {copied ? <Check className="w-5 h-5 text-green-400" aria-hidden="true" /> : <Mail className="w-5 h-5 group-hover:rotate-12 transition-transform" aria-hidden="true" />} 

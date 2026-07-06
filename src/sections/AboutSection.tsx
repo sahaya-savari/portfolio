@@ -15,6 +15,7 @@ const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
         <HlsVideo 
           src="https://stream.mux.com/9JXDljEVWYwWu01PUkAemafDugK89o01BR6zqJ3aS9u00A.m3u8" 
           className="w-full h-full object-cover opacity-30"
+          poster="https://image.mux.com/9JXDljEVWYwWu01PUkAemafDugK89o01BR6zqJ3aS9u00A/thumbnail.webp?time=0&width=960"
           width={1920}
           height={1080}
         />
@@ -25,8 +26,9 @@ const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
           <SectionBadge>About Me</SectionBadge>
           <h2 className="text-fluid-section-heading font-heading italic text-white tracking-tight leading-[0.9] mb-12">Building intelligent <br/> AI-powered solutions.</h2>
           <div className="space-y-8 text-white/60 font-body font-light text-lg leading-relaxed max-w-xl">
-            <p>I am an AI Developer pursuing M.Sc in Artificial Intelligence at St. Joseph's College (Autonomous), Trichy, focused on building intelligent systems and machine learning solutions.</p>
-            <p>I design and develop AI-powered applications that solve real problems, from smart study tools to daily productivity apps, with a passion for clean code and user-centric design.</p>
+            <p>I am an AI Engineer and M.Sc. Artificial Intelligence student at St. Joseph's College (Autonomous), Trichy, focused on building practical Machine Learning systems, LLM workflows, and data-driven software that can move from prototype to production.</p>
+            <p>My portfolio brings together Python Developer experience, Full Stack Developer execution, and a product-minded approach to React, TypeScript, and Firebase applications. I like turning unclear problems into reliable interfaces, clean APIs, measurable outputs, and tools that people can actually use.</p>
+            <p>Current interests include prompt engineering, context-injected AI pipelines, model evaluation, analytics dashboards, and responsive web experiences for education, productivity, and recruiter-facing workflows.</p>
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -35,11 +37,11 @@ const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div>
                   <h4 className="text-[10px] uppercase tracking-widest text-white/60 mb-2">What I Do</h4>
-                  <p className="text-sm font-body text-white/80 font-light">Build AI-powered full-stack apps and machine learning pipelines.</p>
+                  <p className="text-sm font-body text-white/80 font-light">Build AI-powered full-stack apps, Machine Learning pipelines, and portfolio projects that connect models to usable products.</p>
                 </div>
                 <div>
                   <h4 className="text-[10px] uppercase tracking-widest text-white/60 mb-2">What I Know</h4>
-                  <p className="text-sm font-body text-white/80 font-light">Python, React, TypeScript, Prompt Engineering, SQL, Firebase.</p>
+                  <p className="text-sm font-body text-white/80 font-light">Python, React, TypeScript, Prompt Engineering, SQL, Firebase, and data analysis.</p>
                 </div>
                 <div>
                   <h4 className="text-[10px] uppercase tracking-widest text-white/60 mb-2">What I'm Learning</h4>
@@ -47,7 +49,7 @@ const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
                 </div>
                 <div>
                   <h4 className="text-[10px] uppercase tracking-widest text-white/60 mb-2">What I'm Looking For</h4>
-                  <p className="text-sm font-body text-white/80 font-light">Summer/Fall 2026 AI/ML or Software Engineering Internships.</p>
+                  <p className="text-sm font-body text-white/80 font-light">Summer/Fall 2026 AI/ML, Python Developer, or Full Stack Developer internships.</p>
                 </div>
              </div>
           </div>
@@ -78,7 +80,7 @@ const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
                   AI, ML, & Data Engineering Internships
                 </h5>
                 <p className="text-white/60 font-body font-light text-sm leading-relaxed">
-                  Looking for summer/fall 2026 co-ops or internship roles focused on machine learning pipelines, LLM prompt engineering, and intelligent web applications.
+                  Looking for summer/fall 2026 co-ops or internship roles focused on Artificial Intelligence, machine learning pipelines, LLM prompt engineering, and intelligent web applications.
                 </p>
                 
                 <div className="grid grid-cols-2 gap-4 text-xs font-mono text-white/50 border-t border-white/10 pt-4">

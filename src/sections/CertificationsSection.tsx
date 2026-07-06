@@ -19,12 +19,12 @@ const CertificationsSection = memo(() => {
   const getPanelId = (title: string) => `cert-panel-${title.toLowerCase().replace(/\s+/g, '-')}`;
 
   return (
-    <section id="certificates" aria-label="Certifications and courses" className="py-16 px-6 relative">
+    <section aria-label="Certifications and courses" className="py-16 px-6 relative">
       <div className="max-w-screen-xl mx-auto">
         <div className="mb-12 text-center">
           <SectionBadge>Learning Journey</SectionBadge>
           <h2 className="text-fluid-section-heading font-heading italic text-white tracking-tight leading-[0.9]">Certificates &amp; Courses</h2>
-          <p className="text-white/50 font-body font-light mt-6 max-w-xl mx-auto">Focused on building practical, project-ready skills in AI, machine learning, and software development.</p>
+          <p className="text-white/50 font-body font-light mt-6 max-w-xl mx-auto">Focused on building practical, project-ready skills in Artificial Intelligence, Machine Learning, Python development, data analytics, and software development.</p>
         </div>
 
         {/* FEATURED CREDENTIALS SUBSECTION */}
@@ -151,7 +151,7 @@ const CertificationsSection = memo(() => {
               { year: '2023', title: 'Web Development', desc: 'Learned full-stack architecture, React, and Firebase to bring ideas to the browser.' },
               { year: '2024', title: 'Data Analytics', desc: 'Completed IBM Data Analyst Specialization, mastering SQL, Pandas, and visualization.' },
               { year: '2024', title: 'Machine Learning', desc: 'Dived into Kaggle, TensorFlow, and Scikit-learn to build predictive models.' },
-              { year: '2025', title: 'Artificial Intelligence', desc: 'Pursuing M.Sc AI. Focusing on LLMs, Prompt Engineering, and intelligent pipelines.' }
+              { year: '2025', title: 'Artificial Intelligence', desc: 'Pursuing M.Sc AI while focusing on LLMs, Prompt Engineering, Machine Learning evaluation, and intelligent pipelines.' }
             ].map((item, index) => (
               <div key={index} className={`relative flex items-center mb-8 last:mb-0 ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
                 <div className="hidden md:block w-1/2"></div>

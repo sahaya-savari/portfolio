@@ -13,7 +13,7 @@ const EVIDENCE_DATA: SkillEvidence[] = [
     skill: "Python",
     project: "PrepMind AI & Daily Spark",
     certification: "IBM Data Analyst Specialization",
-    experience: "Generative AI Developer projects"
+    experience: "Generative AI Engineer projects"
   },
   {
     skill: "AI/ML",
@@ -37,13 +37,13 @@ const EVIDENCE_DATA: SkillEvidence[] = [
     skill: "React",
     project: "PrepMind AI & Portfolio Site",
     certification: "Web Dev and Software Eng",
-    experience: "Generative AI Developer projects"
+    experience: "Generative AI Engineer projects"
   },
   {
     skill: "Firebase",
     project: "Daily Spark",
     certification: "Web Dev and Software Eng",
-    experience: "Generative AI Developer projects"
+    experience: "Generative AI Engineer projects"
   },
   {
     skill: "Git",

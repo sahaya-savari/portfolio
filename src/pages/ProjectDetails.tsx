@@ -3,6 +3,7 @@ import { useParams, Link, Navigate } from 'react-router-dom';
 import { ArrowLeft, ExternalLink, Github } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import { CASE_STUDIES } from '../data/caseStudies';
+import { SITE_URL } from '../seo';
 
 export default function ProjectDetails() {
   const { projectId } = useParams();
@@ -35,8 +36,9 @@ export default function ProjectDetails() {
   return (
     <>
       <SEOHead 
-        title={`${project.title} | Case Study`} 
-        description={project.overview}
+        title={`${project.title} | AI Engineer Portfolio Case Study`}
+        description={`${project.overview} Explore the React, TypeScript, Python, Firebase, and Machine Learning decisions behind this portfolio project.`}
+        url={`${SITE_URL}/projects/${project.id}`}
         schema={projectSchema || undefined}
       />
       <div className="pt-32 pb-24 px-6 max-w-screen-md mx-auto min-h-screen bg-black text-white selection:bg-white selection:text-black">

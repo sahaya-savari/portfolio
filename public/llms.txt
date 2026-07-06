@@ -1,10 +1,10 @@
 # Sahaya Savari F
 
-> AI Developer & M.Sc Artificial Intelligence Student
+> AI Engineer, Full Stack Developer & M.Sc. Artificial Intelligence Student
 
 ## About
 
-Sahaya Savari F is an AI Developer pursuing M.Sc in Artificial Intelligence at St. Joseph's College (Autonomous), Trichy, India. Focused on building intelligent systems, machine learning solutions, and modern full-stack applications.
+Sahaya Savari F is an AI Engineer, Python Developer, and Full Stack Developer pursuing M.Sc. Artificial Intelligence at St. Joseph's College (Autonomous), Trichy, India. Focused on Artificial Intelligence, Machine Learning solutions, React, TypeScript, Firebase, and modern full-stack applications.
 
 ## Skills
 
@@ -31,7 +31,7 @@ Sahaya Savari F is an AI Developer pursuing M.Sc in Artificial Intelligence at S
 - Type: Web Development
 - Stack: React, TypeScript, Tailwind CSS, Framer Motion, Vite
 - Description: A modern, animated portfolio website featuring liquid glass design, hardware-accelerated animations, and responsive layout architecture.
-- Link: [Portfolio](https://www.sahayasavari.me)
+- Link: [Portfolio](https://sahayasavari.me)
 - Source: [GitHub Repo](https://github.com/sahaya-savari/portfolio)
 
 ## Certifications
@@ -50,4 +50,4 @@ Sahaya Savari F is an AI Developer pursuing M.Sc in Artificial Intelligence at S
 - LinkedIn: [Sahaya Savari](https://www.linkedin.com/in/sahaya-savari)
 - GitHub: [sahaya-savari](https://github.com/sahaya-savari)
 - Location: Madurai, Tamil Nadu, India
-- Portfolio: [Sahaya Savari Portfolio](https://www.sahayasavari.me)
+- Portfolio: [Sahaya Savari Portfolio](https://sahayasavari.me)

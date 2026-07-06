@@ -1,4 +1,4 @@
-import { useState, memo } from 'react';
+import { useEffect, useState, memo } from 'react';
 import { m as motion } from 'framer-motion';
 import { Play, ArrowUpRight } from 'lucide-react';
 import RotatingText from '../components/RotatingText';
@@ -15,6 +15,26 @@ const HERO_POSTER = 'https://image.mux.com/9JXDljEVWYwWu01PUkAemafDugK89o01BR6zq
 
 const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isCompactViewport = window.matchMedia('(max-width: 767px)').matches;
+    const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
+    const connection = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
+    const constrainedConnection = connection?.saveData || /2g/.test(connection?.effectiveType || '');
+
+    if (prefersReducedMotion || constrainedConnection || isCompactViewport || isCoarsePointer) return;
+
+    const loadHeroVideo = () => setShouldLoadVideo(true);
+    const timer = window.setTimeout(loadHeroVideo, 1800);
+    window.addEventListener('load', loadHeroVideo, { once: true });
+
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener('load', loadHeroVideo);
+    };
+  }, []);
 
   return (
     <section id="home" aria-label="Introduction" className="relative min-h-[100dvh] flex flex-col px-6 overflow-hidden bg-transparent">
@@ -30,7 +50,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
            *    because this <video> element with an explicit poster wins immediately.
            */}
           <video
-            src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260307_083826_e938b29f-a43a-41ec-a153-3d4730578ab8.mp4"
+            src={shouldLoadVideo ? 'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260307_083826_e938b29f-a43a-41ec-a153-3d4730578ab8.mp4' : undefined}
             autoPlay
             loop
             muted
@@ -71,7 +91,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
               <span className="font-heading italic text-fluid-hero-role text-white/60">I am an</span>
               <div className="w-[280px] sm:w-auto text-center sm:text-left flex justify-center sm:justify-start">
                 <RotatingText
-                  texts={["M.Sc. AI Student", "Aspiring AI Engineer", "Python Developer", "Data Analyst"]}
+                  texts={["M.Sc. AI Student", "AI Engineer", "Python Developer", "Full Stack Developer"]}
                   mainClassName="px-3 py-1 liquid-glass text-white overflow-hidden rounded-lg font-bold not-italic text-fluid-hero-role inline-flex items-center justify-center"
                   staggerFrom="last"
                   initial={{ y: "100%" }}
@@ -93,7 +113,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
             transition={{ delay: 0.8, duration: 0.8 }}
             className="text-white/60 font-body font-light text-lg md:text-xl max-w-2xl mb-8 md:mb-12 leading-relaxed"
           >
-            M.Sc Artificial Intelligence student building AI-powered applications — from LLM prompt pipelines to full-stack web apps. Open to Summer/Fall 2026 internships.
+            AI Engineer and M.Sc. Artificial Intelligence student building Machine Learning tools, Python automation, and full-stack web apps with React, TypeScript, and Firebase. This Portfolio highlights practical projects for Summer/Fall 2026 internships.
           </motion.p>
 
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.1, duration: 0.8 }} className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4">
@@ -143,7 +163,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
                   </div>
                   <div>
                     <span className="block text-[9px] text-white/30 uppercase tracking-widest mb-1">Target Roles</span>
-                    <span className="text-white/80 font-medium">AI/ML, Python, Full Stack</span>
+                    <span className="text-white/80 font-medium">AI Engineer, Python Developer, Full Stack Developer</span>
                   </div>
                   <div>
                     <span className="block text-[9px] text-white/30 uppercase tracking-widest mb-1">Preference</span>
@@ -154,7 +174,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
                 <div className="pt-2">
                   <span className="block text-[9px] font-body text-white/30 uppercase tracking-widest mb-2">Primary Stack</span>
                   <div className="flex flex-wrap gap-1.5">
-                    {['Python', 'AI/ML (LLMs)', 'SQL', 'React', 'Firebase', 'Data Analytics'].map(skill => (
+                    {['Python', 'Artificial Intelligence', 'Machine Learning', 'React', 'TypeScript', 'Firebase'].map(skill => (
                       <span key={skill} className="px-2.5 py-1 rounded bg-white/[0.04] border border-white/[0.08] text-[10px] font-mono text-white/70">
                         {skill}
                       </span>
