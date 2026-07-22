@@ -85,5 +85,30 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
       'Mastered the Web Audio API for frequency analysis and audio routing.',
       'Learned to balance heavy visual effects with performance accessibility.'
     ]
+  },
+  'portfolio-website': {
+    id: 'portfolio-website',
+    title: 'Portfolio Website',
+    tagline: 'High-Performance SPA Portfolio',
+    overview: 'A masterclass in modern frontend development, this portfolio leverages Framer Motion for liquid-smooth animations and hardware-accelerated transitions. It features a custom glassmorphism design system, responsive grids, and an isolated state architecture for maximum performance.',
+    problem: 'Standard portfolios fail to communicate the technical depth and design sensibility of a modern AI Engineer and Full Stack Developer.',
+    goals: [
+      'Achieve sub-second load times despite heavy animations.',
+      'Implement an accessible, keyboard-navigable SPA architecture.',
+      'Showcase modern React features and Vite optimizations.'
+    ],
+    solution: 'Built a Single Page Application using React and Vite, optimizing chunk size and asset loading. Replaced traditional routing with lazy-loaded section components for immediate perceived performance.',
+    architecture: 'Framer Motion orchestrates page-level transitions and micro-interactions. A custom pixel-canvas engine powers the background effects. HLS is used for optimized video streaming.',
+    techStack: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Vite', 'Firebase Hosting'],
+    challenges: [
+      'Achieving 60fps glassmorphism and spring animations without causing layout thrashing on mobile devices.',
+      'Configuring Vite and Firebase for perfect SEO and canonical routing in a pure SPA.'
+    ],
+    lessons: [
+      'Using absolute DOM offset measurements resolves critical layout bugs in complex Framer Motion tracks.',
+      'Manual Vite chunk splitting and IntersectionObserver-based lazy loading are essential for modern media-heavy web apps.'
+    ],
+    githubUrl: 'https://github.com/sahaya-savari/portfolio',
+    demoUrl: 'https://sahayasavari.me'
   }
 };

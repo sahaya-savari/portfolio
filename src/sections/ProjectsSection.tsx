@@ -1,6 +1,6 @@
 import { useState, memo, useEffect, useRef, useMemo } from 'react';
 import { Github, ArrowUpRight, Search } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { PROJECTS, Project } from '../data';
 import SectionBadge from '../components/ui/SectionBadge';
 import './ProjectsSection.css';
@@ -194,7 +194,9 @@ const FeaturedCard = ({ p, onClick }: { p: Project; onClick: () => void }) => {
               {p.status}
             </div>
           </div>
-          <h3 className="font-heading italic text-4xl md:text-5xl lg:text-6xl text-white mb-6">{p.title}</h3>
+          <Link to={`/projects/${p.id}`} className="focus:outline-none" onClick={(e) => e.stopPropagation()}>
+            <h3 className="font-heading italic text-4xl md:text-5xl lg:text-6xl text-white mb-6 hover:text-white/80 transition-colors">{p.title}</h3>
+          </Link>
           <p className="text-white/70 font-body font-light text-base md:text-lg leading-relaxed mb-8 max-w-xl">{p.desc}</p>
           <div className="flex flex-col sm:flex-row gap-4 text-xs font-body border-l-2 border-white/20 pl-4 py-2">
             <div className="flex items-center gap-2">
@@ -292,7 +294,9 @@ const GridCard = ({ p, onClick }: { p: Project; onClick: () => void }) => {
             </div>
           </div>
         </div>
-        <h3 className="font-heading italic text-3xl text-white mb-4">{p.title}</h3>
+        <Link to={`/projects/${p.id}`} className="focus:outline-none" onClick={(e) => e.stopPropagation()}>
+          <h3 className="font-heading italic text-3xl text-white mb-4 hover:text-white/80 transition-colors">{p.title}</h3>
+        </Link>
         <p className="text-white/70 font-body font-light text-sm leading-relaxed mb-8 flex-grow">{p.desc}</p>
         <div className="flex flex-col gap-2 mt-auto text-xs font-body border-l-2 border-white/20 pl-3 py-1">
           <div className="flex items-center">
@@ -331,8 +335,7 @@ const ProjectsSection = memo(() => {
   const [activeCategory, setActiveCategory] = useState('All');
 
   const handleProjectClick = (p: Project) => {
-    const id = p.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-    navigate(`/projects/${id}`);
+    navigate(`/projects/${p.id}`);
   };
 
   const filteredProjects = useMemo(() => {

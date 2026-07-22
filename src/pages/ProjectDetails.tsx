@@ -4,6 +4,7 @@ import { ArrowLeft, ExternalLink, Github } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import { CASE_STUDIES } from '../data/caseStudies';
 import { SITE_URL } from '../seo';
+import NotFound from './NotFound';
 
 export default function ProjectDetails() {
   const { projectId } = useParams();
@@ -30,7 +31,7 @@ export default function ProjectDetails() {
   }, [projectId]);
 
   if (!project) {
-    return <Navigate to="/#projects" replace />;
+    return <NotFound />;
   }
 
   return (

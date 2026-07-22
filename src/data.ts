@@ -59,6 +59,7 @@ export interface ProjectTheme {
 }
 
 export interface Project {
+  id: string;
   title: string;
   tag: string;
   desc: string;
@@ -81,6 +82,7 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   { 
+    id: "daily-spark",
     title: "Daily Spark", 
     tag: "Productivity App", 
     desc: "A daily motivation and habit-tracking application built with Python, Firebase, React, and TypeScript that helps users build positive routines with AI-powered personalized suggestions.", 
@@ -113,6 +115,7 @@ export const PROJECTS: Project[] = [
     }
   },
   { 
+    id: "prepmind-ai",
     title: "PrepMind AI", 
     tag: "AI Education", 
     desc: "An Artificial Intelligence study companion that uses Python LLM pipelines, React, and prompt engineering to generate practice questions, summaries, and personalized learning paths.", 
@@ -145,6 +148,7 @@ export const PROJECTS: Project[] = [
     }
   },
   { 
+    id: "portfolio-website",
     title: "Portfolio Website", 
     tag: "Web Development", 
     desc: "A modern AI Engineer portfolio website built with React, TypeScript, Vite, and Framer Motion featuring glassmorphism design, HLS video streaming, and lazy-loaded sections.", 
@@ -174,6 +178,38 @@ export const PROJECTS: Project[] = [
       tagText: "#93c5fd",
       iconBg: "rgba(59,130,246,0.15)",
       iconColor: "#93c5fd",
+    }
+  },
+  {
+    id: "neobeat",
+    title: "NeoBeat",
+    tag: "Web Audio",
+    desc: "An experimental web application for discovering independent artists, featuring a brutalist UI and synchronized audio visualizations.",
+    stack: "React · Web Audio API · TS",
+    link: "",
+    status: "Archived",
+    github: "https://github.com/sahaya-savari",
+    longDesc: "NeoBeat is an experimental web application for discovering independent artists, featuring a brutalist UI and synchronized audio visualizations using the Web Audio API.",
+    metrics: [
+      { label: "Core Tech", value: "Web Audio API" },
+      { label: "Focus", value: "Audio Visualization" },
+      { label: "Design", value: "Brutalist" }
+    ],
+    features: ["Real-time Audio Analysis", "Canvas Visualization", "Brutalist Theming"],
+    problem: "Independent artists struggle to stand out on traditional streaming platforms with generic user interfaces.",
+    architecture: "The app streams audio via a custom lightweight player. A centralized AudioContext is shared across components to synchronize visualizations and UI state.",
+    techStack: ["React", "TypeScript", "Web Audio API", "Canvas API", "Framer Motion"],
+    challenges: "Managing AudioContext lifecycle and optimizing canvas rendering to maintain 60fps.",
+    results: "Built a fully functional audio visualizer and player with a unique brutalist aesthetic.",
+    lessonsLearned: "Mastered the Web Audio API for frequency analysis and learned to balance heavy visual effects with performance.",
+    theme: {
+      bg: "linear-gradient(180deg, rgba(220,38,38,0.4) 0%, rgba(15,23,42,0.8) 100%)",
+      border: "rgba(239,68,68,0.3)",
+      glow: "rgba(239,68,68,0.15)",
+      tagBg: "rgba(239,68,68,0.2)",
+      tagText: "#fca5a5",
+      iconBg: "rgba(239,68,68,0.15)",
+      iconColor: "#fca5a5",
     }
   }
 ];
