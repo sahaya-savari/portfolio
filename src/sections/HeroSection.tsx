@@ -2,7 +2,6 @@ import { useEffect, useState, memo } from 'react';
 import { m as motion } from 'framer-motion';
 import { Play, ArrowUpRight } from 'lucide-react';
 import RotatingText from '../components/RotatingText';
-import BlurText from '../components/BlurText';
 import FocusText from '../components/FocusText';
 import { RainbowButton } from '../components/magicui/rainbow-button';
 
@@ -76,7 +75,9 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
             <span className="text-xs font-body font-medium text-white/80">Open to Opportunities · Summer/Fall 2026</span>
           </motion.div>
           <div className="mb-6 md:mb-8">
-            <BlurText as="h1" text="Sahaya Savari F" delay={200} animateBy="words" direction="top" className="text-fluid-hero-title font-heading italic text-white tracking-[-2px] md:tracking-[-4px] leading-[0.8] mb-4" />
+            <h1 className="text-fluid-hero-title font-heading italic text-white tracking-[-2px] md:tracking-[-4px] leading-[0.8] mb-4">
+              Sahaya Savari F
+            </h1>
             {/*
              * ANIMATION FIX: Removed `filter: blur()` from initial/animate.
              * filter:blur is a non-composited operation — it forces CPU repaint every frame.

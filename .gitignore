@@ -38,3 +38,4 @@ lighthouse-report*.json
 scratch_*.json
 *.tmp
 .tmp-*
+temp*.txt
