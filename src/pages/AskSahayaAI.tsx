@@ -62,7 +62,7 @@ export default function AskSahayaAI() {
       return "Sahaya is currently an M.Sc. Artificial Intelligence student at St. Joseph's College (Autonomous), Trichy. He has built production-style portfolio projects including PrepMind AI and Daily Spark, demonstrating Machine Learning, Python Developer, frontend, and backend capabilities.";
     }
     if (lowerQuery.includes('contact') || lowerQuery.includes('hire') || lowerQuery.includes('email')) {
-      return "You can reach Sahaya via email at sahayasavari.f@gmail.com, or connect with him on LinkedIn (linkedin.com/in/sahayasavari). He's currently available for internships and entry-level roles!";
+      return "You can reach Sahaya via email at contact@sahayasavari.me, or connect with him on LinkedIn (linkedin.com/in/sahayasavari). He's currently available for internships and entry-level roles!";
     }
     return "That's an interesting question! While I'm just a simple mock AI right now, Sahaya is actively working on connecting me to a real LLM backend. For now, try asking about his skills, experience, or how to contact him!";
   };

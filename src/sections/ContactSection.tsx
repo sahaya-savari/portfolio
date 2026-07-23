@@ -27,9 +27,9 @@ const ContactSection = memo(({ setShowCommandPalette }: ContactSectionProps) => 
           <h2 className="text-fluid-contact-heading font-heading italic text-white tracking-tight leading-[0.8] mb-8 md:mb-12">Let's Build <br/> Something.</h2>
           <p className="text-white/60 font-body font-light text-xl max-w-2xl mx-auto mb-10 md:mb-16">I'm open to new projects, internships, and collaborations where AI, Machine Learning, Python, React, TypeScript, Firebase, and full-stack product thinking can create real-world impact.</p>
           <div className="flex flex-wrap justify-center gap-6">
-            <button onClick={() => { navigator.clipboard.writeText('sahayasavari.info@gmail.com'); setCopied(true); setTimeout(() => setCopied(false), 2000); }} className="liquid-glass-strong px-8 py-4 rounded-full font-body font-medium text-lg flex items-center gap-3 hover:scale-105 transition-transform group cursor-pointer min-h-[48px]" aria-label="Copy email address to clipboard">
+            <button onClick={() => { navigator.clipboard.writeText('contact@sahayasavari.me'); setCopied(true); setTimeout(() => setCopied(false), 2000); }} className="liquid-glass-strong px-8 py-4 rounded-full font-body font-medium text-lg flex items-center gap-3 hover:scale-105 transition-transform group cursor-pointer min-h-[48px]" aria-label="Copy email address to clipboard">
               {copied ? <Check className="w-5 h-5 text-green-400" aria-hidden="true" /> : <Mail className="w-5 h-5 group-hover:rotate-12 transition-transform" aria-hidden="true" />} 
-              <span aria-hidden="true">{copied ? 'Copied to Clipboard!' : 'sahayasavari.info@gmail.com'}</span>
+              <span aria-hidden="true">{copied ? 'Copied to Clipboard!' : 'contact@sahayasavari.me'}</span>
             </button>
             <span className="sr-only" aria-live="polite">{copied ? 'Email copied to clipboard' : ''}</span>
             <a href="https://www.google.com/maps/search/Madurai,+Tamil+Nadu" target="_blank" rel="noopener noreferrer" className="liquid-glass px-8 py-4 rounded-full font-body font-medium text-lg flex items-center gap-3 hover:scale-105 transition-transform min-h-[48px]" aria-label="View location: Madurai, Tamil Nadu on Google Maps">
@@ -60,7 +60,7 @@ const ContactSection = memo(({ setShowCommandPalette }: ContactSectionProps) => 
                 { icon: <Github size={20} aria-hidden="true" />, label: 'GitHub', onClick: () => window.open('https://github.com/sahaya-savari', '_blank'), ariaLabel: 'Visit GitHub profile' },
                 { icon: <Search size={20} aria-hidden="true" />, label: 'Search', onClick: () => setShowCommandPalette(true), ariaLabel: 'Open spotlight search command palette' },
                 { icon: <ExternalLink size={20} aria-hidden="true" />, label: 'Resume', onClick: () => window.open('/resume.pdf?v=2', '_blank'), ariaLabel: 'Open resume PDF in new tab' },
-                { icon: <Mail size={20} aria-hidden="true" />, label: 'Email', onClick: () => window.open('mailto:sahayasavari.info@gmail.com'), ariaLabel: 'Send email to Sahaya Savari' },
+                { icon: <Mail size={20} aria-hidden="true" />, label: 'Email', onClick: () => window.open('mailto:contact@sahayasavari.me'), ariaLabel: 'Send email to Sahaya Savari' },
               ]}
             />
           </div>

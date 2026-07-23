@@ -13,7 +13,7 @@ export const personSchema = {
   jobTitle: 'AI Engineer',
   description:
     'AI Engineer, Python Developer, Full Stack Developer, and M.Sc. Artificial Intelligence student at St. Josephs College, Trichy, focused on Machine Learning, LLM applications, React, TypeScript, and Firebase projects.',
-  email: 'sahayasavari.info@gmail.com',
+  email: 'contact@sahayasavari.me',
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Madurai',

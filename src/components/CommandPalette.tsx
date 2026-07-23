@@ -98,7 +98,7 @@ export default function CommandPalette({ onClose, onOpenResume }: CommandPalette
       { title: 'LinkedIn Profile', url: 'https://www.linkedin.com/in/sahaya-savari', sub: 'Open LinkedIn profile in new tab' },
       { title: 'LeetCode Profile', url: 'https://leetcode.com/u/sahaya_savari/', sub: 'Open LeetCode in new tab' },
       { title: 'Portfolio Website', url: 'https://sahayasavari.me', sub: 'sahayasavari.me' },
-      { title: 'Email Contact', url: 'mailto:sahayasavari.info@gmail.com', sub: 'sahayasavari.info@gmail.com' }
+      { title: 'Email Contact', url: 'mailto:contact@sahayasavari.me', sub: 'contact@sahayasavari.me' }
     ];
 
     links.forEach(lnk => {
