@@ -64,13 +64,16 @@ const BlogSection = memo(() => {
       <div className="max-w-screen-xl mx-auto relative z-10">
         
         {/* Header Row */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-8">
-          <div>
-            <SectionBadge>Writings</SectionBadge>
-            <h2 className="text-fluid-section-heading font-heading italic text-white tracking-tight leading-[0.9]">Featured <br/> Articles.</h2>
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-8">
+          <div className="max-w-2xl">
+            <SectionBadge>Writings & Articles</SectionBadge>
+            <h2 className="text-fluid-section-heading font-heading italic text-white tracking-tight leading-[0.9] mb-4">Developer Blog & <br/> Technical Insights.</h2>
+            <p className="text-white/60 font-body font-light text-base md:text-lg leading-relaxed">
+              I author technical articles and engineering deep-dives covering Artificial Intelligence, Machine Learning workflows, Python API development with FastAPI, full stack React &amp; TypeScript optimizations, LLM prompt engineering, and Firebase cloud hosting. Read my latest articles below.
+            </p>
           </div>
-          <p className="text-white/60 font-body font-light max-w-xs md:text-right">
-            Insights on software engineering, web performance, and AI integration.
+          <p className="text-white/40 font-body font-light text-xs max-w-xs lg:text-right shrink-0">
+            In-depth engineering notes on web performance, AI system design, and full-stack software development.
           </p>
         </div>
 

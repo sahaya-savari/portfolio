@@ -31,7 +31,42 @@ const SkillsSection = memo(() => {
         <div className="mb-12">
           <SectionBadge>Capabilities</SectionBadge>
           <h2 className="text-fluid-section-heading font-heading italic text-white tracking-tight leading-[0.9] mb-4">Core Proficiencies <br/> & Technical Pillars.</h2>
-          <p className="text-white/60 font-body font-light text-lg max-w-xl">A structured overview of my technical capabilities across Artificial Intelligence, Machine Learning, Python development, and full-stack development with React, TypeScript, and Firebase.</p>
+          <p className="text-white/60 font-body font-light text-lg max-w-2xl">A structured overview of my technical capabilities across Artificial Intelligence, Machine Learning, Python development, and full-stack web development with React, TypeScript, and Firebase.</p>
+        </div>
+
+        {/* SEO-Friendly Core Technologies Grid */}
+        <div className="mb-16 liquid-glass rounded-3xl p-6 md:p-8 border border-white/10">
+          <div className="mb-6">
+            <h3 className="font-heading italic text-2xl text-white mb-2">Technologies & Core Tools</h3>
+            <p className="text-white/60 font-body font-light text-sm max-w-2xl">
+              An index of key programming languages, frameworks, backend frameworks, databases, and deployment tooling used across my software development portfolio projects.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 text-center">
+            {[
+              { name: 'Python', category: 'Language' },
+              { name: 'Java', category: 'Language' },
+              { name: 'JavaScript', category: 'Language' },
+              { name: 'TypeScript', category: 'Language' },
+              { name: 'React', category: 'Frontend' },
+              { name: 'Vite', category: 'Build Tool' },
+              { name: 'Tailwind CSS', category: 'Styling' },
+              { name: 'FastAPI', category: 'Backend' },
+              { name: 'Firebase', category: 'Cloud/DB' },
+              { name: 'Git', category: 'Version Control' },
+              { name: 'GitHub', category: 'Platform' },
+              { name: 'Docker', category: 'DevOps' },
+              { name: 'SQL', category: 'Database' },
+              { name: 'Machine Learning', category: 'AI/ML' },
+              { name: 'Artificial Intelligence', category: 'AI/ML' },
+              { name: 'REST APIs', category: 'Architecture' },
+            ].map((tech) => (
+              <div key={tech.name} className="liquid-glass-strong p-3 rounded-xl border border-white/5 hover:border-white/20 transition-colors">
+                <span className="block text-white font-body font-medium text-xs mb-0.5">{tech.name}</span>
+                <span className="block text-[9px] font-mono text-white/40 uppercase tracking-wider">{tech.category}</span>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="mb-16">
@@ -150,7 +185,7 @@ const SkillsSection = memo(() => {
                       Building robust portfolio and production-style applications with Python, React, TypeScript, Firebase, and modern web technologies that deliver clean, reliable experiences.
                     </p>
                     <div className="mt-8 md:mt-12 flex flex-wrap justify-center gap-3">
-                      {['Python', 'React', 'TypeScript', 'Flask', 'SQL'].map(t => (
+                      {['Python', 'React', 'TypeScript', 'FastAPI', 'SQL'].map(t => (
                         <span key={t} className="liquid-glass px-4 py-1.5 rounded-full text-xs font-body text-white/80">{t}</span>
                       ))}
                     </div>

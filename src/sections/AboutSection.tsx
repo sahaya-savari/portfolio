@@ -26,9 +26,9 @@ const AboutSection = memo(({ setShowResume }: AboutSectionProps) => {
           <SectionBadge>About Me</SectionBadge>
           <h2 className="text-fluid-section-heading font-heading italic text-white tracking-tight leading-[0.9] mb-12">Building intelligent <br/> AI-powered solutions.</h2>
           <div className="space-y-8 text-white/60 font-body font-light text-lg leading-relaxed max-w-xl">
-            <p>I am an AI Engineer and M.Sc. Artificial Intelligence student at St. Joseph's College (Autonomous), Trichy, focused on building practical Machine Learning systems, LLM workflows, and data-driven software that can move from prototype to production.</p>
-            <p>My portfolio brings together Python Developer experience, Full Stack Developer execution, and a product-minded approach to React, TypeScript, and Firebase applications. I like turning unclear problems into reliable interfaces, clean APIs, measurable outputs, and tools that people can actually use.</p>
-            <p>Current interests include prompt engineering, context-injected AI pipelines, model evaluation, analytics dashboards, and responsive web experiences for education, productivity, and recruiter-facing workflows.</p>
+            <p>I am <strong>Sahaya Savari</strong>, an M.Sc. Artificial Intelligence student at St. Joseph's College (Autonomous), Trichy, and an <strong>AI/ML &amp; Full Stack Developer</strong>. I am deeply passionate about building AI-powered applications, Machine Learning models, and scalable web software that transition from prototypes into production systems.</p>
+            <p>My background brings together Python development, REST API engineering with FastAPI, and full stack software development using React, TypeScript, and Firebase. I specialize in transforming complex data requirements into robust backends, accessible UI components, and verifiably reliable intelligent software.</p>
+            <p>My technical focus spans LLM prompt engineering, context-injected AI pipelines, model evaluation metrics, interactive analytics dashboards, and high-performance web applications tailored for real-world usability.</p>
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

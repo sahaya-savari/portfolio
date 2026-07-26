@@ -1,18 +1,18 @@
 export const SITE_URL = 'https://sahayasavari.me';
-export const SITE_NAME = 'Sahaya Savari F Portfolio';
-export const DEFAULT_TITLE = 'Sahaya Savari F | AI Engineer, Full Stack Developer & M.Sc. AI Student';
+export const SITE_NAME = 'Sahaya Savari Portfolio';
+export const DEFAULT_TITLE = 'Sahaya Savari | AI/ML & Full Stack Developer';
 export const DEFAULT_DESCRIPTION =
-  'Portfolio of Sahaya Savari F, an AI Engineer, Python Developer, Full Stack Developer, and M.Sc. Artificial Intelligence student building Machine Learning, React, TypeScript, and Firebase projects.';
+  'Portfolio of Sahaya Savari, an M.Sc. AI student and AI/ML & Full Stack Developer building Machine Learning tools, Python APIs, React apps, and scalable software.';
 export const DEFAULT_IMAGE = `${SITE_URL}/og-image.jpg`;
 
 export const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
-  name: 'Sahaya Savari F',
+  name: 'Sahaya Savari',
   url: SITE_URL,
-  jobTitle: 'AI Engineer',
+  jobTitle: 'AI/ML & Full Stack Developer',
   description:
-    'AI Engineer, Python Developer, Full Stack Developer, and M.Sc. Artificial Intelligence student at St. Josephs College, Trichy, focused on Machine Learning, LLM applications, React, TypeScript, and Firebase projects.',
+    'M.Sc. Artificial Intelligence Student, AI/ML & Full Stack Developer building Machine Learning tools, Python APIs, React apps, and scalable software applications.',
   email: 'contact@sahayasavari.me',
   address: {
     '@type': 'PostalAddress',
@@ -20,48 +20,57 @@ export const personSchema = {
     addressRegion: 'Tamil Nadu',
     addressCountry: 'IN',
   },
-  alumniOf: {
-    '@type': 'CollegeOrUniversity',
-    name: 'St. Josephs College (Autonomous), Trichy',
-    url: 'https://www.sjctni.edu',
-  },
   sameAs: [
     'https://www.linkedin.com/in/sahaya-savari',
     'https://github.com/sahaya-savari',
   ],
   knowsAbout: [
-    'AI Engineer',
     'Artificial Intelligence',
     'Machine Learning',
-    'Python Developer',
-    'Full Stack Developer',
+    'AI/ML',
+    'Full Stack Development',
+    'Python',
     'React',
-    'TypeScript',
+    'FastAPI',
     'Firebase',
-    'Portfolio',
-    'Data Analytics',
-    'LLM Applications',
+    'TypeScript',
+    'JavaScript',
+    'REST APIs',
+    'Software Development',
+    'Open Source',
   ],
 };
 
 export const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: SITE_NAME,
+  name: 'Sahaya Savari Portfolio',
   url: SITE_URL,
   description: DEFAULT_DESCRIPTION,
   author: {
     '@type': 'Person',
-    name: 'Sahaya Savari F',
+    name: 'Sahaya Savari',
     url: SITE_URL,
   },
   inLanguage: 'en-US',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: {
+      '@type': 'EntryPoint',
+      urlTemplate: `${SITE_URL}/?s={search_term_string}`,
+    },
+    'query-input': 'required name=search_term_string',
+  },
 };
 
-export const collegeSchema = {
+export const createBreadcrumbSchema = (items: { name: string; url: string }[]) => ({
   '@context': 'https://schema.org',
-  '@type': 'CollegeOrUniversity',
-  name: 'St. Josephs College (Autonomous), Trichy',
-  url: 'https://www.sjctni.edu',
-  sameAs: 'https://www.sjctni.edu',
-};
+  '@type': 'BreadcrumbList',
+  itemListElement: items.map((item, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: item.name,
+    item: item.url,
+  })),
+});
+

@@ -3,7 +3,7 @@ import { useParams, Link, Navigate } from 'react-router-dom';
 import { ArrowLeft, ExternalLink, Github } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import { CASE_STUDIES } from '../data/caseStudies';
-import { SITE_URL } from '../seo';
+import { SITE_URL, createBreadcrumbSchema } from '../seo';
 import NotFound from './NotFound';
 
 export default function ProjectDetails() {
@@ -14,15 +14,26 @@ export default function ProjectDetails() {
     return CASE_STUDIES[projectId] || null;
   }, [projectId]);
 
-  const projectSchema = useMemo(() => {
-    if (!project) return null;
-    return {
+  const combinedSchema = useMemo(() => {
+    if (!project) return undefined;
+    const breadcrumb = createBreadcrumbSchema([
+      { name: 'Home', url: SITE_URL },
+      { name: 'Projects', url: `${SITE_URL}/projects` },
+      { name: project.title, url: `${SITE_URL}/projects/${project.id}` },
+    ]);
+
+    const codeSchema = {
       "@context": "https://schema.org",
       "@type": "SoftwareSourceCode",
       "name": project.title,
       "description": project.overview,
       "codeRepository": project.githubUrl,
       "programmingLanguage": project.techStack
+    };
+
+    return {
+      "@context": "https://schema.org",
+      "@graph": [breadcrumb, codeSchema],
     };
   }, [project]);
 
@@ -40,10 +51,10 @@ export default function ProjectDetails() {
         title={`${project.title} | AI Engineer Portfolio Case Study`}
         description={`${project.overview} Explore the React, TypeScript, Python, Firebase, and Machine Learning decisions behind this portfolio project.`}
         url={`${SITE_URL}/projects/${project.id}`}
-        schema={projectSchema || undefined}
+        schema={combinedSchema}
       />
       <div className="pt-32 pb-24 px-6 max-w-screen-md mx-auto min-h-screen bg-black text-white selection:bg-white selection:text-black">
-        <Link to="/#projects" className="inline-flex items-center gap-2 text-white/50 hover:text-white mb-12 transition-colors font-body text-sm">
+        <Link to="/projects" className="inline-flex items-center gap-2 text-white/50 hover:text-white mb-12 transition-colors font-body text-sm">
           <ArrowLeft className="w-4 h-4" />
           Back to Projects
         </Link>

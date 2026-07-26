@@ -27,10 +27,15 @@ export default function RootLayout() {
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, hash: string) => {
     e.preventDefault();
+    const targetId = hash.replace('#', '');
     if (location.pathname !== '/') {
-      navigate(`/${hash}`);
+      navigate(`/#${targetId}`);
     } else {
-      window.location.hash = hash.substring(1);
+      const el = document.getElementById(targetId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+      window.history.pushState(null, '', `/#${targetId}`);
     }
     setMobileMenuOpen(false);
   };
@@ -45,7 +50,7 @@ export default function RootLayout() {
         window.getComputedStyle(document.documentElement).scrollPaddingTop
       ) || 0;
       const top = target.getBoundingClientRect().top + window.scrollY - scrollPaddingTop;
-      window.scrollTo({ top: Math.max(0, top), behavior: 'auto' });
+      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
     };
 
     alignToTarget();
@@ -95,6 +100,7 @@ export default function RootLayout() {
 
   // Active section tracking
   useEffect(() => {
+    if (location.pathname !== '/') return;
     const observer = new IntersectionObserver((entries) => {
       let mostVisible = null;
       let maxRatio = 0;
@@ -116,7 +122,7 @@ export default function RootLayout() {
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [location.pathname]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -223,7 +229,7 @@ export default function RootLayout() {
           <nav className="fixed top-4 md:top-6 left-0 right-0 z-[100] px-4 md:px-6" aria-label="Main navigation">
             <div className="max-w-screen-xl mx-auto flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <Link to="/" className="w-10 h-10 liquid-glass-strong rounded-full flex items-center justify-center border border-white/20" aria-label="Sahaya Savari F — Go to top">
+                <Link to="/" className="w-10 h-10 liquid-glass-strong rounded-full flex items-center justify-center border border-white/20" aria-label="Sahaya Savari F — Go to home">
                   <span className="font-heading text-lg italic" aria-hidden="true">SF</span>
                 </Link>
                 <span className="font-body text-xs font-medium tracking-widest hidden lg:flex items-center gap-2">
@@ -241,17 +247,17 @@ export default function RootLayout() {
                 </button>
               </div>
               <div className="hidden md:flex liquid-glass px-4 lg:px-6 py-2.5 rounded-full items-center gap-3 lg:gap-8 backdrop-blur-md">
-                <a href="#home" onClick={(e) => handleNavClick(e, '#home')} className={`text-sm font-body font-medium transition-colors ${activeSection === 'home' && location.pathname === '/' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Home</a>
-                <a href="#about" onClick={(e) => handleNavClick(e, '#about')} className={`text-sm font-body font-medium transition-colors ${activeSection === 'about' && location.pathname === '/' ? 'text-white' : 'text-white/50 hover:text-white'}`}>About</a>
-                <button onClick={() => setShowResume(true)} className="text-sm font-body font-medium text-white/50 hover:text-white transition-colors cursor-pointer">Resume</button>
-                <a href="#blog" onClick={(e) => handleNavClick(e, '#blog')} className={`text-sm font-body font-medium transition-colors ${activeSection === 'blog' && location.pathname === '/' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Blog</a>
-                <a href="#skills" onClick={(e) => handleNavClick(e, '#skills')} className={`text-sm font-body font-medium transition-colors ${activeSection === 'skills' && location.pathname === '/' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Skills</a>
-                <a href="#projects" onClick={(e) => handleNavClick(e, '#projects')} className={`text-sm font-body font-medium transition-colors ${activeSection === 'projects' && location.pathname === '/' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Projects</a>
-                <a href="#certifications" onClick={(e) => handleNavClick(e, '#certifications')} className={`text-sm font-body font-medium transition-colors ${activeSection === 'certifications' && location.pathname === '/' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Certs</a>
+                <Link to="/" className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'home' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Home</Link>
+                <a href="/#about" onClick={(e) => handleNavClick(e, '#about')} className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'about' ? 'text-white' : 'text-white/50 hover:text-white'}`}>About</a>
+                <Link to="/resume" className={`text-sm font-body font-medium transition-colors ${location.pathname === '/resume' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Resume</Link>
+                <Link to="/blog" className={`text-sm font-body font-medium transition-colors ${location.pathname === '/blog' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Blog</Link>
+                <a href="/#skills" onClick={(e) => handleNavClick(e, '#skills')} className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'skills' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Skills</a>
+                <Link to="/projects" className={`text-sm font-body font-medium transition-colors ${location.pathname.startsWith('/projects') ? 'text-white' : 'text-white/50 hover:text-white'}`}>Projects</Link>
+                <a href="/#certifications" onClick={(e) => handleNavClick(e, '#certifications')} className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'certifications' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Certs</a>
               </div>
               <div className="flex items-center gap-3">
                 <a
-                  href="#contact"
+                  href="/#contact"
                   onClick={(e) => handleNavClick(e, '#contact')}
                   className="hidden md:flex relative text-sm font-medium rounded-full h-10 pl-6 pr-14 group transition-all duration-500 hover:pl-14 hover:pr-6 overflow-hidden cursor-pointer bg-white text-black items-center"
                   aria-label="Get in touch — jump to contact section"
@@ -290,13 +296,13 @@ export default function RootLayout() {
               onKeyDown={handleMobileMenuKeyDown}
             >
               <nav className="flex flex-col items-center gap-8" onClick={e => e.stopPropagation()} aria-label="Mobile navigation">
-                <a href="#home" onClick={(e) => handleNavClick(e, '#home')} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Home</a>
-                <a href="#about" onClick={(e) => handleNavClick(e, '#about')} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">About</a>
-                <button onClick={() => { setShowResume(true); setMobileMenuOpen(false); }} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors cursor-pointer min-h-[48px]">Resume</button>
-                <a href="#blog" onClick={(e) => handleNavClick(e, '#blog')} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Blog</a>
-                <a href="#skills" onClick={(e) => handleNavClick(e, '#skills')} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Skills</a>
-                <a href="#projects" onClick={(e) => handleNavClick(e, '#projects')} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Projects</a>
-                <a href="#certifications" onClick={(e) => handleNavClick(e, '#certifications')} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Certs</a>
+                <Link to="/" onClick={() => setMobileMenuOpen(false)} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Home</Link>
+                <a href="/#about" onClick={(e) => handleNavClick(e, '#about')} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">About</a>
+                <Link to="/resume" onClick={() => setMobileMenuOpen(false)} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Resume</Link>
+                <Link to="/blog" onClick={() => setMobileMenuOpen(false)} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Blog</Link>
+                <a href="/#skills" onClick={(e) => handleNavClick(e, '#skills')} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Skills</a>
+                <Link to="/projects" onClick={() => setMobileMenuOpen(false)} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Projects</Link>
+                <a href="/#certifications" onClick={(e) => handleNavClick(e, '#certifications')} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Certs</a>
               </nav>
             </motion.div>
           )}

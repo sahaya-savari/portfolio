@@ -14,9 +14,10 @@ pdfjs.GlobalWorkerOptions.workerSrc = pdfWorker;
 interface ResumeViewerProps {
   onClose: () => void;
   pdfUrl?: string;
+  inlineEmbed?: boolean;
 }
 
-const ResumeViewer: React.FC<ResumeViewerProps> = ({ onClose, pdfUrl = `${(import.meta as any).env.BASE_URL}resume.pdf?v=2` }) => {
+const ResumeViewer: React.FC<ResumeViewerProps> = ({ onClose, pdfUrl = `${(import.meta as any).env.BASE_URL}resume.pdf?v=2`, inlineEmbed = false }) => {
   const [numPages, setNumPages] = useState<number | null>(null);
   const [scale, setScale] = useState(1.0);
   const [isLoading, setIsLoading] = useState(true);
@@ -40,6 +41,7 @@ const ResumeViewer: React.FC<ResumeViewerProps> = ({ onClose, pdfUrl = `${(impor
 
   // Store the element that had focus before the modal opened
   useEffect(() => {
+    if (inlineEmbed) return;
     previouslyFocusedRef.current = document.activeElement as HTMLElement;
     // Focus close button on open
     setTimeout(() => closeButtonRef.current?.focus(), 100);
@@ -47,10 +49,11 @@ const ResumeViewer: React.FC<ResumeViewerProps> = ({ onClose, pdfUrl = `${(impor
       // Return focus to triggering element on close
       previouslyFocusedRef.current?.focus();
     };
-  }, []);
+  }, [inlineEmbed]);
 
   // Close on Escape key
   useEffect(() => {
+    if (inlineEmbed) return;
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         onClose();
@@ -58,13 +61,14 @@ const ResumeViewer: React.FC<ResumeViewerProps> = ({ onClose, pdfUrl = `${(impor
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [onClose]);
+  }, [onClose, inlineEmbed]);
 
   // Lock body scroll
   useEffect(() => {
+    if (inlineEmbed) return;
     lockScroll();
     return () => unlockScroll();
-  }, []);
+  }, [inlineEmbed]);
 
   // Focus trap
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
@@ -104,17 +108,23 @@ const ResumeViewer: React.FC<ResumeViewerProps> = ({ onClose, pdfUrl = `${(impor
 
   return (
     <div 
-      className="fixed inset-0 z-[300] flex flex-col items-center justify-start bg-black/80 backdrop-blur-md pt-20 pb-6 px-4"
-      role="dialog"
-      aria-modal="true"
+      className={inlineEmbed 
+        ? "w-full flex flex-col items-center justify-start py-4"
+        : "fixed inset-0 z-[300] flex flex-col items-center justify-start bg-black/80 backdrop-blur-md pt-20 pb-6 px-4"
+      }
+      role={inlineEmbed ? "region" : "dialog"}
+      aria-modal={inlineEmbed ? undefined : "true"}
       aria-label="Resume Viewer"
       ref={modalRef}
-      onClick={onClose}
-      onKeyDown={handleKeyDown}
+      onClick={inlineEmbed ? undefined : onClose}
+      onKeyDown={inlineEmbed ? undefined : handleKeyDown}
     >
       {/* Controls Bar */}
       <div 
-        className="liquid-glass-strong bg-black/90 px-3 py-3 md:px-4 rounded-2xl md:rounded-full flex flex-wrap items-center justify-center gap-2 md:gap-6 mb-6 shadow-2xl border border-white/20 fixed top-4 left-4 right-4 md:top-6 md:left-auto md:right-auto md:w-auto z-[310]"
+        className={inlineEmbed
+          ? "liquid-glass-strong bg-black/90 px-3 py-3 md:px-4 rounded-2xl md:rounded-full flex flex-wrap items-center justify-center gap-2 md:gap-6 mb-6 shadow-2xl border border-white/20 z-[10]"
+          : "liquid-glass-strong bg-black/90 px-3 py-3 md:px-4 rounded-2xl md:rounded-full flex flex-wrap items-center justify-center gap-2 md:gap-6 mb-6 shadow-2xl border border-white/20 fixed top-4 left-4 right-4 md:top-6 md:left-auto md:right-auto md:w-auto z-[310]"
+        }
         onClick={e => e.stopPropagation()}
       >
         <div className="hidden md:flex flex-col border-r border-white/20 pr-6 mr-2">
@@ -138,9 +148,11 @@ const ResumeViewer: React.FC<ResumeViewerProps> = ({ onClose, pdfUrl = `${(impor
           <a href={pdfUrl} download className="w-10 h-10 liquid-glass rounded-full flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-colors" aria-label="Download resume as PDF">
             <Download className="w-4 h-4" aria-hidden="true" />
           </a>
-          <button ref={closeButtonRef} onClick={onClose} className="w-10 h-10 liquid-glass-strong rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors bg-white/10" aria-label="Close resume viewer">
-            <X className="w-4 h-4" aria-hidden="true" />
-          </button>
+          {!inlineEmbed && (
+            <button ref={closeButtonRef} onClick={onClose} className="w-10 h-10 liquid-glass-strong rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors bg-white/10" aria-label="Close resume viewer">
+              <X className="w-4 h-4" aria-hidden="true" />
+            </button>
+          )}
         </div>
       </div>
 

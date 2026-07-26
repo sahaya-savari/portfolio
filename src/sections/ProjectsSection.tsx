@@ -377,12 +377,17 @@ const ProjectsSection = memo(() => {
         <div className="max-w-screen-xl mx-auto relative z-10">
           
           {/* Header Row */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-8">
-            <div>
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-8">
+            <div className="max-w-2xl">
               <SectionBadge>Selected Work</SectionBadge>
-              <h2 className="text-fluid-section-heading font-heading italic text-white tracking-tight leading-[0.9]">AI-Powered <br/> Projects.</h2>
+              <h2 className="text-fluid-section-heading font-heading italic text-white tracking-tight leading-[0.9] mb-4">AI-Powered <br/> Projects.</h2>
+              <p className="text-white/60 font-body font-light text-base md:text-lg leading-relaxed">
+                Explore my portfolio of production-grade software applications, Machine Learning models, and Artificial Intelligence solutions. Each featured project showcases full stack architecture built with Python, React, TypeScript, FastAPI, and Firebase—combining structured LLM prompt pipelines, real-time databases, and responsive UI design.
+              </p>
             </div>
-            <p className="text-white/60 font-body font-light max-w-xs md:text-right">Ask me for live demos, code samples, or walkthroughs of any project.</p>
+            <p className="text-white/40 font-body font-light text-xs max-w-xs lg:text-right shrink-0">
+              Ask me for live demos, repository code samples, or architecture walkthroughs of any featured project.
+            </p>
           </div>
 
           {/* Interactive Controls Filter Bar */}

@@ -76,7 +76,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
           </motion.div>
           <div className="mb-6 md:mb-8">
             <h1 className="text-fluid-hero-title font-heading italic text-white tracking-[-2px] md:tracking-[-4px] leading-[0.8] mb-4">
-              Sahaya Savari F
+              Sahaya Savari
             </h1>
             {/*
              * ANIMATION FIX: Removed `filter: blur()` from initial/animate.
