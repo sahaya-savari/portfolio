@@ -48,8 +48,8 @@ export default function ProjectDetails() {
   return (
     <>
       <SEOHead 
-        title={`${project.title} | AI Engineer Portfolio Case Study`}
-        description={`${project.overview} Explore the React, TypeScript, Python, Firebase, and Machine Learning decisions behind this portfolio project.`}
+        title={`${project.title} | Sahaya Savari`}
+        description={project.overview}
         url={`${SITE_URL}/projects/${project.id}`}
         schema={combinedSchema}
       />

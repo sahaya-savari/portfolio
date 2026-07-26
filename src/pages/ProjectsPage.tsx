@@ -19,7 +19,7 @@ export default function ProjectsPage() {
   return (
     <>
       <SEOHead 
-        title="Featured AI & Software Engineering Projects | Sahaya Savari"
+        title="Projects | Sahaya Savari"
         description="Explore machine learning applications, Python APIs, full stack React apps, open-source contributions, and software architectures created by Sahaya Savari."
         url={`${SITE_URL}/projects`}
         schema={projectsBreadcrumbs}
