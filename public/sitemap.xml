@@ -4,50 +4,60 @@
     <loc>https://sahayasavari.me</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <lastmod>2026-07-24</lastmod>
   </url>
   <url>
     <loc>https://sahayasavari.me/projects</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <lastmod>2026-07-26</lastmod>
   </url>
   <url>
     <loc>https://sahayasavari.me/blog</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <lastmod>2026-07-26</lastmod>
   </url>
   <url>
     <loc>https://sahayasavari.me/resume</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <lastmod>2026-07-26</lastmod>
   </url>
   <url>
     <loc>https://sahayasavari.me/recruiter</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <lastmod>2026-07-26</lastmod>
   </url>
   <url>
     <loc>https://sahayasavari.me/ai</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sahayasavari.me/projects/prepmind-ai</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sahayasavari.me/projects/daily-spark</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sahayasavari.me/projects/neobeat</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <lastmod>2026-07-30</lastmod>
   </url>
   <url>
     <loc>https://sahayasavari.me/projects/portfolio-website</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <lastmod>2026-07-30</lastmod>
   </url>
 </urlset>

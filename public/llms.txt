@@ -6,6 +6,11 @@
 
 Sahaya Savari F is an AI Engineer, Python Developer, and Full Stack Developer pursuing M.Sc. Artificial Intelligence at St. Joseph's College (Autonomous), Trichy, India. Focused on Artificial Intelligence, Machine Learning solutions, React, TypeScript, Firebase, and modern full-stack applications.
 
+## Availability & Target Roles
+
+- Availability: Currently seeking AI/ML, Python, and Full Stack internship opportunities.
+- Target Roles: AI/ML Engineer Intern, Python Developer Intern, Full Stack Developer Intern
+
 ## Skills
 
 - Artificial Intelligence: Machine Learning, Deep Learning (TensorFlow, PyTorch), Natural Language Processing, Computer Vision, LLM Integration, Prompt Engineering

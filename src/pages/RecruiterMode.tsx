@@ -42,18 +42,18 @@ export default function RecruiterMode() {
         </header>
 
         <section className="mb-12">
-          <h2 className="text-sm font-body font-bold text-white/40 uppercase tracking-widest mb-4">Professional Summary</h2>
+          <h2 className="text-sm font-body font-bold text-white/70 uppercase tracking-widest mb-4">Professional Summary</h2>
           <p className="text-base font-body leading-relaxed text-white/80">
             An M.Sc. Artificial Intelligence student with strong foundations in Machine Learning, Python development, full-stack development, and scalable web architectures. Proven ability to build performant, accessible, and user-centric applications using React, TypeScript, Firebase, and FastAPI. Actively seeking AI/ML, Python Developer, or Full Stack Developer internship opportunities for Summer/Fall 2026.
           </p>
         </section>
 
         <section className="mb-12">
-          <h2 className="text-sm font-body font-bold text-white/40 uppercase tracking-widest mb-4">Core Competencies</h2>
+          <h2 className="text-sm font-body font-bold text-white/70 uppercase tracking-widest mb-4">Core Competencies</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6 font-body text-sm text-white/80">
             <div>
               <strong className="block text-white mb-2">Languages</strong>
-              <ul className="space-y-1 text-white/60">
+              <ul className="space-y-1 text-white/80">
                 <li>Python</li>
                 <li>TypeScript / JavaScript</li>
                 <li>SQL</li>
@@ -62,7 +62,7 @@ export default function RecruiterMode() {
             </div>
             <div>
               <strong className="block text-white mb-2">Frontend</strong>
-              <ul className="space-y-1 text-white/60">
+              <ul className="space-y-1 text-white/80">
                 <li>React</li>
                 <li>Tailwind CSS</li>
                 <li>Framer Motion</li>
@@ -71,7 +71,7 @@ export default function RecruiterMode() {
             </div>
             <div>
               <strong className="block text-white mb-2">Backend & Tools</strong>
-              <ul className="space-y-1 text-white/60">
+              <ul className="space-y-1 text-white/80">
                 <li>FastAPI</li>
                 <li>Firebase</li>
                 <li>Git / GitHub</li>
@@ -82,7 +82,7 @@ export default function RecruiterMode() {
         </section>
 
         <section className="mb-12">
-          <h2 className="text-sm font-body font-bold text-white/40 uppercase tracking-widest mb-4">Top Projects</h2>
+          <h2 className="text-sm font-body font-bold text-white/70 uppercase tracking-widest mb-4">Top Projects</h2>
           <div className="space-y-8">
             <div>
               <div className="flex justify-between items-baseline mb-2">
@@ -106,7 +106,7 @@ export default function RecruiterMode() {
         </section>
 
         <section className="mb-12">
-          <h2 className="text-sm font-body font-bold text-white/40 uppercase tracking-widest mb-4">Education</h2>
+          <h2 className="text-sm font-body font-bold text-white/70 uppercase tracking-widest mb-4">Education</h2>
           <div>
             <div className="flex justify-between items-baseline mb-1">
               <h3 className="text-lg font-bold font-body text-white">M.Sc. Artificial Intelligence</h3>

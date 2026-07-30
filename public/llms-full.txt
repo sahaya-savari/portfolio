@@ -1,0 +1,92 @@
+# Sahaya Savari F — Technical Portfolio & System Architecture Documentation
+
+> AI/ML Engineer, Python Developer & M.Sc. Artificial Intelligence Student
+
+> Maintenance Note: This document serves as the extended technical reference for LLM indexing agents. It is maintained to stay synchronized with the primary portfolio (sahayasavari.me), resume, technical blog, and llms.txt.
+
+## Executive Summary
+
+Sahaya Savari F is an AI Engineer, Python Developer, and Full-Stack Developer currently pursuing a Master of Science (M.Sc.) in Artificial Intelligence at St. Joseph's College (Autonomous), Trichy, India. Focused on building Machine Learning solutions, Python APIs, React web applications, Firebase integrations, and modern full-stack architectures.
+
+- Email: contact@sahayasavari.me
+- Portfolio: https://sahayasavari.me
+- Blog: https://blog.sahayasavari.me
+- GitHub: https://github.com/sahaya-savari
+- LinkedIn: https://www.linkedin.com/in/sahaya-savari
+- Location: Madurai, Tamil Nadu, India
+
+## Target Roles & Availability
+
+- Availability: Currently seeking AI/ML, Python, and Full Stack internship opportunities.
+- Target Roles: AI/ML Engineer Intern, Python Developer Intern, Full Stack Developer Intern.
+
+## Technical Skills & Architecture Stack
+
+### Artificial Intelligence & Machine Learning
+- Core Domains: Machine Learning, Deep Learning (TensorFlow, PyTorch), Natural Language Processing, Computer Vision, LLM Integration, Prompt Engineering
+
+### Python Development
+- Technologies: Python, FastAPI, Flask, Pandas, NumPy, API Development, Automation
+
+### Frontend & Full-Stack Development
+- Technologies: React, TypeScript, Tailwind CSS, Framer Motion, Vite, Web Audio API, PDF.js
+
+### Data & Infrastructure
+- Databases & Cloud: SQL, Firebase Hosting, Firebase Realtime Database, Cloudflare CDN, AWS CloudFront
+
+## Project Specifications
+
+### 1. Daily Spark
+- Type: Productivity App
+- Tech Stack: Python, Firebase, React, AI/ML, TypeScript
+- Description: A habit-tracking application built with Python, Firebase Realtime Database, React, and TypeScript. Tracks habits and analyzes user patterns to generate daily routine suggestions.
+- Live App: https://daily-spark-app-da74b.web.app
+- Source Code: https://github.com/sahaya-savari/daily-spark
+
+### 2. PrepMind AI
+- Type: AI Education Platform
+- Tech Stack: Python, OpenAI API, React, Tailwind CSS
+- Description: An AI study companion using LLM integration pipelines to generate practice questions and concept summaries.
+- Status: In Development
+- Profile Link: https://github.com/sahaya-savari
+
+### 3. Portfolio Website
+- Type: Web Development
+- Tech Stack: React, TypeScript, Tailwind CSS, Framer Motion, Vite, Firebase Hosting
+- Description: A modern portfolio website featuring glassmorphism design, hardware-accelerated animations, static HTML pre-rendering, and tailored security headers.
+- Live Site: https://sahayasavari.me
+- Source Code: https://github.com/sahaya-savari/portfolio
+
+### 4. NeoBeat
+- Type: Web Audio Application
+- Tech Stack: React, TypeScript, Web Audio API, Canvas API, Framer Motion
+- Description: An experimental web application for discovering independent artists, featuring a brutalist UI and audio visualizations using the Web Audio API.
+- Status: Archived
+- Source Code: https://github.com/sahaya-savari/neobeat
+
+## Published Engineering Articles
+
+1. **Building AI Agents from Scratch in Python**
+   - URL: https://blog.sahayasavari.me/blog/ai-agents-from-scratch
+   - Description: Engineering guide to designing autonomous LLM agent loops, tool call schemas, and memory management using Python.
+
+2. **Pydantic V2: High-Performance Data Validation**
+   - URL: https://blog.sahayasavari.me/blog/pydantic-v2-guide
+   - Description: Leveraging Pydantic V2 for strict schema enforcement, fast JSON serialization, and LLM output parsing.
+
+3. **Tailwind CSS v4 Migration & Performance**
+   - URL: https://blog.sahayasavari.me/blog/tailwind-css-v4-guide
+   - Description: Upgrading to Tailwind CSS v4 in React and Vite for zero-config builds and dynamic CSS variable theming.
+
+4. **Production CI/CD Pipelines with GitHub Actions**
+   - URL: https://blog.sahayasavari.me/blog/github-actions-ci-cd
+   - Description: Automating static pre-rendering, build tests, and Firebase Hosting preview channel deployments.
+
+## Education & Certifications
+
+- **M.Sc. Artificial Intelligence** — St. Joseph's College (Autonomous), Trichy (Current)
+- **IBM Data Analyst Professional Certificate** — IBM (Coursera)
+- **Introduction to Machine Learning (Tamil)** — NPTEL / IIT Madras
+- **Yuva AI for All** — NIELIT (Skill India Initiative)
+- **Honours Diploma in Information Technology** — IT Education
+- **Mastering Excel Data Analysis & Dashboard Reporting** — Business Intelligence

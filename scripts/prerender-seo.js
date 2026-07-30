@@ -16,12 +16,29 @@ const ROUTES = [
     title: 'Sahaya Savari | AI/ML & Full Stack Developer',
     description: 'Portfolio of Sahaya Savari, an M.Sc. AI student and AI/ML & Full Stack Developer building Machine Learning tools, Python APIs, React apps, and scalable software.',
     canonical: `${SITE_URL}`,
+    // Note: Kept in sync with personSchema in src/seo.ts for static HTML pre-rendering
     schema: {
       '@context': 'https://schema.org',
       '@type': 'Person',
       name: 'Sahaya Savari',
       url: SITE_URL,
       jobTitle: 'AI/ML & Full Stack Developer',
+      email: 'contact@sahayasavari.me',
+      alumniOf: {
+        '@type': 'EducationalOrganization',
+        name: "St. Joseph's College (Autonomous), Trichy"
+      },
+      knowsAbout: [
+        'Artificial Intelligence',
+        'Machine Learning',
+        'Python',
+        'React',
+        'FastAPI',
+        'Firebase',
+        'TypeScript',
+        'Tailwind CSS',
+        'Vite'
+      ],
       sameAs: [
         'https://www.linkedin.com/in/sahaya-savari',
         'https://github.com/sahaya-savari'

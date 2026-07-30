@@ -61,7 +61,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
       'Deepened understanding of client-side storage limitations and optimization.',
       'Improved accessible design practices, ensuring full keyboard navigability.'
     ],
-    githubUrl: 'https://github.com/sahaya-savari'
+    githubUrl: 'https://github.com/sahaya-savari/daily-spark'
   },
   'neobeat': {
     id: 'neobeat',
@@ -84,7 +84,8 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     lessons: [
       'Mastered the Web Audio API for frequency analysis and audio routing.',
       'Learned to balance heavy visual effects with performance accessibility.'
-    ]
+    ],
+    githubUrl: 'https://github.com/sahaya-savari/neobeat'
   },
   'portfolio-website': {
     id: 'portfolio-website',

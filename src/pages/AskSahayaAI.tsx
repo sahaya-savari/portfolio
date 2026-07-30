@@ -120,6 +120,7 @@ export default function AskSahayaAI() {
             <form onSubmit={handleSend} className="relative">
               <input
                 type="text"
+                aria-label="Ask a question about Sahaya's skills, projects, or experience"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask about my skills, projects, or experience..."
@@ -127,6 +128,7 @@ export default function AskSahayaAI() {
               />
               <button
                 type="submit"
+                aria-label="Send message"
                 disabled={!input.trim() || isTyping}
                 className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white text-black flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 transition-transform"
               >
