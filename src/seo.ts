@@ -8,6 +8,7 @@ export const DEFAULT_IMAGE = `${SITE_URL}/og-image.jpg`;
 export const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
+  '@id': `${SITE_URL}/#person`,
   name: 'Sahaya Savari',
   url: SITE_URL,
   jobTitle: 'AI/ML & Full Stack Developer',
@@ -44,13 +45,12 @@ export const personSchema = {
 export const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
+  '@id': `${SITE_URL}/#website`,
   name: 'Sahaya Savari Portfolio',
   url: SITE_URL,
   description: DEFAULT_DESCRIPTION,
   author: {
-    '@type': 'Person',
-    name: 'Sahaya Savari',
-    url: SITE_URL,
+    '@id': `${SITE_URL}/#person`,
   },
   inLanguage: 'en-US',
   potentialAction: {
@@ -60,6 +60,18 @@ export const websiteSchema = {
       urlTemplate: `${SITE_URL}/?s={search_term_string}`,
     },
     'query-input': 'required name=search_term_string',
+  },
+};
+
+export const profilePageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  '@id': `${SITE_URL}/#profilepage`,
+  url: SITE_URL,
+  name: 'Sahaya Savari | Personal Portfolio & Profile',
+  description: DEFAULT_DESCRIPTION,
+  mainEntity: {
+    '@id': `${SITE_URL}/#person`,
   },
 };
 
@@ -73,4 +85,3 @@ export const createBreadcrumbSchema = (items: { name: string; url: string }[]) =
     item: item.url,
   })),
 });
-

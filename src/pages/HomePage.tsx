@@ -1,7 +1,7 @@
 import { lazy, useMemo } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import SEOHead from '../components/SEOHead';
-import { DEFAULT_DESCRIPTION, DEFAULT_TITLE, personSchema, websiteSchema } from '../seo';
+import { DEFAULT_DESCRIPTION, DEFAULT_TITLE, personSchema, websiteSchema, profilePageSchema } from '../seo';
 
 // Import Hero directly for above-the-fold fast rendering
 import HeroSection from '../sections/HeroSection';
@@ -30,6 +30,7 @@ export default function HomePage() {
     '@graph': [
       personSchema,
       websiteSchema,
+      profilePageSchema,
     ],
   }), []);
 

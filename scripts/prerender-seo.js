@@ -21,6 +21,7 @@ const ROUTES = [
     schema: {
       '@context': 'https://schema.org',
       '@type': 'Person',
+      '@id': `${SITE_URL}/#person`,
       name: 'Sahaya Savari',
       url: SITE_URL,
       jobTitle: 'AI/ML & Full Stack Developer',
@@ -226,9 +227,13 @@ async function prerender() {
       console.warn(`[Warning] Failed to render React tree for route ${route.path}:`, err);
     }
 
-    // Inject rendered React app into #root
+    // Inject rendered React app into #root (stripping duplicate helmet metadata tags so metadata exists only in <head>)
     if (appHtml) {
-      html = html.replace('<div id="root"></div>', `<div id="root">${appHtml}</div>`);
+      const cleanAppHtml = appHtml
+        .replace(/<title>.*?<\/title>/gi, '')
+        .replace(/<meta\b[^>]*\/?>/gi, '')
+        .replace(/<link\b[^>]*rel=["']canonical["'][^>]*\/?>/gi, '');
+      html = html.replace('<div id="root"></div>', `<div id="root">${cleanAppHtml}</div>`);
     } else {
       console.error(`[Error] appHtml was empty for route ${route.path}!`);
     }
