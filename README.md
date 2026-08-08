@@ -1,58 +1,88 @@
-# 🚀 Sahaya Savari F — Portfolio
+# 🚀 Sahaya Savari F — Portfolio & System Documentation
 
-A modern portfolio website showcasing my projects, technical skills, certifications, and journey in Artificial Intelligence. Built with a focus on performance, accessibility, and exceptional user experience.
+Personal portfolio and technical showcase of **Sahaya Savari F** — AI Engineer, Python Developer, Full Stack Developer, and M.Sc. Artificial Intelligence student at St. Joseph's College (Autonomous), Trichy.
 
 <p align="center">
-  <a href="https://sahayasavari.me">🌐 Live Demo</a> •
+  <a href="https://sahayasavari.me">🌐 Portfolio</a> •
+  <a href="https://blog.sahayasavari.me">✍️ Engineering Blog</a> •
   <a href="https://github.com/sahaya-savari">💻 GitHub</a> •
   <a href="https://www.linkedin.com/in/sahaya-savari">💼 LinkedIn</a>
 </p>
 
 ---
 
-## 🎯 Project Overview
+## 📌 Production Links & Identity
 
-This portfolio serves as my central hub for projects, certifications, technical skills, and professional achievements. I am **Sahaya Savari F**, an **M.Sc Artificial Intelligence student** at **St. Joseph's College (Autonomous), Tiruchirappalli**. I enjoy building practical software solutions using Artificial Intelligence, Machine Learning, Python, Backend Development, Data Analytics, and Modern Web Technologies.
-
-The project is designed to be a fast, responsive, and recruiter-ready progressive web application that highlights my core competencies and practical experience.
-
----
-
-## 🏗️ Architecture
-
-The application follows a modern frontend architecture:
-- **Component-Driven UI**: Built with React functional components and hooks for modularity and reusability.
-- **Client-Side Routing**: Implemented for seamless navigation without full page reloads.
-- **Responsive Layout System**: Utilizes Tailwind CSS utility classes to ensure a fluid experience across all device sizes (320px to 1440px+).
-- **Asset Optimization**: Uses lazy-loading and optimized media formats (like HLS video streaming) to ensure minimal initial load times.
-- **State Management**: React state hooks manage UI interactions like modals, resume viewing, and mobile navigation.
+- **Production Site**: [https://sahayasavari.me](https://sahayasavari.me)
+- **Technical Blog**: [https://blog.sahayasavari.me](https://blog.sahayasavari.me)
+- **GitHub**: [https://github.com/sahaya-savari](https://github.com/sahaya-savari)
+- **LinkedIn**: [https://www.linkedin.com/in/sahaya-savari](https://www.linkedin.com/in/sahaya-savari)
+- **Contact Email**: [contact@sahayasavari.me](mailto:contact@sahayasavari.me)
+- **Primary Search Entity**: Sahaya Savari F (`Sahaya Savari`)
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠️ Technology Stack
 
-| Category        | Technologies            |
-| --------------- | ----------------------- |
-| Frontend        | React, TypeScript, Vite |
-| Styling         | Tailwind CSS            |
-| Animation       | Framer Motion, GSAP     |
-| Icons           | Lucide React            |
-| PDF Viewer      | react-pdf               |
-| Media Streaming | hls.js                  |
-| Deployment      | Firebase Hosting        |
-| Version Control | Git & GitHub            |
+| Layer | Technology |
+| :--- | :--- |
+| **Core Framework** | React 19 (`19.2.3`), TypeScript 5.9 (`5.9.3`) |
+| **Build Tooling** | Vite 7 (`7.2.4`), Node ES Modules |
+| **Routing** | React Router v7 (`^7.18.1`) |
+| **Styling** | Tailwind CSS v4 (`4.1.17`) |
+| **Animations & UI** | Framer Motion (`^12.38.0`), GSAP (`^3.15.0`), Lucide React |
+| **Media & Audio** | HLS.js (`^1.6.15`), Web Audio API, OGL WebGL |
+| **Documents** | PDF.js / React-PDF (`^10.4.1`) |
+| **Hosting & Infra** | Firebase Hosting, Cloudflare CDN Edge |
 
 ---
 
-## ✨ Features
+## 🏗️ Pre-rendering & System Architecture
 
-* **Premium Glassmorphism UI**: Modern aesthetic with blur effects and depth.
-* **Fully Responsive Design**: Optimized for mobile, tablet, and desktop viewing.
-* **In-App Resume Viewer**: Allows recruiters to view, zoom, and download the resume without leaving the site.
-* **Interactive Project Showcase**: Detailed project highlights with live demos and repository links.
-* **Smooth Animations**: Powered by Framer Motion and GSAP for a dynamic feel.
-* **Accessibility First**: ARIA labels, semantic HTML, and high contrast ratios.
-* **SEO Optimized**: Meta tags, structured schema, and fast loading times.
+The application uses static pre-rendering built on React 19 server rendering (`react-dom/server`). During production build, Vite compiles an SSR module that renders full semantic HTML body content into `<div id="root">` for every public route before client-side hydration.
+
+```text
+React Application (Single Source of Truth)
+        ↓
+Vite Client Build (dist/)
+        ↓
+Vite SSR Build (.tmp-server/entry-server.js)
+        ↓
+Static HTML Pre-renderer (scripts/prerender-seo.js)
+        ↓
+10 Route-Specific HTML Files (dist/<route>/index.html)
+        ↓
+Firebase Hosting CDN
+        ↓
+Browser Load → React 19 Client Hydration
+```
+
+---
+
+## 🌐 Public Pre-rendered Routes
+
+The following 10 routes are statically pre-rendered during build:
+
+1. `/` — Portfolio Homepage (Hero, About, Skills, Projects, Blog, Open Source, Certifications, Contact)
+2. `/projects` — Projects Directory
+3. `/resume` — Curriculum Vitae & Resume Viewer
+4. `/blog` — Technical Articles & Engineering Notes
+5. `/recruiter` — ATS-Friendly Candidate Summary
+6. `/ai` — Ask Sahaya AI Assistant
+7. `/projects/prepmind-ai` — PrepMind AI Case Study
+8. `/projects/daily-spark` — Daily Spark Case Study
+9. `/projects/neobeat` — NeoBeat Case Study
+10. `/projects/portfolio-website` — Portfolio Website Case Study
+
+---
+
+## 🎯 SEO, AEO & Entity Architecture
+
+- **Stable Person `@id` Node**: URI anchor `https://sahayasavari.me/#person` unifies identity across `Person`, `WebSite`, and `ProfilePage` JSON-LD schemas.
+- **`ProfilePage` Structured Data**: Includes Schema.org `ProfilePage` (`@id: https://sahayasavari.me/#profilepage`) with `mainEntity` referencing the Person entity node.
+- **Clean Metadata**: All `<title>`, `<meta description>`, `canonical`, Open Graph, and Twitter metadata tags exist strictly inside `<head>` (duplicate tags inside body `#root` are automatically stripped during static pre-rendering).
+- **Crawlability & Indexing**: Includes `sitemap.xml`, `robots.txt`, and canonical host enforcement.
+- **AI Discoverability (AEO/GEO)**: Includes `/llms.txt` and `/llms-full.txt` for LLM search indexing agents.
 
 ---
 
@@ -60,76 +90,54 @@ The application follows a modern frontend architecture:
 
 ```text
 portfolio/
-├── public/                 # Static assets (images, PDFs, SVGs)
+├── public/                 # Static assets, sitemap.xml, robots.txt, llms.txt
+├── scripts/
+│   └── prerender-seo.js   # Static pre-rendering build script
 ├── src/
-│   ├── assets/             # Internal assets
-│   ├── components/         # Reusable UI components
-│   ├── sections/           # Major page sections (Hero, Projects, Certifications)
-│   ├── App.tsx             # Main application layout and routing
-│   ├── index.css           # Global styles and Tailwind directives
-│   └── main.tsx            # Application entry point
-├── package.json            # Dependencies and scripts
-├── vite.config.ts          # Vite build configuration
-└── firebase.json           # Firebase hosting configuration
+│   ├── components/        # Reusable UI components & SEOHead
+│   ├── data/              # Case studies & static article data
+│   ├── layouts/           # RootLayout with navigation & footer
+│   ├── pages/             # Route page components
+│   ├── sections/          # Portfolio homepage sections
+│   ├── App.tsx            # React Router v7 routes configuration
+│   ├── entry-server.tsx   # React SSR server rendering entry point
+│   ├── main.tsx           # Client hydration entry point
+│   └── seo.ts             # Schema.org JSON-LD definitions & metadata constants
+├── firebase.json          # Firebase Hosting configuration & security headers
+├── package.json           # Dependencies & build scripts
+├── tsconfig.json          # TypeScript configuration
+└── vite.config.ts         # Vite build configuration & chunk splitting
 ```
 
 ---
 
-## ⚡ Performance Metrics
-
-The application has been rigorously audited and optimized to achieve top-tier Lighthouse scores across both Mobile and Desktop platforms. Key optimizations include:
-- Absolute positioning and fixed height constraints to eliminate Cumulative Layout Shift (CLS).
-- Lazy loading for heavy assets like the HLS video player.
-- Minimized bundle size through tree-shaking and optimized dependencies.
-
-**Target Metrics:**
-- **Performance**: 90+ (Desktop) / 70+ (Mobile)
-- **Accessibility**: 100
-- **Best Practices**: 100
-- **SEO**: 100
-
----
-
-## 🚀 Deployment
-
-The project is configured for seamless deployment to **Firebase Hosting**.
+## ⚡ Development & Deployment
 
 ### Local Development
 ```bash
-git clone https://github.com/sahaya-savari/portfolio.git
-cd portfolio
 npm install
 npm run dev
 ```
 
 ### Production Build
+Runs Vite client build, builds SSR bundle, and executes static pre-rendering for all routes:
 ```bash
 npm run build
 ```
 
-### Deploy to Firebase
+### Local Production Preview
 ```bash
-npx firebase deploy
+npm run preview
+```
+
+### Deployment
+Deploy pre-rendered build output to Firebase Hosting:
+```bash
+npx firebase deploy --only hosting
 ```
 
 ---
 
-## 🔗 Live Demo
+## 📄 License
 
-Experience the live portfolio here: **[https://sahayasavari.me](https://sahayasavari.me)**
-
----
-
-## 📫 Contact Information
-
-* **Email**: Contact me via LinkedIn
-* **LinkedIn**: [linkedin.com/in/sahaya-savari](https://www.linkedin.com/in/sahaya-savari)
-* **GitHub**: [github.com/sahaya-savari](https://github.com/sahaya-savari)
-
----
-
-## License
-
-Copyright © 2026 Sahaya Savari F
-
-All Rights Reserved.
+Copyright © 2026 Sahaya Savari F. All Rights Reserved.
