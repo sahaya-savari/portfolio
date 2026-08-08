@@ -22,8 +22,9 @@ interface IntersectionLazyProps {
  * content is fully rendered and height is already stable when the user scrolls to it.
  */
 export default function IntersectionLazy({ children, fallbackHeight = '100vh' }: IntersectionLazyProps) {
-  const [hasIntersected, setHasIntersected] = useState(false);
-  const [isStable, setIsStable] = useState(false);
+  const isServer = typeof window === 'undefined';
+  const [hasIntersected, setHasIntersected] = useState(isServer);
+  const [isStable, setIsStable] = useState(isServer);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   // Intersection observer — fire early (400px before viewport)

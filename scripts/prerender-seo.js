@@ -1,11 +1,13 @@
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
+import { fileURLToPath, pathToFileURL } from 'url';
+import { build } from 'vite';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const DIST_DIR = path.resolve(__dirname, '../dist');
+const SERVER_DIR = path.resolve(__dirname, '../.tmp-server');
 const INDEX_HTML_PATH = path.join(DIST_DIR, 'index.html');
 
 const SITE_URL = 'https://sahayasavari.me';
@@ -16,14 +18,20 @@ const ROUTES = [
     title: 'Sahaya Savari | AI/ML & Full Stack Developer',
     description: 'Portfolio of Sahaya Savari, an M.Sc. AI student and AI/ML & Full Stack Developer building Machine Learning tools, Python APIs, React apps, and scalable software.',
     canonical: `${SITE_URL}`,
-    // Note: Kept in sync with personSchema in src/seo.ts for static HTML pre-rendering
     schema: {
       '@context': 'https://schema.org',
       '@type': 'Person',
       name: 'Sahaya Savari',
       url: SITE_URL,
       jobTitle: 'AI/ML & Full Stack Developer',
+      description: 'M.Sc. Artificial Intelligence Student, AI/ML & Full Stack Developer building Machine Learning tools, Python APIs, React apps, and scalable software applications.',
       email: 'contact@sahayasavari.me',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Madurai',
+        addressRegion: 'Tamil Nadu',
+        addressCountry: 'IN'
+      },
       alumniOf: {
         '@type': 'EducationalOrganization',
         name: "St. Joseph's College (Autonomous), Trichy"
@@ -177,11 +185,30 @@ const ROUTES = [
   }
 ];
 
-function prerender() {
+async function prerender() {
   if (!fs.existsSync(INDEX_HTML_PATH)) {
     console.error(`Error: Base ${INDEX_HTML_PATH} does not exist. Run vite build first.`);
     process.exit(1);
   }
+
+  console.log('Building server module for static HTML pre-rendering...');
+  await build({
+    build: {
+      ssr: path.resolve(__dirname, '../src/entry-server.tsx'),
+      outDir: SERVER_DIR,
+      minify: false,
+      emptyOutDir: true,
+      rollupOptions: {
+        output: {
+          format: 'esm'
+        }
+      }
+    },
+    configFile: false
+  });
+
+  const serverBundlePath = path.join(SERVER_DIR, 'entry-server.js');
+  const { render } = await import(pathToFileURL(serverBundlePath).href);
 
   const baseHtml = fs.readFileSync(INDEX_HTML_PATH, 'utf-8');
 
@@ -189,6 +216,26 @@ function prerender() {
 
   for (const route of ROUTES) {
     let html = baseHtml;
+
+    // Render React components to static HTML for this route
+    let appHtml = '';
+    try {
+      const rendered = render(route.path);
+      appHtml = rendered.html || '';
+    } catch (err) {
+      console.warn(`[Warning] Failed to render React tree for route ${route.path}:`, err);
+    }
+
+    // Inject rendered React app into #root
+    if (appHtml) {
+      html = html.replace('<div id="root"></div>', `<div id="root">${appHtml}</div>`);
+    } else {
+      console.error(`[Error] appHtml was empty for route ${route.path}!`);
+    }
+
+    // Update noscript block to be clean and informative
+    const updatedNoscript = `<noscript><div style="padding:1.5rem;text-align:center;color:#fff;background:#000;font-family:sans-serif;"><p style="font-size:1.25rem;font-weight:700;margin:0 0 0.5rem;">Sahaya Savari - Portfolio</p><p>JavaScript is recommended for interactive animations. Full static page content is displayed above.</p></div></noscript>`;
+    html = html.replace(/<noscript>[\s\S]*?<\/noscript>/gi, updatedNoscript);
 
     // 1. Title
     html = html.replace(/<title>.*?<\/title>/gi, `<title>${route.title}</title>`);
@@ -217,14 +264,21 @@ function prerender() {
     // Determine file output target
     if (route.path === '/') {
       fs.writeFileSync(INDEX_HTML_PATH, html, 'utf-8');
-      console.log(`  [✓] Pre-rendered / -> dist/index.html`);
+      console.log(`  [✓] Pre-rendered / -> dist/index.html (${appHtml.length} bytes body HTML)`);
     } else {
       const targetDir = path.join(DIST_DIR, route.path.replace(/^\//, ''));
       fs.mkdirSync(targetDir, { recursive: true });
       const targetFile = path.join(targetDir, 'index.html');
       fs.writeFileSync(targetFile, html, 'utf-8');
-      console.log(`  [✓] Pre-rendered ${route.path} -> ${path.relative(DIST_DIR, targetFile)}`);
+      console.log(`  [✓] Pre-rendered ${route.path} -> ${path.relative(DIST_DIR, targetFile)} (${appHtml.length} bytes body HTML)`);
     }
+  }
+
+  // Cleanup temporary server build directory
+  try {
+    fs.rmSync(SERVER_DIR, { recursive: true, force: true });
+  } catch (e) {
+    // Ignore cleanup error
   }
 
   console.log('SEO pre-rendering completed successfully!');
