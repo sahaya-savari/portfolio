@@ -39,3 +39,7 @@ scratch_*.json
 *.tmp
 .tmp-*
 temp*.txt
+
+#Portfolio
+portfolio.md
+
