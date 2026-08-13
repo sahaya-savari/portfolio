@@ -10,20 +10,20 @@ export const personSchema = {
   '@type': 'Person',
   '@id': `${SITE_URL}/#person`,
   name: 'Sahaya Savari',
+  alternateName: 'Sahaya Savari F',
   url: SITE_URL,
   jobTitle: 'AI/ML & Full Stack Developer',
   description:
     'M.Sc. Artificial Intelligence Student, AI/ML & Full Stack Developer building Machine Learning tools, Python APIs, React apps, and scalable software applications.',
   email: 'contact@sahayasavari.me',
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Madurai',
-    addressRegion: 'Tamil Nadu',
-    addressCountry: 'IN',
+  affiliation: {
+    '@type': 'EducationalOrganization',
+    name: "St. Joseph's College (Autonomous), Trichy",
   },
   sameAs: [
     'https://www.linkedin.com/in/sahaya-savari',
     'https://github.com/sahaya-savari',
+    'https://blog.sahayasavari.me',
   ],
   knowsAbout: [
     'Artificial Intelligence',

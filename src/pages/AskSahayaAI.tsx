@@ -1,8 +1,8 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Send, Sparkles, User, Bot } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
-import { SITE_URL } from '../seo';
+import { SITE_URL, createBreadcrumbSchema } from '../seo';
 
 type Message = {
   id: string;
@@ -26,6 +26,27 @@ export default function AskSahayaAI() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+  }, []);
+
+  const aiSchema = useMemo(() => {
+    const breadcrumb = createBreadcrumbSchema([
+      { name: 'Home', url: SITE_URL },
+      { name: 'Ask Sahaya AI', url: `${SITE_URL}/ai` },
+    ]);
+    return {
+      '@context': 'https://schema.org',
+      '@graph': [
+        breadcrumb,
+        {
+          '@type': 'WebPage',
+          '@id': `${SITE_URL}/ai/#webpage`,
+          url: `${SITE_URL}/ai`,
+          name: 'Ask Sahaya AI | Portfolio Assistant for AI Engineering',
+          description: "Chat with Sahaya Savari F's portfolio assistant to learn about his AI Engineer skills, Machine Learning projects, Python, React, TypeScript, and Firebase work.",
+          author: { '@id': `${SITE_URL}/#person` },
+        },
+      ],
+    };
   }, []);
 
   const scrollToBottom = () => {
@@ -62,7 +83,7 @@ export default function AskSahayaAI() {
       return "Sahaya is currently an M.Sc. Artificial Intelligence student at St. Joseph's College (Autonomous), Trichy. He has built production-style portfolio projects including PrepMind AI and Daily Spark, demonstrating Machine Learning, Python Developer, frontend, and backend capabilities.";
     }
     if (lowerQuery.includes('contact') || lowerQuery.includes('hire') || lowerQuery.includes('email')) {
-      return "You can reach Sahaya via email at contact@sahayasavari.me, or connect with him on LinkedIn (linkedin.com/in/sahayasavari). He's currently available for internships and entry-level roles!";
+      return "You can reach Sahaya via email at contact@sahayasavari.me, or connect with him on LinkedIn (linkedin.com/in/sahaya-savari). He's currently available for internships and entry-level roles!";
     }
     return "That's an interesting question! While I'm just a simple mock AI right now, Sahaya is actively working on connecting me to a real LLM backend. For now, try asking about his skills, experience, or how to contact him!";
   };
@@ -73,6 +94,7 @@ export default function AskSahayaAI() {
         title="Ask Sahaya AI | Portfolio Assistant for AI Engineering"
         description="Chat with Sahaya Savari F's portfolio assistant to learn about his AI Engineer skills, Machine Learning projects, Python, React, TypeScript, and Firebase work."
         url={`${SITE_URL}/ai`}
+        schema={aiSchema}
       />
       <div className="pt-32 pb-24 px-6 max-w-screen-md mx-auto min-h-screen flex flex-col bg-black text-white selection:bg-white selection:text-black">
         <Link to="/" className="inline-flex items-center gap-2 text-white/50 hover:text-white mb-8 transition-colors font-body text-sm self-start">

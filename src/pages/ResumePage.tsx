@@ -1,4 +1,4 @@
-import { useEffect, lazy, Suspense } from 'react';
+import { useEffect, useMemo, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Download, FileText } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
@@ -12,10 +12,26 @@ export default function ResumePage() {
     window.scrollTo(0, 0);
   }, []);
 
-  const resumeBreadcrumbs = createBreadcrumbSchema([
-    { name: 'Home', url: SITE_URL },
-    { name: 'Resume', url: `${SITE_URL}/resume` },
-  ]);
+  const resumeSchema = useMemo(() => {
+    const breadcrumb = createBreadcrumbSchema([
+      { name: 'Home', url: SITE_URL },
+      { name: 'Resume', url: `${SITE_URL}/resume` },
+    ]);
+    return {
+      '@context': 'https://schema.org',
+      '@graph': [
+        breadcrumb,
+        {
+          '@type': 'WebPage',
+          '@id': `${SITE_URL}/resume/#webpage`,
+          url: `${SITE_URL}/resume`,
+          name: 'Resume | Sahaya Savari',
+          description: 'View and download the complete curriculum vitae of Sahaya Savari, M.Sc. Artificial Intelligence student, AI/ML & Full Stack Developer.',
+          author: { '@id': `${SITE_URL}/#person` },
+        },
+      ],
+    };
+  }, []);
 
   return (
     <>
@@ -23,7 +39,7 @@ export default function ResumePage() {
         title="Resume | Sahaya Savari"
         description="View and download the complete curriculum vitae of Sahaya Savari, M.Sc. Artificial Intelligence student, AI/ML & Full Stack Developer."
         url={`${SITE_URL}/resume`}
-        schema={resumeBreadcrumbs}
+        schema={resumeSchema}
       />
       <div className="pt-28 pb-20 px-4 md:px-6 max-w-screen-md mx-auto min-h-screen">
         <div className="mb-8 flex items-center justify-between">

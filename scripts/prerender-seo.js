@@ -23,17 +23,12 @@ const ROUTES = [
       '@type': 'Person',
       '@id': `${SITE_URL}/#person`,
       name: 'Sahaya Savari',
+      alternateName: 'Sahaya Savari F',
       url: SITE_URL,
       jobTitle: 'AI/ML & Full Stack Developer',
       description: 'M.Sc. Artificial Intelligence Student, AI/ML & Full Stack Developer building Machine Learning tools, Python APIs, React apps, and scalable software applications.',
       email: 'contact@sahayasavari.me',
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: 'Madurai',
-        addressRegion: 'Tamil Nadu',
-        addressCountry: 'IN'
-      },
-      alumniOf: {
+      affiliation: {
         '@type': 'EducationalOrganization',
         name: "St. Joseph's College (Autonomous), Trichy"
       },
@@ -50,7 +45,8 @@ const ROUTES = [
       ],
       sameAs: [
         'https://www.linkedin.com/in/sahaya-savari',
-        'https://github.com/sahaya-savari'
+        'https://github.com/sahaya-savari',
+        'https://blog.sahayasavari.me'
       ]
     }
   },
@@ -112,8 +108,8 @@ const ROUTES = [
   },
   {
     path: '/ai',
-    title: 'Ask Sahaya AI | Interactive Digital Assistant',
-    description: 'Interact with an AI assistant trained on Sahaya Savari\'s background, technical skills, projects, and career experience.',
+    title: 'Ask Sahaya AI | Portfolio Assistant for AI Engineering',
+    description: "Chat with Sahaya Savari F's portfolio assistant to learn about his AI Engineer skills, Machine Learning projects, Python, React, TypeScript, and Firebase work.",
     canonical: `${SITE_URL}/ai`,
     schema: {
       '@context': 'https://schema.org',

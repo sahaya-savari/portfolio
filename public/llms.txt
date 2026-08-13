@@ -39,6 +39,13 @@ Sahaya Savari F is an AI Engineer, Python Developer, and Full Stack Developer pu
 - Link: [Portfolio](https://sahayasavari.me)
 - Source: [GitHub Repo](https://github.com/sahaya-savari/portfolio)
 
+## Technical Articles
+
+- [Building AI Agents from Scratch in Python](https://blog.sahayasavari.me/blog/ai-agents-from-scratch)
+- [Pydantic V2: High-Performance Data Validation](https://blog.sahayasavari.me/blog/pydantic-v2-guide)
+- [Tailwind CSS v4 Migration & Performance](https://blog.sahayasavari.me/blog/tailwind-css-v4-guide)
+- [Production CI/CD Pipelines with GitHub Actions](https://blog.sahayasavari.me/blog/github-actions-ci-cd)
+
 ## Certifications
 
 - IBM Data Analyst Course (Data Analytics)
@@ -54,5 +61,6 @@ Sahaya Savari F is an AI Engineer, Python Developer, and Full Stack Developer pu
 - Email: [contact@sahayasavari.me](mailto:contact@sahayasavari.me)
 - LinkedIn: [Sahaya Savari](https://www.linkedin.com/in/sahaya-savari)
 - GitHub: [sahaya-savari](https://github.com/sahaya-savari)
+- Blog: [Sahaya Savari Technical Blog](https://blog.sahayasavari.me)
 - Location: Madurai, Tamil Nadu, India
 - Portfolio: [Sahaya Savari Portfolio](https://sahayasavari.me)

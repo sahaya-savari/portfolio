@@ -141,6 +141,20 @@ export default function ProjectDetails() {
               ))}
             </ul>
           </section>
+
+          {project.relatedArticle && (
+            <section className="pt-4 border-t border-white/10">
+              <h2 className="text-sm font-body font-bold text-white/40 uppercase tracking-widest mb-4">Related Technical Writing</h2>
+              <a
+                href={project.relatedArticle.url}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 text-base font-body text-white/90 hover:text-white underline underline-offset-4 transition-colors"
+              >
+                {project.relatedArticle.title} <ExternalLink className="w-4 h-4" />
+              </a>
+            </section>
+          )}
         </div>
       </div>
     </>

@@ -1,12 +1,32 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Download, Mail, ExternalLink } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
-import { SITE_URL } from '../seo';
+import { SITE_URL, createBreadcrumbSchema } from '../seo';
 
 export default function RecruiterMode() {
   useEffect(() => {
     window.scrollTo(0, 0);
+  }, []);
+
+  const recruiterSchema = useMemo(() => {
+    const breadcrumb = createBreadcrumbSchema([
+      { name: 'Home', url: SITE_URL },
+      { name: 'Recruiter Summary', url: `${SITE_URL}/recruiter` },
+    ]);
+    return {
+      '@context': 'https://schema.org',
+      '@graph': [
+        breadcrumb,
+        {
+          '@type': 'AboutPage',
+          '@id': `${SITE_URL}/recruiter/#webpage`,
+          url: `${SITE_URL}/recruiter`,
+          name: 'Recruiter Summary | Sahaya Savari',
+          mainEntity: { '@id': `${SITE_URL}/#person` },
+        },
+      ],
+    };
   }, []);
 
   return (
@@ -15,6 +35,7 @@ export default function RecruiterMode() {
         title="Recruiter Summary | Sahaya Savari"
         description="ATS-friendly recruiter summary for Sahaya Savari F, an AI Engineer, Python Developer, Full Stack Developer, and M.Sc. Artificial Intelligence student."
         url={`${SITE_URL}/recruiter`}
+        schema={recruiterSchema}
       />
       <div className="pt-32 pb-24 px-6 max-w-screen-md mx-auto min-h-screen bg-black text-white selection:bg-white selection:text-black">
         <Link to="/" className="inline-flex items-center gap-2 text-white/50 hover:text-white mb-12 transition-colors font-body text-sm no-print">
@@ -27,9 +48,9 @@ export default function RecruiterMode() {
             <h1 className="text-4xl font-heading italic tracking-tight mb-2">Sahaya Savari F</h1>
             <p className="text-xl font-body text-white/70 mb-4">AI Engineer / Full Stack Developer</p>
             <div className="flex flex-wrap gap-4 text-sm font-body text-white/50">
-              <span className="flex items-center gap-1.5"><Mail className="w-4 h-4" /> contact@sahayasavari.me</span>
-              <span className="flex items-center gap-1.5"><ExternalLink className="w-4 h-4" /> github.com/sahaya-savari</span>
-              <span className="flex items-center gap-1.5"><ExternalLink className="w-4 h-4" /> linkedin.com/in/sahayasavari</span>
+              <a href="mailto:contact@sahayasavari.me" className="flex items-center gap-1.5 hover:text-white transition-colors"><Mail className="w-4 h-4" /> contact@sahayasavari.me</a>
+              <a href="https://github.com/sahaya-savari" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-white transition-colors"><ExternalLink className="w-4 h-4" /> github.com/sahaya-savari</a>
+              <a href="https://www.linkedin.com/in/sahaya-savari" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-white transition-colors"><ExternalLink className="w-4 h-4" /> linkedin.com/in/sahaya-savari</a>
             </div>
           </div>
           <button 

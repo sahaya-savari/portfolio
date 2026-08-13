@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
@@ -10,10 +10,26 @@ export default function BlogPage() {
     window.scrollTo(0, 0);
   }, []);
 
-  const blogBreadcrumbs = createBreadcrumbSchema([
-    { name: 'Home', url: SITE_URL },
-    { name: 'Blog', url: `${SITE_URL}/blog` },
-  ]);
+  const blogSchema = useMemo(() => {
+    const breadcrumb = createBreadcrumbSchema([
+      { name: 'Home', url: SITE_URL },
+      { name: 'Blog', url: `${SITE_URL}/blog` },
+    ]);
+    return {
+      '@context': 'https://schema.org',
+      '@graph': [
+        breadcrumb,
+        {
+          '@type': 'Blog',
+          '@id': `${SITE_URL}/blog/#webpage`,
+          url: `${SITE_URL}/blog`,
+          name: 'Blog | Sahaya Savari',
+          description: 'Technical articles and insights on Artificial Intelligence, Machine Learning pipelines, React performance optimization, and software engineering by Sahaya Savari.',
+          author: { '@id': `${SITE_URL}/#person` },
+        },
+      ],
+    };
+  }, []);
 
   return (
     <>
@@ -21,7 +37,7 @@ export default function BlogPage() {
         title="Blog | Sahaya Savari"
         description="Technical articles and insights on Artificial Intelligence, Machine Learning pipelines, React performance optimization, and software engineering by Sahaya Savari."
         url={`${SITE_URL}/blog`}
-        schema={blogBreadcrumbs}
+        schema={blogSchema}
       />
       <div className="pt-28 pb-16 px-4 md:px-6 max-w-screen-xl mx-auto min-h-screen">
         <div className="mb-8">

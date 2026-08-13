@@ -1,3 +1,8 @@
+export interface RelatedArticle {
+  title: string;
+  url: string;
+}
+
 export interface CaseStudy {
   id: string;
   title: string;
@@ -12,6 +17,7 @@ export interface CaseStudy {
   lessons: string[];
   demoUrl?: string;
   githubUrl?: string;
+  relatedArticle?: RelatedArticle;
 }
 
 export const CASE_STUDIES: Record<string, CaseStudy> = {
@@ -37,7 +43,11 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
       'Learned advanced prompt engineering techniques to constrain LLM outputs.',
       'Mastered WebSocket integrations for real-time streaming in React.'
     ],
-    githubUrl: 'https://github.com/sahaya-savari'
+    githubUrl: 'https://github.com/sahaya-savari',
+    relatedArticle: {
+      title: 'Building AI Agents from Scratch in Python',
+      url: 'https://blog.sahayasavari.me/blog/ai-agents-from-scratch'
+    }
   },
   'daily-spark': {
     id: 'daily-spark',
@@ -61,7 +71,11 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
       'Deepened understanding of client-side storage limitations and optimization.',
       'Improved accessible design practices, ensuring full keyboard navigability.'
     ],
-    githubUrl: 'https://github.com/sahaya-savari/daily-spark'
+    githubUrl: 'https://github.com/sahaya-savari/daily-spark',
+    relatedArticle: {
+      title: 'Pydantic V2: High-Performance Data Validation',
+      url: 'https://blog.sahayasavari.me/blog/pydantic-v2-guide'
+    }
   },
   'neobeat': {
     id: 'neobeat',
@@ -110,6 +124,10 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
       'Manual Vite chunk splitting and IntersectionObserver-based lazy loading are essential for modern media-heavy web apps.'
     ],
     githubUrl: 'https://github.com/sahaya-savari/portfolio',
-    demoUrl: 'https://sahayasavari.me'
+    demoUrl: 'https://sahayasavari.me',
+    relatedArticle: {
+      title: 'Tailwind CSS v4 Migration & Performance',
+      url: 'https://blog.sahayasavari.me/blog/tailwind-css-v4-guide'
+    }
   }
 };

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
@@ -11,10 +11,26 @@ export default function ProjectsPage() {
     window.scrollTo(0, 0);
   }, []);
 
-  const projectsBreadcrumbs = createBreadcrumbSchema([
-    { name: 'Home', url: SITE_URL },
-    { name: 'Projects', url: `${SITE_URL}/projects` },
-  ]);
+  const projectsSchema = useMemo(() => {
+    const breadcrumb = createBreadcrumbSchema([
+      { name: 'Home', url: SITE_URL },
+      { name: 'Projects', url: `${SITE_URL}/projects` },
+    ]);
+    return {
+      '@context': 'https://schema.org',
+      '@graph': [
+        breadcrumb,
+        {
+          '@type': 'CollectionPage',
+          '@id': `${SITE_URL}/projects/#webpage`,
+          url: `${SITE_URL}/projects`,
+          name: 'Projects | Sahaya Savari',
+          description: 'Explore machine learning applications, Python APIs, full stack React apps, open-source contributions, and software architectures created by Sahaya Savari.',
+          author: { '@id': `${SITE_URL}/#person` },
+        },
+      ],
+    };
+  }, []);
 
   return (
     <>
@@ -22,7 +38,7 @@ export default function ProjectsPage() {
         title="Projects | Sahaya Savari"
         description="Explore machine learning applications, Python APIs, full stack React apps, open-source contributions, and software architectures created by Sahaya Savari."
         url={`${SITE_URL}/projects`}
-        schema={projectsBreadcrumbs}
+        schema={projectsSchema}
       />
       <div className="pt-28 pb-16 px-4 md:px-6 max-w-screen-xl mx-auto min-h-screen">
         <div className="mb-8">
