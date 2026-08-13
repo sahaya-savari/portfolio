@@ -148,14 +148,17 @@ Browser Load (Server HTML served instantly) → React 19 Client Hydration
 ### Schema.org Graph Architecture
 - **Person URI Node Anchor**: `@id: "https://sahayasavari.me/#person"`
   - `name`: Sahaya Savari
+  - `alternateName`: Sahaya Savari F
   - `url`: `https://sahayasavari.me`
   - `jobTitle`: AI/ML & Full Stack Developer
-  - `sameAs`: `["https://www.linkedin.com/in/sahaya-savari", "https://github.com/sahaya-savari"]`
+  - `affiliation`: `{ "@type": "EducationalOrganization", "name": "St. Joseph's College (Autonomous), Trichy" }` (Current M.Sc. AI student status; no `alumniOf`, no physical address)
+  - `sameAs`: `["https://www.linkedin.com/in/sahaya-savari", "https://github.com/sahaya-savari", "https://blog.sahayasavari.me"]`
 - **WebSite Graph Node**: `@id: "https://sahayasavari.me/#website"`
   - `author`: `{ "@id": "https://sahayasavari.me/#person" }`
 - **ProfilePage Graph Node**: `@id: "https://sahayasavari.me/#profilepage"`
   - `mainEntity`: `{ "@id": "https://sahayasavari.me/#person" }`
-- **Case Studies**: `SoftwareSourceCode` & `BreadcrumbList` schemas.
+- **Secondary Route Graph Nodes**: Unified `@graph` objects on `/projects` (`CollectionPage`), `/blog` (`Blog`), `/resume` (`WebPage`), `/recruiter` (`AboutPage`), and `/ai` (`WebPage`) linking `author`/`mainEntity` to `{ "@id": "https://sahayasavari.me/#person" }`.
+- **Case Studies**: `SoftwareSourceCode` & `BreadcrumbList` schemas with contextual cross-links to published technical writing on `blog.sahayasavari.me`.
 
 ### AI Discoverability (AEO & GEO)
 - `/llms.txt` (2,808 bytes): Structured markdown reference for LLM search agents.
@@ -234,11 +237,13 @@ npx firebase deploy --only hosting
 
 ## 12. Production Baseline & Status Matrix
 
-- **SSR Static Pre-rendering**: **COMPLETED & VERIFIED** (All 10 routes return 10KB–31KB rendered HTML in `#root`).
+- **SEO + AEO + GEO Entity Architecture**: **COMPLETED & VERIFIED** (Commit `fc07811` strengthens Person entity `@id`, `alternateName`, student `affiliation`, secondary route `@graph` author linkages, and project-article cross-links).
+- **Firebase Hosting Production Deployment**: **COMPLETED & VERIFIED** (Deployed 62 static dist files to production target `sahayasavari` at `https://sahayasavari.me`).
+- **SSR Static Pre-rendering**: **COMPLETED & VERIFIED** (All 10 routes return 10KB–32KB rendered HTML in `#root`).
 - **Metadata Deduplication**: **COMPLETED & VERIFIED** (Metadata tags exist strictly in `<head>`).
-- **Person `@id` & `ProfilePage` Schema**: **COMPLETED & VERIFIED** (Live JSON-LD graph verified via `curl`).
+- **Person `@id` & `ProfilePage` Schema**: **COMPLETED & VERIFIED** (Live JSON-LD graph verified).
 - **Repository Cleanup**: **COMPLETED & VERIFIED** (Clean working tree, `.gitignore` updated).
-- **README Documentation**: **COMPLETED & VERIFIED** (Accurate stack, architecture & routes documented).
+- **Documentation Synchronization**: **COMPLETED & VERIFIED** (Accurate stack, architecture, routes & deployment status documented).
 
 ---
 

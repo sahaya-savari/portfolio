@@ -78,8 +78,9 @@ The following 10 routes are statically pre-rendered during build:
 
 ## 🎯 SEO, AEO & Entity Architecture
 
-- **Stable Person `@id` Node**: URI anchor `https://sahayasavari.me/#person` unifies identity across `Person`, `WebSite`, and `ProfilePage` JSON-LD schemas.
-- **`ProfilePage` Structured Data**: Includes Schema.org `ProfilePage` (`@id: https://sahayasavari.me/#profilepage`) with `mainEntity` referencing the Person entity node.
+- **Stable Person `@id` Node**: URI anchor `https://sahayasavari.me/#person` unifies identity across `Person` (`name: "Sahaya Savari"`, `alternateName: "Sahaya Savari F"`, `affiliation: St. Joseph's College (Autonomous), Trichy`), `WebSite`, and `ProfilePage` JSON-LD schemas.
+- **Secondary Route `@graph` Linkages**: Unified route schemas on `/projects`, `/blog`, `/resume`, `/recruiter`, and `/ai` link content author/mainEntity to `@id: https://sahayasavari.me/#person`.
+- **Case Study & Blog Cross-Links**: Project case studies link directly to published engineering articles on `blog.sahayasavari.me`.
 - **Clean Metadata**: All `<title>`, `<meta description>`, `canonical`, Open Graph, and Twitter metadata tags exist strictly inside `<head>` (duplicate tags inside body `#root` are automatically stripped during static pre-rendering).
 - **Crawlability & Indexing**: Includes `sitemap.xml`, `robots.txt`, and canonical host enforcement.
 - **AI Discoverability (AEO/GEO)**: Includes `/llms.txt` and `/llms-full.txt` for LLM search indexing agents.
