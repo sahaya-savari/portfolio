@@ -1,12 +1,11 @@
 import React, { useState, useCallback, useEffect, useRef, lazy, Suspense } from 'react';
 import { m as motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
-import { ArrowUpRight, Menu, X, Search, Sparkles } from 'lucide-react';
+import { ArrowUpRight, Menu, X, Search, Sparkles, Download } from 'lucide-react';
 import { Outlet, useNavigate, useLocation, Link } from 'react-router-dom';
 
 import ClickSpark from '../components/ClickSpark';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { lockScroll, unlockScroll } from '../utils/scrollLock';
-// @ts-ignore
 const TargetCursor = lazy(() => import('../components/ui/TargetCursor/TargetCursor'));
 
 // Lazy load heavy global modals
@@ -257,6 +256,15 @@ export default function RootLayout() {
               </div>
               <div className="flex items-center gap-3">
                 <a
+                  href="/resume.pdf"
+                  download
+                  className="hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-full border border-white/15 bg-white/5 hover:bg-white/15 text-white/90 hover:text-white text-xs font-body font-medium transition-all shadow-sm"
+                  aria-label="Download Resume PDF"
+                >
+                  <Download size={13} />
+                  <span className="hidden lg:inline">Download CV</span>
+                </a>
+                <a
                   href="/#contact"
                   onClick={(e) => handleNavClick(e, '#contact')}
                   className="hidden md:flex relative text-sm font-medium rounded-full h-10 pl-6 pr-14 group transition-all duration-500 hover:pl-14 hover:pr-6 overflow-hidden cursor-pointer bg-white text-black items-center"
@@ -299,6 +307,9 @@ export default function RootLayout() {
                 <Link to="/" onClick={() => setMobileMenuOpen(false)} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Home</Link>
                 <a href="/#about" onClick={(e) => handleNavClick(e, '#about')} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">About</a>
                 <Link to="/resume" onClick={() => setMobileMenuOpen(false)} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Resume</Link>
+                <a href="/resume.pdf" download onClick={() => setMobileMenuOpen(false)} className="text-2xl font-body font-medium text-white/90 hover:text-white transition-colors min-h-[48px] flex items-center gap-2">
+                  <Download size={20} /> Download Resume PDF
+                </a>
                 <Link to="/blog" onClick={() => setMobileMenuOpen(false)} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Blog</Link>
                 <a href="/#skills" onClick={(e) => handleNavClick(e, '#skills')} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Skills</a>
                 <Link to="/projects" onClick={() => setMobileMenuOpen(false)} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Projects</Link>

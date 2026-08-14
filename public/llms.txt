@@ -22,8 +22,8 @@ Sahaya Savari F is an AI Engineer, Python Developer, and Full Stack Developer pu
 
 ### Daily Spark
 - Type: Productivity App
-- Stack: Python, Firebase, React, AI/ML, TypeScript
-- Description: A daily motivation and habit-tracking application that helps users build positive routines with AI-powered personalized suggestions. Tracks daily habits and analyzes user behavior patterns to generate personalized daily routines and motivational nudges.
+- Stack: React, TypeScript, Vite, Tailwind CSS, IndexedDB, Capacitor Android
+- Description: An offline-first habit and daily streak tracking application built with React, TypeScript, Vite, Tailwind CSS, and IndexedDB for local data persistence, featuring Capacitor support for Android.
 - Link: [Daily Spark](https://daily-spark-app-da74b.web.app)
 
 ### PrepMind AI

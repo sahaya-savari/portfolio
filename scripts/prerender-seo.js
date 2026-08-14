@@ -275,6 +275,23 @@ async function prerender() {
     }
   }
 
+  // Generate automated sitemap.xml in dist/
+  const DEFAULT_LASTMOD = '2026-08-15';
+  const sitemapEntries = ROUTES.map(r => `  <url>
+    <loc>${r.canonical}</loc>
+    <changefreq>${r.path === '/' || r.path === '/projects' || r.path === '/blog' ? 'weekly' : 'monthly'}</changefreq>
+    <priority>${r.path === '/' ? '1.0' : r.path.startsWith('/projects') || r.path === '/blog' ? '0.9' : '0.8'}</priority>
+    <lastmod>${r.lastmod || DEFAULT_LASTMOD}</lastmod>
+  </url>`).join('\n');
+
+  const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${sitemapEntries}
+</urlset>\n`;
+
+  fs.writeFileSync(path.join(DIST_DIR, 'sitemap.xml'), sitemapXml, 'utf-8');
+  console.log(`  [✓] Generated automated dist/sitemap.xml (${ROUTES.length} routes)`);
+
   // Cleanup temporary server build directory
   try {
     fs.rmSync(SERVER_DIR, { recursive: true, force: true });

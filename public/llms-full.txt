@@ -32,14 +32,14 @@ Sahaya Savari F is an AI Engineer, Python Developer, and Full-Stack Developer cu
 - Technologies: React, TypeScript, Tailwind CSS, Framer Motion, Vite, Web Audio API, PDF.js
 
 ### Data & Infrastructure
-- Databases & Cloud: SQL, Firebase Hosting, Firebase Realtime Database, Cloudflare CDN, AWS CloudFront
+- Databases & Cloud: SQL, IndexedDB, Firebase Hosting, Cloudflare CDN, AWS CloudFront
 
 ## Project Specifications
 
 ### 1. Daily Spark
 - Type: Productivity App
-- Tech Stack: Python, Firebase, React, AI/ML, TypeScript
-- Description: A habit-tracking application built with Python, Firebase Realtime Database, React, and TypeScript. Tracks habits and analyzes user patterns to generate daily routine suggestions.
+- Tech Stack: React, TypeScript, Vite, Tailwind CSS, IndexedDB, Capacitor Android
+- Description: An offline-first habit and daily streak tracking application built with React, TypeScript, Vite, Tailwind CSS, and IndexedDB for local data persistence, featuring Capacitor support for Android.
 - Live App: https://daily-spark-app-da74b.web.app
 - Source Code: https://github.com/sahaya-savari/daily-spark
 

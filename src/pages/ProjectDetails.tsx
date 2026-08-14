@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from 'react';
-import { useParams, Link, Navigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, ExternalLink, Github } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import { CASE_STUDIES } from '../data/caseStudies';
@@ -74,7 +74,7 @@ export default function ProjectDetails() {
                 View Live Demo <ExternalLink className="w-4 h-4" />
               </a>
             )}
-            {project.githubUrl && (
+            {project.githubUrl && project.githubUrl !== 'https://github.com/sahaya-savari' ? (
               <a 
                 href={project.githubUrl} 
                 target="_blank" 
@@ -83,6 +83,12 @@ export default function ProjectDetails() {
               >
                 Source Code <Github className="w-4 h-4" />
               </a>
+            ) : (
+              !project.demoUrl && (
+                <span className="px-5 py-2.5 bg-amber-500/10 border border-amber-500/20 text-amber-300 rounded-full font-medium text-sm inline-flex items-center gap-2">
+                  Status: In Development
+                </span>
+              )
             )}
           </div>
         </header>

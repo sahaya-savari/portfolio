@@ -114,7 +114,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
             transition={{ delay: 0.8, duration: 0.8 }}
             className="text-white/60 font-body font-light text-lg md:text-xl max-w-2xl mb-8 md:mb-12 leading-relaxed"
           >
-            AI Engineer and M.Sc. Artificial Intelligence student building Machine Learning tools, Python automation, and full-stack web apps with React, TypeScript, and Firebase. This Portfolio highlights practical projects for Summer/Fall 2026 internships.
+            M.Sc. Artificial Intelligence student building Machine Learning applications, Python automation tools, and responsive web software with React and TypeScript. Highlighting verified engineering projects for Summer/Fall 2026 opportunities.
           </motion.p>
 
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.1, duration: 0.8 }} className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4">

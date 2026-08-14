@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { GitBranch, GitCommit, GitPullRequest, Github, Star, Terminal } from 'lucide-react';
+import { GitCommit, GitPullRequest, Github, Star, Terminal } from 'lucide-react';
 import SectionBadge from '../components/ui/SectionBadge';
 
 const OpenSourceSection = memo(() => {

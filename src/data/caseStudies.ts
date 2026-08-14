@@ -43,7 +43,6 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
       'Learned advanced prompt engineering techniques to constrain LLM outputs.',
       'Mastered WebSocket integrations for real-time streaming in React.'
     ],
-    githubUrl: 'https://github.com/sahaya-savari',
     relatedArticle: {
       title: 'Building AI Agents from Scratch in Python',
       url: 'https://blog.sahayasavari.me/blog/ai-agents-from-scratch'
@@ -52,7 +51,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
   'daily-spark': {
     id: 'daily-spark',
     title: 'Daily Spark',
-    tagline: 'Minimalist Habit Tracker',
+    tagline: 'Minimalist Offline Habit Tracker',
     overview: 'A privacy-first, local-storage based habit tracking application designed to help users build consistent routines without the clutter of traditional productivity tools.',
     problem: 'Existing habit trackers are often bloated with social features, notifications, and require constant internet connectivity.',
     goals: [
@@ -60,9 +59,9 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
       'Ensure 100% offline functionality.',
       'Provide insightful data visualization for habit streaks.'
     ],
-    solution: 'Developed a Progressive Web App (PWA) using React and Tailwind CSS. Implemented complex state management for offline data persistence using IndexedDB and Context API.',
-    architecture: 'A client-heavy architecture where all logic runs locally. Data structures are optimized for quick daily retrieval and streak calculation.',
-    techStack: ['React', 'Tailwind CSS', 'Vite', 'Framer Motion', 'IndexedDB'],
+    solution: 'Developed an offline-first habit tracking Progressive Web App (PWA) using React, Vite, and Tailwind CSS with Capacitor support for native Android builds. Implemented client-side state management for offline data persistence using IndexedDB and Context API.',
+    architecture: 'A client-heavy, offline-first architecture where all habit logs and streak logic run locally on the device. Capacitor provides native Android bridge integration.',
+    techStack: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'IndexedDB', 'Capacitor Android'],
     challenges: [
       'Handling date-time logic across different timezones without a backend.',
       'Creating smooth micro-animations that don\'t degrade performance on mobile devices.'
@@ -72,6 +71,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
       'Improved accessible design practices, ensuring full keyboard navigability.'
     ],
     githubUrl: 'https://github.com/sahaya-savari/daily-spark',
+    demoUrl: 'https://daily-spark-app-da74b.web.app',
     relatedArticle: {
       title: 'Pydantic V2: High-Performance Data Validation',
       url: 'https://blog.sahayasavari.me/blog/pydantic-v2-guide'

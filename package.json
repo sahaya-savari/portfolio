@@ -1,7 +1,7 @@
 {
-  "name": "react-vite-tailwind",
+  "name": "sahaya-savari-portfolio",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -26,7 +26,6 @@
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
     "@types/react-helmet-async": "^1.0.1",
-    "@types/react-router-dom": "^5.3.3",
     "@vitejs/plugin-react": "5.1.1",
     "tailwindcss": "4.1.17",
     "typescript": "5.9.3",

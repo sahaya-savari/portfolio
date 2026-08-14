@@ -5,7 +5,6 @@ import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 import { lockScroll, unlockScroll } from '../utils/scrollLock';
 
-// @ts-ignore
 import pdfWorker from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
 
 // Set worker path
