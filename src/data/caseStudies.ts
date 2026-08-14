@@ -77,30 +77,6 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
       url: 'https://blog.sahayasavari.me/blog/pydantic-v2-guide'
     }
   },
-  'neobeat': {
-    id: 'neobeat',
-    title: 'NeoBeat',
-    tagline: 'Immersive Music Discovery',
-    overview: 'NeoBeat is an experimental web application for discovering independent artists, featuring a brutalist UI and synchronized audio visualizations.',
-    problem: 'Independent artists struggle to stand out on traditional streaming platforms with generic user interfaces.',
-    goals: [
-      'Build a highly unique, brutalist design language.',
-      'Implement real-time audio visualization using Web Audio API.',
-      'Create a seamless, SPA-like navigation experience.'
-    ],
-    solution: 'Leveraged React with raw CSS variables for a dynamic theming system. Used the Web Audio API to analyze frequency data and drive canvas animations in real-time.',
-    architecture: 'The app streams audio via a custom lightweight player. A centralized AudioContext is shared across components to synchronize visualizations and UI state.',
-    techStack: ['React', 'TypeScript', 'Web Audio API', 'Canvas API', 'Framer Motion'],
-    challenges: [
-      'Managing AudioContext lifecycle and browser autoplay policies.',
-      'Optimizing canvas rendering to maintain 60fps during complex visualizations.'
-    ],
-    lessons: [
-      'Mastered the Web Audio API for frequency analysis and audio routing.',
-      'Learned to balance heavy visual effects with performance accessibility.'
-    ],
-    githubUrl: 'https://github.com/sahaya-savari/neobeat'
-  },
   'portfolio-website': {
     id: 'portfolio-website',
     title: 'Portfolio Website',

@@ -151,21 +151,6 @@ const ROUTES = [
     }
   },
   {
-    path: '/projects/neobeat',
-    title: 'NeoBeat | Sahaya Savari',
-    description: 'NeoBeat is an experimental web application for discovering independent artists, featuring a brutalist UI and synchronized audio visualizations.',
-    canonical: `${SITE_URL}/projects/neobeat`,
-    schema: {
-      '@context': 'https://schema.org',
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
-        { '@type': 'ListItem', position: 2, name: 'Projects', item: `${SITE_URL}/projects` },
-        { '@type': 'ListItem', position: 3, name: 'NeoBeat', item: `${SITE_URL}/projects/neobeat` }
-      ]
-    }
-  },
-  {
     path: '/projects/portfolio-website',
     title: 'Portfolio Website | Sahaya Savari',
     description: 'A masterclass in modern frontend development, this portfolio leverages Framer Motion for liquid-smooth animations and hardware-accelerated transitions. It features a custom glassmorphism design system, responsive grids, and an isolated state architecture for maximum performance.',

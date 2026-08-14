@@ -48,7 +48,6 @@ Sahaya Savari F is an AI Engineer, Python Developer, and Full-Stack Developer cu
 - Tech Stack: Python, OpenAI API, React, Tailwind CSS
 - Description: An AI study companion using LLM integration pipelines to generate practice questions and concept summaries.
 - Status: In Development
-- Profile Link: https://github.com/sahaya-savari
 
 ### 3. Portfolio Website
 - Type: Web Development
@@ -56,13 +55,6 @@ Sahaya Savari F is an AI Engineer, Python Developer, and Full-Stack Developer cu
 - Description: A modern portfolio website featuring glassmorphism design, hardware-accelerated animations, static HTML pre-rendering, and tailored security headers.
 - Live Site: https://sahayasavari.me
 - Source Code: https://github.com/sahaya-savari/portfolio
-
-### 4. NeoBeat
-- Type: Web Audio Application
-- Tech Stack: React, TypeScript, Web Audio API, Canvas API, Framer Motion
-- Description: An experimental web application for discovering independent artists, featuring a brutalist UI and audio visualizations using the Web Audio API.
-- Status: Archived
-- Source Code: https://github.com/sahaya-savari/neobeat
 
 ## Published Engineering Articles
 

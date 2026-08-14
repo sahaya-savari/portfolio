@@ -99,7 +99,6 @@ Browser Load (Server HTML served instantly) → React 19 Client Hydration
 | `/ai` | `AskSahayaAI.tsx` | `dist/ai/index.html` | Interactive AI Assistant Showcase |
 | `/projects/prepmind-ai` | `ProjectDetails.tsx` | `dist/projects/prepmind-ai/index.html` | Case Study: PrepMind AI |
 | `/projects/daily-spark` | `ProjectDetails.tsx` | `dist/projects/daily-spark/index.html` | Case Study: Daily Spark |
-| `/projects/neobeat` | `ProjectDetails.tsx` | `dist/projects/neobeat/index.html` | Case Study: NeoBeat |
 | `/projects/portfolio-website` | `ProjectDetails.tsx` | `dist/projects/portfolio-website/index.html` | Case Study: Portfolio Website |
 
 ---
@@ -107,23 +106,19 @@ Browser Load (Server HTML served instantly) → React 19 Client Hydration
 ## 6. Project Case Studies
 
 1. **Daily Spark** (`/projects/daily-spark`):
-   - **Type**: Productivity & Habit Tracking Application
-   - **Tech Stack**: Python, Firebase Realtime Database, React, TypeScript, AI/ML
+   - **Type**: Offline-First Habit Tracking Application
+   - **Tech Stack**: React, TypeScript, Vite, Tailwind CSS, IndexedDB, Capacitor Android
    - **Live App**: [https://daily-spark-app-da74b.web.app](https://daily-spark-app-da74b.web.app)
    - **Source Code**: [https://github.com/sahaya-savari/daily-spark](https://github.com/sahaya-savari/daily-spark)
 2. **PrepMind AI** (`/projects/prepmind-ai`):
    - **Type**: AI Education & Interview Preparation Platform
-   - **Tech Stack**: Python, OpenAI API, FastAPI, React, Tailwind CSS
+   - **Tech Stack**: Python, LLMs, React, Tailwind CSS
    - **Status**: In Development
 3. **Portfolio Website** (`/projects/portfolio-website`):
    - **Type**: Web Engineering & SPA Architecture
    - **Tech Stack**: React 19, TypeScript, Vite 7, Framer Motion, Tailwind CSS v4, Static Pre-rendering, Firebase Hosting
    - **Live Site**: [https://sahayasavari.me](https://sahayasavari.me)
    - **Source Code**: [https://github.com/sahaya-savari/portfolio](https://github.com/sahaya-savari/portfolio)
-4. **NeoBeat** (`/projects/neobeat`):
-   - **Type**: Web Audio Application
-   - **Tech Stack**: React, TypeScript, Web Audio API, Canvas API, Framer Motion
-   - **Status**: Archived
 
 ---
 

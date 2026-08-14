@@ -71,8 +71,7 @@ The following 10 routes are statically pre-rendered during build:
 6. `/ai` — Ask Sahaya AI Assistant
 7. `/projects/prepmind-ai` — PrepMind AI Case Study
 8. `/projects/daily-spark` — Daily Spark Case Study
-9. `/projects/neobeat` — NeoBeat Case Study
-10. `/projects/portfolio-website` — Portfolio Website Case Study
+9. `/projects/portfolio-website` — Portfolio Website Case Study
 
 ---
 
