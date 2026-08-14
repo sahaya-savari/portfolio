@@ -67,7 +67,7 @@ Vite SSR Build (.tmp-server/entry-server.js)
         ↓
 Static Pre-renderer (scripts/prerender-seo.js via react-dom/server)
         ↓
-10 Route-Specific Static HTML Files (dist/<route>/index.html)
+9 Route-Specific Static HTML Files (dist/<route>/index.html)
         ↓
 Firebase Hosting CDN Edge
         ↓
@@ -78,7 +78,7 @@ Browser Load (Server HTML served instantly) → React 19 Client Hydration
 1. **Server Entry (`src/entry-server.tsx`)**: Imports all route components synchronously and exposes a `render(url: string)` function wrapping the React tree in `<HelmetProvider>`, `<MemoryRouter initialEntries={[url]}>`, and `<Routes>`.
 2. **Build Integration (`scripts/prerender-seo.js`)**:
    - Compiles `src/entry-server.tsx` into `.tmp-server/entry-server.js`.
-   - Loops over all 10 public routes and calls `render(route.path)`.
+   - Loops over all 9 public routes and calls `render(route.path)`.
    - Strips duplicate helmet metadata tags (`<title>`, `<meta>`, `<link rel="canonical">`) from the rendered React body string so metadata exists **ONLY in `<head>`**.
    - Injects clean rendered HTML into `<div id="root">${cleanHtml}</div>`.
    - Updates `<head>` title, description, canonical, Open Graph, Twitter Card, and JSON-LD schema.
@@ -234,7 +234,7 @@ npx firebase deploy --only hosting
 
 - **SEO + AEO + GEO Entity Architecture**: **COMPLETED & VERIFIED** (Commit `fc07811` strengthens Person entity `@id`, `alternateName`, student `affiliation`, secondary route `@graph` author linkages, and project-article cross-links).
 - **Firebase Hosting Production Deployment**: **COMPLETED & VERIFIED** (Deployed 62 static dist files to production target `sahayasavari` at `https://sahayasavari.me`).
-- **SSR Static Pre-rendering**: **COMPLETED & VERIFIED** (All 10 routes return 10KB–32KB rendered HTML in `#root`).
+- **SSR Static Pre-rendering**: **COMPLETED & VERIFIED** (All 9 routes return 10KB–32KB rendered HTML in `#root`).
 - **Metadata Deduplication**: **COMPLETED & VERIFIED** (Metadata tags exist strictly in `<head>`).
 - **Person `@id` & `ProfilePage` Schema**: **COMPLETED & VERIFIED** (Live JSON-LD graph verified).
 - **Repository Cleanup**: **COMPLETED & VERIFIED** (Clean working tree, `.gitignore` updated).

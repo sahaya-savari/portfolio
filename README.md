@@ -50,7 +50,7 @@ Vite SSR Build (.tmp-server/entry-server.js)
         ↓
 Static HTML Pre-renderer (scripts/prerender-seo.js)
         ↓
-10 Route-Specific HTML Files (dist/<route>/index.html)
+9 Route-Specific HTML Files (dist/<route>/index.html)
         ↓
 Firebase Hosting CDN
         ↓
@@ -61,7 +61,7 @@ Browser Load → React 19 Client Hydration
 
 ## 🌐 Public Pre-rendered Routes
 
-The following 10 routes are statically pre-rendered during build:
+The following 9 routes are statically pre-rendered during build:
 
 1. `/` — Portfolio Homepage (Hero, About, Skills, Projects, Blog, Open Source, Certifications, Contact)
 2. `/projects` — Projects Directory
