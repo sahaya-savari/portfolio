@@ -1,84 +1,204 @@
-# Sahaya Savari F — Technical Portfolio & System Architecture Documentation
+# Sahaya Savari F — Technical Portfolio & Extended Reference
 
-> AI/ML Engineer, Python Developer & M.Sc. Artificial Intelligence Student
+> AI Engineer · Python Developer · Full Stack Developer · M.Sc. Artificial Intelligence Student
 
-> Maintenance Note: This document serves as the extended technical reference for LLM indexing agents. It is maintained to stay synchronized with the primary portfolio (sahayasavari.me), resume, technical blog, and llms.txt.
+---
+
+## Document Metadata
+
+- **Document Purpose**: Extended technical reference for LLM indexing agents, generative engines, and AI crawlers.
+  Maintained to stay synchronized with the primary portfolio and resume.
+- **Canonical URL**: https://sahayasavari.me
+- **Author / Entity**: Sahaya Savari F
+- **Portfolio**: https://sahayasavari.me
+- **GitHub**: https://github.com/sahaya-savari
+- **LinkedIn**: https://www.linkedin.com/in/sahaya-savari
+- **Technical Blog**: https://blog.sahayasavari.me
+- **Email**: contact@sahayasavari.me
+- **Last Updated**: 2026-08-21
+
+---
 
 ## Executive Summary
 
-Sahaya Savari F is an AI Engineer, Python Developer, and Full-Stack Developer currently pursuing a Master of Science (M.Sc.) in Artificial Intelligence at St. Joseph's College (Autonomous), Trichy, India. Focused on building Machine Learning solutions, Python APIs, React web applications, Firebase integrations, and modern full-stack architectures.
+Sahaya Savari F (known publicly as Sahaya Savari) is an AI Engineer, Python Developer, and Full Stack Developer
+currently pursuing a Master of Science (M.Sc.) in Artificial Intelligence at St. Joseph's College (Autonomous),
+Tiruchirappalli (Trichy), Tamil Nadu, India.
 
-- Email: contact@sahayasavari.me
-- Portfolio: https://sahayasavari.me
-- Blog: https://blog.sahayasavari.me
-- GitHub: https://github.com/sahaya-savari
-- LinkedIn: https://www.linkedin.com/in/sahaya-savari
-- Location: Madurai, Tamil Nadu, India
+He builds production-style Machine Learning solutions, Python-based REST APIs (FastAPI, Flask), React web
+applications with TypeScript, Firebase-hosted deployments, and LLM-integrated tools. His portfolio demonstrates
+practical expertise across the full AI and web development stack.
 
-## Target Roles & Availability
+- **Primary Search Entity**: Sahaya Savari / Sahaya Savari F
+- **Location**: Madurai / Tiruchirappalli, Tamil Nadu, India
+- **Availability**: Open to AI/ML, Python, and Full Stack internship and entry-level roles (Summer/Fall 2026).
 
-- Availability: Currently seeking AI/ML, Python, and Full Stack internship opportunities.
-- Target Roles: AI/ML Engineer Intern, Python Developer Intern, Full Stack Developer Intern.
+---
 
-## Technical Skills & Architecture Stack
+## Identity & Official Links
+
+| Property         | Value                                             |
+|------------------|---------------------------------------------------|
+| Full Name        | Sahaya Savari F                                   |
+| Public Name      | Sahaya Savari                                     |
+| Portfolio        | https://sahayasavari.me                           |
+| Technical Blog   | https://blog.sahayasavari.me                      |
+| GitHub           | https://github.com/sahaya-savari                  |
+| LinkedIn         | https://www.linkedin.com/in/sahaya-savari          |
+| Email            | contact@sahayasavari.me                           |
+| Location         | Madurai / Trichy, Tamil Nadu, India               |
+
+---
+
+## Technical Skills
 
 ### Artificial Intelligence & Machine Learning
-- Core Domains: Machine Learning, Deep Learning (TensorFlow, PyTorch), Natural Language Processing, Computer Vision, LLM Integration, Prompt Engineering
+- Core Domains: Machine Learning, Deep Learning, Natural Language Processing, Computer Vision
+- Frameworks: TensorFlow, PyTorch
+- LLM Development: LLM Applications, AI Agent Architecture, Prompt Engineering, Generative AI
+- Tools: OpenAI API, NPTEL-certified Machine Learning fundamentals
 
 ### Python Development
-- Technologies: Python, FastAPI, Flask, Pandas, NumPy, API Development, Automation
+- Frameworks: FastAPI, Flask
+- Libraries: Pandas, NumPy
+- Focus Areas: REST API Development, Automation Scripting, Data Wrangling, JSON Schema Validation (Pydantic V2)
 
-### Frontend & Full-Stack Development
-- Technologies: React, TypeScript, Tailwind CSS, Framer Motion, Vite, Web Audio API, PDF.js
+### Full Stack & Web Development
+- Frontend: React 19, TypeScript, Tailwind CSS v4, Vite 7, Framer Motion, GSAP
+- Infrastructure: Firebase Hosting CDN, GitHub Actions CI/CD, Static HTML Pre-rendering
+- Media: HLS.js video streaming, IndexedDB client storage, Service Worker fundamentals
+- SEO Engineering: Schema.org JSON-LD, OpenGraph, Static Pre-rendering, AI Discoverability (llms.txt)
 
-### Data & Infrastructure
-- Databases & Cloud: SQL, IndexedDB, Firebase Hosting, Cloudflare CDN, AWS CloudFront
+### Data & Analytics
+- Tools: SQL, Matplotlib, Seaborn, IBM Cognos Analytics
+- Completed: IBM Data Analyst Specialization (9 courses)
+
+---
 
 ## Project Specifications
 
-### 1. Daily Spark
-- Type: Productivity App
-- Tech Stack: React, TypeScript, Vite, Tailwind CSS, IndexedDB, Capacitor Android
-- Description: An offline-first habit and daily streak tracking application built with React, TypeScript, Vite, Tailwind CSS, and IndexedDB for local data persistence, featuring Capacitor support for Android.
-- Live App: https://daily-spark-app-da74b.web.app
-- Source Code: https://github.com/sahaya-savari/daily-spark
+### 1. Daily Spark — Offline-First Habit Tracker
+- **Type**: Productivity Application
+- **Status**: Live
+- **Tech Stack**: React, TypeScript, Vite, Tailwind CSS, IndexedDB, Capacitor Android
+- **Architecture**: Client-heavy Progressive Web App (PWA) with Capacitor support for Android. Data structures
+  persist locally in IndexedDB and sync through React Context API. No server-side backend required.
+- **Key Features**: Offline habit tracking, IndexedDB persistence, streak analytics, Capacitor Android build.
+- **Challenge**: Handling date-time streak calculation across timezones entirely client-side without a server.
+- **Live App**: https://daily-spark-app-da74b.web.app
+- **Source Code**: https://github.com/sahaya-savari/daily-spark
 
-### 2. PrepMind AI
-- Type: AI Education Platform
-- Tech Stack: Python, OpenAI API, React, Tailwind CSS
-- Description: An AI study companion using LLM integration pipelines to generate practice questions and concept summaries.
-- Status: In Development
+### 2. PrepMind AI — LLM-Powered Study Companion
+- **Type**: AI Education Platform
+- **Status**: In Development
+- **Tech Stack**: Python, OpenAI API, React, Tailwind CSS
+- **Architecture**: Python-based LLM integration pipeline that accepts uploaded study materials and generates
+  flashcards, mock exams, and concept summaries. React frontend handles dynamic component rendering.
+- **Key Features**: Dynamic quiz generation, context-aware summarization, adaptive difficulty scaling,
+  upload-to-learn pipeline.
+- **Challenge**: Preventing LLM hallucinations during quiz generation via strict system prompts and context injection.
+- **Lesson**: Prompt engineering requires rigorous testing; structuring LLM output into strict JSON formats is
+  essential for reliable frontend rendering.
 
-### 3. Portfolio Website
-- Type: Web Development
-- Tech Stack: React, TypeScript, Tailwind CSS, Framer Motion, Vite, Firebase Hosting
-- Description: A modern portfolio website featuring glassmorphism design, hardware-accelerated animations, static HTML pre-rendering, and tailored security headers.
-- Live Site: https://sahayasavari.me
-- Source Code: https://github.com/sahaya-savari/portfolio
+### 3. Portfolio Website — AI Engineer SPA
+- **Type**: Web Engineering & SPA Architecture
+- **Status**: Live
+- **Tech Stack**: React 19, TypeScript, Vite 7, Framer Motion, Tailwind CSS v4, Firebase Hosting
+- **Architecture**: Single Page Application with static HTML pre-rendering across 9 public routes via
+  scripts/prerender-seo.js. Manual Vite chunk splitting isolates heavy libraries. IntersectionObserver-based
+  lazy loading preserves 60fps scroll performance. Firebase Hosting edge CDN with security headers and
+  1-year immutable cache policies for static assets.
+- **Key Features**: Custom glassmorphism design system, HLS video streaming, Schema.org JSON-LD entity graph,
+  AI-discoverability architecture (llms.txt, llms-full.txt), static pre-rendering pipeline.
+- **Live Site**: https://sahayasavari.me
+- **Source Code**: https://github.com/sahaya-savari/portfolio
+
+---
 
 ## Published Engineering Articles
 
-1. **Building AI Agents from Scratch in Python**
+1. **Building AI Agents from Scratch in Python** (February 10, 2026)
    - URL: https://blog.sahayasavari.me/blog/ai-agents-from-scratch
-   - Description: Engineering guide to designing autonomous LLM agent loops, tool call schemas, and memory management using Python.
+   - Category: AI/ML
+   - Description: Engineering guide to designing autonomous LLM agent loops, tool call schemas, and memory
+     management using Python.
 
-2. **Pydantic V2: High-Performance Data Validation**
+2. **Pydantic V2: High-Performance Data Validation** (January 28, 2026)
    - URL: https://blog.sahayasavari.me/blog/pydantic-v2-guide
-   - Description: Leveraging Pydantic V2 for strict schema enforcement, fast JSON serialization, and LLM output parsing.
+   - Category: Python
+   - Description: Leveraging Pydantic V2 Rust core for strict schema enforcement, fast JSON serialization,
+     and LLM output parsing in Python applications.
 
-3. **Tailwind CSS v4 Migration & Performance**
+3. **Tailwind CSS v4 Migration & Performance** (January 15, 2026)
    - URL: https://blog.sahayasavari.me/blog/tailwind-css-v4-guide
-   - Description: Upgrading to Tailwind CSS v4 in React and Vite for zero-config builds and dynamic CSS variable theming.
+   - Category: React / Web Development
+   - Description: Upgrading to Tailwind CSS v4 in React 19 and Vite 7 for zero-config CSS builds and
+     hardware-accelerated CSS variable theming.
 
-4. **Production CI/CD Pipelines with GitHub Actions**
+4. **Production CI/CD Pipelines with GitHub Actions** (December 20, 2025)
    - URL: https://blog.sahayasavari.me/blog/github-actions-ci-cd
-   - Description: Automating static pre-rendering, build tests, and Firebase Hosting preview channel deployments.
+   - Category: DevOps
+   - Description: Automating static HTML pre-rendering, automated test runs, and Firebase Hosting preview
+     channel deployments using GitHub Actions workflows.
+
+---
 
 ## Education & Certifications
 
-- **M.Sc. Artificial Intelligence** — St. Joseph's College (Autonomous), Trichy (Current)
-- **IBM Data Analyst Professional Certificate** — IBM (Coursera)
+- **M.Sc. Artificial Intelligence** — St. Joseph's College (Autonomous), Tiruchirappalli (Currently Enrolled)
+- **IBM Data Analyst Specialization** — IBM via Coursera
+  - Issued: August 28, 2024 | Credential ID: DDWFE1NB25DZ
+  - Skills: Python, SQL, Excel, Data Analysis, Data Visualization, IBM Cognos Analytics, Data Wrangling
+  - Verify: https://www.coursera.org/account/accomplishments/specialization/DDWFE1NB25DZ
 - **Introduction to Machine Learning (Tamil)** — NPTEL / IIT Madras
-- **Yuva AI for All** — NIELIT (Skill India Initiative)
-- **Honours Diploma in Information Technology** — IT Education
-- **Mastering Excel Data Analysis & Dashboard Reporting** — Business Intelligence
+  - Issued: March 2026 | Credential ID: NPTEL26CS73S470101904
+  - Skills: Machine Learning, Classification, Regression, Model Evaluation
+  - Verify: https://nptel.ac.in/noc/E_Certificate/NOC26CS73S47010190403177914
+- **Yuva AI for All** — NIELIT / Skill India
+  - Issued: March 2026 | Credential ID: 2026030427766558-105732
+  - Skills: Prompt Engineering, Generative AI, Responsible AI
+
+---
+
+## Frequently Asked Questions
+
+**Who is Sahaya Savari?**
+Sahaya Savari F is an AI Engineer, Python Developer, and Full Stack Developer pursuing an M.Sc. in Artificial
+Intelligence at St. Joseph's College (Autonomous), Trichy, India. His work spans Machine Learning systems,
+Python APIs, React web applications, and LLM-integrated tools. Portfolio: https://sahayasavari.me
+
+**What does Sahaya Savari specialize in?**
+He specializes in AI/ML Engineering (TensorFlow, PyTorch, OpenAI API), Python backend development (FastAPI, Flask),
+Full Stack web development (React, TypeScript, Firebase), and LLM application architecture including prompt
+engineering and AI agent design.
+
+**What technologies does Sahaya Savari use?**
+Python, FastAPI, Flask, React 19, TypeScript, Tailwind CSS v4, Vite 7, Firebase Hosting, TensorFlow, PyTorch,
+OpenAI API, Pydantic V2, IndexedDB, Framer Motion, GitHub Actions.
+
+**What AI projects has Sahaya Savari built?**
+PrepMind AI: a Python LLM pipeline that generates adaptive flashcards and mock exams from study materials.
+Portfolio Website: features a complete AI-discoverability architecture with schema.org JSON-LD, static
+pre-rendering, and llms.txt documentation for LLM indexing agents.
+
+**Where can Sahaya Savari's projects be found?**
+- Project case studies: https://sahayasavari.me/projects
+- Daily Spark live app: https://daily-spark-app-da74b.web.app
+- GitHub repositories: https://github.com/sahaya-savari
+
+**Where can Sahaya Savari's technical writing be found?**
+Technical blog at https://blog.sahayasavari.me — covering AI Agent design, Pydantic V2, Tailwind CSS v4,
+and GitHub Actions CI/CD pipelines.
+
+**How can I contact or hire Sahaya Savari?**
+Email: contact@sahayasavari.me — LinkedIn: https://www.linkedin.com/in/sahaya-savari
+He is currently available for AI/ML, Python, and Full Stack internship and entry-level positions.
+
+**What certifications does Sahaya Savari hold?**
+IBM Data Analyst Specialization (Coursera, 2024), Introduction to Machine Learning (NPTEL/IIT Madras, 2026),
+and Yuva AI for All (NIELIT/Skill India, 2026).
+
+---
+
+*Source: https://sahayasavari.me | Extended Reference for LLM Indexing Agents*
+*Last Updated: 2026-08-21*

@@ -5,8 +5,7 @@ export const DEFAULT_DESCRIPTION =
   'Portfolio of Sahaya Savari, an M.Sc. AI student and AI/ML & Full Stack Developer building Machine Learning tools, Python APIs, React apps, and scalable software.';
 export const DEFAULT_IMAGE = `${SITE_URL}/og-image.jpg`;
 
-export const personSchema = {
-  '@context': 'https://schema.org',
+export const personEntity = {
   '@type': 'Person',
   '@id': `${SITE_URL}/#person`,
   name: 'Sahaya Savari',
@@ -14,36 +13,57 @@ export const personSchema = {
   url: SITE_URL,
   jobTitle: 'AI/ML & Full Stack Developer',
   description:
-    'M.Sc. Artificial Intelligence Student, AI/ML & Full Stack Developer building Machine Learning tools, Python APIs, React apps, and scalable software applications.',
+    'M.Sc. Artificial Intelligence Student, AI Engineer, Python Developer, and Full Stack Developer building Machine Learning solutions, Python APIs, React applications, and LLM-integrated tools.',
   email: 'contact@sahayasavari.me',
+  // Current student affiliation — not alumniOf as degree is ongoing
   affiliation: {
     '@type': 'EducationalOrganization',
-    name: "St. Joseph's College (Autonomous), Trichy",
+    name: "St. Joseph's College (Autonomous), Tiruchirappalli",
+  },
+  // Occupation reflects demonstrated and active role
+  hasOccupation: {
+    '@type': 'Occupation',
+    name: 'AI Engineer & Full Stack Developer',
+    occupationLocation: {
+      '@type': 'Country',
+      name: 'India',
+    },
+    skills: 'Machine Learning, Python, React, TypeScript, FastAPI, LLM Applications',
   },
   sameAs: [
     'https://www.linkedin.com/in/sahaya-savari',
     'https://github.com/sahaya-savari',
     'https://blog.sahayasavari.me',
   ],
+  // Demonstrated expertise from projects, articles, and certifications
   knowsAbout: [
     'Artificial Intelligence',
     'Machine Learning',
-    'AI/ML',
-    'Full Stack Development',
+    'Deep Learning',
+    'Natural Language Processing',
+    'Computer Vision',
+    'LLM Applications',
+    'AI Agent Architecture',
+    'Generative AI',
+    'Prompt Engineering',
     'Python',
-    'React',
     'FastAPI',
-    'Firebase',
+    'Flask',
+    'React',
     'TypeScript',
-    'JavaScript',
+    'Full Stack Development',
+    'Web Development',
+    'Firebase',
     'REST APIs',
+    'GitHub Actions CI/CD',
+    'Pydantic',
+    'Data Analysis',
     'Software Development',
     'Open Source',
   ],
 };
 
-export const websiteSchema = {
-  '@context': 'https://schema.org',
+export const websiteEntity = {
   '@type': 'WebSite',
   '@id': `${SITE_URL}/#website`,
   name: 'Sahaya Savari Portfolio',
@@ -63,8 +83,7 @@ export const websiteSchema = {
   },
 };
 
-export const profilePageSchema = {
-  '@context': 'https://schema.org',
+export const profilePageEntity = {
   '@type': 'ProfilePage',
   '@id': `${SITE_URL}/#profilepage`,
   url: SITE_URL,
@@ -75,8 +94,16 @@ export const profilePageSchema = {
   },
 };
 
-export const createBreadcrumbSchema = (items: { name: string; url: string }[]) => ({
+export const homeSchema = {
   '@context': 'https://schema.org',
+  '@graph': [
+    personEntity,
+    websiteEntity,
+    profilePageEntity,
+  ],
+};
+
+export const createBreadcrumbSchema = (items: { name: string; url: string }[]) => ({
   '@type': 'BreadcrumbList',
   itemListElement: items.map((item, index) => ({
     '@type': 'ListItem',
@@ -85,3 +112,65 @@ export const createBreadcrumbSchema = (items: { name: string; url: string }[]) =
     item: item.url,
   })),
 });
+
+// TechArticle schemas derived from the actual published articles in src/data.ts
+export const techArticleSchemas = [
+  {
+    '@type': 'TechArticle',
+    '@id': `https://blog.sahayasavari.me/blog/ai-agents-from-scratch#article`,
+    headline: 'Building AI Agents from Scratch in Python',
+    description:
+      'An engineering guide to designing autonomous LLM agent loops, tool call schemas, and memory management using Python.',
+    url: 'https://blog.sahayasavari.me/blog/ai-agents-from-scratch',
+    datePublished: '2026-02-10',
+    author: { '@id': `${SITE_URL}/#person` },
+    inLanguage: 'en-US',
+  },
+  {
+    '@type': 'TechArticle',
+    '@id': `https://blog.sahayasavari.me/blog/pydantic-v2-guide#article`,
+    headline: 'Pydantic V2: High-Performance Data Validation',
+    description:
+      'Leveraging Pydantic V2 Rust core for strict schema enforcement, fast JSON serialization, and LLM output parsing in Python applications.',
+    url: 'https://blog.sahayasavari.me/blog/pydantic-v2-guide',
+    datePublished: '2026-01-28',
+    author: { '@id': `${SITE_URL}/#person` },
+    inLanguage: 'en-US',
+  },
+  {
+    '@type': 'TechArticle',
+    '@id': `https://blog.sahayasavari.me/blog/tailwind-css-v4-guide#article`,
+    headline: 'Tailwind CSS v4 Migration & Performance',
+    description:
+      'Upgrading to Tailwind CSS v4 in React 19 and Vite 7 for zero-config CSS builds and hardware-accelerated CSS variable theming.',
+    url: 'https://blog.sahayasavari.me/blog/tailwind-css-v4-guide',
+    datePublished: '2026-01-15',
+    author: { '@id': `${SITE_URL}/#person` },
+    inLanguage: 'en-US',
+  },
+  {
+    '@type': 'TechArticle',
+    '@id': `https://blog.sahayasavari.me/blog/github-actions-ci-cd#article`,
+    headline: 'Production CI/CD Pipelines with GitHub Actions',
+    description:
+      'Automating static HTML pre-rendering, automated test runs, and Firebase Hosting preview channel deployments using GitHub Actions workflows.',
+    url: 'https://blog.sahayasavari.me/blog/github-actions-ci-cd',
+    datePublished: '2025-12-20',
+    author: { '@id': `${SITE_URL}/#person` },
+    inLanguage: 'en-US',
+  },
+];
+
+// SoftwareApplication schema for the Ask Sahaya AI interactive assistant page (/ai)
+export const askSahayaAIAppSchema = {
+  '@type': 'SoftwareApplication',
+  '@id': `${SITE_URL}/ai/#app`,
+  name: 'Ask Sahaya AI',
+  description:
+    "An interactive portfolio assistant that answers questions about Sahaya Savari's AI engineering skills, Machine Learning projects, Python experience, and how to contact him.",
+  applicationCategory: 'DeveloperApplication',
+  operatingSystem: 'Web Browser',
+  url: `${SITE_URL}/ai`,
+  author: { '@id': `${SITE_URL}/#person` },
+  inLanguage: 'en-US',
+};

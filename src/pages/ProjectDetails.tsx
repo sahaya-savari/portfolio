@@ -23,7 +23,6 @@ export default function ProjectDetails() {
     ]);
 
     const codeSchema = {
-      "@context": "https://schema.org",
       "@type": "SoftwareSourceCode",
       "name": project.title,
       "description": project.overview,

@@ -1,4 +1,68 @@
+# robots.txt — sahayasavari.me
+# Portfolio of Sahaya Savari F — AI Engineer, Python Developer, Full Stack Developer
+
+# === Default: Allow all crawlers full access ===
 User-agent: *
 Allow: /
 
+# === Search Engine Crawlers ===
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# === AI & Generative Engine Crawlers ===
+# Explicit allow policies for major LLM and generative engine indexing agents.
+# These directives document crawler access intent and do not guarantee ranking.
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Googlebot-Extended
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+# === Sitemap Reference ===
 Sitemap: https://sahayasavari.me/sitemap.xml

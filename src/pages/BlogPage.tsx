@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import BlogSection from '../sections/BlogSection';
-import { SITE_URL, createBreadcrumbSchema } from '../seo';
+import { SITE_URL, createBreadcrumbSchema, techArticleSchemas } from '../seo';
 
 export default function BlogPage() {
   useEffect(() => {
@@ -27,6 +27,7 @@ export default function BlogPage() {
           description: 'Technical articles and insights on Artificial Intelligence, Machine Learning pipelines, React performance optimization, and software engineering by Sahaya Savari.',
           author: { '@id': `${SITE_URL}/#person` },
         },
+        ...techArticleSchemas,
       ],
     };
   }, []);

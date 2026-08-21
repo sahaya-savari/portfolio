@@ -146,18 +146,22 @@ Browser Load (Server HTML served instantly) → React 19 Client Hydration
   - `alternateName`: Sahaya Savari F
   - `url`: `https://sahayasavari.me`
   - `jobTitle`: AI/ML & Full Stack Developer
-  - `affiliation`: `{ "@type": "EducationalOrganization", "name": "St. Joseph's College (Autonomous), Trichy" }` (Current M.Sc. AI student status; no `alumniOf`, no physical address)
+  - `affiliation`: `{ "@type": "EducationalOrganization", "name": "St. Joseph's College (Autonomous), Tiruchirappalli" }` (Current M.Sc. AI student; `affiliation` used, not `alumniOf` as degree is ongoing)
+  - `hasOccupation`: `{ "@type": "Occupation", "name": "AI Engineer & Full Stack Developer", "occupationLocation": { "@type": "Country", "name": "India" } }`
   - `sameAs`: `["https://www.linkedin.com/in/sahaya-savari", "https://github.com/sahaya-savari", "https://blog.sahayasavari.me"]`
-- **WebSite Graph Node**: `@id: "https://sahayasavari.me/#website"`
-  - `author`: `{ "@id": "https://sahayasavari.me/#person" }`
-- **ProfilePage Graph Node**: `@id: "https://sahayasavari.me/#profilepage"`
-  - `mainEntity`: `{ "@id": "https://sahayasavari.me/#person" }`
+  - `knowsAbout`: 23 verified expertise terms including Artificial Intelligence, Machine Learning, Deep Learning, NLP, LLM Applications, AI Agent Architecture, Generative AI, Prompt Engineering, Python, FastAPI, React, TypeScript, Firebase, Pydantic, GitHub Actions CI/CD.
+- **WebSite Graph Node**: `@id: "https://sahayasavari.me/#website"` — `author`: `{ "@id": "https://sahayasavari.me/#person" }`
+- **ProfilePage Graph Node**: `@id: "https://sahayasavari.me/#profilepage"` — `mainEntity`: `{ "@id": "https://sahayasavari.me/#person" }`
 - **Secondary Route Graph Nodes**: Unified `@graph` objects on `/projects` (`CollectionPage`), `/blog` (`Blog`), `/resume` (`WebPage`), `/recruiter` (`AboutPage`), and `/ai` (`WebPage`) linking `author`/`mainEntity` to `{ "@id": "https://sahayasavari.me/#person" }`.
+- **TechArticle Nodes** (on `/blog`): 4 `TechArticle` schema nodes for each published engineering article, with `datePublished` values from actual source data (`src/data.ts`) and `author` referencing `#person`.
+- **SoftwareApplication Node** (on `/ai`): `SoftwareApplication` schema for Ask Sahaya AI, `author` referencing `#person`, `applicationCategory: "DeveloperApplication"`, `operatingSystem: "Web Browser"`. No fake ratings, reviews, or user counts.
 - **Case Studies**: `SoftwareSourceCode` & `BreadcrumbList` schemas with contextual cross-links to published technical writing on `blog.sahayasavari.me`.
+- **Identity Links**: `<link rel="me">` tags in `index.html` and `SEOHead.tsx` connecting the portfolio domain to GitHub and LinkedIn for consistent identity graph linkage.
 
 ### AI Discoverability (AEO & GEO)
-- `/llms.txt` (2,808 bytes): Structured markdown reference for LLM search agents.
-- `/llms-full.txt` (4,765 bytes): Extended technical documentation for LLM indexing.
+- **Robots.txt**: Explicit `Allow: /` directives for major AI crawling agents (GPTBot, ClaudeBot, anthropic-ai, PerplexityBot, Google-Extended, Applebot-Extended, Bytespider, cohere-ai, Diffbot, YouBot, Meta-ExternalAgent) so crawler access policy is unambiguous.
+- `/llms.txt` (5,816 bytes): Machine-readable markdown with canonical identity, projects, technical skills, published articles, Q&A, and official links for LLM indexing agents.
+- `/llms-full.txt` (10,256 bytes): Extended technical reference with metadata header, project architecture details, verifiable certification credential IDs, and factual Q&A for deep LLM retrieval.
 
 ---
 

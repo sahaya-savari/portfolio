@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Send, Sparkles, User, Bot } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
-import { SITE_URL, createBreadcrumbSchema } from '../seo';
+import { SITE_URL, createBreadcrumbSchema, askSahayaAIAppSchema } from '../seo';
 
 type Message = {
   id: string;
@@ -45,6 +45,7 @@ export default function AskSahayaAI() {
           description: "Chat with Sahaya Savari F's portfolio assistant to learn about his AI Engineer skills, Machine Learning projects, Python, React, TypeScript, and Firebase work.",
           author: { '@id': `${SITE_URL}/#person` },
         },
+        askSahayaAIAppSchema,
       ],
     };
   }, []);

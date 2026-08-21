@@ -1,66 +1,121 @@
 # Sahaya Savari F
 
-> AI Engineer, Full Stack Developer & M.Sc. Artificial Intelligence Student
+> AI Engineer · Python Developer · Full Stack Developer · M.Sc. Artificial Intelligence Student
 
-## About
+---
 
-Sahaya Savari F is an AI Engineer, Python Developer, and Full Stack Developer pursuing M.Sc. Artificial Intelligence at St. Joseph's College (Autonomous), Trichy, India. Focused on Artificial Intelligence, Machine Learning solutions, React, TypeScript, Firebase, and modern full-stack applications.
+## Canonical Identity
+
+Sahaya Savari F (commonly known as Sahaya Savari) is an AI Engineer, Python Developer, and Full Stack Developer
+currently pursuing a Master of Science in Artificial Intelligence at St. Joseph's College (Autonomous),
+Tiruchirappalli (Trichy), India.
+
+- **Portfolio**: https://sahayasavari.me
+- **Technical Blog**: https://blog.sahayasavari.me
+- **GitHub**: https://github.com/sahaya-savari
+- **LinkedIn**: https://www.linkedin.com/in/sahaya-savari
+- **Email**: contact@sahayasavari.me
+- **Location**: Madurai / Tiruchirappalli, Tamil Nadu, India
+
+---
 
 ## Availability & Target Roles
 
-- Availability: Currently seeking AI/ML, Python, and Full Stack internship opportunities.
-- Target Roles: AI/ML Engineer Intern, Python Developer Intern, Full Stack Developer Intern
+- **Status**: Open to AI/ML, Python, and Full Stack internship and entry-level opportunities (Summer/Fall 2026).
+- **Target Roles**: AI/ML Engineer Intern, Python Developer Intern, Full Stack Developer Intern.
 
-## Skills
+---
 
-- Artificial Intelligence: Machine Learning, Deep Learning (TensorFlow, PyTorch), Natural Language Processing, Computer Vision, LLM Integration, Prompt Engineering
-- Python Development: Flask, FastAPI, Pandas, NumPy, API Development, Automation
-- Web Development: React, TypeScript, Tailwind CSS, Framer Motion, Vite, Full-stack Architecture
-- Data & Databases: SQL, Data Visualization (Matplotlib, Seaborn), Database Design
+## Core Expertise
+
+- **Artificial Intelligence**: Machine Learning, Deep Learning (TensorFlow, PyTorch), Natural Language Processing,
+  Computer Vision, LLM Applications, Generative AI, Prompt Engineering, AI Agent Architecture
+- **Python Development**: FastAPI, Flask, Pandas, NumPy, REST API Development, Automation Scripting
+- **Full Stack Development**: React, TypeScript, Tailwind CSS, Vite, Framer Motion, Firebase, Web Performance
+- **Data & Analytics**: SQL, Data Visualization (Matplotlib, Seaborn), IBM Cognos Analytics, Data Wrangling
+
+---
 
 ## Projects
 
 ### Daily Spark
-- Type: Productivity App
-- Stack: React, TypeScript, Vite, Tailwind CSS, IndexedDB, Capacitor Android
-- Description: An offline-first habit and daily streak tracking application built with React, TypeScript, Vite, Tailwind CSS, and IndexedDB for local data persistence, featuring Capacitor support for Android.
-- Link: [Daily Spark](https://daily-spark-app-da74b.web.app)
+- **Type**: Productivity App — Offline-First Habit Tracking
+- **Tech Stack**: React, TypeScript, Vite, Tailwind CSS, IndexedDB, Capacitor Android
+- **Description**: An offline-first habit and daily streak tracking application with local IndexedDB persistence
+  and Capacitor support for Android builds. Designed for distraction-free productivity without internet dependency.
+- **Live App**: https://daily-spark-app-da74b.web.app
+- **Source Code**: https://github.com/sahaya-savari/daily-spark
 
 ### PrepMind AI
-- Type: AI Education Platform
-- Stack: Python, OpenAI API, React, Tailwind CSS
-- Description: An intelligent study companion that generates practice questions, summaries, and personalized learning paths using AI. Transforms static study materials into interactive, adaptive learning experiences.
-- Status: In Development
+- **Type**: AI Education Platform
+- **Tech Stack**: Python, LLMs, OpenAI API, React, Tailwind CSS
+- **Description**: An intelligent study companion that uses Python-based LLM integration pipelines to generate
+  practice questions, summaries, and personalized learning paths from uploaded study materials. Transforms static
+  content into adaptive, interactive learning experiences.
+- **Status**: In Development
 
 ### Portfolio Website
-- Type: Web Development
-- Stack: React, TypeScript, Tailwind CSS, Framer Motion, Vite
-- Description: A modern, animated portfolio website featuring liquid glass design, hardware-accelerated animations, and responsive layout architecture.
-- Link: [Portfolio](https://sahayasavari.me)
-- Source: [GitHub Repo](https://github.com/sahaya-savari/portfolio)
+- **Type**: Web Engineering & SPA Architecture
+- **Tech Stack**: React 19, TypeScript, Vite 7, Framer Motion, Tailwind CSS v4, Static Pre-rendering, Firebase Hosting
+- **Description**: A modern portfolio website featuring glassmorphism design, hardware-accelerated animations,
+  HLS video streaming, static HTML pre-rendering across 9 routes, and Firebase Hosting CDN deployment.
+- **Live Site**: https://sahayasavari.me
+- **Source Code**: https://github.com/sahaya-savari/portfolio
+
+---
 
 ## Technical Articles
 
-- [Building AI Agents from Scratch in Python](https://blog.sahayasavari.me/blog/ai-agents-from-scratch)
-- [Pydantic V2: High-Performance Data Validation](https://blog.sahayasavari.me/blog/pydantic-v2-guide)
-- [Tailwind CSS v4 Migration & Performance](https://blog.sahayasavari.me/blog/tailwind-css-v4-guide)
-- [Production CI/CD Pipelines with GitHub Actions](https://blog.sahayasavari.me/blog/github-actions-ci-cd)
+1. **Building AI Agents from Scratch in Python** — https://blog.sahayasavari.me/blog/ai-agents-from-scratch
+   Engineering guide to autonomous LLM agent loops, tool call schemas, and memory management using Python.
 
-## Certifications
+2. **Pydantic V2: High-Performance Data Validation** — https://blog.sahayasavari.me/blog/pydantic-v2-guide
+   Leveraging Pydantic V2 Rust core for strict schema enforcement, fast JSON serialization, and LLM output parsing.
 
-- IBM Data Analyst Course (Data Analytics)
-- Honor's Diploma in Information Technology
-- Mastering Excel Data Analysis & Dashboard Reporting (Business Intelligence)
+3. **Tailwind CSS v4 Migration & Performance** — https://blog.sahayasavari.me/blog/tailwind-css-v4-guide
+   Upgrading to Tailwind CSS v4 in React 19 and Vite 7 for zero-config CSS builds and hardware-accelerated themes.
 
-## Education
+4. **Production CI/CD Pipelines with GitHub Actions** — https://blog.sahayasavari.me/blog/github-actions-ci-cd
+   Automating static HTML pre-rendering, test runs, and Firebase Hosting preview channel deployments.
 
-- M.Sc. Artificial Intelligence — St. Joseph's College (Autonomous), Trichy (Current)
+---
 
-## Contact
+## Education & Certifications
 
-- Email: [contact@sahayasavari.me](mailto:contact@sahayasavari.me)
-- LinkedIn: [Sahaya Savari](https://www.linkedin.com/in/sahaya-savari)
-- GitHub: [sahaya-savari](https://github.com/sahaya-savari)
-- Blog: [Sahaya Savari Technical Blog](https://blog.sahayasavari.me)
-- Location: Madurai, Tamil Nadu, India
-- Portfolio: [Sahaya Savari Portfolio](https://sahayasavari.me)
+- **M.Sc. Artificial Intelligence** — St. Joseph's College (Autonomous), Trichy (Currently Enrolled)
+- **IBM Data Analyst Specialization** — IBM via Coursera (Issued: August 2024, ID: DDWFE1NB25DZ)
+- **Introduction to Machine Learning (Tamil)** — NPTEL / IIT Madras (March 2026, ID: NPTEL26CS73S470101904)
+- **Yuva AI for All** — NIELIT / Skill India (March 2026, ID: 2026030427766558-105732)
+
+---
+
+## Frequently Asked Questions
+
+**Who is Sahaya Savari?**
+Sahaya Savari F is an AI Engineer, Python Developer, and Full Stack Developer pursuing an M.Sc. in Artificial Intelligence
+at St. Joseph's College (Autonomous), Trichy, India. His portfolio is at https://sahayasavari.me.
+
+**What does Sahaya Savari specialize in?**
+Sahaya Savari specializes in Artificial Intelligence and Machine Learning, Python development (FastAPI, Flask),
+Full Stack web development (React, TypeScript, Firebase), and LLM application development.
+
+**What technologies does Sahaya Savari use?**
+Python, FastAPI, Flask, React, TypeScript, Tailwind CSS, Vite, Firebase, TensorFlow, PyTorch, OpenAI API,
+IndexedDB, Framer Motion, and GitHub Actions CI/CD.
+
+**What AI projects has Sahaya Savari built?**
+PrepMind AI — an LLM-powered study companion using Python and OpenAI API. Also built the portfolio website
+with static pre-rendering, schema.org structured data, and AI discoverability architecture.
+
+**Where can Sahaya Savari's projects be found?**
+Projects are listed at https://sahayasavari.me/projects and source code is at https://github.com/sahaya-savari.
+
+**Where can Sahaya Savari's technical writing be found?**
+Published engineering articles are at https://blog.sahayasavari.me covering AI Agents, Python, React, and DevOps.
+
+**How can I contact Sahaya Savari?**
+Email: contact@sahayasavari.me — LinkedIn: https://www.linkedin.com/in/sahaya-savari
+
+---
+
+*Last updated: 2026-08-21 | Source: https://sahayasavari.me*
