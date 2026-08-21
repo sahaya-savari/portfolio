@@ -5,8 +5,7 @@ export const DEFAULT_DESCRIPTION =
   'Portfolio of Sahaya Savari, an M.Sc. AI student and AI/ML & Full Stack Developer building Machine Learning tools, Python APIs, React apps, and scalable software.';
 export const DEFAULT_IMAGE = `${SITE_URL}/og-image.jpg`;
 
-export const personSchema = {
-  '@context': 'https://schema.org',
+export const personEntity = {
   '@type': 'Person',
   '@id': `${SITE_URL}/#person`,
   name: 'Sahaya Savari',
@@ -42,8 +41,7 @@ export const personSchema = {
   ],
 };
 
-export const websiteSchema = {
-  '@context': 'https://schema.org',
+export const websiteEntity = {
   '@type': 'WebSite',
   '@id': `${SITE_URL}/#website`,
   name: 'Sahaya Savari Portfolio',
@@ -63,8 +61,7 @@ export const websiteSchema = {
   },
 };
 
-export const profilePageSchema = {
-  '@context': 'https://schema.org',
+export const profilePageEntity = {
   '@type': 'ProfilePage',
   '@id': `${SITE_URL}/#profilepage`,
   url: SITE_URL,
@@ -75,8 +72,16 @@ export const profilePageSchema = {
   },
 };
 
-export const createBreadcrumbSchema = (items: { name: string; url: string }[]) => ({
+export const homeSchema = {
   '@context': 'https://schema.org',
+  '@graph': [
+    personEntity,
+    websiteEntity,
+    profilePageEntity,
+  ],
+};
+
+export const createBreadcrumbSchema = (items: { name: string; url: string }[]) => ({
   '@type': 'BreadcrumbList',
   itemListElement: items.map((item, index) => ({
     '@type': 'ListItem',
@@ -85,3 +90,4 @@ export const createBreadcrumbSchema = (items: { name: string; url: string }[]) =
     item: item.url,
   })),
 });
+

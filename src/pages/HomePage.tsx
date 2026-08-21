@@ -1,7 +1,7 @@
-import { lazy, useMemo } from 'react';
+import { lazy } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import SEOHead from '../components/SEOHead';
-import { DEFAULT_DESCRIPTION, DEFAULT_TITLE, personSchema, websiteSchema, profilePageSchema } from '../seo';
+import { DEFAULT_DESCRIPTION, DEFAULT_TITLE, homeSchema } from '../seo';
 
 // Import Hero directly for above-the-fold fast rendering
 import HeroSection from '../sections/HeroSection';
@@ -24,15 +24,6 @@ export default function HomePage() {
     setShowResume: (show: boolean) => void;
     setShowCommandPalette: (show: boolean) => void;
   }>();
-
-  const homeSchema = useMemo(() => ({
-    '@context': 'https://schema.org',
-    '@graph': [
-      personSchema,
-      websiteSchema,
-      profilePageSchema,
-    ],
-  }), []);
 
   return (
     <>
