@@ -1,15 +1,15 @@
 export const SITE_URL = 'https://sahayasavari.me';
 export const SITE_NAME = 'Sahaya Savari Portfolio';
-export const DEFAULT_TITLE = 'Sahaya Savari | AI/ML & Full Stack Developer';
+export const DEFAULT_TITLE = 'Sahaya Savari F | AI Engineer & M.Sc. AI Student';
 export const DEFAULT_DESCRIPTION =
-  'Portfolio of Sahaya Savari, an M.Sc. AI student and AI/ML & Full Stack Developer building Machine Learning tools, Python APIs, React apps, and scalable software.';
+  'Portfolio of Sahaya Savari F, an M.Sc. Artificial Intelligence student, AI Engineer, and Full Stack Developer building Machine Learning solutions, Python APIs, and React web applications.';
 export const DEFAULT_IMAGE = `${SITE_URL}/og-image.jpg`;
 
 export const personEntity = {
   '@type': 'Person',
   '@id': `${SITE_URL}/#person`,
-  name: 'Sahaya Savari',
-  alternateName: 'Sahaya Savari F',
+  name: 'Sahaya Savari F',
+  alternateName: 'Sahaya Savari',
   url: SITE_URL,
   jobTitle: 'AI/ML & Full Stack Developer',
   description:
@@ -34,6 +34,7 @@ export const personEntity = {
     'https://www.linkedin.com/in/sahaya-savari',
     'https://github.com/sahaya-savari',
     'https://blog.sahayasavari.me',
+    'https://leetcode.com/u/sahaya_savari/',
   ],
   // Demonstrated expertise from projects, articles, and certifications
   knowsAbout: [
