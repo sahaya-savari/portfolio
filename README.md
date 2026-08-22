@@ -141,3 +141,9 @@ npx firebase deploy --only hosting
 ## 📄 License
 
 Copyright © 2026 Sahaya Savari F. All Rights Reserved.
+
+This repository is publicly available for viewing, evaluation, educational reference, and code review. It is **not released under an open-source license**. No additional permission is granted to reuse, modify, redistribute, publish, commercially exploit, or create derivative works from my original code, design, branding, documentation, or content without prior written permission.
+
+Third-party dependencies and assets remain subject to their respective licenses.
+
+See [LICENSE](LICENSE) for details.
