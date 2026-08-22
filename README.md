@@ -22,6 +22,16 @@ Personal portfolio and technical showcase of **Sahaya Savari F** — AI Engineer
 
 ---
 
+## 📚 Repository Documentation
+
+- 🏛️ **[ARCHITECTURE.md](ARCHITECTURE.md)** — Software architecture, SSR pre-rendering pipeline, and bundle optimization.
+- 📋 **[CHANGELOG.md](CHANGELOG.md)** — Project updates and baseline release history.
+- 🛡️ **[SECURITY.md](SECURITY.md)** — Vulnerability reporting policy and security architecture.
+- 🤝 **[CONTRIBUTING.md](CONTRIBUTING.md)** — Repository usage policy, feedback guidelines, and maintainer rules.
+- 📄 **[LICENSE](LICENSE)** — Proprietary portfolio license terms.
+
+---
+
 ## 🛠️ Technology Stack
 
 | Layer | Technology |
@@ -146,4 +156,4 @@ This repository is publicly available for viewing, evaluation, educational refer
 
 Third-party dependencies and assets remain subject to their respective licenses.
 
-See [LICENSE](LICENSE) for details.
+See [LICENSE](LICENSE) for license terms, [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines, and [SECURITY.md](SECURITY.md) for security reporting.
