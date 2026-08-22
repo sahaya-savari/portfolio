@@ -77,7 +77,7 @@ The following 9 routes are statically pre-rendered during build:
 
 ## 🎯 SEO, AEO & Entity Architecture
 
-- **Stable Person `@id` Node**: URI anchor `https://sahayasavari.me/#person` unifies identity across `Person` (`name: "Sahaya Savari"`, `alternateName: "Sahaya Savari F"`, `affiliation: St. Joseph's College (Autonomous), Trichy`), `WebSite`, and `ProfilePage` JSON-LD schemas.
+- **Stable Person `@id` Node**: URI anchor `https://sahayasavari.me/#person` unifies identity across `Person` (`name: "Sahaya Savari F"`, `alternateName: "Sahaya Savari"`, `affiliation: St. Joseph's College (Autonomous), Trichy`), `WebSite`, and `ProfilePage` JSON-LD schemas.
 - **Secondary Route `@graph` Linkages**: Unified route schemas on `/projects`, `/blog`, `/resume`, `/recruiter`, and `/ai` link content author/mainEntity to `@id: https://sahayasavari.me/#person`.
 - **Case Study & Blog Cross-Links**: Project case studies link directly to published engineering articles on `blog.sahayasavari.me`.
 - **Clean Metadata**: All `<title>`, `<meta description>`, `canonical`, Open Graph, and Twitter metadata tags exist strictly inside `<head>` (duplicate tags inside body `#root` are automatically stripped during static pre-rendering).
