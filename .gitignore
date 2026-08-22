@@ -48,6 +48,10 @@ temp*.txt
 # Local AI agent tooling
 .agents/
 
+# Private AI agent context
+AI_PROJECT_CONTEXT.md
+AI_AGENT_WORKFLOW.md
+
 # OS/editor temporary files
 Thumbs.db
 Desktop.ini
