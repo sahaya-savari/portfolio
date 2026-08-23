@@ -36,7 +36,7 @@ export default function ResumePage() {
   return (
     <>
       <SEOHead 
-        title="Resume | Sahaya Savari"
+        title="Resume & Curriculum Vitae | Sahaya Savari"
         description="View and download the complete curriculum vitae of Sahaya Savari, M.Sc. Artificial Intelligence student, AI/ML & Full Stack Developer."
         url={`${SITE_URL}/resume`}
         schema={resumeSchema}
@@ -72,6 +72,35 @@ export default function ResumePage() {
             </div>
           </div>
         </header>
+
+        {/* Semantic Resume Highlights Summary */}
+        <section aria-label="Curriculum Vitae Summary" className="mb-10 p-6 rounded-2xl bg-white/[0.02] border border-white/10 font-body text-sm text-white/80 space-y-4">
+          <div>
+            <h2 className="text-xs font-bold uppercase tracking-wider text-white/50 mb-1">Professional Positioning</h2>
+            <p className="text-white/90 leading-relaxed">
+              M.Sc. Artificial Intelligence student specializing in Machine Learning engineering, Python backend services, and modern React full-stack applications. Available for AI/ML and software engineering internships in Summer/Fall 2026.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-3 border-t border-white/10">
+            <div>
+              <h3 className="text-xs font-bold uppercase tracking-wider text-white/50 mb-1">Education</h3>
+              <p className="font-medium text-white">M.Sc. Artificial Intelligence</p>
+              <p className="text-xs text-white/60">St. Joseph's College (Autonomous), Trichy</p>
+            </div>
+            <div>
+              <h3 className="text-xs font-bold uppercase tracking-wider text-white/50 mb-1">Core Tech Stack</h3>
+              <p className="text-xs text-white/80 leading-relaxed">
+                Python, TypeScript, React, FastAPI, LLM Prompt Engineering, Firebase, Vite, Tailwind CSS
+              </p>
+            </div>
+          </div>
+
+          <div className="pt-3 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs">
+            <span><strong>Selected Projects:</strong> PrepMind AI, Daily Spark, Portfolio Architecture</span>
+            <a href="/resume.pdf" download className="text-purple-300 hover:text-white underline font-medium">Download Official Resume (PDF)</a>
+          </div>
+        </section>
 
         <ErrorBoundary>
           <Suspense fallback={

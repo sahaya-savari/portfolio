@@ -160,6 +160,17 @@ export default function AskSahayaAI() {
             </form>
           </div>
         </div>
+
+        {/* Semantic Overview & Context */}
+        <section aria-label="About Ask Sahaya AI" className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 font-body text-xs text-white/70 space-y-2">
+          <h2 className="text-xs font-bold uppercase tracking-wider text-white/50">About Ask Sahaya AI</h2>
+          <p className="leading-relaxed text-white/80">
+            Ask Sahaya AI is an interactive portfolio assistant built to answer questions regarding Sahaya Savari's technical background in Artificial Intelligence, Machine Learning pipelines, Python APIs with FastAPI, React frontend development, and contact options.
+          </p>
+          <p className="text-white/50">
+            Sample topics: <span className="text-white/80">"What are your core technical skills?"</span> · <span className="text-white/80">"Tell me about PrepMind AI"</span> · <span className="text-white/80">"How can I contact Sahaya?"</span>
+          </p>
+        </section>
       </div>
     </>
   );

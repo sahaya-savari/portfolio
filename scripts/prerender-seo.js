@@ -116,6 +116,9 @@ async function prerender() {
     const updatedNoscript = `<noscript><div style="padding:1.5rem;text-align:center;color:#fff;background:#000;font-family:sans-serif;"><p style="font-size:1.25rem;font-weight:700;margin:0 0 0.5rem;">Sahaya Savari - Portfolio</p><p>JavaScript is recommended for interactive animations. Full static page content is displayed above.</p></div></noscript>`;
     html = html.replace(/<noscript>[\s\S]*?<\/noscript>/gi, updatedNoscript);
 
+    // Prevent Cloudflare Email Address Obfuscation from rewriting mailto links into /cdn-cgi/l/email-protection
+    html = html.replace(/(<a\b[^>]*href=["']mailto:[^"']+["'][^>]*>[\s\S]*?<\/a>)/gi, '<!--email_off-->$1<!--/email_off-->');
+
     // Determine file output target
     if (route.path === '/') {
       fs.writeFileSync(INDEX_HTML_PATH, html, 'utf-8');

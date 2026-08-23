@@ -35,7 +35,7 @@ export default function BlogPage() {
   return (
     <>
       <SEOHead 
-        title="Blog | Sahaya Savari"
+        title="Technical Articles & Engineering Insights | Sahaya Savari"
         description="Technical articles and insights on Artificial Intelligence, Machine Learning pipelines, React performance optimization, and software engineering by Sahaya Savari."
         url={`${SITE_URL}/blog`}
         schema={blogSchema}

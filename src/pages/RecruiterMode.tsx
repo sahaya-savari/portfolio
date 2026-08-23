@@ -32,7 +32,7 @@ export default function RecruiterMode() {
   return (
     <>
       <SEOHead 
-        title="Recruiter Summary | Sahaya Savari"
+        title="Recruiter Summary & Technical Profile | Sahaya Savari"
         description="ATS-friendly recruiter summary for Sahaya Savari F, an AI Engineer, Python Developer, Full Stack Developer, and M.Sc. Artificial Intelligence student."
         url={`${SITE_URL}/recruiter`}
         schema={recruiterSchema}
