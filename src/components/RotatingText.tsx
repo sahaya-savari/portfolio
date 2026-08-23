@@ -24,8 +24,8 @@ const RotatingText = forwardRef((props: any, ref) => {
   } = props;
 
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
-  // INP-2: Gate interval — only run when element is in view
-  const isInViewRef = useRef(false);
+  // INP-2: Gate interval — only run when element is in view (default true so initial mount is active)
+  const isInViewRef = useRef(true);
   const spanRef = useRef<HTMLSpanElement>(null);
 
   const splitIntoCharacters = (text: string) => {
@@ -39,7 +39,7 @@ const RotatingText = forwardRef((props: any, ref) => {
   };
 
   const elements = useMemo(() => {
-    const currentText = texts[currentTextIndex];
+    const currentText = texts[currentTextIndex] || '';
     if (splitBy === 'characters') {
       const words = currentText.split(' ');
       return words.map((word: string, i: number) => ({
@@ -120,24 +120,30 @@ const RotatingText = forwardRef((props: any, ref) => {
 
   const parentVariants = {
     initial: {},
-    animate: {},
-    exit: {},
+    animate: {
+      transition: {
+        staggerChildren: props.staggerDuration ?? 0.025,
+        staggerDirection: props.staggerFrom === 'last' ? -1 : 1,
+      },
+    },
+    exit: {
+      transition: {
+        staggerChildren: (props.staggerDuration ?? 0.025) * 0.5,
+        staggerDirection: props.staggerFrom === 'last' ? -1 : 1,
+      },
+    },
   };
 
   const childVariants = {
-    initial: initial,
-    animate: animate,
-    exit: exit,
+    initial: { ...initial, opacity: initial.opacity ?? 0 },
+    animate: { ...animate, opacity: animate.opacity ?? 1 },
+    exit: { ...exit, opacity: exit.opacity ?? 0 },
   };
 
-  // CLS-3 Fix: Removed `layout` prop from outer motion.span.
-  // The `layout` prop caused Framer Motion to measure and re-layout the entire
-  // component and its siblings on every text rotation (every 2 seconds), causing
-  // continuous CLS throughout the session.
   return (
     <span ref={spanRef} className={cn('text-rotate', mainClassName)} style={(rest as any).style}>
       <span className="text-rotate-sr-only">{texts[currentTextIndex]}</span>
-      <AnimatePresence mode="wait" initial={false}>
+      <AnimatePresence mode="wait">
         <motion.span
           key={currentTextIndex}
           initial="initial"

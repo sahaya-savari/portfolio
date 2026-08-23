@@ -74,45 +74,66 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" aria-hidden="true"></span>
             <span className="text-xs font-body font-medium text-white/80">Open to Opportunities · Summer/Fall 2026</span>
           </motion.div>
-          <div className="mb-6 md:mb-8 flex flex-col items-center">
-            <div className="flex flex-col md:flex-row items-center justify-center gap-4 sm:gap-6 md:gap-8 mb-4">
-              <h1 className="text-fluid-hero-title font-heading italic text-white tracking-[-2px] md:tracking-[-4px] leading-[0.8] order-2 md:order-1">
+          <div className="relative mb-6 md:mb-8 flex flex-col items-center justify-center w-full">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8 lg:gap-10 relative">
+              <h1 className="text-fluid-hero-title font-heading italic text-white tracking-[-2px] md:tracking-[-4px] leading-[0.8] order-2 md:order-1 select-none">
                 Sahaya Savari
               </h1>
+
+              {/* Floating Ethereal Portrait */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.92 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.4, duration: 0.8 }}
-                className="order-1 md:order-2 shrink-0"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ 
+                  opacity: 1, 
+                  scale: 1, 
+                  y: [0, -8, 0],
+                  rotate: [-0.5, 0.5, -0.5]
+                }}
+                transition={{
+                  opacity: { delay: 0.3, duration: 0.8 },
+                  scale: { delay: 0.3, duration: 0.8 },
+                  y: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+                  rotate: { duration: 8, repeat: Infinity, ease: "easeInOut" },
+                }}
+                className="relative order-1 md:order-2 shrink-0 group"
               >
-                <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-2xl md:rounded-3xl p-1 liquid-glass border border-white/15 overflow-hidden shadow-2xl shadow-black/80 flex items-center justify-center">
-                  <img
-                    src="/profile.jpg"
-                    alt="Sahaya Savari F"
-                    width={400}
-                    height={400}
-                    fetchPriority="high"
-                    className="w-full h-full object-cover object-center rounded-[12px] md:rounded-[20px]"
-                  />
+                {/* Multi-layered Atmospheric Glow Behind Portrait */}
+                <div 
+                  className="absolute inset-0 -m-6 sm:-m-8 md:-m-10 rounded-full bg-radial from-white/[0.12] via-indigo-500/[0.05] to-transparent blur-2xl pointer-events-none" 
+                  aria-hidden="true" 
+                />
+                
+                {/* Lens / Glass Halo subtle ring */}
+                <div className="relative w-28 h-28 sm:w-36 sm:h-36 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full p-[1.5px] bg-gradient-to-b from-white/30 via-white/10 to-transparent shadow-[0_10px_40px_rgba(0,0,0,0.8)]">
+                  <div className="w-full h-full rounded-full overflow-hidden bg-black/60 backdrop-blur-sm relative">
+                    <img
+                      src="/profile.jpg"
+                      alt="Sahaya Savari F"
+                      width={400}
+                      height={400}
+                      fetchPriority="high"
+                      className="w-full h-full object-cover object-top scale-105 transition-transform duration-700 group-hover:scale-110"
+                      style={{
+                        maskImage: 'radial-gradient(ellipse at 50% 45%, black 62%, rgba(0,0,0,0.85) 75%, transparent 100%)',
+                        WebkitMaskImage: 'radial-gradient(ellipse at 50% 45%, black 62%, rgba(0,0,0,0.85) 75%, transparent 100%)',
+                      }}
+                    />
+                  </div>
                 </div>
               </motion.div>
             </div>
-            {/*
-             * ANIMATION FIX: Removed `filter: blur()` from initial/animate.
-             * filter:blur is a non-composited operation — it forces CPU repaint every frame.
-             * Pure opacity fade achieves a near-identical entrance without the paint cost.
-             */}
+
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6, duration: 1 }}
-              className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-2 sm:gap-3 w-full px-4"
+              className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-2 sm:gap-3 w-full px-4 mt-4"
             >
               <span className="font-heading italic text-fluid-hero-role text-white/60">I am an</span>
               <div className="w-[280px] sm:w-auto text-center sm:text-left flex justify-center sm:justify-start">
                 <RotatingText
-                  texts={["M.Sc. AI Student", "AI Engineer", "Python Developer", "Full Stack Developer"]}
-                  mainClassName="px-3 py-1 liquid-glass text-white overflow-hidden rounded-lg font-bold not-italic text-fluid-hero-role inline-flex items-center justify-center"
+                  texts={["AI Engineer", "M.Sc. AI Student", "Python Developer", "Full Stack Developer"]}
+                  mainClassName="px-3.5 py-1 liquid-glass text-white overflow-hidden rounded-lg font-bold not-italic text-fluid-hero-role inline-flex items-center justify-center"
                   staggerFrom="last"
                   initial={{ y: "100%" }}
                   animate={{ y: 0 }}
@@ -120,7 +141,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
                   staggerDuration={0.025}
                   splitLevelClassName="overflow-hidden pb-0.5"
                   transition={{ type: "spring", damping: 30, stiffness: 400 }}
-                  rotationInterval={2000}
+                  rotationInterval={2500}
                 />
               </div>
             </motion.div>
