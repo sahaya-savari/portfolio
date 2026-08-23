@@ -6,6 +6,7 @@ export interface RelatedArticle {
 export interface CaseStudy {
   id: string;
   title: string;
+  seoTitle?: string;
   tagline: string;
   overview: string;
   problem: string;
@@ -24,6 +25,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
   'prepmind-ai': {
     id: 'prepmind-ai',
     title: 'PrepMind AI',
+    seoTitle: 'PrepMind AI | AI Interview Prep Platform | Sahaya Savari',
     tagline: 'AI-Powered Interview Preparation Platform',
     overview: 'PrepMind AI is a comprehensive interview preparation platform that leverages LLMs to simulate realistic technical and behavioral interviews. It provides tailored feedback, tracks progress, and helps candidates build confidence.',
     problem: 'Candidates often lack realistic environments to practice technical interviews, and mock interviews with peers or professionals can be expensive and difficult to schedule.',
@@ -80,6 +82,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
   'portfolio-website': {
     id: 'portfolio-website',
     title: 'Portfolio Website',
+    seoTitle: 'Portfolio Architecture & Engineering | Sahaya Savari',
     tagline: 'High-Performance SPA Portfolio',
     overview: 'A masterclass in modern frontend development, this portfolio leverages Framer Motion for liquid-smooth animations and hardware-accelerated transitions. It features a custom glassmorphism design system, responsive grids, and an isolated state architecture for maximum performance.',
     problem: 'Standard portfolios fail to communicate the technical depth and design sensibility of a modern AI Engineer and Full Stack Developer.',

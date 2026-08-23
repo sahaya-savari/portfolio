@@ -51,6 +51,41 @@ export default function BlogPage() {
           </Link>
         </div>
 
+        {/* Semantic Overview & Publication Scope */}
+        <section aria-label="About the Engineering Blog" className="mb-8 p-6 md:p-8 rounded-2xl bg-white/[0.02] border border-white/10 font-body text-sm text-white/80 space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-white/10">
+            <div>
+              <h2 className="text-xs font-bold uppercase tracking-wider text-white/50 mb-1">Engineering Journal &amp; Publications</h2>
+              <p className="text-white font-medium text-base">Technical Writings by Sahaya Savari</p>
+            </div>
+            <a
+              href="https://blog.sahayasavari.me"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-xs text-purple-300 hover:text-white font-mono transition-colors"
+            >
+              blog.sahayasavari.me
+            </a>
+          </div>
+          <p className="text-white/70 leading-relaxed">
+            Welcome to my technical engineering blog. Here I document practical development insights, architectural patterns, and production engineering notes across Artificial Intelligence, Machine Learning pipelines, Python backend services with FastAPI, full-stack React and TypeScript web development, and DevOps CI/CD automation.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-3 border-t border-white/10 text-xs">
+            <div>
+              <span className="block font-semibold text-white/90 mb-1">AI &amp; Machine Learning</span>
+              <p className="text-white/50">LLM agent architectures, prompt design, and data validation workflows.</p>
+            </div>
+            <div>
+              <span className="block font-semibold text-white/90 mb-1">Full Stack &amp; Web</span>
+              <p className="text-white/50">React performance optimization, modern Tailwind CSS, and single-page apps.</p>
+            </div>
+            <div>
+              <span className="block font-semibold text-white/90 mb-1">DevOps &amp; Infrastructure</span>
+              <p className="text-white/50">GitHub Actions pipelines, static pre-rendering, and CDN hosting strategies.</p>
+            </div>
+          </div>
+        </section>
+
         <BlogSection />
       </div>
     </>
