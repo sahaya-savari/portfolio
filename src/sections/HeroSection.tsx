@@ -69,20 +69,20 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
 
       {/* Main hero content */}
       <div className="relative z-10 flex-grow flex flex-col items-center justify-center pt-28 pb-16 md:pt-36 md:pb-24 w-full">
-        <div className="max-w-4xl text-center flex flex-col items-center">
+        <div className="max-w-5xl lg:max-w-6xl xl:max-w-7xl text-center flex flex-col items-center w-full">
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="liquid-glass rounded-full px-4 py-1.5 mb-8 flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" aria-hidden="true"></span>
             <span className="text-xs font-body font-medium text-white/80">Open to Opportunities · Summer/Fall 2026</span>
           </motion.div>
           <div className="relative mb-6 md:mb-8 flex flex-col items-center justify-center w-full">
-            <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8 lg:gap-10 relative">
-              <h1 className="text-fluid-hero-title font-heading italic text-white tracking-[-2px] md:tracking-[-4px] leading-[0.8] order-2 md:order-1 select-none">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6 sm:gap-8 md:gap-10 lg:gap-14 relative w-full">
+              <h1 className="text-fluid-hero-title font-heading italic text-white tracking-[-2px] md:tracking-[-4px] leading-[0.8] order-2 md:order-1 select-none text-center md:text-left">
                 Sahaya Savari
               </h1>
 
-              {/* Floating Ethereal Portrait */}
+              {/* Large Floating Ethereal Portrait */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.88 }}
                 animate={{ 
                   opacity: 1, 
                   scale: 1, 
@@ -92,19 +92,19 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
                 transition={{
                   opacity: { delay: 0.3, duration: 0.8 },
                   scale: { delay: 0.3, duration: 0.8 },
-                  y: { duration: 6, repeat: Infinity, ease: "easeInOut" },
-                  rotate: { duration: 8, repeat: Infinity, ease: "easeInOut" },
+                  y: { duration: 6.5, repeat: Infinity, ease: "easeInOut" },
+                  rotate: { duration: 8.5, repeat: Infinity, ease: "easeInOut" },
                 }}
                 className="relative order-1 md:order-2 shrink-0 group"
               >
                 {/* Multi-layered Atmospheric Glow Behind Portrait */}
                 <div 
-                  className="absolute inset-0 -m-6 sm:-m-8 md:-m-10 rounded-full bg-radial from-white/[0.12] via-indigo-500/[0.05] to-transparent blur-2xl pointer-events-none" 
+                  className="absolute inset-0 -m-10 sm:-m-12 md:-m-16 lg:-m-20 rounded-full bg-radial from-white/[0.14] via-indigo-500/[0.06] to-transparent blur-3xl pointer-events-none" 
                   aria-hidden="true" 
                 />
                 
                 {/* Lens / Glass Halo subtle ring */}
-                <div className="relative w-28 h-28 sm:w-36 sm:h-36 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full p-[1.5px] bg-gradient-to-b from-white/30 via-white/10 to-transparent shadow-[0_10px_40px_rgba(0,0,0,0.8)]">
+                <div className="relative w-36 h-36 min-[390px]:w-44 min-[390px]:h-44 sm:w-52 sm:h-52 md:w-60 md:h-60 lg:w-72 lg:h-72 xl:w-80 xl:h-80 rounded-full p-[2px] bg-gradient-to-b from-white/35 via-white/10 to-transparent shadow-[0_20px_60px_rgba(0,0,0,0.85)]">
                   <div className="w-full h-full rounded-full overflow-hidden bg-black/60 backdrop-blur-sm relative">
                     <img
                       src="/profile.jpg"
@@ -114,8 +114,8 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
                       fetchPriority="high"
                       className="w-full h-full object-cover object-top scale-105 transition-transform duration-700 group-hover:scale-110"
                       style={{
-                        maskImage: 'radial-gradient(ellipse at 50% 45%, black 62%, rgba(0,0,0,0.85) 75%, transparent 100%)',
-                        WebkitMaskImage: 'radial-gradient(ellipse at 50% 45%, black 62%, rgba(0,0,0,0.85) 75%, transparent 100%)',
+                        maskImage: 'radial-gradient(ellipse at 50% 45%, black 64%, rgba(0,0,0,0.85) 78%, transparent 100%)',
+                        WebkitMaskImage: 'radial-gradient(ellipse at 50% 45%, black 64%, rgba(0,0,0,0.85) 78%, transparent 100%)',
                       }}
                     />
                   </div>
