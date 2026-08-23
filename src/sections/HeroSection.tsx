@@ -77,7 +77,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
           <div className="relative mb-6 md:mb-8 flex flex-col items-center justify-center w-full">
             <div className="flex flex-col md:flex-row items-center justify-center gap-6 sm:gap-8 md:gap-10 lg:gap-12 relative w-full">
               <h1 className="text-fluid-hero-title font-heading italic text-white tracking-[-2px] md:tracking-[-4px] leading-[0.8] order-2 md:order-1 select-none text-center md:text-left">
-                Sahaya Savari
+                Sahaya Savari&nbsp;F
               </h1>
 
               {/* Balanced Floating Ethereal Portrait */}
