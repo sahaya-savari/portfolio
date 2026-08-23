@@ -9,8 +9,6 @@ interface SEOHeadProps {
   type?: string;
   schema?: Record<string, any>;
   robots?: string;
-  // Set to true only on genuine profile/identity pages (homepage ProfilePage entity)
-  isProfilePage?: boolean;
 }
 
 export default function SEOHead({ 
@@ -21,7 +19,6 @@ export default function SEOHead({
   type = 'website',
   schema,
   robots = 'index, follow',
-  isProfilePage = false,
 }: SEOHeadProps) {
   const canonicalUrl = url.replace(/\/$/, '') || SITE_URL;
 
@@ -38,7 +35,7 @@ export default function SEOHead({
       <link rel="me" href="https://www.linkedin.com/in/sahaya-savari" />
 
       {/* Open Graph / Facebook */}
-      <meta property="og:type" content={isProfilePage ? 'profile' : type} />
+      <meta property="og:type" content={type} />
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
@@ -50,15 +47,6 @@ export default function SEOHead({
       <meta property="og:image:alt" content={`${title} portfolio preview`} />
       <meta property="og:site_name" content={SITE_NAME} />
       <meta property="og:locale" content="en_US" />
-
-      {/* Profile-specific OG metadata — only on the homepage ProfilePage entity */}
-      {isProfilePage && (
-        <>
-          <meta property="og:profile:first_name" content="Sahaya" />
-          <meta property="og:profile:last_name" content="Savari" />
-          <meta property="og:profile:username" content="sahaya-savari" />
-        </>
-      )}
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />

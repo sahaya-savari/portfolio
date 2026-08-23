@@ -31,7 +31,6 @@ export default function HomePage() {
         title={DEFAULT_TITLE}
         description={DEFAULT_DESCRIPTION}
         schema={homeSchema}
-        isProfilePage={true}
       />
       
       {/* Hero Section */}
