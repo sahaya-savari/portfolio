@@ -75,12 +75,12 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
             <span className="text-xs font-body font-medium text-white/80">Open to Opportunities · Summer/Fall 2026</span>
           </motion.div>
           <div className="relative mb-6 md:mb-8 flex flex-col items-center justify-center w-full">
-            <div className="flex flex-col md:flex-row items-center justify-center gap-6 sm:gap-8 md:gap-10 lg:gap-14 relative w-full">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6 sm:gap-8 md:gap-10 lg:gap-12 relative w-full">
               <h1 className="text-fluid-hero-title font-heading italic text-white tracking-[-2px] md:tracking-[-4px] leading-[0.8] order-2 md:order-1 select-none text-center md:text-left">
                 Sahaya Savari
               </h1>
 
-              {/* Large Floating Ethereal Portrait */}
+              {/* Balanced Floating Ethereal Portrait */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.88 }}
                 animate={{ 
@@ -99,12 +99,12 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
               >
                 {/* Multi-layered Atmospheric Glow Behind Portrait */}
                 <div 
-                  className="absolute inset-0 -m-10 sm:-m-12 md:-m-16 lg:-m-20 rounded-full bg-radial from-white/[0.14] via-indigo-500/[0.06] to-transparent blur-3xl pointer-events-none" 
+                  className="absolute inset-0 -m-8 sm:-m-10 md:-m-12 lg:-m-16 rounded-full bg-radial from-white/[0.14] via-indigo-500/[0.06] to-transparent blur-3xl pointer-events-none" 
                   aria-hidden="true" 
                 />
                 
                 {/* Lens / Glass Halo subtle ring */}
-                <div className="relative w-36 h-36 min-[390px]:w-44 min-[390px]:h-44 sm:w-52 sm:h-52 md:w-60 md:h-60 lg:w-72 lg:h-72 xl:w-80 xl:h-80 rounded-full p-[2px] bg-gradient-to-b from-white/35 via-white/10 to-transparent shadow-[0_20px_60px_rgba(0,0,0,0.85)]">
+                <div className="relative w-36 h-36 min-[390px]:w-40 min-[390px]:h-40 sm:w-44 sm:h-44 md:w-48 md:h-48 lg:w-56 lg:h-56 xl:w-64 xl:h-64 rounded-full p-[1.5px] bg-gradient-to-b from-white/30 via-white/10 to-transparent shadow-[0_15px_50px_rgba(0,0,0,0.8)]">
                   <div className="w-full h-full rounded-full overflow-hidden bg-black/60 backdrop-blur-sm relative">
                     <img
                       src="/profile.jpg"
