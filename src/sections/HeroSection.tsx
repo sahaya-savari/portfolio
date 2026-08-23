@@ -74,10 +74,29 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" aria-hidden="true"></span>
             <span className="text-xs font-body font-medium text-white/80">Open to Opportunities · Summer/Fall 2026</span>
           </motion.div>
-          <div className="mb-6 md:mb-8">
-            <h1 className="text-fluid-hero-title font-heading italic text-white tracking-[-2px] md:tracking-[-4px] leading-[0.8] mb-4">
-              Sahaya Savari
-            </h1>
+          <div className="mb-6 md:mb-8 flex flex-col items-center">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-4 sm:gap-6 md:gap-8 mb-4">
+              <h1 className="text-fluid-hero-title font-heading italic text-white tracking-[-2px] md:tracking-[-4px] leading-[0.8] order-2 md:order-1">
+                Sahaya Savari
+              </h1>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.92 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.4, duration: 0.8 }}
+                className="order-1 md:order-2 shrink-0"
+              >
+                <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-2xl md:rounded-3xl p-1 liquid-glass border border-white/15 overflow-hidden shadow-2xl shadow-black/80 flex items-center justify-center">
+                  <img
+                    src="/profile.jpg"
+                    alt="Sahaya Savari F"
+                    width={400}
+                    height={400}
+                    fetchPriority="high"
+                    className="w-full h-full object-cover object-center rounded-[12px] md:rounded-[20px]"
+                  />
+                </div>
+              </motion.div>
+            </div>
             {/*
              * ANIMATION FIX: Removed `filter: blur()` from initial/animate.
              * filter:blur is a non-composited operation — it forces CPU repaint every frame.
