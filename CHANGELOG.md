@@ -9,7 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [2026-08-26] — Secondary Domain Migration (Email & Blog) to sahayasavari.dev
 
 ### Changed
-- **Contact Email Migration**: Updated primary contact email from `contact@sahayasavari.me` to `contact@sahayasavari.dev` across application UI, JSON-LD schemas, recruiter portal, `llms.txt`, and security policies.
+- **Contact Email Migration**: Updated the primary contact email to `contact@sahayasavari.dev` across application UI, JSON-LD schemas, recruiter portal, `llms.txt`, and security policies.
 - **Engineering Blog Migration**: Migrated primary blog showcase and Schema.org `TechArticle` article URLs to `https://blog.sahayasavari.dev`.
 - **Infrastructure Configuration**: Cleaned `.firebaserc` and `firebase.json` to retain solely the active `sahaya-savari-portfolio` project and `sahayasavari-dev` hosting target.
 
@@ -18,10 +18,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [2026-08-26] — Production Domain Migration to sahayasavari.dev
 
 ### Changed
-- **Canonical Domain Migration**: Migrated primary production website identity and canonical SEO baseline from `https://sahayasavari.me` to `https://sahayasavari.dev`.
+- **Canonical Domain Migration**: Migrated primary production website identity and canonical SEO baseline from `https://sahayasavari.dev` to `https://sahayasavari.dev`.
 - **Infrastructure Deployment**: Configured deployment in `firebase.json` and `.firebaserc` targeting new Firebase project `sahaya-savari-portfolio` (`sahayasavari-dev`).
 - **Structured Data & SEO**: Updated Person URI anchor (`https://sahayasavari.dev/#person`), `WebSite`, `ProfilePage`, `sitemap.xml`, and `robots.txt` to `https://sahayasavari.dev`.
-- **Preserved Subsystems**: Intentionally preserved email routing (`contact@sahayasavari.me`) and engineering blog (`https://blog.sahayasavari.me`) during initial website rollout (subsequently migrated to `.dev` — see entry above).
+- **Preserved Subsystems**: Intentionally preserved email routing (`the previous contact address`) and engineering blog (`https://blog.sahayasavari.dev`) during initial website rollout (subsequently migrated to `.dev` — see entry above).
 
 ---
 
