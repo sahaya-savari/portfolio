@@ -15,12 +15,5 @@ declare module '*.mjs?url' {
   export default src;
 }
 
-declare module '*.pdf' {
-  const src: string;
-  export default src;
-}
+declare const __RESUME_HASH__: string;
 
-declare module '*.pdf?url' {
-  const src: string;
-  export default src;
-}

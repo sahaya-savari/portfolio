@@ -1,3 +1,5 @@
+import fs from "fs";
+import crypto from "crypto";
 import path from "path";
 import { fileURLToPath } from "url";
 import tailwindcss from "@tailwindcss/vite";
@@ -7,7 +9,20 @@ import { defineConfig } from "vite";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+const getResumeHash = () => {
+  try {
+    const filePath = path.resolve(__dirname, "public/resume.pdf");
+    const fileBuffer = fs.readFileSync(filePath);
+    return crypto.createHash("md5").update(fileBuffer).digest("hex").slice(0, 8);
+  } catch {
+    return Date.now().toString(36);
+  }
+};
+
 export default defineConfig({
+  define: {
+    __RESUME_HASH__: JSON.stringify(getResumeHash()),
+  },
   plugins: [
     react(),
     tailwindcss(),
