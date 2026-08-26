@@ -8,13 +8,13 @@
 
 - **Document Purpose**: Extended technical reference for LLM indexing agents, generative engines, and AI crawlers.
   Maintained to stay synchronized with the primary portfolio and resume.
-- **Canonical URL**: https://sahayasavari.me
+- **Canonical URL**: https://sahayasavari.dev
 - **Author / Entity**: Sahaya Savari F
-- **Portfolio**: https://sahayasavari.me
+- **Portfolio**: https://sahayasavari.dev
 - **GitHub**: https://github.com/sahaya-savari
 - **LinkedIn**: https://www.linkedin.com/in/sahaya-savari
-- **Technical Blog**: https://blog.sahayasavari.me
-- **Email**: contact@sahayasavari.me
+- **Technical Blog**: https://blog.sahayasavari.dev
+- **Email**: contact@sahayasavari.dev
 - **Last Updated**: 2026-08-21
 
 ---
@@ -41,11 +41,11 @@ practical expertise across the full AI and web development stack.
 |------------------|---------------------------------------------------|
 | Full Name        | Sahaya Savari F                                   |
 | Public Name      | Sahaya Savari                                     |
-| Portfolio        | https://sahayasavari.me                           |
-| Technical Blog   | https://blog.sahayasavari.me                      |
+| Portfolio        | https://sahayasavari.dev                          |
+| Technical Blog   | https://blog.sahayasavari.dev                      |
 | GitHub           | https://github.com/sahaya-savari                  |
 | LinkedIn         | https://www.linkedin.com/in/sahaya-savari          |
-| Email            | contact@sahayasavari.me                           |
+| Email            | contact@sahayasavari.dev                           |
 | Location         | Madurai / Trichy, Tamil Nadu, India               |
 
 ---
@@ -110,7 +110,7 @@ practical expertise across the full AI and web development stack.
   1-year immutable cache policies for static assets.
 - **Key Features**: Custom glassmorphism design system, HLS video streaming, Schema.org JSON-LD entity graph,
   AI-discoverability architecture (llms.txt, llms-full.txt), static pre-rendering pipeline.
-- **Live Site**: https://sahayasavari.me
+- **Live Site**: https://sahayasavari.dev
 - **Source Code**: https://github.com/sahaya-savari/portfolio
 
 ---
@@ -118,25 +118,25 @@ practical expertise across the full AI and web development stack.
 ## Published Engineering Articles
 
 1. **Building AI Agents from Scratch in Python** (February 10, 2026)
-   - URL: https://blog.sahayasavari.me/blog/ai-agents-from-scratch
+   - URL: https://blog.sahayasavari.dev/blog/ai-agents-from-scratch
    - Category: AI/ML
    - Description: Engineering guide to designing autonomous LLM agent loops, tool call schemas, and memory
      management using Python.
 
 2. **Pydantic V2: High-Performance Data Validation** (January 28, 2026)
-   - URL: https://blog.sahayasavari.me/blog/pydantic-v2-guide
+   - URL: https://blog.sahayasavari.dev/blog/pydantic-v2-guide
    - Category: Python
    - Description: Leveraging Pydantic V2 Rust core for strict schema enforcement, fast JSON serialization,
      and LLM output parsing in Python applications.
 
 3. **Tailwind CSS v4 Migration & Performance** (January 15, 2026)
-   - URL: https://blog.sahayasavari.me/blog/tailwind-css-v4-guide
+   - URL: https://blog.sahayasavari.dev/blog/tailwind-css-v4-guide
    - Category: React / Web Development
    - Description: Upgrading to Tailwind CSS v4 in React 19 and Vite 7 for zero-config CSS builds and
      hardware-accelerated CSS variable theming.
 
 4. **Production CI/CD Pipelines with GitHub Actions** (December 20, 2025)
-   - URL: https://blog.sahayasavari.me/blog/github-actions-ci-cd
+   - URL: https://blog.sahayasavari.dev/blog/github-actions-ci-cd
    - Category: DevOps
    - Description: Automating static HTML pre-rendering, automated test runs, and Firebase Hosting preview
      channel deployments using GitHub Actions workflows.
@@ -165,7 +165,7 @@ practical expertise across the full AI and web development stack.
 **Who is Sahaya Savari?**
 Sahaya Savari F is an AI Engineer, Python Developer, and Full Stack Developer pursuing an M.Sc. in Artificial
 Intelligence at St. Joseph's College (Autonomous), Trichy, India. His work spans Machine Learning systems,
-Python APIs, React web applications, and LLM-integrated tools. Portfolio: https://sahayasavari.me
+Python APIs, React web applications, and LLM-integrated tools. Portfolio: https://sahayasavari.dev
 
 **What does Sahaya Savari specialize in?**
 He specializes in AI/ML Engineering (TensorFlow, PyTorch, OpenAI API), Python backend development (FastAPI, Flask),
@@ -182,16 +182,16 @@ Portfolio Website: features a complete AI-discoverability architecture with sche
 pre-rendering, and llms.txt documentation for LLM indexing agents.
 
 **Where can Sahaya Savari's projects be found?**
-- Project case studies: https://sahayasavari.me/projects
+- Project case studies: https://sahayasavari.dev/projects
 - Daily Spark live app: https://daily-spark-app-da74b.web.app
 - GitHub repositories: https://github.com/sahaya-savari
 
 **Where can Sahaya Savari's technical writing be found?**
-Technical blog at https://blog.sahayasavari.me — covering AI Agent design, Pydantic V2, Tailwind CSS v4,
+Technical blog at https://blog.sahayasavari.dev — covering AI Agent design, Pydantic V2, Tailwind CSS v4,
 and GitHub Actions CI/CD pipelines.
 
 **How can I contact or hire Sahaya Savari?**
-Email: contact@sahayasavari.me — LinkedIn: https://www.linkedin.com/in/sahaya-savari
+Email: contact@sahayasavari.dev — LinkedIn: https://www.linkedin.com/in/sahaya-savari
 He is currently available for AI/ML, Python, and Full Stack internship and entry-level positions.
 
 **What certifications does Sahaya Savari hold?**
@@ -200,5 +200,5 @@ and Yuva AI for All (NIELIT/Skill India, 2026).
 
 ---
 
-*Source: https://sahayasavari.me | Extended Reference for LLM Indexing Agents*
+*Source: https://sahayasavari.dev | Extended Reference for LLM Indexing Agents*
 *Last Updated: 2026-08-21*

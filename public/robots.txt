@@ -1,4 +1,4 @@
-# robots.txt — sahayasavari.me
+# robots.txt — sahayasavari.dev
 # Portfolio of Sahaya Savari F
 
 User-agent: *
@@ -32,4 +32,4 @@ Disallow: /
 User-agent: Bytespider
 Disallow: /
 
-Sitemap: https://sahayasavari.me/sitemap.xml
+Sitemap: https://sahayasavari.dev/sitemap.xml

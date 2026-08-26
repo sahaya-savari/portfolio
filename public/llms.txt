@@ -10,11 +10,11 @@ Sahaya Savari F (commonly known as Sahaya Savari) is an AI Engineer, Python Deve
 currently pursuing a Master of Science in Artificial Intelligence at St. Joseph's College (Autonomous),
 Tiruchirappalli (Trichy), India.
 
-- **Portfolio**: https://sahayasavari.me
-- **Technical Blog**: https://blog.sahayasavari.me
+- **Portfolio**: https://sahayasavari.dev
+- **Technical Blog**: https://blog.sahayasavari.dev
 - **GitHub**: https://github.com/sahaya-savari
 - **LinkedIn**: https://www.linkedin.com/in/sahaya-savari
-- **Email**: contact@sahayasavari.me
+- **Email**: contact@sahayasavari.dev
 - **Location**: Madurai / Tiruchirappalli, Tamil Nadu, India
 
 ---
@@ -59,23 +59,23 @@ Tiruchirappalli (Trichy), India.
 - **Tech Stack**: React 19, TypeScript, Vite 7, Framer Motion, Tailwind CSS v4, Static Pre-rendering, Firebase Hosting
 - **Description**: A modern portfolio website featuring glassmorphism design, hardware-accelerated animations,
   HLS video streaming, static HTML pre-rendering across 9 routes, and Firebase Hosting CDN deployment.
-- **Live Site**: https://sahayasavari.me
+- **Live Site**: https://sahayasavari.dev
 - **Source Code**: https://github.com/sahaya-savari/portfolio
 
 ---
 
 ## Technical Articles
 
-1. **Building AI Agents from Scratch in Python** — https://blog.sahayasavari.me/blog/ai-agents-from-scratch
+1. **Building AI Agents from Scratch in Python** — https://blog.sahayasavari.dev/blog/ai-agents-from-scratch
    Engineering guide to autonomous LLM agent loops, tool call schemas, and memory management using Python.
 
-2. **Pydantic V2: High-Performance Data Validation** — https://blog.sahayasavari.me/blog/pydantic-v2-guide
+2. **Pydantic V2: High-Performance Data Validation** — https://blog.sahayasavari.dev/blog/pydantic-v2-guide
    Leveraging Pydantic V2 Rust core for strict schema enforcement, fast JSON serialization, and LLM output parsing.
 
-3. **Tailwind CSS v4 Migration & Performance** — https://blog.sahayasavari.me/blog/tailwind-css-v4-guide
+3. **Tailwind CSS v4 Migration & Performance** — https://blog.sahayasavari.dev/blog/tailwind-css-v4-guide
    Upgrading to Tailwind CSS v4 in React 19 and Vite 7 for zero-config CSS builds and hardware-accelerated themes.
 
-4. **Production CI/CD Pipelines with GitHub Actions** — https://blog.sahayasavari.me/blog/github-actions-ci-cd
+4. **Production CI/CD Pipelines with GitHub Actions** — https://blog.sahayasavari.dev/blog/github-actions-ci-cd
    Automating static HTML pre-rendering, test runs, and Firebase Hosting preview channel deployments.
 
 ---
@@ -93,7 +93,7 @@ Tiruchirappalli (Trichy), India.
 
 **Who is Sahaya Savari?**
 Sahaya Savari F is an AI Engineer, Python Developer, and Full Stack Developer pursuing an M.Sc. in Artificial Intelligence
-at St. Joseph's College (Autonomous), Trichy, India. His portfolio is at https://sahayasavari.me.
+at St. Joseph's College (Autonomous), Trichy, India. His portfolio is at https://sahayasavari.dev.
 
 **What does Sahaya Savari specialize in?**
 Sahaya Savari specializes in Artificial Intelligence and Machine Learning, Python development (FastAPI, Flask),
@@ -108,14 +108,14 @@ PrepMind AI — an LLM-powered study companion using Python and OpenAI API. Also
 with static pre-rendering, schema.org structured data, and AI discoverability architecture.
 
 **Where can Sahaya Savari's projects be found?**
-Projects are listed at https://sahayasavari.me/projects and source code is at https://github.com/sahaya-savari.
+Projects are listed at https://sahayasavari.dev/projects and source code is at https://github.com/sahaya-savari.
 
 **Where can Sahaya Savari's technical writing be found?**
-Published engineering articles are at https://blog.sahayasavari.me covering AI Agents, Python, React, and DevOps.
+Published engineering articles are at https://blog.sahayasavari.dev covering AI Agents, Python, React, and DevOps.
 
 **How can I contact Sahaya Savari?**
-Email: contact@sahayasavari.me — LinkedIn: https://www.linkedin.com/in/sahaya-savari
+Email: contact@sahayasavari.dev — LinkedIn: https://www.linkedin.com/in/sahaya-savari
 
 ---
 
-*Last updated: 2026-08-21 | Source: https://sahayasavari.me*
+*Last updated: 2026-08-21 | Source: https://sahayasavari.dev*

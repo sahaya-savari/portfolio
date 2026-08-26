@@ -47,7 +47,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     ],
     relatedArticle: {
       title: 'Building AI Agents from Scratch in Python',
-      url: 'https://blog.sahayasavari.me/blog/ai-agents-from-scratch'
+      url: 'https://blog.sahayasavari.dev/blog/ai-agents-from-scratch'
     }
   },
   'daily-spark': {
@@ -76,7 +76,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     demoUrl: 'https://daily-spark-app-da74b.web.app',
     relatedArticle: {
       title: 'Pydantic V2: High-Performance Data Validation',
-      url: 'https://blog.sahayasavari.me/blog/pydantic-v2-guide'
+      url: 'https://blog.sahayasavari.dev/blog/pydantic-v2-guide'
     }
   },
   'portfolio-website': {
@@ -103,10 +103,10 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
       'Manual Vite chunk splitting and IntersectionObserver-based lazy loading are essential for modern media-heavy web apps.'
     ],
     githubUrl: 'https://github.com/sahaya-savari/portfolio',
-    demoUrl: 'https://sahayasavari.me',
+    demoUrl: 'https://sahayasavari.dev',
     relatedArticle: {
       title: 'Tailwind CSS v4 Migration & Performance',
-      url: 'https://blog.sahayasavari.me/blog/tailwind-css-v4-guide'
+      url: 'https://blog.sahayasavari.dev/blog/tailwind-css-v4-guide'
     }
   }
 };

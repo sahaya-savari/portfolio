@@ -42,7 +42,7 @@ For projects like **PrepMind AI**:
 
 ## 3. Content Strategy (To build authority)
 
-- **Post 1 (Portfolio Launch):** "I recently redesigned my engineering portfolio to reflect production-level standards. Built with React and Framer Motion, it features a custom WebGL background and 100% accessible navigation. Check it out: sahayasavari.me"
+- **Post 1 (Portfolio Launch):** "I recently redesigned my engineering portfolio to reflect production-level standards. Built with React and Framer Motion, it features a custom WebGL background and 100% accessible navigation. Check it out: sahayasavari.dev"
 - **Post 2 (Technical Deep Dive):** "How I handled LLM hallucination in my recent project, PrepMind AI. A short thread on prompt engineering and constrained outputs..."
 - **Post 3 (Learning Journey):** "Just finished deep-diving into WebSockets with FastAPI and React. It completely changed how I think about real-time client-server communication."
 

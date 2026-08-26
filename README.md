@@ -3,8 +3,8 @@
 Personal portfolio and technical showcase of **Sahaya Savari F** — AI Engineer, Python Developer, Full Stack Developer, and M.Sc. Artificial Intelligence student at St. Joseph's College (Autonomous), Trichy.
 
 <p align="center">
-  <a href="https://sahayasavari.me">🌐 Portfolio</a> •
-  <a href="https://blog.sahayasavari.me">✍️ Engineering Blog</a> •
+  <a href="https://sahayasavari.dev">🌐 Portfolio</a> •
+  <a href="https://blog.sahayasavari.dev">✍️ Engineering Blog</a> •
   <a href="https://github.com/sahaya-savari">💻 GitHub</a> •
   <a href="https://www.linkedin.com/in/sahaya-savari">💼 LinkedIn</a>
 </p>
@@ -13,11 +13,11 @@ Personal portfolio and technical showcase of **Sahaya Savari F** — AI Engineer
 
 ## 📌 Production Links & Identity
 
-- **Production Site**: [https://sahayasavari.me](https://sahayasavari.me)
-- **Technical Blog**: [https://blog.sahayasavari.me](https://blog.sahayasavari.me)
+- **Production Site**: [https://sahayasavari.dev](https://sahayasavari.dev)
+- **Technical Blog**: [https://blog.sahayasavari.dev](https://blog.sahayasavari.dev)
 - **GitHub**: [https://github.com/sahaya-savari](https://github.com/sahaya-savari)
 - **LinkedIn**: [https://www.linkedin.com/in/sahaya-savari](https://www.linkedin.com/in/sahaya-savari)
-- **Contact Email**: [contact@sahayasavari.me](mailto:contact@sahayasavari.me)
+- **Contact Email**: [contact@sahayasavari.dev](mailto:contact@sahayasavari.dev)
 - **Primary Search Entity**: Sahaya Savari F (`Sahaya Savari`)
 
 ---
@@ -87,9 +87,9 @@ The following 9 routes are statically pre-rendered during build:
 
 ## 🎯 SEO, AEO & Entity Architecture
 
-- **Stable Person `@id` Node**: URI anchor `https://sahayasavari.me/#person` unifies identity across `Person` (`name: "Sahaya Savari F"`, `alternateName: "Sahaya Savari"`, `affiliation: St. Joseph's College (Autonomous), Trichy`), `WebSite`, and `ProfilePage` JSON-LD schemas.
-- **Secondary Route `@graph` Linkages**: Unified route schemas on `/projects`, `/blog`, `/resume`, `/recruiter`, and `/ai` link content author/mainEntity to `@id: https://sahayasavari.me/#person`.
-- **Case Study & Blog Cross-Links**: Project case studies link directly to published engineering articles on `blog.sahayasavari.me`.
+- **Stable Person `@id` Node**: URI anchor `https://sahayasavari.dev/#person` unifies identity across `Person` (`name: "Sahaya Savari F"`, `alternateName: "Sahaya Savari"`, `affiliation: St. Joseph's College (Autonomous), Trichy`), `WebSite`, and `ProfilePage` JSON-LD schemas.
+- **Secondary Route `@graph` Linkages**: Unified route schemas on `/projects`, `/blog`, `/resume`, `/recruiter`, and `/ai` link content author/mainEntity to `@id: https://sahayasavari.dev/#person`.
+- **Case Study & Blog Cross-Links**: Project case studies link directly to published engineering articles on `blog.sahayasavari.dev`.
 - **Clean Metadata**: All `<title>`, `<meta description>`, `canonical`, Open Graph, and Twitter metadata tags exist strictly inside `<head>` (duplicate tags inside body `#root` are automatically stripped during static pre-rendering).
 - **Crawlability & Indexing**: Includes `sitemap.xml`, `robots.txt`, and canonical host enforcement.
 - **AI Discoverability (AEO/GEO)**: Includes `/llms.txt` and `/llms-full.txt` for LLM search indexing agents.

@@ -1,4 +1,4 @@
-export const SITE_URL = 'https://sahayasavari.me';
+export const SITE_URL = 'https://sahayasavari.dev';
 export const SITE_NAME = 'Sahaya Savari';
 export const DEFAULT_TITLE = 'Sahaya Savari F | AI Engineer & M.Sc. AI Student';
 export const DEFAULT_DESCRIPTION =
@@ -14,7 +14,7 @@ export const personEntity = {
   jobTitle: 'AI/ML & Full Stack Developer',
   description:
     'M.Sc. Artificial Intelligence Student, AI Engineer, Python Developer, and Full Stack Developer building Machine Learning solutions, Python APIs, React applications, and LLM-integrated tools.',
-  email: 'contact@sahayasavari.me',
+  email: 'contact@sahayasavari.dev',
   // Current student affiliation — not alumniOf as degree is ongoing
   affiliation: {
     '@type': 'EducationalOrganization',
@@ -33,7 +33,7 @@ export const personEntity = {
   sameAs: [
     'https://www.linkedin.com/in/sahaya-savari',
     'https://github.com/sahaya-savari',
-    'https://blog.sahayasavari.me',
+    'https://blog.sahayasavari.dev',
     'https://leetcode.com/u/sahaya_savari/',
   ],
   // Demonstrated expertise from projects, articles, and certifications
@@ -118,44 +118,44 @@ export const createBreadcrumbSchema = (items: { name: string; url: string }[]) =
 export const techArticleSchemas = [
   {
     '@type': 'TechArticle',
-    '@id': `https://blog.sahayasavari.me/blog/ai-agents-from-scratch#article`,
+    '@id': `https://blog.sahayasavari.dev/blog/ai-agents-from-scratch#article`,
     headline: 'Building AI Agents from Scratch in Python',
     description:
       'An engineering guide to designing autonomous LLM agent loops, tool call schemas, and memory management using Python.',
-    url: 'https://blog.sahayasavari.me/blog/ai-agents-from-scratch',
+    url: 'https://blog.sahayasavari.dev/blog/ai-agents-from-scratch',
     datePublished: '2026-02-10',
     author: { '@id': `${SITE_URL}/#person` },
     inLanguage: 'en-US',
   },
   {
     '@type': 'TechArticle',
-    '@id': `https://blog.sahayasavari.me/blog/pydantic-v2-guide#article`,
+    '@id': `https://blog.sahayasavari.dev/blog/pydantic-v2-guide#article`,
     headline: 'Pydantic V2: High-Performance Data Validation',
     description:
       'Leveraging Pydantic V2 Rust core for strict schema enforcement, fast JSON serialization, and LLM output parsing in Python applications.',
-    url: 'https://blog.sahayasavari.me/blog/pydantic-v2-guide',
+    url: 'https://blog.sahayasavari.dev/blog/pydantic-v2-guide',
     datePublished: '2026-01-28',
     author: { '@id': `${SITE_URL}/#person` },
     inLanguage: 'en-US',
   },
   {
     '@type': 'TechArticle',
-    '@id': `https://blog.sahayasavari.me/blog/tailwind-css-v4-guide#article`,
+    '@id': `https://blog.sahayasavari.dev/blog/tailwind-css-v4-guide#article`,
     headline: 'Tailwind CSS v4 Migration & Performance',
     description:
       'Upgrading to Tailwind CSS v4 in React 19 and Vite 7 for zero-config CSS builds and hardware-accelerated CSS variable theming.',
-    url: 'https://blog.sahayasavari.me/blog/tailwind-css-v4-guide',
+    url: 'https://blog.sahayasavari.dev/blog/tailwind-css-v4-guide',
     datePublished: '2026-01-15',
     author: { '@id': `${SITE_URL}/#person` },
     inLanguage: 'en-US',
   },
   {
     '@type': 'TechArticle',
-    '@id': `https://blog.sahayasavari.me/blog/github-actions-ci-cd#article`,
+    '@id': `https://blog.sahayasavari.dev/blog/github-actions-ci-cd#article`,
     headline: 'Production CI/CD Pipelines with GitHub Actions',
     description:
       'Automating static HTML pre-rendering, automated test runs, and Firebase Hosting preview channel deployments using GitHub Actions workflows.',
-    url: 'https://blog.sahayasavari.me/blog/github-actions-ci-cd',
+    url: 'https://blog.sahayasavari.dev/blog/github-actions-ci-cd',
     datePublished: '2025-12-20',
     author: { '@id': `${SITE_URL}/#person` },
     inLanguage: 'en-US',

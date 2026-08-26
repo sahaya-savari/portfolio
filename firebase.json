@@ -1,130 +1,132 @@
 {
-  "hosting": {
-    "target": "sahayasavari",
-    "public": "dist",
-    "cleanUrls": true,
-    "trailingSlash": false,
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ],
-    "headers": [
-      {
-        "source": "**",
-        "headers": [
-          {
-            "key": "X-Content-Type-Options",
-            "value": "nosniff"
-          },
-          {
-            "key": "X-Frame-Options",
-            "value": "DENY"
-          },
-          {
-            "key": "Referrer-Policy",
-            "value": "strict-origin-when-cross-origin"
-          },
-          {
-            "key": "Permissions-Policy",
-            "value": "geolocation=(), microphone=(), camera=()"
-          },
-          {
-            "key": "Strict-Transport-Security",
-            "value": "max-age=31536000; includeSubDomains"
-          },
-          {
-            "key": "Content-Security-Policy",
-            "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com https://www.clarity.ms; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://image.mux.com https://images.unsplash.com https://*.clarity.ms; font-src 'self' data:; media-src 'self' https://stream.mux.com https://d8j0ntlcm91z4.cloudfront.net; connect-src 'self' https://stream.mux.com https://image.mux.com https://d8j0ntlcm91z4.cloudfront.net https://cloudflareinsights.com https://www.clarity.ms https://*.clarity.ms; worker-src 'self' blob:; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests;"
-          }
-        ]
-      },
-      {
-        "source": "**/*.@(js|css)",
-        "headers": [
-          {
-            "key": "Cache-Control",
-            "value": "public,max-age=31536000,immutable"
-          }
-        ]
-      },
-      {
-        "source": "**/index.html",
-        "headers": [
-          {
-            "key": "Cache-Control",
-            "value": "no-cache, no-store, must-revalidate"
-          }
-        ]
-      },
-      {
-        "source": "sitemap.xml",
-        "headers": [
-          {
-            "key": "Content-Type",
-            "value": "application/xml; charset=utf-8"
-          },
-          {
-            "key": "Cache-Control",
-            "value": "public,max-age=3600,s-maxage=3600"
-          }
-        ]
-      },
-      {
-        "source": "robots.txt",
-        "headers": [
-          {
-            "key": "Cache-Control",
-            "value": "public,max-age=3600,s-maxage=3600"
-          }
-        ]
-      },
-      {
-        "source": "**/*.txt",
-        "headers": [
-          {
-            "key": "Content-Type",
-            "value": "text/plain; charset=utf-8"
-          },
-          {
-            "key": "Cache-Control",
-            "value": "public,max-age=3600,s-maxage=3600"
-          }
-        ]
-      },
-      {
-        "source": "**/*.woff2",
-        "headers": [
-          {
-            "key": "Cache-Control",
-            "value": "public,max-age=31536000,immutable"
-          }
-        ]
-      },
-      {
-        "source": "**/*.@(png|jpg|jpeg|webp|svg|ico)",
-        "headers": [
-          {
-            "key": "Cache-Control",
-            "value": "public,max-age=31536000,immutable"
-          }
-        ]
-      },
-      {
-        "source": "**/*.pdf",
-        "headers": [
-          {
-            "key": "Cache-Control",
-            "value": "public,max-age=86400"
-          }
-        ]
-      }
-    ]
-  }
+  "hosting": [
+    {
+      "target": "sahayasavari-dev",
+      "public": "dist",
+      "cleanUrls": true,
+      "trailingSlash": false,
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "headers": [
+        {
+          "source": "**",
+          "headers": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Referrer-Policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "Permissions-Policy",
+              "value": "geolocation=(), microphone=(), camera=()"
+            },
+            {
+              "key": "Strict-Transport-Security",
+              "value": "max-age=31536000; includeSubDomains"
+            },
+            {
+              "key": "Content-Security-Policy",
+              "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com https://www.clarity.ms; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://image.mux.com https://images.unsplash.com https://*.clarity.ms; font-src 'self' data:; media-src 'self' https://stream.mux.com https://d8j0ntlcm91z4.cloudfront.net; connect-src 'self' https://stream.mux.com https://image.mux.com https://d8j0ntlcm91z4.cloudfront.net https://cloudflareinsights.com https://www.clarity.ms https://*.clarity.ms; worker-src 'self' blob:; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests;"
+            }
+          ]
+        },
+        {
+          "source": "**/*.@(js|css)",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public,max-age=31536000,immutable"
+            }
+          ]
+        },
+        {
+          "source": "**/index.html",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, must-revalidate"
+            }
+          ]
+        },
+        {
+          "source": "sitemap.xml",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/xml; charset=utf-8"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "public,max-age=3600,s-maxage=3600"
+            }
+          ]
+        },
+        {
+          "source": "robots.txt",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public,max-age=3600,s-maxage=3600"
+            }
+          ]
+        },
+        {
+          "source": "**/*.txt",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain; charset=utf-8"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "public,max-age=3600,s-maxage=3600"
+            }
+          ]
+        },
+        {
+          "source": "**/*.woff2",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public,max-age=31536000,immutable"
+            }
+          ]
+        },
+        {
+          "source": "**/*.@(png|jpg|jpeg|webp|svg|ico)",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public,max-age=31536000,immutable"
+            }
+          ]
+        },
+        {
+          "source": "**/*.pdf",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public,max-age=86400"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

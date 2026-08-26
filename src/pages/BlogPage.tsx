@@ -59,12 +59,12 @@ export default function BlogPage() {
               <p className="text-white font-medium text-base">Technical Writings by Sahaya Savari</p>
             </div>
             <a
-              href="https://blog.sahayasavari.me"
+              href="https://blog.sahayasavari.dev"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 text-xs text-purple-300 hover:text-white font-mono transition-colors"
             >
-              blog.sahayasavari.me
+              blog.sahayasavari.dev
             </a>
           </div>
           <p className="text-white/70 leading-relaxed">

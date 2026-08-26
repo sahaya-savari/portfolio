@@ -2,10 +2,10 @@
 
 ## Reporting Security Vulnerabilities
 
-If you discover a security vulnerability or potential security concern affecting the **Sahaya Savari F Portfolio** (`sahayasavari.me`) or its repository, please report it privately.
+If you discover a security vulnerability or potential security concern affecting the **Sahaya Savari F Portfolio** (`sahayasavari.dev`) or its repository, please report it privately.
 
 Please send security reports via email to:
-**[contact@sahayasavari.me](mailto:contact@sahayasavari.me)**
+**[contact@sahayasavari.dev](mailto:contact@sahayasavari.dev)**
 
 ### What to Include
 When reporting a security issue, please include:
@@ -36,7 +36,7 @@ The portfolio application incorporates security best practices across client-sid
 ## Scope
 
 This security policy applies to:
-- The production website hosted at [https://sahayasavari.me](https://sahayasavari.me)
+- The production website hosted at [https://sahayasavari.dev](https://sahayasavari.dev)
 - Frontend application source code in the public [sahaya-savari/portfolio](https://github.com/sahaya-savari/portfolio) repository
 
 Third-party dependencies, open-source libraries, and external hosting platforms (Firebase Hosting) are managed by their respective maintainers.

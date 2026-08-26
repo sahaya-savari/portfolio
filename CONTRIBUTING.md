@@ -1,6 +1,6 @@
 # Contributing
 
-Thank you for visiting the **Sahaya Savari F Portfolio** repository (`sahayasavari.me`).
+Thank you for visiting the **Sahaya Savari F Portfolio** repository (`sahayasavari.dev`).
 
 This repository serves as a personal portfolio, professional resume, and technical showcase owned and maintained by **Sahaya Savari F**.
 
@@ -21,7 +21,7 @@ While external code contributions are not accepted, feedback and vulnerability r
 
 - **Source Inspection**: Visitors are welcome to inspect and review the source code for learning and technical evaluation.
 - **Bug & Issue Reports**: If you discover a bug or broken link on the portfolio website, feel free to open a GitHub Issue describing the problem.
-- **Security Vulnerabilities**: If you discover a security vulnerability or security concern, please report it privately by following the instructions in [SECURITY.md](SECURITY.md) (send details to [contact@sahayasavari.me](mailto:contact@sahayasavari.me)).
+- **Security Vulnerabilities**: If you discover a security vulnerability or security concern, please report it privately by following the instructions in [SECURITY.md](SECURITY.md) (send details to [contact@sahayasavari.dev](mailto:contact@sahayasavari.dev)).
 - **Feature Suggestions**: Suggestions or constructive feedback may be submitted via GitHub Issues and will be considered at the owner's discretion.
 - **Pull Requests Notice**: Submitting a pull request or opening an issue does not grant permission to copy, reuse, modify, or redistribute the project's code or original assets.
 

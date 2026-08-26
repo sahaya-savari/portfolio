@@ -48,7 +48,7 @@ export default function RecruiterMode() {
             <h1 className="text-4xl font-heading italic tracking-tight mb-2">Sahaya Savari F</h1>
             <p className="text-xl font-body text-white/70 mb-4">AI Engineer / Full Stack Developer</p>
             <div className="flex flex-wrap gap-4 text-sm font-body text-white/50">
-              <a href="mailto:contact@sahayasavari.me" className="flex items-center gap-1.5 hover:text-white transition-colors"><Mail className="w-4 h-4" /> contact@sahayasavari.me</a>
+              <a href="mailto:contact@sahayasavari.dev" className="flex items-center gap-1.5 hover:text-white transition-colors"><Mail className="w-4 h-4" /> contact@sahayasavari.dev</a>
               <a href="https://github.com/sahaya-savari" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-white transition-colors"><ExternalLink className="w-4 h-4" /> github.com/sahaya-savari</a>
               <a href="https://www.linkedin.com/in/sahaya-savari" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-white transition-colors"><ExternalLink className="w-4 h-4" /> linkedin.com/in/sahaya-savari</a>
             </div>

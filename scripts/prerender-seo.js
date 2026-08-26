@@ -10,7 +10,7 @@ const DIST_DIR = path.resolve(__dirname, '../dist');
 const SERVER_DIR = path.resolve(__dirname, '../.tmp-server');
 const INDEX_HTML_PATH = path.join(DIST_DIR, 'index.html');
 
-const SITE_URL = 'https://sahayasavari.me';
+const SITE_URL = 'https://sahayasavari.dev';
 
 const ROUTES = [
   { path: '/', canonical: `${SITE_URL}` },

@@ -74,4 +74,4 @@
 **Sahaya Savari F**
 - GitHub: [@sahaya-savari](https://github.com/sahaya-savari)
 - LinkedIn: [Sahaya Savari F](https://www.linkedin.com/in/sahaya-savari)
-- Portfolio: [sahayasavari.me](https://sahayasavari.me)
+- Portfolio: [sahayasavari.dev](https://sahayasavari.dev)

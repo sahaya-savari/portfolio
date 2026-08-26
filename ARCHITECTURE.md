@@ -1,6 +1,6 @@
 # Architecture Overview
 
-This document describes the software architecture, build pipeline, static pre-rendering system, SEO graph, and hosting infrastructure of the **Sahaya Savari F Portfolio** website (`sahayasavari.me`).
+This document describes the software architecture, build pipeline, static pre-rendering system, SEO graph, and hosting infrastructure of the **Sahaya Savari F Portfolio** website (`sahayasavari.dev`).
 
 ---
 
@@ -83,9 +83,9 @@ To achieve fast First Contentful Paint (FCP) and Largest Contentful Paint (LCP),
 
 ## 5. SEO & Structured Data Architecture
 
-- **Person URI Anchor (`@id: "https://sahayasavari.me/#person"`)**: Stable Schema.org node representing **Sahaya Savari F**, linking `name`, `alternateName`, `affiliation`, `hasOccupation`, and verified `sameAs` profiles (LinkedIn, GitHub, Blog, LeetCode).
+- **Person URI Anchor (`@id: "https://sahayasavari.dev/#person"`)**: Stable Schema.org node representing **Sahaya Savari F**, linking `name`, `alternateName`, `affiliation`, `hasOccupation`, and verified `sameAs` profiles (LinkedIn, GitHub, Blog, LeetCode).
 - **Graph Node Linkages**: Secondary route schemas (`CollectionPage`, `Blog`, `WebPage`, `AboutPage`) reference `#person` as author/mainEntity.
-- **Canonical Enforcements**: Single canonical domain `https://sahayasavari.me` enforced across all routes.
+- **Canonical Enforcements**: Single canonical domain `https://sahayasavari.dev` enforced across all routes.
 - **Machine-Readable Context**: `/llms.txt` and `/llms-full.txt` provide concise structured background for LLM search indexing agents.
 
 ---

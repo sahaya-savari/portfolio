@@ -1,14 +1,15 @@
 {
   "projects": {
-    "default": "my-portfolio-fss"
+    "default": "sahaya-savari-portfolio"
   },
   "targets": {
-    "my-portfolio-fss": {
+    "sahaya-savari-portfolio": {
       "hosting": {
-        "sahayasavari": [
-          "sahayasavari"
+        "sahayasavari-dev": [
+          "sahaya-savari-portfolio"
         ]
       }
     }
-  }
+  },
+  "etags": {}
 }

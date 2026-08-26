@@ -11,8 +11,11 @@
       (function() {
         var h = window.location.hostname;
         var isLocal = h === 'localhost' || h === '127.0.0.1' || h === '::1' || h === '0.0.0.0' || h.endsWith('.local') || /^192\.168\./.test(h) || /^10\./.test(h);
-        if (!isLocal && h !== 'sahayasavari.me') {
-          window.location.replace('https://sahayasavari.me' + window.location.pathname + window.location.search + window.location.hash);
+        var isAllowed = isLocal || h === 'sahayasavari.dev' || h.endsWith('.web.app') || h.endsWith('.firebaseapp.com');
+        if (h === 'www.sahayasavari.dev') {
+          window.location.replace('https://sahayasavari.dev' + window.location.pathname + window.location.search + window.location.hash);
+        } else if (!isAllowed) {
+          window.location.replace('https://sahayasavari.dev' + window.location.pathname + window.location.search + window.location.hash);
         }
       })();
     </script>

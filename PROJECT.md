@@ -1,7 +1,7 @@
 # PROJECT.md — Production Portfolio Source of Truth
 
 > **System & Context Reference Document**  
-> This file is the primary, single source of truth for **Sahaya Savari F's** production portfolio repository (`sahayasavari.me`). It documents the codebase architecture, technology stack, static pre-rendering pipeline, SEO/schema graph, AI discoverability assets, deployment configuration, and guidelines for AI coding assistants.
+> This file is the primary, single source of truth for **Sahaya Savari F's** production portfolio repository (`sahayasavari.dev`). It documents the codebase architecture, technology stack, static pre-rendering pipeline, SEO/schema graph, AI discoverability assets, deployment configuration, and guidelines for AI coding assistants.
 
 ---
 
@@ -13,11 +13,11 @@
 - **Education**: M.Sc. Artificial Intelligence — St. Joseph's College (Autonomous), Tiruchirappalli (Trichy), India
 - **Location**: Madurai / Tiruchirappalli, Tamil Nadu, India
 - **Official Identity URLs**:
-  - **Portfolio**: [https://sahayasavari.me](https://sahayasavari.me)
-  - **Technical Blog**: [https://blog.sahayasavari.me](https://blog.sahayasavari.me)
+  - **Portfolio**: [https://sahayasavari.dev](https://sahayasavari.dev)
+  - **Technical Blog**: [https://blog.sahayasavari.dev](https://blog.sahayasavari.dev)
   - **GitHub**: [https://github.com/sahaya-savari](https://github.com/sahaya-savari)
   - **LinkedIn**: [https://www.linkedin.com/in/sahaya-savari](https://www.linkedin.com/in/sahaya-savari)
-  - **Contact Email**: [contact@sahayasavari.me](mailto:contact@sahayasavari.me)
+  - **Contact Email**: [contact@sahayasavari.dev](mailto:contact@sahayasavari.dev)
 - **Primary Search Entity Target**: `Sahaya Savari` / `Sahaya Savari F`
 
 ---
@@ -117,19 +117,19 @@ Browser Load (Server HTML served instantly) → React 19 Client Hydration
 3. **Portfolio Website** (`/projects/portfolio-website`):
    - **Type**: Web Engineering & SPA Architecture
    - **Tech Stack**: React 19, TypeScript, Vite 7, Framer Motion, Tailwind CSS v4, Static Pre-rendering, Firebase Hosting
-   - **Live Site**: [https://sahayasavari.me](https://sahayasavari.me)
+   - **Live Site**: [https://sahayasavari.dev](https://sahayasavari.dev)
    - **Source Code**: [https://github.com/sahaya-savari/portfolio](https://github.com/sahaya-savari/portfolio)
 
 ---
 
 ## 7. Technical Blog & Published Articles
 
-- **Blog Domain**: [https://blog.sahayasavari.me](https://blog.sahayasavari.me)
+- **Blog Domain**: [https://blog.sahayasavari.dev](https://blog.sahayasavari.dev)
 - **Published Articles**:
-  1. *Building AI Agents from Scratch in Python* ([Read Article](https://blog.sahayasavari.me/blog/ai-agents-from-scratch))
-  2. *Pydantic V2: High-Performance Data Validation* ([Read Article](https://blog.sahayasavari.me/blog/pydantic-v2-guide))
-  3. *Tailwind CSS v4 Migration & Performance* ([Read Article](https://blog.sahayasavari.me/blog/tailwind-css-v4-guide))
-  4. *Production CI/CD Pipelines with GitHub Actions* ([Read Article](https://blog.sahayasavari.me/blog/github-actions-ci-cd))
+  1. *Building AI Agents from Scratch in Python* ([Read Article](https://blog.sahayasavari.dev/blog/ai-agents-from-scratch))
+  2. *Pydantic V2: High-Performance Data Validation* ([Read Article](https://blog.sahayasavari.dev/blog/pydantic-v2-guide))
+  3. *Tailwind CSS v4 Migration & Performance* ([Read Article](https://blog.sahayasavari.dev/blog/tailwind-css-v4-guide))
+  4. *Production CI/CD Pipelines with GitHub Actions* ([Read Article](https://blog.sahayasavari.dev/blog/github-actions-ci-cd))
 
 ---
 
@@ -141,21 +141,21 @@ Browser Load (Server HTML served instantly) → React 19 Client Hydration
 - [`scripts/prerender-seo.js`](file:///d:/GITHUB/portfolio/scripts/prerender-seo.js) — Post-build static pre-rendering script.
 
 ### Schema.org Graph Architecture
-- **Person URI Node Anchor**: `@id: "https://sahayasavari.me/#person"`
+- **Person URI Node Anchor**: `@id: "https://sahayasavari.dev/#person"`
   - `name`: Sahaya Savari F
   - `alternateName`: Sahaya Savari
-  - `url`: `https://sahayasavari.me`
+  - `url`: `https://sahayasavari.dev`
   - `jobTitle`: AI/ML & Full Stack Developer
   - `affiliation`: `{ "@type": "EducationalOrganization", "name": "St. Joseph's College (Autonomous), Tiruchirappalli" }` (Current M.Sc. AI student; `affiliation` used, not `alumniOf` as degree is ongoing)
   - `hasOccupation`: `{ "@type": "Occupation", "name": "AI Engineer & Full Stack Developer", "occupationLocation": { "@type": "Country", "name": "India" } }`
-  - `sameAs`: `["https://www.linkedin.com/in/sahaya-savari", "https://github.com/sahaya-savari", "https://blog.sahayasavari.me", "https://leetcode.com/u/sahaya_savari/"]`
+  - `sameAs`: `["https://www.linkedin.com/in/sahaya-savari", "https://github.com/sahaya-savari", "https://blog.sahayasavari.dev", "https://leetcode.com/u/sahaya_savari/"]`
   - `knowsAbout`: 23 verified expertise terms including Artificial Intelligence, Machine Learning, Deep Learning, NLP, LLM Applications, AI Agent Architecture, Generative AI, Prompt Engineering, Python, FastAPI, React, TypeScript, Firebase, Pydantic, GitHub Actions CI/CD.
-- **WebSite Graph Node**: `@id: "https://sahayasavari.me/#website"` — `author`: `{ "@id": "https://sahayasavari.me/#person" }`
-- **ProfilePage Graph Node**: `@id: "https://sahayasavari.me/#profilepage"` — `mainEntity`: `{ "@id": "https://sahayasavari.me/#person" }`
-- **Secondary Route Graph Nodes**: Unified `@graph` objects on `/projects` (`CollectionPage`), `/blog` (`Blog`), `/resume` (`WebPage`), `/recruiter` (`AboutPage`), and `/ai` (`WebPage`) linking `author`/`mainEntity` to `{ "@id": "https://sahayasavari.me/#person" }`.
+- **WebSite Graph Node**: `@id: "https://sahayasavari.dev/#website"` — `author`: `{ "@id": "https://sahayasavari.dev/#person" }`
+- **ProfilePage Graph Node**: `@id: "https://sahayasavari.dev/#profilepage"` — `mainEntity`: `{ "@id": "https://sahayasavari.dev/#person" }`
+- **Secondary Route Graph Nodes**: Unified `@graph` objects on `/projects` (`CollectionPage`), `/blog` (`Blog`), `/resume` (`WebPage`), `/recruiter` (`AboutPage`), and `/ai` (`WebPage`) linking `author`/`mainEntity` to `{ "@id": "https://sahayasavari.dev/#person" }`.
 - **TechArticle Nodes** (on `/blog`): 4 `TechArticle` schema nodes for each published engineering article, with `datePublished` values from actual source data (`src/data.ts`) and `author` referencing `#person`.
 - **SoftwareApplication Node** (on `/ai`): `SoftwareApplication` schema for Ask Sahaya AI, `author` referencing `#person`, `applicationCategory: "DeveloperApplication"`, `operatingSystem: "Web Browser"`. No fake ratings, reviews, or user counts.
-- **Case Studies**: `SoftwareSourceCode` & `BreadcrumbList` schemas with contextual cross-links to published technical writing on `blog.sahayasavari.me`.
+- **Case Studies**: `SoftwareSourceCode` & `BreadcrumbList` schemas with contextual cross-links to published technical writing on `blog.sahayasavari.dev`.
 - **Identity Links**: `<link rel="me">` tags in `index.html` and `SEOHead.tsx` connecting the portfolio domain to GitHub and LinkedIn for consistent identity graph linkage.
 
 ### AI Discoverability (AEO & GEO)
@@ -237,7 +237,7 @@ npx firebase deploy --only hosting
 ## 12. Production Baseline & Status Matrix
 
 - **SEO + AEO + GEO Entity Architecture**: **COMPLETED & VERIFIED** (Commit `fc07811` strengthens Person entity `@id`, `alternateName`, student `affiliation`, secondary route `@graph` author linkages, and project-article cross-links).
-- **Firebase Hosting Production Deployment**: **COMPLETED & VERIFIED** (Deployed 62 static dist files to production target `sahayasavari` at `https://sahayasavari.me`).
+- **Firebase Hosting Production Deployment**: **COMPLETED & VERIFIED** (Deployed 49 static dist files to production target `sahayasavari-dev` at `https://sahayasavari.dev`).
 - **SSR Static Pre-rendering**: **COMPLETED & VERIFIED** (All 9 routes return 10KB–32KB rendered HTML in `#root`).
 - **Metadata Deduplication**: **COMPLETED & VERIFIED** (Metadata tags exist strictly in `<head>`).
 - **Person `@id` & `ProfilePage` Schema**: **COMPLETED & VERIFIED** (Live JSON-LD graph verified).
@@ -257,7 +257,7 @@ When working on this repository, any AI assistant (Claude, Antigravity, Gemini, 
    - `package.json` is the ground truth for dependencies and build scripts.
    - `firebase.json` is the ground truth for hosting headers and rewrites.
    - `PROJECT.md` is the human/AI readable context reference.
-   - Live URL `https://sahayasavari.me` is the ground truth for deployed behavior.
+   - Live URL `https://sahayasavari.dev` is the ground truth for deployed behavior.
 4. **Preserve Single Source of Truth for Content**: NEVER create hardcoded duplicate HTML content strings in `prerender-seo.js`. All rendered page content MUST originate from the React components in `src/`.
 5. **Preserve Static Pre-rendering**: Do not remove or disable `src/entry-server.tsx` or `scripts/prerender-seo.js`.
 6. **Preserve Hydration Safety**: Ensure any JSX modification remains SSR-safe (`typeof window === 'undefined'` checks for browser APIs).
