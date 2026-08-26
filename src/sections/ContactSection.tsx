@@ -2,6 +2,7 @@ import { useState, memo } from 'react';
 import { Check, Mail, MapPin, Linkedin, Github, Search, ExternalLink } from 'lucide-react';
 import HlsVideo from '../components/HlsVideo';
 import Dock from '../components/Dock';
+import resumePdf from '../assets/resume.pdf';
 
 interface ContactSectionProps {
   setShowCommandPalette: (v: boolean) => void;
@@ -59,7 +60,7 @@ const ContactSection = memo(({ setShowCommandPalette }: ContactSectionProps) => 
                 { icon: <Linkedin size={20} aria-hidden="true" />, label: 'LinkedIn', onClick: () => window.open('https://www.linkedin.com/in/sahaya-savari', '_blank'), ariaLabel: 'Visit LinkedIn profile' },
                 { icon: <Github size={20} aria-hidden="true" />, label: 'GitHub', onClick: () => window.open('https://github.com/sahaya-savari', '_blank'), ariaLabel: 'Visit GitHub profile' },
                 { icon: <Search size={20} aria-hidden="true" />, label: 'Search', onClick: () => setShowCommandPalette(true), ariaLabel: 'Open spotlight search command palette' },
-                { icon: <ExternalLink size={20} aria-hidden="true" />, label: 'Resume', onClick: () => window.open('/resume.pdf?v=2', '_blank'), ariaLabel: 'Open resume PDF in new tab' },
+                { icon: <ExternalLink size={20} aria-hidden="true" />, label: 'Resume', onClick: () => window.open(resumePdf, '_blank'), ariaLabel: 'Open resume PDF in new tab' },
                 { icon: <Mail size={20} aria-hidden="true" />, label: 'Email', onClick: () => window.open('mailto:contact@sahayasavari.dev'), ariaLabel: 'Send email to Sahaya Savari' },
               ]}
             />

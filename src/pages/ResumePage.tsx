@@ -4,6 +4,7 @@ import { ArrowLeft, Download, FileText } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { SITE_URL, createBreadcrumbSchema } from '../seo';
+import resumePdf from '../assets/resume.pdf';
 
 const ResumeViewer = lazy(() => import('../components/ResumeViewer'));
 
@@ -52,8 +53,8 @@ export default function ResumePage() {
           </Link>
 
           <a 
-            href="/resume.pdf" 
-            download 
+            href={resumePdf} 
+            download="Sahaya_Savari_Resume.pdf" 
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-black text-xs font-body font-medium hover:bg-white/90 transition-colors"
           >
             <Download className="w-3.5 h-3.5" />
@@ -98,7 +99,7 @@ export default function ResumePage() {
 
           <div className="pt-3 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs">
             <span><strong>Selected Projects:</strong> PrepMind AI, Daily Spark, Portfolio Architecture</span>
-            <a href="/resume.pdf" download className="text-purple-300 hover:text-white underline font-medium">Download Official Resume (PDF)</a>
+            <a href={resumePdf} download="Sahaya_Savari_Resume.pdf" className="text-purple-300 hover:text-white underline font-medium">Download Official Resume (PDF)</a>
           </div>
         </section>
 

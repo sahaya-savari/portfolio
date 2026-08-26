@@ -6,6 +6,7 @@ import 'react-pdf/dist/Page/TextLayer.css';
 import { lockScroll, unlockScroll } from '../utils/scrollLock';
 
 import pdfWorker from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
+import resumePdf from '../assets/resume.pdf';
 
 // Set worker path
 pdfjs.GlobalWorkerOptions.workerSrc = pdfWorker;
@@ -16,7 +17,7 @@ interface ResumeViewerProps {
   inlineEmbed?: boolean;
 }
 
-const ResumeViewer: React.FC<ResumeViewerProps> = ({ onClose, pdfUrl = `${(import.meta as any).env.BASE_URL}resume.pdf?v=2`, inlineEmbed = false }) => {
+const ResumeViewer: React.FC<ResumeViewerProps> = ({ onClose, pdfUrl = resumePdf, inlineEmbed = false }) => {
   const [numPages, setNumPages] = useState<number | null>(null);
   const [scale, setScale] = useState(1.0);
   const [isLoading, setIsLoading] = useState(true);
