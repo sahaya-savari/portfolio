@@ -28,17 +28,14 @@ export default function IntersectionLazy({ children, fallbackHeight = '100vh' }:
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   // Intersection observer — fire early (400px before viewport)
+  // Performance: No idle timer — sections only load when approaching viewport.
+  // The 400px rootMargin ensures content is ready before it scrolls into view.
   useEffect(() => {
     if (hasIntersected) return;
-
-    const idleLoadTimer = window.setTimeout(() => {
-      setHasIntersected(true);
-    }, 1800);
 
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          window.clearTimeout(idleLoadTimer);
           setHasIntersected(true);
           observer.disconnect();
         }
@@ -48,7 +45,6 @@ export default function IntersectionLazy({ children, fallbackHeight = '100vh' }:
 
     if (wrapperRef.current) observer.observe(wrapperRef.current);
     return () => {
-      window.clearTimeout(idleLoadTimer);
       observer.disconnect();
     };
   }, [hasIntersected]);

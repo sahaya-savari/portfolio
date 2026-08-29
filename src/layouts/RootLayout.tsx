@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect, useRef, lazy, Suspense } from 'react';
-import { m as motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, Menu, X, Search, Sparkles, Download } from 'lucide-react';
 import { Outlet, useNavigate, useLocation, Link } from 'react-router-dom';
 
@@ -21,12 +21,12 @@ export default function RootLayout() {
 
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const mobileMenuToggleRef = useRef<HTMLButtonElement>(null);
+  const scrollProgressRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, hash: string) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
-    const targetId = hash.replace('#', '');
     if (location.pathname !== '/') {
       navigate(`/#${targetId}`);
     } else {
@@ -58,13 +58,13 @@ export default function RootLayout() {
     let rafId = 0;
     const keepAlignedWhileLazySectionsMount = () => {
       alignToTarget();
-      if (performance.now() - startedAt < 1200) {
-        rafId = requestAnimationFrame(keepAlignedWhileLazySectionsMount);
+      if (performance.now() - startedAt < 2500) {
+        rafId = window.requestAnimationFrame(keepAlignedWhileLazySectionsMount);
       }
     };
 
-    rafId = requestAnimationFrame(keepAlignedWhileLazySectionsMount);
-    return () => cancelAnimationFrame(rafId);
+    rafId = window.requestAnimationFrame(keepAlignedWhileLazySectionsMount);
+    return () => window.cancelAnimationFrame(rafId);
   }, []);
 
   // Ctrl + K Spotlight listener
@@ -79,23 +79,48 @@ export default function RootLayout() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
+  // Performance: Only load and instantiate TargetCursor after the user moves pointer on desktop
   useEffect(() => {
     const query = window.matchMedia('(pointer: fine) and (hover: hover)');
-    const syncCursorCapability = () => setEnableTargetCursor(query.matches);
-    syncCursorCapability();
-    query.addEventListener('change', syncCursorCapability);
-    return () => query.removeEventListener('change', syncCursorCapability);
+    if (!query.matches) return;
+
+    const handleFirstPointerMove = () => {
+      setEnableTargetCursor(true);
+      window.removeEventListener('mousemove', handleFirstPointerMove);
+    };
+
+    window.addEventListener('mousemove', handleFirstPointerMove, { once: true, passive: true });
+    return () => window.removeEventListener('mousemove', handleFirstPointerMove);
   }, []);
 
-  // Fade out static skeleton after hydration
+  // Fallback for browsers without CSS animation-timeline: scroll() support (e.g., older Safari)
   useEffect(() => {
-    const skeleton = document.getElementById('static-hero-skeleton');
-    if (skeleton) {
-      skeleton.style.transition = 'opacity 0.8s ease-in-out';
-      skeleton.style.opacity = '0';
-      setTimeout(() => skeleton.remove(), 800);
-    }
+    if (typeof window === 'undefined') return;
+    const supportsCssScroll = window.CSS && window.CSS.supports && window.CSS.supports('animation-timeline', 'scroll()');
+    if (supportsCssScroll) return;
+
+    let ticking = false;
+    const updateScrollProgress = () => {
+      const scrollY = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? Math.min(1, Math.max(0, scrollY / docHeight)) : 0;
+      if (scrollProgressRef.current) {
+        scrollProgressRef.current.style.transform = `scaleX(${progress})`;
+      }
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateScrollProgress);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
 
   // Active section tracking
   useEffect(() => {
@@ -184,13 +209,6 @@ export default function RootLayout() {
     };
   }, [scrollToHashTarget]);
 
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
-
   return (
     <ClickSpark sparkColor='#FFFFFF' sparkSize={8} sparkRadius={14} sparkCount={8} duration={350}>
       {enableTargetCursor && (
@@ -208,10 +226,10 @@ export default function RootLayout() {
       )}
       <div className="bg-transparent min-h-screen text-white selection:bg-white selection:text-black overflow-x-hidden">
         
-        {/* Scroll Progress Indicator */}
-        <motion.div
-          className="fixed top-0 left-0 right-0 h-[3px] bg-white/40 z-[200] origin-left"
-          style={{ scaleX }}
+        {/* Hardware-accelerated Scroll Progress Indicator (Zero JS overhead on modern browsers) */}
+        <div
+          ref={scrollProgressRef}
+          className="scroll-progress-bar"
           aria-hidden="true"
         />
 

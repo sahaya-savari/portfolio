@@ -74,10 +74,6 @@ export default defineConfig({
           if (id.includes('lucide-react')) {
             return 'lucide';
           }
-          // Portfolio sections chunking
-          if (id.includes('src/sections/')) {
-            return 'sections';
-          }
           // React core — stable, long-lived cache entry
           if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
             return 'react-vendor';

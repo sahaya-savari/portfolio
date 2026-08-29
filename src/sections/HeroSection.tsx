@@ -70,10 +70,10 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
       {/* Main hero content */}
       <div className="relative z-10 flex-grow flex flex-col items-center justify-center pt-28 pb-16 md:pt-36 md:pb-24 w-full">
         <div className="max-w-5xl lg:max-w-6xl xl:max-w-7xl text-center flex flex-col items-center w-full">
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="liquid-glass rounded-full px-4 py-1.5 mb-8 flex items-center gap-2">
+          <div className="liquid-glass rounded-full px-4 py-1.5 mb-8 flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" aria-hidden="true"></span>
             <span className="text-xs font-body font-medium text-white/80">Open to Opportunities · Summer/Fall 2026</span>
-          </motion.div>
+          </div>
           <div className="relative mb-6 md:mb-8 flex flex-col items-center justify-center w-full">
             <div className="flex flex-col md:flex-row items-center justify-center gap-6 sm:gap-8 md:gap-10 lg:gap-12 relative w-full">
               <h1 className="text-fluid-hero-title font-heading italic text-white tracking-[-2px] md:tracking-[-4px] leading-[0.8] order-2 md:order-1 select-none text-center md:text-left">
@@ -82,16 +82,11 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
 
               {/* Balanced Floating Ethereal Portrait */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.88 }}
                 animate={{ 
-                  opacity: 1, 
-                  scale: 1, 
                   y: [0, -8, 0],
                   rotate: [-0.5, 0.5, -0.5]
                 }}
                 transition={{
-                  opacity: { delay: 0.3, duration: 0.8 },
-                  scale: { delay: 0.3, duration: 0.8 },
                   y: { duration: 6.5, repeat: Infinity, ease: "easeInOut" },
                   rotate: { duration: 8.5, repeat: Infinity, ease: "easeInOut" },
                 }}
@@ -123,18 +118,14 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
               </motion.div>
             </div>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6, duration: 1 }}
-              className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-2 sm:gap-3 w-full px-4 mt-4"
-            >
+            <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-2 sm:gap-3 w-full px-4 mt-4">
               <span className="font-heading italic text-fluid-hero-role text-white/60">I am an</span>
               <div className="w-[280px] sm:w-auto text-center sm:text-left flex justify-center sm:justify-start">
                 <RotatingText
                   texts={["AI Engineer", "M.Sc. AI Student", "Python Developer", "Full Stack Developer"]}
                   mainClassName="px-3.5 py-1 liquid-glass text-white overflow-hidden rounded-lg font-bold not-italic text-fluid-hero-role inline-flex items-center justify-center"
                   staggerFrom="last"
+                  splitBy="words"
                   initial={{ y: "100%" }}
                   animate={{ y: 0 }}
                   exit={{ y: "-120%" }}
@@ -144,20 +135,15 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
                   rotationInterval={2500}
                 />
               </div>
-            </motion.div>
+            </div>
           </div>
 
-          {/* ANIMATION FIX: opacity only — no filter blur */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8, duration: 0.8 }}
-            className="text-white/60 font-body font-light text-lg md:text-xl max-w-2xl mb-8 md:mb-12 leading-relaxed"
-          >
+          {/* LCP Text: Rendered immediately without artificial delay */}
+          <p className="text-white/60 font-body font-light text-lg md:text-xl max-w-2xl mb-8 md:mb-12 leading-relaxed">
             M.Sc. Artificial Intelligence student building Machine Learning applications, Python automation tools, and responsive web software with React and TypeScript. Highlighting verified engineering projects for Summer/Fall 2026 opportunities.
-          </motion.p>
+          </p>
 
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.1, duration: 0.8 }} className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4">
+          <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4">
             <RainbowButton onClick={() => setShowResume(true)} aria-label="View my resume">
               View Resume
               <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" aria-hidden="true" />
@@ -165,7 +151,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
             <a href="#projects" className="text-white/60 hover:text-white font-body font-medium text-sm flex items-center gap-2 transition-all px-8 py-4 bg-white/5 rounded-full backdrop-blur-md border border-white/10 hover:bg-white/10 min-h-[48px]" aria-label="View my projects">
               View Projects <Play className="w-4 h-4 fill-current" aria-hidden="true" />
             </a>
-          </motion.div>
+          </div>
 
           {/* Recruiter Quick View Card */}
           <motion.div

@@ -19,13 +19,18 @@
         }
       })();
     </script>
-    <script type="text/javascript">
-      (function(c,l,a,r,i,t,y){
-          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "y5y2j4yao6");
+    <script>
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "y5y2j4yao6");
+        }, 2000);
+      });
     </script>
+
     <meta name="google-site-verification" content="40dmjhvZ5HG8_rYlLkardDTyX1fC0Ux2UPGyko6eHgQ" />
     <meta name="author" content="Sahaya Savari" />
     <!-- Identity connections: rel="me" links this domain to authoritative profiles -->
@@ -36,10 +41,8 @@
          FONT LOADING (LH-4 Fix)
          Fonts are now self-hosted to reduce external dependencies
     ====================================================== -->
-    <!-- Preconnect to video CDNs for faster media start -->
-    <link rel="preconnect" href="https://stream.mux.com" />
+    <!-- Preconnect to image CDN for hero poster -->
     <link rel="preconnect" href="https://image.mux.com" />
-    <link rel="dns-prefetch" href="https://stream.mux.com" />
     <link rel="dns-prefetch" href="https://image.mux.com" />
 
     <!-- =====================================================
@@ -47,53 +50,15 @@
     ====================================================== -->
     <!-- Preload hero poster for faster LCP -->
     <link rel="preload" as="image" href="https://image.mux.com/9JXDljEVWYwWu01PUkAemafDugK89o01BR6zqJ3aS9u00A/thumbnail.webp?time=0&width=400" fetchpriority="high" />
-    <!-- Preload critical above-the-fold fonts -->
-    <link rel="preload" as="font" type="font/woff2" href="/fonts/font-5.woff2" crossorigin="anonymous" />
+    <!-- Preload critical above-the-fold heading and body fonts -->
     <link rel="preload" as="font" type="font/woff2" href="/fonts/font-13.woff2" crossorigin="anonymous" />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/font-2.woff2" crossorigin="anonymous" />
+
   </head>
   <body class="bg-black text-white overflow-x-hidden selection:bg-white selection:text-black">
     <!-- Subtle Noise Texture Overlay -->
     <div class="fixed inset-0 z-[9999] pointer-events-none opacity-[0.015] mix-blend-overlay" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"></div>
     
-    <!-- Static hero skeleton — z-index:-1 acts as LCP poster while JS hydrates -->
-    <div id="static-hero-skeleton" style="position: absolute; top: 0; left: 0; width: 100%; min-height: 100dvh; overflow: hidden; z-index: 0; background-color: black;">
-      <div style="position: absolute; top: 15%; left: 0; width: 100%; opacity: 0.4;">
-        <div style="position: relative; width: 100%;">
-          <img 
-            src="https://image.mux.com/9JXDljEVWYwWu01PUkAemafDugK89o01BR6zqJ3aS9u00A/thumbnail.webp?time=0&width=400" 
-            alt="Sahaya Savari portfolio hero background" 
-            width="1920"
-            height="1080"
-            style="position: absolute; top: 0; left: 0; width: 100%; height: auto; object-fit: contain;"
-            fetchpriority="high"
-          />
-        </div>
-      </div>
-      
-      <!-- Static text for fast FCP/LCP -->
-      <div style="position: absolute; top: 0; left: 0; width: 100%; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 7rem 1.5rem 4rem 1.5rem; z-index: 10;">
-        <div style="max-width: 56rem; text-align: center; display: flex; flex-direction: column; align-items: center; width: 100%;">
-           <div style="border-radius: 9999px; padding: 0.375rem 1rem; margin-bottom: 2rem; display: flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px);">
-             <span style="width: 0.5rem; height: 0.5rem; border-radius: 9999px; background-color: #4ade80;"></span>
-             <span style="font-size: 0.75rem; font-family: 'Barlow', sans-serif; font-weight: 500; color: rgba(255,255,255,0.8);">Open to Opportunities · Summer/Fall 2026</span>
-           </div>
-            <div style="margin-bottom: 1.5rem; width: 100%; display: flex; flex-direction: column; align-items: center;">
-              <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 2rem; margin-bottom: 1rem;">
-                <h1 style="font-size: clamp(2.5rem, 8vw + 1rem, 7rem); font-family: 'Instrument Serif', serif; font-style: italic; color: white; letter-spacing: -2px; line-height: 0.8; margin: 0; padding: 0;">Sahaya Savari&nbsp;F</h1>
-                <div style="width: clamp(9rem, 14vw, 16rem); height: clamp(9rem, 14vw, 16rem); border-radius: 9999px; overflow: hidden; border: 1.5px solid rgba(255,255,255,0.3); flex-shrink: 0; background: rgba(0,0,0,0.6); box-shadow: 0 15px 50px rgba(0,0,0,0.8);">
-                  <img src="/profile.jpg" alt="Sahaya Savari F" width="400" height="400" style="width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 9999px; -webkit-mask-image: radial-gradient(ellipse at 50% 45%, black 64%, rgba(0,0,0,0.85) 78%, transparent 100%); mask-image: radial-gradient(ellipse at 50% 45%, black 64%, rgba(0,0,0,0.85) 78%, transparent 100%);" fetchpriority="high" />
-                </div>
-              </div>
-              <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; margin-top: 1rem;">
-                <span style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: clamp(1.25rem, 4vw + 0.25rem, 2rem); color: rgba(255,255,255,0.6);">I am an</span>
-                <div style="padding: 0.25rem 0.875rem; background: rgba(255,255,255,0.05); color: white; border-radius: 0.5rem; font-weight: 700; font-size: clamp(1.25rem, 4vw + 0.25rem, 2rem); border: 1px solid rgba(255,255,255,0.1); font-family: 'Barlow', sans-serif;">
-                  AI Engineer
-                </div>
-              </div>
-            </div>
-        </div>
-      </div>
-    </div>
     <div id="root"></div>
     <noscript>
       <div style="padding:2rem;text-align:center;color:#fff;background:#000;font-family:sans-serif;">
