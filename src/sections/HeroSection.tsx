@@ -171,7 +171,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
                 <div className="flex items-center justify-between border-b border-white/[0.06] pb-4">
                   <div>
                     <h2 className="text-white font-heading italic text-lg leading-none">Recruiter Quick View</h2>
-                    <span className="text-[10px] text-white/40 font-body uppercase tracking-wider block mt-1.5">Candidate profile summary</span>
+                    <span className="text-[10px] text-white/70 font-body uppercase tracking-wider block mt-1.5">Candidate profile summary</span>
                   </div>
                   <span className="text-[9px] font-mono text-green-400 border border-green-500/20 px-2 py-0.5 rounded bg-green-500/5 flex items-center gap-1.5 shrink-0">
                     <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" aria-hidden="true" />
@@ -181,25 +181,25 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
 
                 <div className="grid grid-cols-2 gap-x-4 gap-y-4 text-xs font-body">
                   <div>
-                    <span className="block text-[9px] text-white/30 uppercase tracking-widest mb-1">Education</span>
-                    <span className="text-white/80 font-medium">M.Sc. Artificial Intelligence</span>
+                    <span className="block text-[9px] text-white/70 uppercase tracking-widest mb-1">Education</span>
+                    <span className="text-white/90 font-medium">M.Sc. Artificial Intelligence</span>
                   </div>
                   <div>
-                    <span className="block text-[9px] text-white/30 uppercase tracking-widest mb-1">Location</span>
-                    <span className="text-white/80 font-medium">Trichy / Madurai, India</span>
+                    <span className="block text-[9px] text-white/70 uppercase tracking-widest mb-1">Location</span>
+                    <span className="text-white/90 font-medium">Trichy / Madurai, India</span>
                   </div>
                   <div>
-                    <span className="block text-[9px] text-white/30 uppercase tracking-widest mb-1">Target Roles</span>
-                    <span className="text-white/80 font-medium">AI Engineer, Python Developer, Full Stack Developer</span>
+                    <span className="block text-[9px] text-white/70 uppercase tracking-widest mb-1">Target Roles</span>
+                    <span className="text-white/90 font-medium">AI Engineer, Python Developer, Full Stack Developer</span>
                   </div>
                   <div>
-                    <span className="block text-[9px] text-white/30 uppercase tracking-widest mb-1">Preference</span>
-                    <span className="text-white/80 font-medium">Open to Remote / Relocation</span>
+                    <span className="block text-[9px] text-white/70 uppercase tracking-widest mb-1">Preference</span>
+                    <span className="text-white/90 font-medium">Open to Remote / Relocation</span>
                   </div>
                 </div>
 
                 <div className="pt-2">
-                  <span className="block text-[9px] font-body text-white/30 uppercase tracking-widest mb-2">Primary Stack</span>
+                  <span className="block text-[9px] font-body text-white/70 uppercase tracking-widest mb-2">Primary Stack</span>
                   <div className="flex flex-wrap gap-1.5">
                     {['Python', 'Artificial Intelligence', 'Machine Learning', 'React', 'TypeScript', 'Firebase'].map(skill => (
                       <span key={skill} className="px-2.5 py-1 rounded bg-white/[0.04] border border-white/[0.08] text-[10px] font-mono text-white/70">
@@ -237,7 +237,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
                     href="https://github.com/sahaya-savari"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white/40 hover:text-white transition-colors text-xs font-body flex items-center gap-1.5"
+                    className="text-white/70 hover:text-white transition-colors text-xs font-body flex items-center gap-1.5"
                     aria-label="Open Github in new tab"
                   >
                     GitHub
@@ -247,7 +247,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
                     href="https://www.linkedin.com/in/sahaya-savari"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white/40 hover:text-white transition-colors text-xs font-body flex items-center gap-1.5"
+                    className="text-white/70 hover:text-white transition-colors text-xs font-body flex items-center gap-1.5"
                     aria-label="Open LinkedIn profile in new tab"
                   >
                     LinkedIn

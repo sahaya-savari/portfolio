@@ -81,7 +81,7 @@ const SkillsMatrix = memo(function SkillsMatrix() {
 
               <div className="space-y-4 text-xs">
                 <div className="space-y-1">
-                  <span className="text-white/30 font-mono text-[9px] uppercase tracking-wider block">Related Project</span>
+                  <span className="text-white/60 font-mono text-[9px] uppercase tracking-wider block">Related Project</span>
                   <div className="flex items-center gap-1.5 text-white/85 font-body">
                     <FolderGit className="w-3.5 h-3.5 text-purple-400 shrink-0" />
                     <span>{data.project}</span>
@@ -89,7 +89,7 @@ const SkillsMatrix = memo(function SkillsMatrix() {
                 </div>
 
                 <div className="space-y-1">
-                  <span className="text-white/30 font-mono text-[9px] uppercase tracking-wider block">Verification Certificate</span>
+                  <span className="text-white/60 font-mono text-[9px] uppercase tracking-wider block">Verification Certificate</span>
                   <div className="flex items-center gap-1.5 text-white/85 font-body">
                     <Award className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                     <span>{data.certification}</span>
@@ -97,7 +97,7 @@ const SkillsMatrix = memo(function SkillsMatrix() {
                 </div>
 
                 <div className="space-y-1">
-                  <span className="text-white/30 font-mono text-[9px] uppercase tracking-wider block">Experience Context</span>
+                  <span className="text-white/60 font-mono text-[9px] uppercase tracking-wider block">Experience Context</span>
                   <div className="flex items-center gap-1.5 text-white/85 font-body">
                     <Briefcase className="w-3.5 h-3.5 text-blue-400 shrink-0" />
                     <span>{data.experience}</span>

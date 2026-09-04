@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect, useRef, lazy, Suspense } from 'react';
-import { AnimatePresence } from 'framer-motion';
+import { m as motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, Menu, X, Search, Sparkles, Download } from 'lucide-react';
 import { Outlet, useNavigate, useLocation, Link } from 'react-router-dom';
 
@@ -22,22 +22,41 @@ export default function RootLayout() {
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const mobileMenuToggleRef = useRef<HTMLButtonElement>(null);
   const scrollProgressRef = useRef<HTMLDivElement>(null);
+  const isInitialMount = useRef(true);
   const navigate = useNavigate();
   const location = useLocation();
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
+    const cleanId = targetId.replace(/^#/, '');
     if (location.pathname !== '/') {
-      navigate(`/#${targetId}`);
+      navigate(`/#${cleanId}`);
     } else {
-      const el = document.getElementById(targetId);
+      const el = document.getElementById(cleanId);
       if (el) {
         el.scrollIntoView({ behavior: 'smooth' });
       }
-      window.history.pushState(null, '', `/#${targetId}`);
+      window.history.pushState(null, '', `/#${cleanId}`);
     }
     setMobileMenuOpen(false);
   };
+
+  // Manage focus when mobile menu opens/closes
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return;
+    }
+    if (mobileMenuOpen) {
+      const timer = setTimeout(() => {
+        const firstLink = mobileMenuRef.current?.querySelector<HTMLElement>('a, button');
+        firstLink?.focus();
+      }, 50);
+      return () => clearTimeout(timer);
+    } else {
+      mobileMenuToggleRef.current?.focus();
+    }
+  }, [mobileMenuOpen]);
 
   const scrollToHashTarget = useCallback(() => {
     const id = decodeURIComponent(window.location.hash.slice(1));
@@ -242,8 +261,8 @@ export default function RootLayout() {
         </a>
 
         {/* NAVBAR */}
-        <header>
-          <nav className="fixed top-4 md:top-6 left-0 right-0 z-[100] px-4 md:px-6" aria-label="Main navigation">
+        <header className="relative z-[120]">
+          <nav className="fixed top-4 md:top-6 left-0 right-0 z-[120] px-4 md:px-6" aria-label="Main navigation">
             <div className="max-w-screen-xl mx-auto flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <Link to="/" className="w-10 h-10 liquid-glass-strong rounded-full flex items-center justify-center border border-white/20" aria-label="Sahaya Savari F — Go to home">
@@ -265,12 +284,12 @@ export default function RootLayout() {
               </div>
               <div className="hidden md:flex liquid-glass px-4 lg:px-6 py-2.5 rounded-full items-center gap-3 lg:gap-8 backdrop-blur-md">
                 <Link to="/" className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'home' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Home</Link>
-                <a href="/#about" onClick={(e) => handleNavClick(e, '#about')} className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'about' ? 'text-white' : 'text-white/50 hover:text-white'}`}>About</a>
+                <a href="/#about" onClick={(e) => handleNavClick(e, 'about')} className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'about' ? 'text-white' : 'text-white/50 hover:text-white'}`}>About</a>
                 <Link to="/resume" className={`text-sm font-body font-medium transition-colors ${location.pathname === '/resume' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Resume</Link>
                 <Link to="/blog" className={`text-sm font-body font-medium transition-colors ${location.pathname === '/blog' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Blog</Link>
-                <a href="/#skills" onClick={(e) => handleNavClick(e, '#skills')} className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'skills' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Skills</a>
+                <a href="/#skills" onClick={(e) => handleNavClick(e, 'skills')} className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'skills' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Skills</a>
                 <Link to="/projects" className={`text-sm font-body font-medium transition-colors ${location.pathname.startsWith('/projects') ? 'text-white' : 'text-white/50 hover:text-white'}`}>Projects</Link>
-                <a href="/#certifications" onClick={(e) => handleNavClick(e, '#certifications')} className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'certifications' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Certs</a>
+                <a href="/#certifications" onClick={(e) => handleNavClick(e, 'certifications')} className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'certifications' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Certs</a>
               </div>
               <div className="flex items-center gap-3">
                 <a
@@ -284,7 +303,7 @@ export default function RootLayout() {
                 </a>
                 <a
                   href="/#contact"
-                  onClick={(e) => handleNavClick(e, '#contact')}
+                  onClick={(e) => handleNavClick(e, 'contact')}
                   className="hidden md:flex relative text-sm font-medium rounded-full h-10 pl-6 pr-14 group transition-all duration-500 hover:pl-14 hover:pr-6 overflow-hidden cursor-pointer bg-white text-black items-center"
                   aria-label="Get in touch — jump to contact section"
                 >
@@ -295,7 +314,7 @@ export default function RootLayout() {
                 </a>
                 <button 
                   ref={mobileMenuToggleRef}
-                  className="md:hidden w-10 h-10 liquid-glass rounded-full flex items-center justify-center text-white/70 hover:text-white transition-colors z-[110]"
+                  className="md:hidden w-11 h-11 liquid-glass rounded-full flex items-center justify-center text-white/70 hover:text-white transition-colors z-[130] touch-manipulation cursor-pointer"
                   onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                   aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
                   aria-expanded={mobileMenuOpen}
@@ -316,22 +335,25 @@ export default function RootLayout() {
               role="dialog"
               aria-modal="true"
               aria-label="Navigation menu"
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[105] bg-black/90 backdrop-blur-2xl flex flex-col items-center justify-center overflow-y-auto p-6"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-[115] bg-black/95 backdrop-blur-2xl flex flex-col items-center overflow-y-auto px-6 py-20"
               onClick={() => setMobileMenuOpen(false)}
               onKeyDown={handleMobileMenuKeyDown}
             >
-              <nav className="flex flex-col items-center gap-8" onClick={e => e.stopPropagation()} aria-label="Mobile navigation">
-                <Link to="/" onClick={() => setMobileMenuOpen(false)} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Home</Link>
-                <a href="/#about" onClick={(e) => handleNavClick(e, '#about')} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">About</a>
-                <Link to="/resume" onClick={() => setMobileMenuOpen(false)} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Resume</Link>
-                <a href="/resume.pdf" download onClick={() => setMobileMenuOpen(false)} className="text-2xl font-body font-medium text-white/90 hover:text-white transition-colors min-h-[48px] flex items-center gap-2">
+              <nav className="flex flex-col items-center gap-6 my-auto" onClick={e => e.stopPropagation()} aria-label="Mobile navigation">
+                <Link to="/" onClick={() => setMobileMenuOpen(false)} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Home</Link>
+                <a href="/#about" onClick={(e) => handleNavClick(e, 'about')} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">About</a>
+                <Link to="/resume" onClick={() => setMobileMenuOpen(false)} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Resume</Link>
+                <Link to="/blog" onClick={() => setMobileMenuOpen(false)} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Blog</Link>
+                <a href="/#skills" onClick={(e) => handleNavClick(e, 'skills')} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Skills</a>
+                <Link to="/projects" onClick={() => setMobileMenuOpen(false)} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Projects</Link>
+                <a href="/#certifications" onClick={(e) => handleNavClick(e, 'certifications')} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Certs</a>
+                <a href="/resume.pdf" download onClick={() => setMobileMenuOpen(false)} className="text-xl sm:text-2xl font-body font-medium text-white/90 hover:text-white transition-colors min-h-[48px] flex items-center gap-2 mt-2">
                   <Download size={20} /> Download Resume PDF
                 </a>
-                <Link to="/blog" onClick={() => setMobileMenuOpen(false)} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Blog</Link>
-                <a href="/#skills" onClick={(e) => handleNavClick(e, '#skills')} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Skills</a>
-                <Link to="/projects" onClick={() => setMobileMenuOpen(false)} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Projects</Link>
-                <a href="/#certifications" onClick={(e) => handleNavClick(e, '#certifications')} className="text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Certs</a>
               </nav>
             </motion.div>
           )}

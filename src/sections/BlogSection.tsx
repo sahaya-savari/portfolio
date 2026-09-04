@@ -87,7 +87,7 @@ const BlogSection = memo(() => {
         {/* View All Button */}
         <div className="flex justify-center">
           <a
-            href={BLOG_URL}
+            href={`${BLOG_URL}/blog`}
             target="_blank"
             rel="noopener noreferrer"
             className="group relative inline-flex items-center justify-center gap-3 h-14 px-8 rounded-full bg-white text-black font-body font-medium text-sm overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"

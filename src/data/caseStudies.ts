@@ -25,28 +25,28 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
   'prepmind-ai': {
     id: 'prepmind-ai',
     title: 'PrepMind AI',
-    seoTitle: 'PrepMind AI | AI Interview Prep Platform | Sahaya Savari',
-    tagline: 'AI-Powered Interview Preparation Platform',
-    overview: 'PrepMind AI is a comprehensive interview preparation platform that leverages LLMs to simulate realistic technical and behavioral interviews. It provides tailored feedback, tracks progress, and helps candidates build confidence.',
-    problem: 'Candidates often lack realistic environments to practice technical interviews, and mock interviews with peers or professionals can be expensive and difficult to schedule.',
+    seoTitle: 'PrepMind AI | AI Interview Prep Platform Concept | Sahaya Savari',
+    tagline: 'AI-Powered Interview Preparation Platform (In Development)',
+    overview: 'PrepMind AI is an in-development architectural concept for an interview preparation platform designed to leverage LLM pipelines to simulate realistic technical interviews and provide structured evaluation.',
+    problem: 'Candidates often lack accessible environments to practice technical interviews with structured rubric-based feedback.',
     goals: [
-      'Create a low-latency AI interviewer.',
+      'Design a low-latency AI interviewer pipeline.',
       'Support dynamic questioning based on candidate responses.',
       'Provide actionable, structured feedback using rubrics.'
     ],
-    solution: 'Built a React frontend interfacing with a FastAPI backend that orchestrates calls to the Gemini API. Integrated Firebase for secure authentication and progress tracking.',
-    architecture: 'The frontend handles real-time transcription via WebRTC. The backend maintains conversation state, injects interview context into the LLM prompt, and streams responses back to the client via WebSockets.',
-    techStack: ['React 18', 'TypeScript', 'Tailwind CSS', 'FastAPI', 'Gemini API', 'Firebase'],
+    solution: 'Designing a React frontend interfacing with a Python/FastAPI backend to orchestrate LLM pipelines with context injection and rubric-based evaluation.',
+    architecture: 'Conceptual architecture: Frontend interfaces with API endpoints. Backend manages interview state, injects interview context into LLM prompt pipelines, and formats structured rubric evaluations.',
+    techStack: ['Python', 'FastAPI', 'LLMs', 'React', 'TypeScript', 'Tailwind CSS'],
     challenges: [
-      'Managing LLM hallucination and keeping the AI "in character" as an interviewer.',
-      'Minimizing latency in speech-to-text and text-to-speech pipelines.'
+      'Managing LLM hallucination and keeping responses grounded via strict system prompts.',
+      'Designing low-latency streaming pipelines for interactive multi-turn interview sessions.'
     ],
     lessons: [
-      'Learned advanced prompt engineering techniques to constrain LLM outputs.',
-      'Mastered WebSocket integrations for real-time streaming in React.'
+      'Structuring LLM output schemas into predictable JSON formats for frontend consumption.',
+      'Designing clean state management for multi-turn conversational AI workflows.'
     ],
     relatedArticle: {
-      title: 'Building AI Agents from Scratch in Python',
+      title: 'Building Autonomous AI Agents from Scratch in Async Python',
       url: 'https://blog.sahayasavari.dev/blog/ai-agents-from-scratch'
     }
   },
@@ -75,7 +75,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     githubUrl: 'https://github.com/sahaya-savari/daily-spark',
     demoUrl: 'https://daily-spark-app-da74b.web.app',
     relatedArticle: {
-      title: 'Pydantic V2: High-Performance Data Validation',
+      title: 'Pydantic V2 Deep Dive: Validation, Custom Serialization & Core Architecture',
       url: 'https://blog.sahayasavari.dev/blog/pydantic-v2-guide'
     }
   },
@@ -105,7 +105,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     githubUrl: 'https://github.com/sahaya-savari/portfolio',
     demoUrl: 'https://sahayasavari.dev',
     relatedArticle: {
-      title: 'Tailwind CSS v4 Migration & Performance',
+      title: 'Tailwind CSS v4 Guide: Oxide Engine, @theme Directive & Dynamic Utilities',
       url: 'https://blog.sahayasavari.dev/blog/tailwind-css-v4-guide'
     }
   }

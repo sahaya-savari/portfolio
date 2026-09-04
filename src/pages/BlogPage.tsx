@@ -1,9 +1,10 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
-import BlogSection from '../sections/BlogSection';
 import { SITE_URL, createBreadcrumbSchema, techArticleSchemas } from '../seo';
+
+const BlogSection = lazy(() => import('../sections/BlogSection'));
 
 export default function BlogPage() {
   useEffect(() => {
@@ -56,19 +57,19 @@ export default function BlogPage() {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-white/10">
             <div>
               <h2 className="text-xs font-bold uppercase tracking-wider text-white/50 mb-1">Engineering Journal &amp; Publications</h2>
-              <p className="text-white font-medium text-base">Technical Writings by Sahaya Savari</p>
+              <p className="text-white font-medium text-base">Technical Writings by Sahaya Savari (25+ Guides)</p>
             </div>
             <a
-              href="https://blog.sahayasavari.dev"
+              href="https://blog.sahayasavari.dev/blog"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 text-xs text-purple-300 hover:text-white font-mono transition-colors"
             >
-              blog.sahayasavari.dev
+              Browse all 25+ guides →
             </a>
           </div>
           <p className="text-white/70 leading-relaxed">
-            Welcome to my technical engineering blog. Here I document practical development insights, architectural patterns, and production engineering notes across Artificial Intelligence, Machine Learning pipelines, Python backend services with FastAPI, full-stack React and TypeScript web development, and DevOps CI/CD automation.
+            Welcome to my technical engineering blog. Here I document practical development insights, architectural patterns, and production engineering notes across Artificial Intelligence, Machine Learning pipelines, Python backend services with FastAPI, full-stack React and TypeScript web development, and DevOps CI/CD automation. Over 25 in-depth guides are published and updated on the dedicated blog platform.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-3 border-t border-white/10 text-xs">
             <div>
@@ -86,7 +87,13 @@ export default function BlogPage() {
           </div>
         </section>
 
-        <BlogSection />
+        <Suspense fallback={
+          <div className="py-24 flex items-center justify-center">
+            <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-white/50" />
+          </div>
+        }>
+          <BlogSection />
+        </Suspense>
       </div>
     </>
   );

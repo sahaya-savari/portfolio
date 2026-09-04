@@ -1,6 +1,6 @@
-import { useEffect, useMemo, lazy, Suspense } from 'react';
+import { useEffect, useMemo, useState, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Download, FileText } from 'lucide-react';
+import { ArrowLeft, Download, FileText, ExternalLink } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { SITE_URL, createBreadcrumbSchema } from '../seo';
@@ -10,6 +10,8 @@ const RESUME_FILE_URL = `/resume.pdf?v=${typeof __RESUME_HASH__ !== 'undefined' 
 const ResumeViewer = lazy(() => import('../components/ResumeViewer'));
 
 export default function ResumePage() {
+  const [showCanvasViewer, setShowCanvasViewer] = useState(false);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -104,15 +106,102 @@ export default function ResumePage() {
           </div>
         </section>
 
-        <ErrorBoundary>
-          <Suspense fallback={
-            <div className="min-h-[500px] rounded-2xl border border-white/10 bg-white/[0.02] flex items-center justify-center">
-              <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-white/50"></div>
+        {/* Progressive PDF Document Viewer Container */}
+        <div className="space-y-4">
+          <div className="flex flex-wrap items-center justify-between gap-3 p-4 rounded-xl bg-white/[0.03] border border-white/10 text-xs font-body">
+            <div className="flex items-center gap-2 text-white/70">
+              <span className="w-2 h-2 rounded-full bg-green-400" aria-hidden="true" />
+              <span>Official Document · Sahaya_Savari_Resume.pdf (33 KB)</span>
             </div>
-          }>
-            <ResumeViewer inlineEmbed onClose={() => {}} />
-          </Suspense>
-        </ErrorBoundary>
+            <div className="flex items-center gap-3">
+              <a
+                href={RESUME_FILE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-white/70 hover:text-white transition-colors"
+                aria-label="Open PDF resume in a new browser tab"
+              >
+                <ExternalLink className="w-3.5 h-3.5" />
+                <span>Open in Tab</span>
+              </a>
+              <span className="text-white/20" aria-hidden="true">|</span>
+              <button
+                type="button"
+                onClick={() => setShowCanvasViewer(prev => !prev)}
+                className="text-purple-300 hover:text-white transition-colors cursor-pointer"
+                aria-label={showCanvasViewer ? "Switch to native PDF preview" : "Switch to interactive canvas viewer"}
+              >
+                {showCanvasViewer ? "Switch to Native Viewer" : "Use Canvas Viewer"}
+              </button>
+            </div>
+          </div>
+
+          {showCanvasViewer ? (
+            <ErrorBoundary>
+              <Suspense fallback={
+                <div className="min-h-[500px] rounded-2xl border border-white/10 bg-white/[0.02] flex items-center justify-center">
+                  <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-white/50" />
+                </div>
+              }>
+                <ResumeViewer inlineEmbed onClose={() => setShowCanvasViewer(false)} />
+              </Suspense>
+            </ErrorBoundary>
+          ) : (
+            <div className="w-full rounded-2xl overflow-hidden border border-white/10 bg-white/[0.02] shadow-2xl">
+              {/* Native PDF Embed for Desktop */}
+              <object
+                data={RESUME_FILE_URL}
+                type="application/pdf"
+                className="w-full h-[800px] hidden md:block"
+                aria-label="Sahaya Savari Curriculum Vitae PDF"
+              >
+                <div className="p-12 text-center text-sm text-white/70 space-y-4">
+                  <p>Your browser does not embed PDF documents inline.</p>
+                  <a
+                    href={RESUME_FILE_URL}
+                    download="Sahaya_Savari_Resume.pdf"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black font-semibold text-xs hover:bg-white/90 transition-all"
+                  >
+                    <Download className="w-4 h-4" />
+                    Download Resume (PDF)
+                  </a>
+                </div>
+              </object>
+
+              {/* Mobile Fallback Card */}
+              <div className="md:hidden p-8 text-center space-y-6">
+                <div className="w-16 h-16 mx-auto rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
+                  <FileText className="w-8 h-8 text-purple-300" />
+                </div>
+                <div className="space-y-2">
+                  <h3 className="font-heading italic text-xl text-white">Curriculum Vitae</h3>
+                  <p className="text-white/60 text-xs font-body max-w-xs mx-auto leading-relaxed">
+                    Tap below to open or download the complete PDF resume directly on your device.
+                  </p>
+                </div>
+                <div className="flex flex-col gap-3 max-w-xs mx-auto">
+                  <a
+                    href={RESUME_FILE_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full bg-white text-black font-semibold text-xs hover:bg-white/90 transition-all"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    Open PDF in Browser
+                  </a>
+                  <a
+                    href={RESUME_FILE_URL}
+                    download="Sahaya_Savari_Resume.pdf"
+                    className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full border border-white/15 bg-white/5 hover:bg-white/10 text-white font-medium text-xs transition-all"
+                  >
+                    <Download className="w-4 h-4" />
+                    Download PDF File
+                  </a>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </>
   );

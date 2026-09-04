@@ -111,9 +111,9 @@ Browser Load (Server HTML served instantly) → React 19 Client Hydration
    - **Live App**: [https://daily-spark-app-da74b.web.app](https://daily-spark-app-da74b.web.app)
    - **Source Code**: [https://github.com/sahaya-savari/daily-spark](https://github.com/sahaya-savari/daily-spark)
 2. **PrepMind AI** (`/projects/prepmind-ai`):
-   - **Type**: AI Education & Interview Preparation Platform
-   - **Tech Stack**: Python, LLMs, React, Tailwind CSS
-   - **Status**: In Development
+   - **Type**: AI Education & Interview Preparation Platform Concept
+   - **Tech Stack**: Python, FastAPI, LLMs, React, TypeScript, Tailwind CSS
+   - **Status**: In Development (Architectural Concept & LLM Pipeline Prototype)
 3. **Portfolio Website** (`/projects/portfolio-website`):
    - **Type**: Web Engineering & SPA Architecture
    - **Tech Stack**: React 19, TypeScript, Vite 7, Framer Motion, Tailwind CSS v4, Static Pre-rendering, Firebase Hosting
@@ -125,11 +125,12 @@ Browser Load (Server HTML served instantly) → React 19 Client Hydration
 ## 7. Technical Blog & Published Articles
 
 - **Blog Domain**: [https://blog.sahayasavari.dev](https://blog.sahayasavari.dev)
-- **Published Articles**:
-  1. *Building AI Agents from Scratch in Python* ([Read Article](https://blog.sahayasavari.dev/blog/ai-agents-from-scratch))
-  2. *Pydantic V2: High-Performance Data Validation* ([Read Article](https://blog.sahayasavari.dev/blog/pydantic-v2-guide))
-  3. *Tailwind CSS v4 Migration & Performance* ([Read Article](https://blog.sahayasavari.dev/blog/tailwind-css-v4-guide))
-  4. *Production CI/CD Pipelines with GitHub Actions* ([Read Article](https://blog.sahayasavari.dev/blog/github-actions-ci-cd))
+- **Archive Catalog**: [https://blog.sahayasavari.dev/blog](https://blog.sahayasavari.dev/blog) (25+ Guides)
+- **Featured Articles**:
+  1. *Building Autonomous AI Agents from Scratch in Async Python* ([Read Article](https://blog.sahayasavari.dev/blog/ai-agents-from-scratch))
+  2. *Pydantic V2 Deep Dive: Validation, Custom Serialization & Core Architecture* ([Read Article](https://blog.sahayasavari.dev/blog/pydantic-v2-guide))
+  3. *Tailwind CSS v4 Guide: Oxide Engine, @theme Directive & Dynamic Utilities* ([Read Article](https://blog.sahayasavari.dev/blog/tailwind-css-v4-guide))
+  4. *GitHub Actions CI/CD Pipelines: Automated Testing, Linting & Container Deployment* ([Read Article](https://blog.sahayasavari.dev/blog/github-actions-ci-cd))
 
 ---
 
@@ -159,7 +160,7 @@ Browser Load (Server HTML served instantly) → React 19 Client Hydration
 - **Identity Links**: `<link rel="me">` tags in `index.html` and `SEOHead.tsx` connecting the portfolio domain to GitHub and LinkedIn for consistent identity graph linkage.
 
 ### AI Discoverability (AEO & GEO)
-- **Robots.txt**: Explicit `Allow: /` directives for major search crawlers (Googlebot, Bingbot, DuckDuckBot, Slurp) and explicit `Disallow: /` directives for AI-training crawlers (GPTBot, ClaudeBot, Google-Extended, Applebot-Extended, Bytespider) to protect content while keeping search engine indexation fully open.
+- **Robots.txt**: Open indexing policy with explicit `Allow: /` directives for major search engines (Googlebot, Bingbot, etc.) and AI discovery systems (GPTBot, ClaudeBot, Google-Extended, Applebot-Extended, Bytespider) with sitemap declaration pointing to `https://sahayasavari.dev/sitemap.xml`.
 - `/llms.txt` (5,816 bytes): Machine-readable markdown with canonical identity, projects, technical skills, published articles, Q&A, and official links for LLM indexing agents.
 - `/llms-full.txt` (10,256 bytes): Extended technical reference with metadata header, project architecture details, verifiable certification credential IDs, and factual Q&A for deep LLM retrieval.
 

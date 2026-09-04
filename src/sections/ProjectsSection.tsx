@@ -1,5 +1,5 @@
 import { useState, memo, useEffect, useRef, useMemo } from 'react';
-import { Github, ArrowUpRight, Search } from 'lucide-react';
+import { Github, ArrowUpRight, Search, ExternalLink } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
 import { PROJECTS, Project } from '../data';
 import SectionBadge from '../components/ui/SectionBadge';
@@ -206,6 +206,19 @@ const FeaturedCard = ({ p, onClick }: { p: Project; onClick: () => void }) => {
           </div>
         </div>
         <div className="flex items-center justify-start lg:justify-end gap-3 mt-4 lg:mt-0 lg:absolute lg:top-0 lg:right-0">
+          {p.link && (
+            <a
+              href={p.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-12 h-12 rounded-full flex items-center justify-center transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 border border-white/15"
+              style={{ background: 'transparent', color: '#fff' }}
+              onClick={(e) => e.stopPropagation()}
+              aria-label={`Open ${p.title} live demo in new tab`}
+            >
+              <ExternalLink className="w-5 h-5" aria-hidden="true" />
+            </a>
+          )}
           {p.github && (
             <a
               href={p.github}
@@ -272,6 +285,19 @@ const GridCard = ({ p, onClick }: { p: Project; onClick: () => void }) => {
             </div>
           </div>
           <div className="flex items-center gap-3">
+            {p.link && (
+              <a
+                href={p.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full flex items-center justify-center transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 min-h-[44px] min-w-[44px] border border-white/15"
+                style={{ background: 'transparent', color: '#fff' }}
+                onClick={(e) => e.stopPropagation()}
+                aria-label={`Open ${p.title} live demo in new tab`}
+              >
+                <ExternalLink className="w-4 h-4" aria-hidden="true" />
+              </a>
+            )}
             {p.github && (
               <a
                 href={p.github}

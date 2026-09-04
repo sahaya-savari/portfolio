@@ -42,7 +42,7 @@
             },
             {
               "key": "Content-Security-Policy",
-              "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com https://www.clarity.ms; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://image.mux.com https://images.unsplash.com https://*.clarity.ms; font-src 'self' data:; media-src 'self' https://stream.mux.com https://d8j0ntlcm91z4.cloudfront.net; connect-src 'self' https://stream.mux.com https://image.mux.com https://d8j0ntlcm91z4.cloudfront.net https://cloudflareinsights.com https://www.clarity.ms https://*.clarity.ms; worker-src 'self' blob:; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests;"
+              "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com https://www.clarity.ms; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://image.mux.com https://images.unsplash.com https://*.clarity.ms; font-src 'self' data:; media-src 'self' https://stream.mux.com https://d8j0ntlcm91z4.cloudfront.net; connect-src 'self' https://stream.mux.com https://image.mux.com https://d8j0ntlcm91z4.cloudfront.net https://cloudflareinsights.com https://www.clarity.ms https://*.clarity.ms; worker-src 'self' blob:; manifest-src 'self'; object-src 'self'; base-uri 'self'; form-action 'self'; frame-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests;"
             }
           ]
         },
