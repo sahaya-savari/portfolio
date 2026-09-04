@@ -85,7 +85,7 @@ practical expertise across the full AI and web development stack.
   persist locally in IndexedDB and sync through React Context API. No server-side backend required.
 - **Key Features**: Offline habit tracking, IndexedDB persistence, streak analytics, Capacitor Android build.
 - **Challenge**: Handling date-time streak calculation across timezones entirely client-side without a server.
-- **Live App**: https://daily-spark-app-da74b.web.app
+- **Project Overview**: https://sahayasavari.dev/projects/daily-spark
 - **Source Code**: https://github.com/sahaya-savari/daily-spark
 
 ### 2. PrepMind AI — LLM-Powered Study Companion
@@ -183,7 +183,7 @@ pre-rendering, and llms.txt documentation for LLM indexing agents.
 
 **Where can Sahaya Savari's projects be found?**
 - Project case studies: https://sahayasavari.dev/projects
-- Daily Spark live app: https://daily-spark-app-da74b.web.app
+- Daily Spark case study: https://sahayasavari.dev/projects/daily-spark
 - GitHub repositories: https://github.com/sahaya-savari
 
 **Where can Sahaya Savari's technical writing be found?**

@@ -53,23 +53,33 @@ async function prerender() {
 
   console.log(`Starting SEO static HTML pre-rendering for ${ROUTES.length} routes...`);
 
+  // Extract and inline primary stylesheet to eliminate render-blocking CSS network roundtrip
+  let inlineStyleTag = '';
+  const stylesheetMatch = baseHtml.match(/<link\b[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["'][^>]*\/?>/i);
+  if (stylesheetMatch) {
+    const cssRelativePath = stylesheetMatch[1].replace(/^\//, '');
+    const cssFullPath = path.join(DIST_DIR, cssRelativePath);
+    if (fs.existsSync(cssFullPath)) {
+      const cssContent = fs.readFileSync(cssFullPath, 'utf-8');
+      inlineStyleTag = `<style id="critical-css">${cssContent}</style>`;
+      console.log(`  [✓] Inlined critical CSS from ${cssRelativePath} (${cssContent.length} bytes) to eliminate render-blocking latency`);
+    }
+  }
+
   for (const route of ROUTES) {
     let html = baseHtml;
 
-    // Optimize critical rendering path: hoist stylesheet to top of <head> before scripts
-    let stylesheetTag = '';
-    html = html.replace(/(<link\b[^>]*rel=["']stylesheet["'][^>]*\/?>)\s*/gi, (_, tag) => {
-      stylesheetTag = tag;
-      return '';
-    });
-    if (stylesheetTag) {
-      html = html.replace(/(<link rel="manifest"[^>]*>)/i, `$1\n    ${stylesheetTag}`);
+    // Eliminate render-blocking CSS by replacing external link with inlined critical styles
+    html = html.replace(/(<link\b[^>]*rel=["']stylesheet["'][^>]*\/?>)\s*/gi, '');
+    if (inlineStyleTag) {
+      html = html.replace(/(<link rel="manifest"[^>]*>)/i, `$1\n    ${inlineStyleTag}`);
     }
 
     // Render React components to static HTML for this route
     let appHtml = '';
+    let rendered = null;
     try {
-      const rendered = render(route.path);
+      rendered = render(route.path);
       appHtml = rendered.html || '';
     } catch (err) {
       console.warn(`[Warning] Failed to render React tree for route ${route.path}:`, err);
@@ -79,10 +89,15 @@ async function prerender() {
     const headTagMatches = [];
 
     // 1. Extract <title>
-    appHtml = appHtml.replace(/<title>.*?<\/title>/gi, (match) => {
-      headTagMatches.push(match);
-      return '';
-    });
+    if (rendered?.helmet?.title) {
+      const titleTag = rendered.helmet.title.toString();
+      if (titleTag) headTagMatches.push(titleTag);
+    } else {
+      appHtml = appHtml.replace(/<title>.*?<\/title>/gi, (match) => {
+        headTagMatches.push(match);
+        return '';
+      });
+    }
 
     // 2. Extract <meta ...>
     appHtml = appHtml.replace(/<meta\b[^>]*\/?>/gi, (match) => {
