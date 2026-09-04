@@ -5,8 +5,8 @@ import { Outlet, useNavigate, useLocation, Link } from 'react-router-dom';
 
 import ClickSpark from '../components/ClickSpark';
 import ErrorBoundary from '../components/ErrorBoundary';
-import { lockScroll, unlockScroll } from '../utils/scrollLock';
-import { scrollToSection } from '../utils/navigation';
+import { lockScroll, unlockScroll, forceUnlockScroll } from '../utils/scrollLock';
+import { scrollToSection, revealLazySections, initLazyPreload } from '../utils/navigation';
 const TargetCursor = lazy(() => import('../components/ui/TargetCursor/TargetCursor'));
 
 // Lazy load heavy global modals
@@ -30,6 +30,7 @@ export default function RootLayout() {
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
     const cleanId = targetId.replace(/^#/, '');
+    forceUnlockScroll();
     setMobileMenuOpen(false);
 
     if (location.pathname !== '/') {
@@ -41,13 +42,14 @@ export default function RootLayout() {
   };
 
   const handleHomeClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    forceUnlockScroll();
     setMobileMenuOpen(false);
     if (location.pathname === '/') {
       e.preventDefault();
       if (window.location.hash) {
         window.history.pushState(null, '', '/');
       }
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      scrollToSection('home', { behavior: 'smooth' });
       setActiveSection('home');
     }
   };
@@ -79,6 +81,11 @@ export default function RootLayout() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  // Preload remaining lazy sections when browser is idle to ensure instant, stable navigation
+  useEffect(() => {
+    initLazyPreload();
   }, []);
 
   // Performance: Only load and instantiate TargetCursor after the user moves pointer on desktop
@@ -187,9 +194,10 @@ export default function RootLayout() {
     }
   }, []);
 
-  // Lock body scroll when mobile menu is open
+  // Lock body scroll when mobile menu is open, pre-reveal sections for instant scrolling
   useEffect(() => {
     if (mobileMenuOpen) {
+      revealLazySections();
       lockScroll();
       return () => unlockScroll();
     }
@@ -284,12 +292,12 @@ export default function RootLayout() {
               </div>
               <div className="hidden md:flex liquid-glass px-4 lg:px-6 py-2.5 rounded-full items-center gap-3 lg:gap-8 backdrop-blur-md">
                 <Link to="/" onClick={handleHomeClick} className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'home' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Home</Link>
-                <a href="/#about" onClick={(e) => handleNavClick(e, 'about')} className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'about' ? 'text-white' : 'text-white/50 hover:text-white'}`}>About</a>
+                <a href="/#about" onMouseEnter={revealLazySections} onClick={(e) => handleNavClick(e, 'about')} className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'about' ? 'text-white' : 'text-white/50 hover:text-white'}`}>About</a>
                 <Link to="/resume" className={`text-sm font-body font-medium transition-colors ${location.pathname === '/resume' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Resume</Link>
                 <Link to="/blog" className={`text-sm font-body font-medium transition-colors ${location.pathname === '/blog' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Blog</Link>
-                <a href="/#skills" onClick={(e) => handleNavClick(e, 'skills')} className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'skills' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Skills</a>
+                <a href="/#skills" onMouseEnter={revealLazySections} onClick={(e) => handleNavClick(e, 'skills')} className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'skills' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Skills</a>
                 <Link to="/projects" className={`text-sm font-body font-medium transition-colors ${location.pathname.startsWith('/projects') ? 'text-white' : 'text-white/50 hover:text-white'}`}>Projects</Link>
-                <a href="/#certifications" onClick={(e) => handleNavClick(e, 'certifications')} className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'certifications' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Certs</a>
+                <a href="/#certifications" onMouseEnter={revealLazySections} onClick={(e) => handleNavClick(e, 'certifications')} className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'certifications' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Certs</a>
               </div>
               <div className="flex items-center gap-3">
                 <a

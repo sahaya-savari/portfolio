@@ -1,3 +1,5 @@
+import { forceUnlockScroll } from './scrollLock';
+
 /**
  * Navigation and Section Scrolling Coordinator
  *
@@ -8,6 +10,28 @@
 export const revealLazySections = () => {
   if (typeof window !== 'undefined') {
     window.dispatchEvent(new CustomEvent('reveal-lazy-sections'));
+  }
+};
+
+/**
+ * Preload remaining lazy sections in the background after above-the-fold content has loaded.
+ * Ensures all sections and their true DOM heights are ready when user clicks navigation.
+ */
+export const initLazyPreload = () => {
+  if (typeof window === 'undefined') return;
+
+  const preload = () => {
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(() => revealLazySections(), { timeout: 1500 });
+    } else {
+      setTimeout(revealLazySections, 300);
+    }
+  };
+
+  if (document.readyState === 'complete') {
+    preload();
+  } else {
+    window.addEventListener('load', preload, { once: true });
   }
 };
 
@@ -24,13 +48,25 @@ export function scrollToSection(targetId: string, options?: ScrollOptions): () =
   const cleanId = targetId.replace(/^#/, '');
   if (!cleanId) return () => {};
 
-  // Signal all lazy sections to start loading immediately
+  // Ensure body scroll is completely unlocked (e.g. from mobile menu closing)
+  forceUnlockScroll();
+
+  // Signal all lazy sections to mount immediately
   revealLazySections();
 
+  const getScrollPaddingTop = () => {
+    if (options?.offset !== undefined) return options.offset;
+    const computed = parseFloat(
+      window.getComputedStyle(document.documentElement).scrollPaddingTop
+    );
+    return isNaN(computed) || computed <= 0 ? 80 : computed;
+  };
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const behavior = prefersReducedMotion ? 'auto' : options?.behavior || 'smooth';
+
   let cancelled = false;
-  let animId = 0;
-  let observerTimeoutId: ReturnType<typeof setTimeout> | undefined;
-  let resizeObserver: ResizeObserver | undefined;
+  let rafId = 0;
 
   const cleanupListeners = () => {
     window.removeEventListener('wheel', onUserInterrupt);
@@ -40,9 +76,7 @@ export function scrollToSection(targetId: string, options?: ScrollOptions): () =
 
   const cancel = () => {
     cancelled = true;
-    if (animId) cancelAnimationFrame(animId);
-    if (observerTimeoutId) clearTimeout(observerTimeoutId);
-    if (resizeObserver) resizeObserver.disconnect();
+    if (rafId) cancelAnimationFrame(rafId);
     cleanupListeners();
   };
 
@@ -56,124 +90,50 @@ export function scrollToSection(targetId: string, options?: ScrollOptions): () =
     }
   };
 
-  const getScrollPaddingTop = () => {
-    if (options?.offset !== undefined) return options.offset;
-    const computed = parseFloat(
-      window.getComputedStyle(document.documentElement).scrollPaddingTop
-    );
-    return isNaN(computed) || computed <= 0 ? 80 : computed;
-  };
+  window.addEventListener('wheel', onUserInterrupt, { passive: true });
+  window.addEventListener('touchstart', onUserInterrupt, { passive: true });
+  window.addEventListener('keydown', onKeyInterrupt, { passive: true });
 
-  const executeScroll = (el: HTMLElement) => {
-    if (cancelled) return;
-
-    const scrollPaddingTop = getScrollPaddingTop();
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const isAuto = options?.behavior === 'auto' || prefersReducedMotion;
-
-    const computeTargetY = () => {
-      const rect = el.getBoundingClientRect();
-      return Math.max(0, rect.top + window.scrollY - scrollPaddingTop);
-    };
-
-    // Keep target aligned if late layout shifts occur within 1.2s after landing
-    const startStabilization = () => {
-      if (cancelled) return;
-
-      let lastY = computeTargetY();
-      const startTime = performance.now();
-
-      const checkStability = () => {
-        if (cancelled) return;
-        const currentTargetY = computeTargetY();
-        const diff = Math.abs(currentTargetY - window.scrollY);
-
-        // If a layout shift moved the target by more than 4px, smoothly re-align
-        if (diff > 4 && Math.abs(currentTargetY - lastY) > 2) {
-          window.scrollTo({ top: currentTargetY, behavior: 'smooth' });
-          lastY = currentTargetY;
-        }
-
-        if (performance.now() - startTime < 1200) {
-          animId = requestAnimationFrame(checkStability);
-        }
-      };
-
-      animId = requestAnimationFrame(checkStability);
-
-      // Disconnect safety after 1.5s
-      observerTimeoutId = setTimeout(() => {
-        cancel();
-      }, 1500);
-    };
-
-    if (isAuto) {
-      window.scrollTo({ top: computeTargetY(), behavior: 'auto' });
-      startStabilization();
-      return;
-    }
-
-    // Smooth scroll with dynamic target adjustment
-    window.addEventListener('wheel', onUserInterrupt, { passive: true });
-    window.addEventListener('touchstart', onUserInterrupt, { passive: true });
-    window.addEventListener('keydown', onKeyInterrupt, { passive: true });
-
-    const startY = window.scrollY;
-    const startTime = performance.now();
-    const duration = 650; // ms
-
-    const cubicEaseInOut = (t: number) =>
-      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-
-    const step = (now: number) => {
-      if (cancelled) return;
-
-      const elapsed = now - startTime;
-      const progress = Math.min(1, elapsed / duration);
-      const ease = cubicEaseInOut(progress);
-
-      // Recomputed every frame so expansion of sections above target is smoothly absorbed
-      const currentTargetY = computeTargetY();
-      const currentY = startY + (currentTargetY - startY) * ease;
-
-      window.scrollTo({ top: currentY, behavior: 'auto' });
-
-      if (progress < 1) {
-        animId = requestAnimationFrame(step);
-      } else {
-        // Final exact snap
-        window.scrollTo({ top: computeTargetY(), behavior: 'auto' });
-        cleanupListeners();
-        startStabilization();
-      }
-    };
-
-    animId = requestAnimationFrame(step);
-  };
-
-  // Wait for element to be present in DOM and have rendered section children
-  const startTime = performance.now();
-  const waitForTarget = () => {
-    if (cancelled) return;
-
+  const getTargetPosition = () => {
     const el = document.getElementById(cleanId);
-    // If element exists and either has a section or we've waited at least 150ms
-    if (el) {
-      const hasSectionChild = Boolean(el.querySelector('section'));
-      if (hasSectionChild || performance.now() - startTime > 150) {
-        executeScroll(el);
-        return;
+    if (!el) return null;
+    const rect = el.getBoundingClientRect();
+    const scrollPaddingTop = getScrollPaddingTop();
+    return Math.max(0, window.scrollY + rect.top - scrollPaddingTop);
+  };
+
+  const initialTargetY = getTargetPosition();
+  if (initialTargetY !== null) {
+    window.scrollTo({ top: initialTargetY, behavior });
+  }
+
+  let lastTargetY = initialTargetY ?? 0;
+  const startTime = performance.now();
+
+  const watchAndAlign = (now: number) => {
+    if (cancelled) return;
+
+    const currentTargetY = getTargetPosition();
+    if (currentTargetY !== null) {
+      if (initialTargetY === null) {
+        // Element appeared in DOM
+        window.scrollTo({ top: currentTargetY, behavior });
+        lastTargetY = currentTargetY;
+      } else if (Math.abs(currentTargetY - lastTargetY) > 5) {
+        // Layout shift detected from mounting lazy sections
+        window.scrollTo({ top: currentTargetY, behavior });
+        lastTargetY = currentTargetY;
       }
     }
 
-    if (performance.now() - startTime < 1500) {
-      animId = requestAnimationFrame(waitForTarget);
-    } else if (el) {
-      executeScroll(el);
+    if (now - startTime < 2500) {
+      rafId = requestAnimationFrame(watchAndAlign);
+    } else {
+      cancel();
     }
   };
 
-  animId = requestAnimationFrame(waitForTarget);
+  rafId = requestAnimationFrame(watchAndAlign);
 
   return cancel;
 }

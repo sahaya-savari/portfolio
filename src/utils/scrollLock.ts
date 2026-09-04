@@ -22,9 +22,16 @@ export const lockScroll = () => {
  */
 export const unlockScroll = () => {
   if (typeof document === 'undefined') return;
-  
   lockCount = Math.max(0, lockCount - 1);
   if (lockCount === 0) {
     document.body.style.overflow = originalOverflow || '';
   }
 };
+
+export const forceUnlockScroll = () => {
+  if (typeof document === 'undefined') return;
+  lockCount = 0;
+  document.body.style.overflow = originalOverflow || '';
+};
+
+
