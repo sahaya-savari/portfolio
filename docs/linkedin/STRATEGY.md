@@ -8,22 +8,21 @@ Transform Sahaya Savari F's LinkedIn profile from a student profile to a Junior/
 ## 1. Profile Core Elements
 
 ### **Headline Formula**
-`Software Engineer | AI & Full-Stack (React, TypeScript, Python) | B.E. CSE '26 @ Saveetha Engineering College`
-*Why:* Highly searchable keywords (Software Engineer, AI, React, Python) and immediately establishes graduation year.
+`AI Engineer & Full-Stack Developer | Python, React, TypeScript | M.Sc. AI '26 @ St. Joseph's College (Autonomous), Trichy`
+*Why:* Highly searchable keywords (AI Engineer, Full-Stack, Python, React, TypeScript) and immediately establishes M.Sc. AI degree and graduation year.
 
 ### **About Section**
 ```text
-I am a Software Engineer specializing in building scalable web applications and integrating AI/LLM technologies. Currently pursuing a B.E. in Computer Science at Saveetha Engineering College (Class of 2026), I have a strong foundation in modern full-stack development (React, TypeScript, FastAPI, Python).
+I am an AI Engineer and Full Stack Developer specializing in building scalable web applications, machine learning solutions, and LLM agent pipelines. Currently pursuing an M.Sc. in Artificial Intelligence at St. Joseph's College (Autonomous), Tiruchirappalli (Class of 2026), I have a strong foundation in Python, FastAPI, React 19, TypeScript, and modern AI engineering.
 
-I am passionate about creating performant, user-centric products. My recent work includes building 'PrepMind AI', an AI-powered interview preparation platform leveraging the Gemini API and WebSockets for real-time interaction. 
+I am passionate about building performant, user-centric, and technically robust systems. My recent architectural work includes 'PrepMind AI' (an LLM-powered interview preparation pipeline prototype) and 'Daily Spark' (an offline-first habit tracker with IndexedDB).
 
-I am actively seeking Software Engineering internships and entry-level roles where I can contribute to high-impact engineering teams.
+I am actively seeking AI Engineering and Software Engineering opportunities where I can contribute to high-impact engineering teams.
 
 Tech Stack:
-Frontend: React, TypeScript, Tailwind CSS, Next.js
-Backend: Python, FastAPI, Node.js
-Database/Cloud: SQL, Firebase, Vercel
-Tools: Git, GitHub, Docker, Postman
+AI / ML: Python, FastAPI, LLM Pipelines, Prompt Engineering, Pydantic V2
+Frontend: React 19, TypeScript, Tailwind CSS v4, Vite
+Tools & Infra: Git, GitHub Actions CI/CD, Firebase Hosting, Docker
 ```
 
 ---
@@ -32,22 +31,23 @@ Tools: Git, GitHub, Docker, Postman
 
 ### **Project Formatting**
 For projects like **PrepMind AI**:
-- **Title:** Full-Stack AI Engineer (Project: PrepMind AI)
+- **Title:** AI Engineer / Architectural Concept (Project: PrepMind AI)
+- **Status:** In Development / Architectural Concept & LLM Pipeline Prototype
 - **Description:** 
-  - Designed and built an AI-driven interview platform using React and FastAPI.
-  - Integrated Google's Gemini API for dynamic mock interview simulations, reducing latency via optimized prompt engineering.
-  - Implemented secure authentication and real-time database syncing with Firebase.
+  - Designing an AI-driven interview preparation platform and LLM study companion using FastAPI, Python, and React.
+  - Architecting prompt chains and structured output validation with Pydantic V2 for reliable concept quizzes and dynamic flashcards.
+  - Designing responsive client interfaces with React and Tailwind CSS.
 
 ---
 
 ## 3. Content Strategy (To build authority)
 
-- **Post 1 (Portfolio Launch):** "I recently redesigned my engineering portfolio to reflect production-level standards. Built with React and Framer Motion, it features a custom WebGL background and 100% accessible navigation. Check it out: sahayasavari.dev"
-- **Post 2 (Technical Deep Dive):** "How I handled LLM hallucination in my recent project, PrepMind AI. A short thread on prompt engineering and constrained outputs..."
-- **Post 3 (Learning Journey):** "Just finished deep-diving into WebSockets with FastAPI and React. It completely changed how I think about real-time client-server communication."
+- **Post 1 (Portfolio Launch):** "I recently launched my engineering portfolio with static pre-rendering, modern design system, and full SEO/AEO entity architecture: https://sahayasavari.dev"
+- **Post 2 (Technical Deep Dive):** "Building Autonomous AI Agents from Scratch in Async Python — an engineering breakdown of agent loops, tool call schemas, and memory management: https://blog.sahayasavari.dev/blog/ai-agents-from-scratch"
+- **Post 3 (Learning Journey):** "Pydantic V2 Deep Dive: Validation, Custom Serialization & Core Architecture — how the Rust core transforms Python data validation: https://blog.sahayasavari.dev/blog/pydantic-v2-guide"
 
 ---
 
 ## 4. Networking Strategy
-- **Alumni:** Connect with Saveetha alumni working at target companies (Google, Amazon, Zoho, Freshworks).
-- **Recruiters:** Send personalized connection requests to technical recruiters: *"Hi [Name], I'm a CS student specializing in React/Python. I love the engineering work being done at [Company] and would love to connect to follow your updates!"*
+- **Alumni:** Connect with St. Joseph's College alumni working across target tech companies.
+- **Recruiters:** Send personalized connection requests to technical recruiters: *"Hi [Name], I'm an M.Sc. AI student specializing in Python, LLM applications, and React. I love the engineering work being done at [Company] and would love to connect to follow your updates!"*

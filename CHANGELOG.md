@@ -18,7 +18,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [2026-08-26] — Production Domain Migration to sahayasavari.dev
 
 ### Changed
-- **Canonical Domain Migration**: Migrated primary production website identity and canonical SEO baseline from `https://sahayasavari.dev` to `https://sahayasavari.dev`.
+- **Canonical Domain Migration**: Migrated primary production website identity and canonical SEO baseline to `https://sahayasavari.dev`.
 - **Infrastructure Deployment**: Configured deployment in `firebase.json` and `.firebaserc` targeting new Firebase project `sahaya-savari-portfolio` (`sahayasavari-dev`).
 - **Structured Data & SEO**: Updated Person URI anchor (`https://sahayasavari.dev/#person`), `WebSite`, `ProfilePage`, `sitemap.xml`, and `robots.txt` to `https://sahayasavari.dev`.
 - **Preserved Subsystems**: Intentionally preserved email routing (`the previous contact address`) and engineering blog (`https://blog.sahayasavari.dev`) during initial website rollout (subsequently migrated to `.dev` — see entry above).
