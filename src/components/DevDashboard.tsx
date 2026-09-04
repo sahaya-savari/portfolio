@@ -27,11 +27,11 @@ export default function DevDashboard() {
                   <Icon className="w-5 h-5" aria-hidden="true" />
                 </div>
                 <div>
-                  <span className="block text-[10px] font-mono text-white/40 uppercase tracking-wider">{stat.label}</span>
+                  <span className="block text-[10px] font-mono text-white/70 uppercase tracking-wider">{stat.label}</span>
                   <span className="block text-xl font-heading italic text-white">{stat.value}</span>
                 </div>
               </div>
-              <p className="text-white/60 font-body font-light text-xs leading-relaxed">
+              <p className="text-white/70 font-body font-light text-xs leading-relaxed">
                 {stat.desc}
               </p>
             </div>
@@ -43,7 +43,7 @@ export default function DevDashboard() {
       <div className="p-5 md:p-8 rounded-2xl md:rounded-3xl border border-white/5 bg-white/[0.01] backdrop-blur-2xl">
         <div className="mb-8 border-b border-white/5 pb-4">
           <h3 className="font-heading italic text-2xl text-white">Research & Learning Focus</h3>
-          <p className="text-white/40 font-body font-light text-xs mt-1">
+          <p className="text-white/70 font-body font-light text-xs mt-1">
             Core subjects and methodologies actively explored through studies and application design.
           </p>
         </div>

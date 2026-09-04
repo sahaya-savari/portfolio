@@ -1,6 +1,5 @@
 import { useState, memo, lazy, Suspense } from 'react';
 import { Database, Brain, Code, Terminal } from 'lucide-react';
-import { m as motion, AnimatePresence } from 'framer-motion';
 import SkillAccordion from '../components/ui/SkillAccordion';
 import SectionBadge from '../components/ui/SectionBadge';
 import SkillsMatrix from '../components/SkillsMatrix';
@@ -62,7 +61,7 @@ const SkillsSection = memo(() => {
             ].map((tech) => (
               <div key={tech.name} className="liquid-glass-strong p-3 rounded-xl border border-white/5 hover:border-white/20 transition-colors">
                 <span className="block text-white font-body font-medium text-xs mb-0.5">{tech.name}</span>
-                <span className="block text-[9px] font-mono text-white/40 uppercase tracking-wider">{tech.category}</span>
+                <span className="block text-[9px] font-mono text-white/70 uppercase tracking-wider">{tech.category}</span>
               </div>
             ))}
           </div>
@@ -72,7 +71,7 @@ const SkillsSection = memo(() => {
           <div className="mb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div>
               <SectionBadge>Verified Evidence</SectionBadge>
-              <p className="text-white/60 font-body font-light max-w-xl text-sm">Every skill listed is backed by a project, certification, or coursework.</p>
+              <p className="text-white/70 font-body font-light max-w-xl text-sm">Every skill listed is backed by a project, certification, or coursework.</p>
             </div>
           </div>
           <SkillsMatrix />
@@ -169,47 +168,37 @@ const SkillsSection = memo(() => {
               >AI Pillar</button>
             </div>
             <div id="pillar-panel" role="tabpanel" aria-labelledby={activePillar === 'Data' ? 'tab-data' : 'tab-ai'} className="liquid-glass rounded-3xl p-6 md:p-10 flex flex-col justify-center text-center relative overflow-hidden">
-              <AnimatePresence mode="wait">
-                {activePillar === 'Data' ? (
-                  <motion.div
-                    key="data"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.2 }}
-                    className="flex flex-col justify-center items-center w-full"
-                  >
-                    <h3 className="font-heading italic text-5xl md:text-6xl text-white mb-6 md:mb-8">Code meets logic.</h3>
-                    <p className="text-white/50 font-body font-light text-base md:text-lg leading-relaxed max-w-md mx-auto">
-                      Building robust portfolio and production-style applications with Python, React, TypeScript, Firebase, and modern web technologies that deliver clean, reliable experiences.
-                    </p>
-                    <div className="mt-8 md:mt-12 flex flex-wrap justify-center gap-3">
-                      {['Python', 'React', 'TypeScript', 'FastAPI', 'SQL'].map(t => (
-                        <span key={t} className="liquid-glass px-4 py-1.5 rounded-full text-xs font-body text-white/80">{t}</span>
-                      ))}
-                    </div>
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="ai"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.2 }}
-                    className="flex flex-col justify-center items-center w-full"
-                  >
-                    <h3 className="font-heading italic text-5xl md:text-6xl text-white mb-6 md:mb-8">Intelligence by design.</h3>
-                    <p className="text-white/50 font-body font-light text-base md:text-lg leading-relaxed max-w-md mx-auto">
-                      Developing Artificial Intelligence and Machine Learning solutions that learn, adapt, and solve real-world problems with precision and purpose.
-                    </p>
-                    <div className="mt-8 md:mt-12 flex flex-wrap justify-center gap-3">
-                      {['TensorFlow', 'PyTorch', 'NLP', 'LLMs', 'Computer Vision'].map(t => (
-                        <span key={t} className="liquid-glass px-4 py-1.5 rounded-full text-xs font-body text-white/80">{t}</span>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              {activePillar === 'Data' ? (
+                <div
+                  key="data"
+                  className="flex flex-col justify-center items-center w-full animate-fade-in"
+                >
+                  <h3 className="font-heading italic text-5xl md:text-6xl text-white mb-6 md:mb-8">Code meets logic.</h3>
+                  <p className="text-white/70 font-body font-light text-base md:text-lg leading-relaxed max-w-md mx-auto">
+                    Building robust portfolio and production-style applications with Python, React, TypeScript, Firebase, and modern web technologies that deliver clean, reliable experiences.
+                  </p>
+                  <div className="mt-8 md:mt-12 flex flex-wrap justify-center gap-3">
+                    {['Python', 'React', 'TypeScript', 'FastAPI', 'SQL'].map(t => (
+                      <span key={t} className="liquid-glass px-4 py-1.5 rounded-full text-xs font-body text-white/80">{t}</span>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <div
+                  key="ai"
+                  className="flex flex-col justify-center items-center w-full animate-fade-in"
+                >
+                  <h3 className="font-heading italic text-5xl md:text-6xl text-white mb-6 md:mb-8">Intelligence by design.</h3>
+                  <p className="text-white/70 font-body font-light text-base md:text-lg leading-relaxed max-w-md mx-auto">
+                    Developing Artificial Intelligence and Machine Learning solutions that learn, adapt, and solve real-world problems with precision and purpose.
+                  </p>
+                  <div className="mt-8 md:mt-12 flex flex-wrap justify-center gap-3">
+                    {['TensorFlow', 'PyTorch', 'NLP', 'LLMs', 'Computer Vision'].map(t => (
+                      <span key={t} className="liquid-glass px-4 py-1.5 rounded-full text-xs font-body text-white/80">{t}</span>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -14,25 +14,13 @@ export const revealLazySections = () => {
 };
 
 /**
- * Preload remaining lazy sections in the background after above-the-fold content has loaded.
- * Ensures all sections and their true DOM heights are ready when user clicks navigation.
+ * Keep initLazyPreload as a lightweight hook. Lazy sections are loaded on-demand
+ * via IntersectionLazy (400px ahead of viewport) or when navigation is initiated.
  */
 export const initLazyPreload = () => {
-  if (typeof window === 'undefined') return;
-
-  const preload = () => {
-    if ('requestIdleCallback' in window) {
-      window.requestIdleCallback(() => revealLazySections(), { timeout: 1500 });
-    } else {
-      setTimeout(revealLazySections, 300);
-    }
-  };
-
-  if (document.readyState === 'complete') {
-    preload();
-  } else {
-    window.addEventListener('load', preload, { once: true });
-  }
+  // Navigation intent (hover, menu, clicks) already dispatches revealLazySections().
+  // Leaving sections to load via IntersectionObserver prevents massive main-thread
+  // blocking during initial page load and preserves optimal TBT.
 };
 
 interface ScrollOptions {

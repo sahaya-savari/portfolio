@@ -1,5 +1,4 @@
 import { useEffect, useState, memo } from 'react';
-import { m as motion } from 'framer-motion';
 import { Play, ArrowUpRight } from 'lucide-react';
 import RotatingText from '../components/RotatingText';
 import FocusText from '../components/FocusText';
@@ -37,17 +36,9 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
 
   return (
     <section id="home" aria-label="Introduction" className="relative min-h-[100dvh] flex flex-col px-6 overflow-hidden bg-transparent">
-      <div className="absolute top-[15%] left-0 w-full z-0 opacity-40" aria-hidden="true">
+      {/* Background ambient video on larger screens (deferred, non-blocking) */}
+      <div className="hidden md:block absolute top-[15%] left-0 w-full z-0 opacity-40 pointer-events-none" aria-hidden="true">
         <div className="relative w-full">
-          {/*
-           * LCP FIX:
-           * 1. `poster` → the Mux thumbnail (already preloaded in index.html).
-           *    The browser renders the poster immediately on first paint — this IS the LCP element.
-           * 2. `preload="none"` → we don't need video bytes at paint time; the poster handles it.
-           * 3. Video fades in only after it's ready, so there's no visual jump.
-           * 4. The static skeleton in index.html (z-index:-1) is removed from LCP competition
-           *    because this <video> element with an explicit poster wins immediately.
-           */}
           <video
             src={shouldLoadVideo ? 'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260307_083826_e938b29f-a43a-41ec-a153-3d4730578ab8.mp4' : undefined}
             autoPlay
@@ -55,7 +46,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
             muted
             playsInline
             preload="none"
-            poster={HERO_POSTER}
+            poster={shouldLoadVideo ? HERO_POSTER : undefined}
             width={1920}
             height={1080}
             onCanPlay={() => setIsVideoLoaded(true)}
@@ -80,18 +71,8 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
                 Sahaya Savari&nbsp;F
               </h1>
 
-              {/* Balanced Floating Ethereal Portrait */}
-              <motion.div
-                animate={{ 
-                  y: [0, -8, 0],
-                  rotate: [-0.5, 0.5, -0.5]
-                }}
-                transition={{
-                  y: { duration: 6.5, repeat: Infinity, ease: "easeInOut" },
-                  rotate: { duration: 8.5, repeat: Infinity, ease: "easeInOut" },
-                }}
-                className="relative order-1 md:order-2 shrink-0 group"
-              >
+              {/* Balanced Floating Ethereal Portrait (Hardware-composited via GPU CSS animation) */}
+              <div className="relative order-1 md:order-2 shrink-0 group animate-portrait-float">
                 {/* Multi-layered Atmospheric Glow Behind Portrait */}
                 <div 
                   className="absolute inset-0 -m-8 sm:-m-10 md:-m-12 lg:-m-16 rounded-full bg-radial from-white/[0.14] via-indigo-500/[0.06] to-transparent blur-3xl pointer-events-none" 
@@ -101,25 +82,29 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
                 {/* Lens / Glass Halo subtle ring */}
                 <div className="relative w-36 h-36 min-[390px]:w-40 min-[390px]:h-40 sm:w-44 sm:h-44 md:w-48 md:h-48 lg:w-56 lg:h-56 xl:w-64 xl:h-64 rounded-full p-[1.5px] bg-gradient-to-b from-white/30 via-white/10 to-transparent shadow-[0_15px_50px_rgba(0,0,0,0.8)]">
                   <div className="w-full h-full rounded-full overflow-hidden bg-black/60 backdrop-blur-sm relative">
-                    <img
-                      src="/profile.jpg"
-                      alt="Sahaya Savari F"
-                      width={400}
-                      height={400}
-                      fetchPriority="high"
-                      className="w-full h-full object-cover object-top scale-105 transition-transform duration-700 group-hover:scale-110"
-                      style={{
-                        maskImage: 'radial-gradient(ellipse at 50% 45%, black 64%, rgba(0,0,0,0.85) 78%, transparent 100%)',
-                        WebkitMaskImage: 'radial-gradient(ellipse at 50% 45%, black 64%, rgba(0,0,0,0.85) 78%, transparent 100%)',
-                      }}
-                    />
+                    <picture>
+                      <source type="image/webp" media="(max-width: 640px)" srcSet="/profile-sm.webp" width={240} height={240} />
+                      <source type="image/webp" srcSet="/profile.webp" width={400} height={400} />
+                      <img
+                        src="/profile.jpg"
+                        alt="Sahaya Savari F"
+                        width={400}
+                        height={400}
+                        fetchPriority="high"
+                        className="w-full h-full object-cover object-top scale-105 transition-transform duration-700 group-hover:scale-110"
+                        style={{
+                          maskImage: 'radial-gradient(ellipse at 50% 45%, black 64%, rgba(0,0,0,0.85) 78%, transparent 100%)',
+                          WebkitMaskImage: 'radial-gradient(ellipse at 50% 45%, black 64%, rgba(0,0,0,0.85) 78%, transparent 100%)',
+                        }}
+                      />
+                    </picture>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </div>
 
             <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-2 sm:gap-3 w-full px-4 mt-4">
-              <span className="font-heading italic text-fluid-hero-role text-white/60">I am an</span>
+              <span className="font-heading italic text-fluid-hero-role text-white/70">I am an</span>
               <div className="w-[280px] sm:w-auto text-center sm:text-left flex justify-center sm:justify-start">
                 <RotatingText
                   texts={["AI Engineer", "M.Sc. AI Student", "Python Developer", "Full Stack Developer"]}
@@ -138,27 +123,24 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
             </div>
           </div>
 
-          {/* LCP Text: Rendered immediately without artificial delay */}
-          <p className="text-white/60 font-body font-light text-lg md:text-xl max-w-2xl mb-8 md:mb-12 leading-relaxed">
+          {/* LCP Text: Rendered immediately with optimal contrast */}
+          <p className="text-white/75 font-body font-light text-lg md:text-xl max-w-2xl mb-8 md:mb-12 leading-relaxed">
             M.Sc. Artificial Intelligence student building Machine Learning applications, Python automation tools, and responsive web software with React and TypeScript. Highlighting verified engineering projects for Summer/Fall 2026 opportunities.
           </p>
 
           <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4">
-            <RainbowButton onClick={() => setShowResume(true)} aria-label="View my resume">
+            <RainbowButton onClick={() => setShowResume(true)} aria-label="View Resume">
               View Resume
               <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" aria-hidden="true" />
             </RainbowButton>
-            <a href="#projects" className="text-white/60 hover:text-white font-body font-medium text-sm flex items-center gap-2 transition-all px-8 py-4 bg-white/5 rounded-full backdrop-blur-md border border-white/10 hover:bg-white/10 min-h-[48px]" aria-label="View my projects">
+            <a href="#projects" className="text-white/70 hover:text-white font-body font-medium text-sm flex items-center gap-2 transition-all px-8 py-4 bg-white/5 rounded-full backdrop-blur-md border border-white/10 hover:bg-white/10 min-h-[48px]" aria-label="View Projects">
               View Projects <Play className="w-4 h-4 fill-current" aria-hidden="true" />
             </a>
           </div>
 
           {/* Recruiter Quick View Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2, duration: 0.8 }}
-            className="mt-12 w-full max-w-4xl rounded-3xl border border-white/[0.08]"
+          <div
+            className="mt-12 w-full max-w-4xl rounded-3xl border border-white/[0.08] transition-all duration-700"
             style={{
               background: 'rgba(10, 10, 14, 0.65)',
               backdropFilter: 'blur(20px)',
@@ -217,7 +199,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
                   href="/resume.pdf?v=2"
                   download="Sahaya_Savari_Resume.pdf"
                   className="w-full text-center text-xs font-body font-semibold px-4 py-3.5 rounded-full bg-white text-black hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer"
-                  aria-label="Download PDF Resume directly"
+                  aria-label="Download PDF Resume"
                 >
                   Download PDF Resume
                 </a>
@@ -226,7 +208,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
                 <a
                   href="#contact"
                   className="w-full text-center text-xs font-body font-medium px-4 py-3.5 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 text-white/90 hover:text-white transition-all flex items-center justify-center gap-2 cursor-pointer"
-                  aria-label="Navigate to contact section"
+                  aria-label="Get In Touch — Contact section"
                 >
                   Get In Touch
                 </a>
@@ -238,7 +220,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-white/70 hover:text-white transition-colors text-xs font-body flex items-center gap-1.5"
-                    aria-label="Open Github in new tab"
+                    aria-label="GitHub (opens in new tab)"
                   >
                     GitHub
                   </a>
@@ -248,27 +230,24 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-white/70 hover:text-white transition-colors text-xs font-body flex items-center gap-1.5"
-                    aria-label="Open LinkedIn profile in new tab"
+                    aria-label="LinkedIn (opens in new tab)"
                   >
                     LinkedIn
                   </a>
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* Moved outside max-w-4xl to give FocusText full section width */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.3, duration: 0.8 }}
+        <div
           className="mt-8 md:mt-12 flex flex-col items-center gap-4 shrink-0 pointer-events-none w-full"
           aria-hidden="true"
         >
-          <div className="liquid-glass px-4 py-1.5 rounded-full text-[10px] uppercase tracking-widest font-bold text-white/60">What I work with</div>
+          <div className="liquid-glass px-4 py-1.5 rounded-full text-[10px] uppercase tracking-widest font-bold text-white/70">What I work with</div>
           <FocusText prefix="Data AI Analytics" focusText="GenAI" className="" />
-        </motion.div>
+        </div>
       </div>
     </section>
   );

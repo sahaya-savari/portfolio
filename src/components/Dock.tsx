@@ -1,4 +1,4 @@
-import { m as motion, useMotionValue, useSpring, useTransform, AnimatePresence  } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion';
 import { Children, cloneElement, useEffect, useRef, useState } from 'react';
 import './Dock.css';
 

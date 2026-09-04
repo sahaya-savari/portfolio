@@ -411,7 +411,7 @@ const ProjectsSection = memo(() => {
                 Explore my portfolio of production-grade software applications, Machine Learning models, and Artificial Intelligence solutions. Each featured project showcases full stack architecture built with Python, React, TypeScript, FastAPI, and Firebase—combining structured LLM prompt pipelines, real-time databases, and responsive UI design.
               </p>
             </div>
-            <p className="text-white/40 font-body font-light text-xs max-w-xs lg:text-right shrink-0">
+            <p className="text-white/70 font-body font-light text-xs max-w-xs lg:text-right shrink-0">
               Ask me for live demos, repository code samples, or architecture walkthroughs of any featured project.
             </p>
           </div>
@@ -477,8 +477,8 @@ const ProjectsSection = memo(() => {
               <Search className="w-10 h-10 text-white/20" aria-hidden="true" />
               <div>
                 <h3 className="font-heading italic text-2xl text-white">No Matching Projects</h3>
-                <p className="text-white/40 font-body font-light text-sm mt-1 max-w-sm">
-                  We couldn't find any projects matching "<span className="text-white/60">{search}</span>" in this filter category. Try another keyword.
+                <p className="text-white/70 font-body font-light text-sm mt-1 max-w-sm">
+                  We couldn't find any projects matching "<span className="text-white/90">{search}</span>" in this filter category. Try another keyword.
                 </p>
               </div>
               <button

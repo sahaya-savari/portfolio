@@ -29,7 +29,7 @@ const ArticleCard = ({ article }: { article: Article }) => {
         </div>
       </div>
       <div className="p-6 flex flex-col flex-1">
-        <div className="flex items-center gap-4 text-[10px] font-mono text-white/40 mb-3">
+        <div className="flex items-center gap-4 text-[10px] font-mono text-white/70 mb-3">
           <div className="flex items-center gap-1.5">
             <Calendar className="w-3 h-3" />
             <span>{article.date}</span>
@@ -42,7 +42,7 @@ const ArticleCard = ({ article }: { article: Article }) => {
         <h3 className="font-heading text-xl text-white mb-2 group-hover:text-purple-300 transition-colors">
           {article.title}
         </h3>
-        <p className="text-sm font-body font-light text-white/60 mb-6 flex-1 line-clamp-3">
+        <p className="text-sm font-body font-light text-white/70 mb-6 flex-1 line-clamp-3">
           {article.excerpt}
         </p>
         <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/[0.06]">
@@ -68,11 +68,11 @@ const BlogSection = memo(() => {
           <div className="max-w-2xl">
             <SectionBadge>Writings & Articles</SectionBadge>
             <h2 className="text-fluid-section-heading font-heading italic text-white tracking-tight leading-[0.9] mb-4">Developer Blog & <br/> Technical Insights.</h2>
-            <p className="text-white/60 font-body font-light text-base md:text-lg leading-relaxed">
+            <p className="text-white/70 font-body font-light text-base md:text-lg leading-relaxed">
               I author technical articles and engineering deep-dives covering Artificial Intelligence, Machine Learning workflows, Python API development with FastAPI, full stack React &amp; TypeScript optimizations, LLM prompt engineering, and Firebase cloud hosting. Read my latest articles below.
             </p>
           </div>
-          <p className="text-white/40 font-body font-light text-xs max-w-xs lg:text-right shrink-0">
+          <p className="text-white/70 font-body font-light text-xs max-w-xs lg:text-right shrink-0">
             In-depth engineering notes on web performance, AI system design, and full-stack software development.
           </p>
         </div>

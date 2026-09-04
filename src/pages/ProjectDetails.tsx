@@ -94,17 +94,17 @@ export default function ProjectDetails() {
 
         <div className="space-y-12">
           <section>
-            <h2 className="text-sm font-body font-bold text-white/40 uppercase tracking-widest mb-4">Overview</h2>
+            <h2 className="text-sm font-body font-bold text-white/70 uppercase tracking-widest mb-4">Overview</h2>
             <p className="text-base font-body leading-relaxed text-white/80">{project.overview}</p>
           </section>
 
           <section>
-            <h2 className="text-sm font-body font-bold text-white/40 uppercase tracking-widest mb-4">The Problem</h2>
+            <h2 className="text-sm font-body font-bold text-white/70 uppercase tracking-widest mb-4">The Problem</h2>
             <p className="text-base font-body leading-relaxed text-white/80">{project.problem}</p>
           </section>
 
           <section>
-            <h2 className="text-sm font-body font-bold text-white/40 uppercase tracking-widest mb-4">Goals</h2>
+            <h2 className="text-sm font-body font-bold text-white/70 uppercase tracking-widest mb-4">Goals</h2>
             <ul className="list-disc pl-5 space-y-2 text-base font-body text-white/80">
               {project.goals.map((goal, i) => (
                 <li key={i}>{goal}</li>
@@ -113,13 +113,13 @@ export default function ProjectDetails() {
           </section>
 
           <section>
-            <h2 className="text-sm font-body font-bold text-white/40 uppercase tracking-widest mb-4">Solution & Architecture</h2>
+            <h2 className="text-sm font-body font-bold text-white/70 uppercase tracking-widest mb-4">Solution & Architecture</h2>
             <p className="text-base font-body leading-relaxed text-white/80 mb-4">{project.solution}</p>
             <p className="text-base font-body leading-relaxed text-white/80">{project.architecture}</p>
           </section>
 
           <section>
-            <h2 className="text-sm font-body font-bold text-white/40 uppercase tracking-widest mb-4">Tech Stack</h2>
+            <h2 className="text-sm font-body font-bold text-white/70 uppercase tracking-widest mb-4">Tech Stack</h2>
             <div className="flex flex-wrap gap-2">
               {project.techStack.map(tech => (
                 <span key={tech} className="px-3 py-1.5 border border-white/10 bg-white/5 rounded-full text-xs font-body text-white/70">
@@ -130,7 +130,7 @@ export default function ProjectDetails() {
           </section>
 
           <section>
-            <h2 className="text-sm font-body font-bold text-white/40 uppercase tracking-widest mb-4">Challenges Faced</h2>
+            <h2 className="text-sm font-body font-bold text-white/70 uppercase tracking-widest mb-4">Challenges Faced</h2>
             <ul className="list-disc pl-5 space-y-2 text-base font-body text-white/80">
               {project.challenges.map((challenge, i) => (
                 <li key={i}>{challenge}</li>
@@ -139,7 +139,7 @@ export default function ProjectDetails() {
           </section>
 
           <section>
-            <h2 className="text-sm font-body font-bold text-white/40 uppercase tracking-widest mb-4">Key Lessons Learned</h2>
+            <h2 className="text-sm font-body font-bold text-white/70 uppercase tracking-widest mb-4">Key Lessons Learned</h2>
             <ul className="list-disc pl-5 space-y-2 text-base font-body text-white/80">
               {project.lessons.map((lesson, i) => (
                 <li key={i}>{lesson}</li>
@@ -149,7 +149,7 @@ export default function ProjectDetails() {
 
           {project.relatedArticle && (
             <section className="pt-4 border-t border-white/10">
-              <h2 className="text-sm font-body font-bold text-white/40 uppercase tracking-widest mb-4">Related Technical Writing</h2>
+              <h2 className="text-sm font-body font-bold text-white/70 uppercase tracking-widest mb-4">Related Technical Writing</h2>
               <a
                 href={project.relatedArticle.url}
                 target="_blank"

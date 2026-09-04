@@ -48,8 +48,17 @@ export default defineConfig({
     // Raised from es2020/chrome90 to es2022/chrome105 for smaller output
     // (class fields, nullish coalescing, optional chaining emit natively)
     target: ['es2022', 'chrome105', 'firefox104', 'safari16'],
-    // Disable modulepreload polyfill — all target browsers support it natively
-    modulePreload: { polyfill: false },
+    modulePreload: {
+      polyfill: false,
+      resolveDependencies: (_filename, deps) => {
+        return deps.filter(dep => 
+          !dep.includes('react-pdf') && 
+          !dep.includes('framer-motion') && 
+          !dep.includes('ogl') && 
+          !dep.includes('hls')
+        );
+      },
+    },
     rollupOptions: {
       output: {
         manualChunks: (id) => {

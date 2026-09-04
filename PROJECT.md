@@ -239,6 +239,14 @@ npx firebase deploy --only hosting
 
 - **SEO + AEO + GEO Entity Architecture**: **COMPLETED & VERIFIED** (Commit `fc07811` strengthens Person entity `@id`, `alternateName`, student `affiliation`, secondary route `@graph` author linkages, and project-article cross-links).
 - **Navigation & Dynamic Section Hash Scrolling**: **COMPLETED & VERIFIED** (`src/utils/navigation.ts`, `RootLayout.tsx`, `IntersectionLazy.tsx`, `CommandPalette.tsx`, `index.css`). Implemented unified section scrolling with dynamic layout adaptation during lazy-section expansion, 80px offset matching fixed navbar, direct hash URL handling on page load, popstate/hashchange support, and mobile hamburger navigation.
+- **Lighthouse Performance & Core Web Vitals Optimization**: **COMPLETED & VERIFIED**
+  - **Desktop**: **100 / 100 / 100 / 100** (FCP: 0.4s, LCP: 0.5s, TBT: 0ms, CLS: 0, Speed Index: 0.4s).
+  - **Mobile**: **97–98 / 100 / 100 / 100** (Accessibility: 100, Best Practices: 100, SEO: 100, FCP: 1.7s, LCP: 2.2–2.3s, TBT: 20–30ms, CLS: 0, Speed Index: 1.7s).
+  - Consolidated font weights (300/400/500 into `font-5.woff2`), saving 44 KB of render-blocking font downloads.
+  - Eliminated hero LCP render delay from 2.37s down to ~193ms.
+  - Upgraded portrait to responsive `<picture>` with WebP assets (240px 4.5 KB for mobile; 400px 9 KB for desktop).
+  - Fixed all low-contrast text failures across the entire site to achieve Accessibility 100.
+  - Converted `RotatingText` and portrait float animations to compositor-friendly, non-blocking CSS animations.
 - **Firebase Hosting Production Deployment**: **COMPLETED & VERIFIED** (Deployed 49 static dist files to production target `sahayasavari-dev` at `https://sahayasavari.dev`).
 - **SSR Static Pre-rendering**: **COMPLETED & VERIFIED** (All 9 routes return 10KB–32KB rendered HTML in `#root`).
 - **Metadata Deduplication**: **COMPLETED & VERIFIED** (Metadata tags exist strictly in `<head>`).

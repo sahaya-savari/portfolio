@@ -172,16 +172,15 @@
   font-size: clamp(3.5rem, 10vw, 7.5rem);
 }
 
-/* latin — Barlow 300 */
+/* latin — Barlow 300, 400, 500 (Regular & Medium) */
 @font-face {
   font-family: 'Barlow';
   font-style: normal;
   font-weight: 300;
   font-display: swap;
-  src: url(/fonts/font-2.woff2) format('woff2');
+  src: url(/fonts/font-5.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-/* latin — Barlow 400 */
 @font-face {
   font-family: 'Barlow';
   font-style: normal;
@@ -190,13 +189,12 @@
   src: url(/fonts/font-5.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-/* latin — Barlow 500 */
 @font-face {
   font-family: 'Barlow';
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url(/fonts/font-8.woff2) format('woff2');
+  src: url(/fonts/font-5.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 /* latin — Barlow 600 */
@@ -228,6 +226,32 @@
 }
 
 @layer utilities {
+  @keyframes rainbow-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .animate-rainbow-spin {
+    animation: rainbow-spin 4s linear infinite;
+    will-change: transform;
+  }
+
+  @keyframes portrait-float {
+    0%, 100% {
+      transform: translate3d(0, 0, 0) rotate(-0.5deg);
+    }
+    50% {
+      transform: translate3d(0, -8px, 0) rotate(0.5deg);
+    }
+  }
+  .animate-portrait-float {
+    animation: portrait-float 7s ease-in-out infinite;
+    will-change: transform;
+  }
+
   @keyframes rainbow {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }

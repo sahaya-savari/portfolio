@@ -1,5 +1,4 @@
 import React, { useState, useCallback, useEffect, useRef, lazy, Suspense } from 'react';
-import { m as motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, Menu, X, Search, Sparkles, Download } from 'lucide-react';
 import { Outlet, useNavigate, useLocation, Link } from 'react-router-dom';
 
@@ -273,7 +272,7 @@ export default function RootLayout() {
           <nav className="fixed top-4 md:top-6 left-0 right-0 z-[120] px-4 md:px-6" aria-label="Main navigation">
             <div className="max-w-screen-xl mx-auto flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <Link to="/" onClick={handleHomeClick} className="w-10 h-10 liquid-glass-strong rounded-full flex items-center justify-center border border-white/20" aria-label="Sahaya Savari F — Go to home">
+                <Link to="/" onClick={handleHomeClick} className="w-10 h-10 liquid-glass-strong rounded-full flex items-center justify-center border border-white/20" aria-label="SF — Sahaya Savari F Home">
                   <span className="font-heading text-lg italic" aria-hidden="true">SF</span>
                 </Link>
                 <span className="font-body text-xs font-medium tracking-widest hidden lg:flex items-center gap-2">
@@ -282,29 +281,28 @@ export default function RootLayout() {
                 </span>
                 <button 
                   onClick={() => setShowCommandPalette(true)}
-                  className="font-body text-[11px] font-medium text-white/60 hidden lg:flex items-center gap-2.5 ml-4 px-3.5 py-2 rounded-full border border-white/10 bg-white/[0.03] hover:bg-white/[0.08] hover:text-white hover:border-white/20 transition-all duration-300 shadow-sm cursor-pointer group"
-                  aria-label="Open command palette"
+                  className="font-body text-[11px] font-medium text-white/70 hidden lg:flex items-center gap-2.5 ml-4 px-3.5 py-2 rounded-full border border-white/10 bg-white/[0.03] hover:bg-white/[0.08] hover:text-white hover:border-white/20 transition-all duration-300 shadow-sm cursor-pointer group"
                 >
-                  <Search size={12} className="opacity-60 group-hover:opacity-100 transition-opacity" />
+                  <Search size={12} className="opacity-70 group-hover:opacity-100 transition-opacity" />
                   <span className="group-hover:text-white transition-colors">Search</span>
-                  <kbd className="font-mono text-[9px] text-white/40 bg-white/[0.07] border border-white/[0.08] px-1.5 py-0.5 rounded-md group-hover:text-white/60 group-hover:bg-white/[0.1] transition-all">Ctrl K</kbd>
+                  <kbd className="font-mono text-[9px] text-white/80 bg-white/[0.07] border border-white/[0.08] px-1.5 py-0.5 rounded-md group-hover:text-white group-hover:bg-white/[0.1] transition-all">Ctrl K</kbd>
                 </button>
               </div>
               <div className="hidden md:flex liquid-glass px-4 lg:px-6 py-2.5 rounded-full items-center gap-3 lg:gap-8 backdrop-blur-md">
-                <Link to="/" onClick={handleHomeClick} className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'home' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Home</Link>
-                <a href="/#about" onMouseEnter={revealLazySections} onClick={(e) => handleNavClick(e, 'about')} className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'about' ? 'text-white' : 'text-white/50 hover:text-white'}`}>About</a>
-                <Link to="/resume" className={`text-sm font-body font-medium transition-colors ${location.pathname === '/resume' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Resume</Link>
-                <Link to="/blog" className={`text-sm font-body font-medium transition-colors ${location.pathname === '/blog' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Blog</Link>
-                <a href="/#skills" onMouseEnter={revealLazySections} onClick={(e) => handleNavClick(e, 'skills')} className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'skills' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Skills</a>
-                <Link to="/projects" className={`text-sm font-body font-medium transition-colors ${location.pathname.startsWith('/projects') ? 'text-white' : 'text-white/50 hover:text-white'}`}>Projects</Link>
-                <a href="/#certifications" onMouseEnter={revealLazySections} onClick={(e) => handleNavClick(e, 'certifications')} className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'certifications' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Certs</a>
+                <Link to="/" onClick={handleHomeClick} className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'home' ? 'text-white' : 'text-white/70 hover:text-white'}`}>Home</Link>
+                <a href="/#about" onMouseEnter={revealLazySections} onClick={(e) => handleNavClick(e, 'about')} className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'about' ? 'text-white' : 'text-white/70 hover:text-white'}`}>About</a>
+                <Link to="/resume" className={`text-sm font-body font-medium transition-colors ${location.pathname === '/resume' ? 'text-white' : 'text-white/70 hover:text-white'}`}>Resume</Link>
+                <Link to="/blog" className={`text-sm font-body font-medium transition-colors ${location.pathname === '/blog' ? 'text-white' : 'text-white/70 hover:text-white'}`}>Blog</Link>
+                <a href="/#skills" onMouseEnter={revealLazySections} onClick={(e) => handleNavClick(e, 'skills')} className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'skills' ? 'text-white' : 'text-white/70 hover:text-white'}`}>Skills</a>
+                <Link to="/projects" className={`text-sm font-body font-medium transition-colors ${location.pathname.startsWith('/projects') ? 'text-white' : 'text-white/70 hover:text-white'}`}>Projects</Link>
+                <a href="/#certifications" onMouseEnter={revealLazySections} onClick={(e) => handleNavClick(e, 'certifications')} className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'certifications' ? 'text-white' : 'text-white/70 hover:text-white'}`}>Certs</a>
               </div>
               <div className="flex items-center gap-3">
                 <a
                   href="/resume.pdf"
                   download
                   className="hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-full border border-white/15 bg-white/5 hover:bg-white/15 text-white/90 hover:text-white text-xs font-body font-medium transition-all shadow-sm"
-                  aria-label="Download Resume PDF"
+                  aria-label="Download CV (Resume PDF)"
                 >
                   <Download size={13} />
                   <span className="hidden lg:inline">Download CV</span>
@@ -335,37 +333,31 @@ export default function RootLayout() {
           </nav>
         </header>
         
-        <AnimatePresence>
-          {mobileMenuOpen && (
-            <motion.div
-              id="mobile-nav-menu"
-              ref={mobileMenuRef}
-              role="dialog"
-              aria-modal="true"
-              aria-label="Navigation menu"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-[115] bg-black/95 backdrop-blur-2xl flex flex-col items-center overflow-y-auto px-6 py-20"
-              onClick={() => setMobileMenuOpen(false)}
-              onKeyDown={handleMobileMenuKeyDown}
-            >
-              <nav className="flex flex-col items-center gap-6 my-auto" onClick={e => e.stopPropagation()} aria-label="Mobile navigation">
-                <Link to="/" onClick={handleHomeClick} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Home</Link>
-                <a href="/#about" onClick={(e) => handleNavClick(e, 'about')} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">About</a>
-                <Link to="/resume" onClick={() => setMobileMenuOpen(false)} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Resume</Link>
-                <Link to="/blog" onClick={() => setMobileMenuOpen(false)} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Blog</Link>
-                <a href="/#skills" onClick={(e) => handleNavClick(e, 'skills')} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Skills</a>
-                <Link to="/projects" onClick={() => setMobileMenuOpen(false)} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Projects</Link>
-                <a href="/#certifications" onClick={(e) => handleNavClick(e, 'certifications')} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Certs</a>
-                <a href="/resume.pdf" download onClick={() => setMobileMenuOpen(false)} className="text-xl sm:text-2xl font-body font-medium text-white/90 hover:text-white transition-colors min-h-[48px] flex items-center gap-2 mt-2">
-                  <Download size={20} /> Download Resume PDF
-                </a>
-              </nav>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {mobileMenuOpen && (
+          <div
+            id="mobile-nav-menu"
+            ref={mobileMenuRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Navigation menu"
+            className="fixed inset-0 z-[115] bg-black/95 backdrop-blur-2xl flex flex-col items-center overflow-y-auto px-6 py-20 transition-opacity duration-200"
+            onClick={() => setMobileMenuOpen(false)}
+            onKeyDown={handleMobileMenuKeyDown}
+          >
+            <nav className="flex flex-col items-center gap-6 my-auto" onClick={e => e.stopPropagation()} aria-label="Mobile navigation">
+              <Link to="/" onClick={handleHomeClick} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Home</Link>
+              <a href="/#about" onClick={(e) => handleNavClick(e, 'about')} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">About</a>
+              <Link to="/resume" onClick={() => setMobileMenuOpen(false)} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Resume</Link>
+              <Link to="/blog" onClick={() => setMobileMenuOpen(false)} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Blog</Link>
+              <a href="/#skills" onClick={(e) => handleNavClick(e, 'skills')} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Skills</a>
+              <Link to="/projects" onClick={() => setMobileMenuOpen(false)} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Projects</Link>
+              <a href="/#certifications" onClick={(e) => handleNavClick(e, 'certifications')} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Certs</a>
+              <a href="/resume.pdf" download onClick={() => setMobileMenuOpen(false)} className="text-xl sm:text-2xl font-body font-medium text-white/90 hover:text-white transition-colors min-h-[48px] flex items-center gap-2 mt-2">
+                <Download size={20} /> Download Resume PDF
+              </a>
+            </nav>
+          </div>
+        )}
 
         <main id="main-content">
           <Outlet context={{ setShowResume, setShowCommandPalette }} />
@@ -381,28 +373,24 @@ export default function RootLayout() {
       </div>
       
       {/* Global Modals */}
-      <AnimatePresence>
-        {showResume && (
-          <ErrorBoundary>
-            <Suspense fallback={<div className="fixed inset-0 z-[300] bg-black/80 flex items-center justify-center" role="status"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white/50" aria-hidden="true"></div><span className="sr-only">Loading resume viewer...</span></div>}>
-              <ResumeViewer onClose={() => setShowResume(false)} />
-            </Suspense>
-          </ErrorBoundary>
-        )}
-      </AnimatePresence>
+      {showResume && (
+        <ErrorBoundary>
+          <Suspense fallback={<div className="fixed inset-0 z-[300] bg-black/80 flex items-center justify-center" role="status"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white/50" aria-hidden="true"></div><span className="sr-only">Loading resume viewer...</span></div>}>
+            <ResumeViewer onClose={() => setShowResume(false)} />
+          </Suspense>
+        </ErrorBoundary>
+      )}
 
-      <AnimatePresence>
-        {showCommandPalette && (
-          <ErrorBoundary>
-            <Suspense fallback={<div className="fixed inset-0 z-[300] bg-black/80 flex items-center justify-center" role="status"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white/50" aria-hidden="true"></div><span className="sr-only">Loading search...</span></div>}>
-              <CommandPalette 
-                onClose={() => setShowCommandPalette(false)} 
-                onOpenResume={() => setShowResume(true)}
-              />
-            </Suspense>
-          </ErrorBoundary>
-        )}
-      </AnimatePresence>
+      {showCommandPalette && (
+        <ErrorBoundary>
+          <Suspense fallback={<div className="fixed inset-0 z-[300] bg-black/80 flex items-center justify-center" role="status"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white/50" aria-hidden="true"></div><span className="sr-only">Loading search...</span></div>}>
+            <CommandPalette 
+              onClose={() => setShowCommandPalette(false)} 
+              onOpenResume={() => setShowResume(true)}
+            />
+          </Suspense>
+        </ErrorBoundary>
+      )}
     </ClickSpark>
   );
 }

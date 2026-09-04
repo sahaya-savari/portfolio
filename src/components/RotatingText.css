@@ -30,7 +30,37 @@
 
 .text-rotate-element {
   display: inline-block;
-  will-change: transform;
+  will-change: transform, opacity;
+}
+
+.text-rotate-enter .text-rotate-element {
+  animation: rotateTextIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.text-rotate-exit .text-rotate-element {
+  animation: rotateTextOut 0.22s cubic-bezier(0.7, 0, 0.84, 0) both;
+}
+
+@keyframes rotateTextIn {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rotateTextOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-120%);
+  }
 }
 
 .text-rotate-space {

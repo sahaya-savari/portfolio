@@ -7,29 +7,6 @@
     <link rel="apple-touch-icon" href="/favicon.png" />
     <meta name="theme-color" content="#000000" />
     <link rel="manifest" href="/manifest.json" />
-    <script>
-      (function() {
-        var h = window.location.hostname;
-        var isLocal = h === 'localhost' || h === '127.0.0.1' || h === '::1' || h === '0.0.0.0' || h.endsWith('.local') || /^192\.168\./.test(h) || /^10\./.test(h);
-        var isAllowed = isLocal || h === 'sahayasavari.dev' || h.endsWith('.web.app') || h.endsWith('.firebaseapp.com');
-        if (h === 'www.sahayasavari.dev') {
-          window.location.replace('https://sahayasavari.dev' + window.location.pathname + window.location.search + window.location.hash);
-        } else if (!isAllowed) {
-          window.location.replace('https://sahayasavari.dev' + window.location.pathname + window.location.search + window.location.hash);
-        }
-      })();
-    </script>
-    <script>
-      window.addEventListener('load', function() {
-        setTimeout(function() {
-          (function(c,l,a,r,i,t,y){
-              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-          })(window, document, "clarity", "script", "y5y2j4yao6");
-        }, 2000);
-      });
-    </script>
 
     <meta name="google-site-verification" content="40dmjhvZ5HG8_rYlLkardDTyX1fC0Ux2UPGyko6eHgQ" />
     <meta name="author" content="Sahaya Savari" />
@@ -37,23 +14,12 @@
     <link rel="me" href="https://github.com/sahaya-savari" />
     <link rel="me" href="https://www.linkedin.com/in/sahaya-savari" />
     
-    <!-- =====================================================
-         FONT LOADING (LH-4 Fix)
-         Fonts are now self-hosted to reduce external dependencies
-    ====================================================== -->
-    <!-- Preconnect to image CDN for hero poster -->
-    <link rel="preconnect" href="https://image.mux.com" />
-    <link rel="dns-prefetch" href="https://image.mux.com" />
-
-    <!-- =====================================================
-         RESOURCE HINTS
-    ====================================================== -->
-    <!-- Preload hero poster for faster LCP -->
-    <link rel="preload" as="image" href="https://image.mux.com/9JXDljEVWYwWu01PUkAemafDugK89o01BR6zqJ3aS9u00A/thumbnail.webp?time=0&width=400" fetchpriority="high" />
+    <!-- Preload critical hero portrait (responsive WebP) -->
+    <link rel="preload" as="image" href="/profile-sm.webp" type="image/webp" media="(max-width: 640px)" fetchpriority="high" />
+    <link rel="preload" as="image" href="/profile.webp" type="image/webp" media="(min-width: 641px)" fetchpriority="high" />
     <!-- Preload critical above-the-fold heading and body fonts -->
     <link rel="preload" as="font" type="font/woff2" href="/fonts/font-13.woff2" crossorigin="anonymous" />
-    <link rel="preload" as="font" type="font/woff2" href="/fonts/font-2.woff2" crossorigin="anonymous" />
-
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/font-5.woff2" crossorigin="anonymous" />
   </head>
   <body class="bg-black text-white overflow-x-hidden selection:bg-white selection:text-black">
     <!-- Subtle Noise Texture Overlay -->
@@ -67,5 +33,26 @@
       </div>
     </noscript>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      (function() {
+        var h = window.location.hostname;
+        var isLocal = h === 'localhost' || h === '127.0.0.1' || h === '::1' || h === '0.0.0.0' || h.endsWith('.local') || /^192\.168\./.test(h) || /^10\./.test(h);
+        var isAllowed = isLocal || h === 'sahayasavari.dev' || h.endsWith('.web.app') || h.endsWith('.firebaseapp.com');
+        if (h === 'www.sahayasavari.dev') {
+          window.location.replace('https://sahayasavari.dev' + window.location.pathname + window.location.search + window.location.hash);
+        } else if (!isAllowed) {
+          window.location.replace('https://sahayasavari.dev' + window.location.pathname + window.location.search + window.location.hash);
+        }
+      })();
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "y5y2j4yao6");
+        }, 2500);
+      });
+    </script>
   </body>
 </html>

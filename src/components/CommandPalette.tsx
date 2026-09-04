@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
-import { m as motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Search, FileText, BookOpen, ExternalLink, FolderGit, Command, CornerDownLeft } from 'lucide-react';
 import { PROJECTS } from '../data';
 import { lockScroll, unlockScroll } from '../utils/scrollLock';

@@ -56,6 +56,16 @@ async function prerender() {
   for (const route of ROUTES) {
     let html = baseHtml;
 
+    // Optimize critical rendering path: hoist stylesheet to top of <head> before scripts
+    let stylesheetTag = '';
+    html = html.replace(/(<link\b[^>]*rel=["']stylesheet["'][^>]*\/?>)\s*/gi, (_, tag) => {
+      stylesheetTag = tag;
+      return '';
+    });
+    if (stylesheetTag) {
+      html = html.replace(/(<link rel="manifest"[^>]*>)/i, `$1\n    ${stylesheetTag}`);
+    }
+
     // Render React components to static HTML for this route
     let appHtml = '';
     try {
