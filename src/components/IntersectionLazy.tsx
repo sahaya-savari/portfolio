@@ -23,15 +23,23 @@ interface IntersectionLazyProps {
  */
 export default function IntersectionLazy({ children, fallbackHeight = '100vh' }: IntersectionLazyProps) {
   const isServer = typeof window === 'undefined';
-  const [hasIntersected, setHasIntersected] = useState(isServer);
+  const [hasIntersected, setHasIntersected] = useState(() => {
+    if (isServer) return true;
+    return Boolean(typeof window !== 'undefined' && window.location.hash);
+  });
   const [isStable, setIsStable] = useState(isServer);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   // Intersection observer — fire early (400px before viewport)
-  // Performance: No idle timer — sections only load when approaching viewport.
-  // The 400px rootMargin ensures content is ready before it scrolls into view.
+  // Also listens to 'reveal-lazy-sections' when user triggers anchor navigation
   useEffect(() => {
     if (hasIntersected) return;
+
+    const onReveal = () => {
+      setHasIntersected(true);
+    };
+
+    window.addEventListener('reveal-lazy-sections', onReveal);
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -45,6 +53,7 @@ export default function IntersectionLazy({ children, fallbackHeight = '100vh' }:
 
     if (wrapperRef.current) observer.observe(wrapperRef.current);
     return () => {
+      window.removeEventListener('reveal-lazy-sections', onReveal);
       observer.disconnect();
     };
   }, [hasIntersected]);

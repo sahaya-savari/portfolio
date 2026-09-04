@@ -238,6 +238,7 @@ npx firebase deploy --only hosting
 ## 12. Production Baseline & Status Matrix
 
 - **SEO + AEO + GEO Entity Architecture**: **COMPLETED & VERIFIED** (Commit `fc07811` strengthens Person entity `@id`, `alternateName`, student `affiliation`, secondary route `@graph` author linkages, and project-article cross-links).
+- **Navigation & Dynamic Section Hash Scrolling**: **COMPLETED & VERIFIED** (`src/utils/navigation.ts`, `RootLayout.tsx`, `IntersectionLazy.tsx`, `CommandPalette.tsx`, `index.css`). Implemented unified section scrolling with dynamic layout adaptation during lazy-section expansion, 80px offset matching fixed navbar, direct hash URL handling on page load, popstate/hashchange support, and mobile hamburger navigation.
 - **Firebase Hosting Production Deployment**: **COMPLETED & VERIFIED** (Deployed 49 static dist files to production target `sahayasavari-dev` at `https://sahayasavari.dev`).
 - **SSR Static Pre-rendering**: **COMPLETED & VERIFIED** (All 9 routes return 10KB–32KB rendered HTML in `#root`).
 - **Metadata Deduplication**: **COMPLETED & VERIFIED** (Metadata tags exist strictly in `<head>`).

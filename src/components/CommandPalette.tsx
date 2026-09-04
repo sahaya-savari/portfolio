@@ -3,6 +3,7 @@ import { m as motion } from 'framer-motion';
 import { Search, FileText, BookOpen, ExternalLink, FolderGit, Command, CornerDownLeft } from 'lucide-react';
 import { PROJECTS } from '../data';
 import { lockScroll, unlockScroll } from '../utils/scrollLock';
+import { scrollToSection } from '../utils/navigation';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -110,9 +111,12 @@ export default function CommandPalette({ onClose, onOpenResume }: CommandPalette
         icon: ExternalLink,
         action: () => {
           if (lnk.url.startsWith('#')) {
-            const el = document.querySelector(lnk.url);
-            if (el) {
-              el.scrollIntoView({ behavior: 'smooth' });
+            const cleanId = lnk.url.replace(/^#/, '');
+            if (window.location.pathname !== '/') {
+              navigate(`/#${cleanId}`);
+            } else {
+              window.history.pushState(null, '', `/#${cleanId}`);
+              scrollToSection(cleanId, { behavior: 'smooth' });
             }
           } else {
             window.open(lnk.url, '_blank', 'noopener,noreferrer');

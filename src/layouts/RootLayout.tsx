@@ -6,6 +6,7 @@ import { Outlet, useNavigate, useLocation, Link } from 'react-router-dom';
 import ClickSpark from '../components/ClickSpark';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { lockScroll, unlockScroll } from '../utils/scrollLock';
+import { scrollToSection } from '../utils/navigation';
 const TargetCursor = lazy(() => import('../components/ui/TargetCursor/TargetCursor'));
 
 // Lazy load heavy global modals
@@ -29,16 +30,26 @@ export default function RootLayout() {
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
     const cleanId = targetId.replace(/^#/, '');
+    setMobileMenuOpen(false);
+
     if (location.pathname !== '/') {
       navigate(`/#${cleanId}`);
     } else {
-      const el = document.getElementById(cleanId);
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
-      }
       window.history.pushState(null, '', `/#${cleanId}`);
+      scrollToSection(cleanId, { behavior: 'smooth' });
     }
+  };
+
+  const handleHomeClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     setMobileMenuOpen(false);
+    if (location.pathname === '/') {
+      e.preventDefault();
+      if (window.location.hash) {
+        window.history.pushState(null, '', '/');
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setActiveSection('home');
+    }
   };
 
   // Manage focus when mobile menu opens/closes
@@ -57,34 +68,6 @@ export default function RootLayout() {
       mobileMenuToggleRef.current?.focus();
     }
   }, [mobileMenuOpen]);
-
-  const scrollToHashTarget = useCallback(() => {
-    const id = decodeURIComponent(window.location.hash.slice(1));
-    const target = id ? document.getElementById(id) : null;
-    if (!target) return undefined;
-
-    const alignToTarget = () => {
-      const scrollPaddingTop = parseFloat(
-        window.getComputedStyle(document.documentElement).scrollPaddingTop
-      ) || 0;
-      const top = target.getBoundingClientRect().top + window.scrollY - scrollPaddingTop;
-      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
-    };
-
-    alignToTarget();
-
-    const startedAt = performance.now();
-    let rafId = 0;
-    const keepAlignedWhileLazySectionsMount = () => {
-      alignToTarget();
-      if (performance.now() - startedAt < 2500) {
-        rafId = window.requestAnimationFrame(keepAlignedWhileLazySectionsMount);
-      }
-    };
-
-    rafId = window.requestAnimationFrame(keepAlignedWhileLazySectionsMount);
-    return () => window.cancelAnimationFrame(rafId);
-  }, []);
 
   // Ctrl + K Spotlight listener
   useEffect(() => {
@@ -212,21 +195,38 @@ export default function RootLayout() {
     }
   }, [mobileMenuOpen]);
 
+  // Scroll to hash target on initial load or route/hash changes
   useEffect(() => {
-    let cancelScrollStabilizer: (() => void) | undefined;
-    const handleHashChange = () => {
-      cancelScrollStabilizer?.();
-      cancelScrollStabilizer = scrollToHashTarget();
-    };
+    if (location.pathname !== '/') return;
+    const hash = location.hash || (typeof window !== 'undefined' ? window.location.hash : '');
+    const cleanId = hash.replace(/^#/, '');
+    if (!cleanId) return;
 
-    window.addEventListener('hashchange', handleHashChange);
-    if (window.location.hash) handleHashChange();
-
+    const cancel = scrollToSection(cleanId, { behavior: 'smooth' });
     return () => {
-      cancelScrollStabilizer?.();
-      window.removeEventListener('hashchange', handleHashChange);
+      cancel?.();
     };
-  }, [scrollToHashTarget]);
+  }, [location.pathname, location.hash]);
+
+  // Handle browser back/forward history navigation and direct hash changes
+  useEffect(() => {
+    const handleHashOrPopState = () => {
+      if (location.pathname !== '/') return;
+      const cleanId = window.location.hash.replace(/^#/, '');
+      if (cleanId) {
+        scrollToSection(cleanId, { behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    };
+
+    window.addEventListener('popstate', handleHashOrPopState);
+    window.addEventListener('hashchange', handleHashOrPopState);
+    return () => {
+      window.removeEventListener('popstate', handleHashOrPopState);
+      window.removeEventListener('hashchange', handleHashOrPopState);
+    };
+  }, [location.pathname]);
 
   return (
     <ClickSpark sparkColor='#FFFFFF' sparkSize={8} sparkRadius={14} sparkCount={8} duration={350}>
@@ -265,7 +265,7 @@ export default function RootLayout() {
           <nav className="fixed top-4 md:top-6 left-0 right-0 z-[120] px-4 md:px-6" aria-label="Main navigation">
             <div className="max-w-screen-xl mx-auto flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <Link to="/" className="w-10 h-10 liquid-glass-strong rounded-full flex items-center justify-center border border-white/20" aria-label="Sahaya Savari F — Go to home">
+                <Link to="/" onClick={handleHomeClick} className="w-10 h-10 liquid-glass-strong rounded-full flex items-center justify-center border border-white/20" aria-label="Sahaya Savari F — Go to home">
                   <span className="font-heading text-lg italic" aria-hidden="true">SF</span>
                 </Link>
                 <span className="font-body text-xs font-medium tracking-widest hidden lg:flex items-center gap-2">
@@ -283,7 +283,7 @@ export default function RootLayout() {
                 </button>
               </div>
               <div className="hidden md:flex liquid-glass px-4 lg:px-6 py-2.5 rounded-full items-center gap-3 lg:gap-8 backdrop-blur-md">
-                <Link to="/" className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'home' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Home</Link>
+                <Link to="/" onClick={handleHomeClick} className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'home' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Home</Link>
                 <a href="/#about" onClick={(e) => handleNavClick(e, 'about')} className={`text-sm font-body font-medium transition-colors ${location.pathname === '/' && activeSection === 'about' ? 'text-white' : 'text-white/50 hover:text-white'}`}>About</a>
                 <Link to="/resume" className={`text-sm font-body font-medium transition-colors ${location.pathname === '/resume' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Resume</Link>
                 <Link to="/blog" className={`text-sm font-body font-medium transition-colors ${location.pathname === '/blog' ? 'text-white' : 'text-white/50 hover:text-white'}`}>Blog</Link>
@@ -344,7 +344,7 @@ export default function RootLayout() {
               onKeyDown={handleMobileMenuKeyDown}
             >
               <nav className="flex flex-col items-center gap-6 my-auto" onClick={e => e.stopPropagation()} aria-label="Mobile navigation">
-                <Link to="/" onClick={() => setMobileMenuOpen(false)} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Home</Link>
+                <Link to="/" onClick={handleHomeClick} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Home</Link>
                 <a href="/#about" onClick={(e) => handleNavClick(e, 'about')} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">About</a>
                 <Link to="/resume" onClick={() => setMobileMenuOpen(false)} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Resume</Link>
                 <Link to="/blog" onClick={() => setMobileMenuOpen(false)} className="text-3xl sm:text-4xl font-heading italic text-white/70 hover:text-white transition-colors min-h-[48px] flex items-center">Blog</Link>

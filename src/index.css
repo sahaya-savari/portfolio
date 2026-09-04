@@ -34,6 +34,9 @@
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
   }
+  #home, #about, #what-i-do, #skills, #projects, #blog, #open-source, #career-goals, #certifications, #contact {
+    scroll-margin-top: 80px;
+  }
   body {
     @apply bg-black text-foreground antialiased selection:bg-white selection:text-black;
   }
