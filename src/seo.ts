@@ -2,7 +2,7 @@ export const SITE_URL = 'https://sahayasavari.dev';
 export const SITE_NAME = 'Sahaya Savari';
 export const DEFAULT_TITLE = 'Sahaya Savari F | AI Engineer & M.Sc. AI Student';
 export const DEFAULT_DESCRIPTION =
-  'Portfolio of Sahaya Savari F, an M.Sc. Artificial Intelligence student, AI Engineer, and Full Stack Developer building Machine Learning solutions, Python APIs, and React web applications.';
+  'Portfolio of Sahaya Savari F, an M.Sc. Artificial Intelligence student, AI Engineer, and Full Stack Developer building ML solutions and modern web applications.';
 export const DEFAULT_IMAGE = `${SITE_URL}/og-image.jpg`;
 
 export const personEntity = {

@@ -66,3 +66,12 @@
 .text-rotate-space {
   white-space: pre;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .text-rotate-enter .text-rotate-element,
+  .text-rotate-exit .text-rotate-element {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

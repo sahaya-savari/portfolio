@@ -98,9 +98,11 @@ const RotatingText = forwardRef<any, RotatingTextProps>((props, ref) => {
     return () => observer.disconnect();
   }, []);
 
-  // INP-2 Fix: Only advance text when element is in view
+  // INP-2 Fix: Only advance text when element is in view and user does not prefer reduced motion
   useEffect(() => {
     if (!auto) return;
+    const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
     const intervalId = setInterval(() => {
       if (isInViewRef.current) next();
     }, rotationInterval);
@@ -118,7 +120,7 @@ const RotatingText = forwardRef<any, RotatingTextProps>((props, ref) => {
         className={cn('text-rotate', animating ? 'text-rotate-exit' : 'text-rotate-enter')}
         aria-hidden="true"
       >
-        {words.map((word, wordIndex) => (
+        {words.map((word: string, wordIndex: number) => (
           <span key={wordIndex} className={cn('text-rotate-word', splitLevelClassName)}>
             {splitIntoCharacters(word).map((char: any, charIndex: number) => (
               <span
