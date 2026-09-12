@@ -10,6 +10,7 @@ export const personEntity = {
   '@id': `${SITE_URL}/#person`,
   name: 'Sahaya Savari F',
   alternateName: 'Sahaya Savari',
+  image: `${SITE_URL}/profile.jpg`,
   url: SITE_URL,
   jobTitle: 'AI/ML & Full Stack Developer',
   description:
