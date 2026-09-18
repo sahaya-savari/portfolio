@@ -11,6 +11,8 @@ interface HeroSectionProps {
 // Mux poster — same image already preloaded in index.html
 const HERO_POSTER = 'https://image.mux.com/9JXDljEVWYwWu01PUkAemafDugK89o01BR6zqJ3aS9u00A/thumbnail.webp?time=0&width=400';
 
+const RESUME_URL = `/resume.pdf?v=${typeof __RESUME_HASH__ !== 'undefined' ? __RESUME_HASH__ : Date.now()}`;
+
 const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
@@ -196,7 +198,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
               <div className="flex flex-col justify-center gap-4 bg-white/[0.01] border-t md:border-t-0 md:border-l border-white/[0.06] pt-6 md:pt-0 md:pl-8">
                 {/* 1-Click Resume Download */}
                 <a
-                  href="/resume.pdf?v=2"
+                  href={RESUME_URL}
                   download="Sahaya_Savari_Resume.pdf"
                   className="w-full text-center text-xs font-body font-semibold px-4 py-3.5 rounded-full bg-white text-black hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer"
                   aria-label="Download PDF Resume"
