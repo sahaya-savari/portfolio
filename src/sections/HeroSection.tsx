@@ -8,8 +8,8 @@ interface HeroSectionProps {
   setShowResume: (show: boolean) => void;
 }
 
-// Mux poster — same image already preloaded in index.html
-const HERO_POSTER = 'https://image.mux.com/9JXDljEVWYwWu01PUkAemafDugK89o01BR6zqJ3aS9u00A/thumbnail.webp?time=0&width=400';
+// Mux poster — high quality WebP ambient visual (7.2 KB)
+const HERO_POSTER = 'https://image.mux.com/9JXDljEVWYwWu01PUkAemafDugK89o01BR6zqJ3aS9u00A/thumbnail.webp?time=0&width=960';
 
 const RESUME_URL = `/resume.pdf?v=${typeof __RESUME_HASH__ !== 'undefined' ? __RESUME_HASH__ : Date.now()}`;
 
@@ -19,15 +19,13 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const isCompactViewport = window.matchMedia('(max-width: 767px)').matches;
-    const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
     const connection = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
     const constrainedConnection = connection?.saveData || /2g/.test(connection?.effectiveType || '');
 
-    if (prefersReducedMotion || constrainedConnection || isCompactViewport || isCoarsePointer) return;
+    if (prefersReducedMotion || constrainedConnection) return;
 
     const loadHeroVideo = () => setShouldLoadVideo(true);
-    const timer = window.setTimeout(loadHeroVideo, 1800);
+    const timer = window.setTimeout(loadHeroVideo, 1500);
     window.addEventListener('load', loadHeroVideo, { once: true });
 
     return () => {
@@ -38,23 +36,42 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
 
   return (
     <section id="home" aria-label="Introduction" className="relative min-h-[100dvh] flex flex-col px-6 overflow-hidden bg-transparent">
-      {/* Background ambient video on larger screens (deferred, non-blocking) */}
-      <div className="hidden md:block absolute top-[15%] left-0 w-full z-0 opacity-40 pointer-events-none" aria-hidden="true">
-        <div className="relative w-full">
-          <video
-            src={shouldLoadVideo ? 'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260307_083826_e938b29f-a43a-41ec-a153-3d4730578ab8.mp4' : undefined}
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="none"
-            poster={shouldLoadVideo ? HERO_POSTER : undefined}
-            width={1920}
-            height={1080}
-            onCanPlay={() => setIsVideoLoaded(true)}
-            className={`relative w-full h-auto object-contain transition-opacity duration-1000 ease-in-out ${isVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
+      {/* Background ambient visual on all screens (responsive image always present + deferred video) */}
+      <div className="absolute top-[8%] sm:top-[12%] md:top-[15%] left-0 w-full z-0 pointer-events-none overflow-hidden" aria-hidden="true">
+        <div className="relative w-full flex items-center justify-center min-h-[340px] sm:min-h-[460px] md:min-h-0">
+          {/* Static ambient poster image - visible immediately on all viewports including mobile */}
+          <img
+            src={HERO_POSTER}
+            alt=""
+            width={960}
+            height={540}
+            fetchPriority="low"
+            decoding="async"
+            className={`w-full h-auto min-h-[340px] sm:min-h-[460px] md:min-h-0 object-cover md:object-contain transition-opacity duration-1000 ${
+              isVideoLoaded ? 'opacity-0 md:opacity-0' : 'opacity-40'
+            }`}
             aria-hidden="true"
           />
+
+          {/* Deferred background video for capable screens */}
+          {shouldLoadVideo && (
+            <video
+              src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260307_083826_e938b29f-a43a-41ec-a153-3d4730578ab8.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="none"
+              poster={HERO_POSTER}
+              width={1920}
+              height={1080}
+              onCanPlay={() => setIsVideoLoaded(true)}
+              className={`absolute inset-0 w-full h-full object-cover md:object-contain transition-opacity duration-1000 ease-in-out ${
+                isVideoLoaded ? 'opacity-40' : 'opacity-0'
+              }`}
+              aria-hidden="true"
+            />
+          )}
         </div>
       </div>
       <div className="absolute inset-0 bg-black/10 z-0 pointer-events-none" aria-hidden="true" />
@@ -77,15 +94,19 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
               <div className="relative order-1 md:order-2 shrink-0 group animate-portrait-float">
                 {/* Multi-layered Atmospheric Glow Behind Portrait */}
                 <div 
-                  className="absolute inset-0 -m-8 sm:-m-10 md:-m-12 lg:-m-16 rounded-full bg-radial from-white/[0.14] via-indigo-500/[0.06] to-transparent blur-3xl pointer-events-none" 
+                  className="absolute inset-0 -m-6 sm:-m-10 md:-m-14 rounded-full bg-radial from-white/[0.18] via-indigo-500/[0.12] to-transparent blur-2xl md:blur-3xl pointer-events-none" 
+                  aria-hidden="true" 
+                />
+                <div 
+                  className="absolute inset-0 -m-3 sm:-m-6 rounded-full bg-gradient-to-tr from-purple-500/20 via-indigo-500/10 to-transparent blur-xl pointer-events-none" 
                   aria-hidden="true" 
                 />
                 
                 {/* Lens / Glass Halo subtle ring */}
-                <div className="relative w-36 h-36 min-[390px]:w-40 min-[390px]:h-40 sm:w-44 sm:h-44 md:w-48 md:h-48 lg:w-56 lg:h-56 xl:w-64 xl:h-64 rounded-full p-[1.5px] bg-gradient-to-b from-white/30 via-white/10 to-transparent shadow-[0_15px_50px_rgba(0,0,0,0.8)]">
+                <div className="relative w-36 h-36 min-[390px]:w-40 min-[390px]:h-40 sm:w-44 sm:h-44 md:w-48 md:h-48 lg:w-56 lg:h-56 xl:w-64 xl:h-64 rounded-full p-[1.5px] bg-gradient-to-b from-white/40 via-white/15 to-transparent shadow-[0_15px_50px_rgba(0,0,0,0.8)]">
                   <div className="w-full h-full rounded-full overflow-hidden bg-black/60 backdrop-blur-sm relative">
                     <picture>
-                      <source type="image/webp" media="(max-width: 640px)" srcSet="/profile-sm.webp" width={240} height={240} />
+                      <source type="image/webp" media="(max-width: 640px)" srcSet="/profile.webp 400w, /profile-sm.webp 240w" sizes="(max-width: 640px) 160px, 256px" />
                       <source type="image/webp" srcSet="/profile.webp" width={400} height={400} />
                       <img
                         src="/profile.jpg"
@@ -94,10 +115,6 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
                         height={400}
                         fetchPriority="high"
                         className="w-full h-full object-cover object-top scale-105 transition-transform duration-700 group-hover:scale-110"
-                        style={{
-                          maskImage: 'radial-gradient(ellipse at 50% 45%, black 64%, rgba(0,0,0,0.85) 78%, transparent 100%)',
-                          WebkitMaskImage: 'radial-gradient(ellipse at 50% 45%, black 64%, rgba(0,0,0,0.85) 78%, transparent 100%)',
-                        }}
                       />
                     </picture>
                   </div>
