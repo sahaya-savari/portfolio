@@ -310,7 +310,7 @@ export default function RootLayout() {
                   to="/"
                   onClick={handleHomeClick}
                   className="w-10 h-10 liquid-glass-strong rounded-full flex items-center justify-center border border-white/20"
-                  aria-label="SF — Sahaya Savari F Home"
+                  aria-label="SF - Sahaya Savari F Home"
                 >
                   <span className="font-heading text-lg font-bold" aria-hidden="true">
                     SF
@@ -337,14 +337,7 @@ export default function RootLayout() {
                   </kbd>
                 </button>
               </div>
-              <div className="hidden md:flex liquid-glass px-3.5 md:px-4 lg:px-5 py-2 rounded-full items-center gap-2 md:gap-2.5 lg:gap-3.5 xl:gap-5 2xl:gap-6 backdrop-blur-md shrink-0">
-                <Link
-                  to="/"
-                  onClick={handleHomeClick}
-                  className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap ${location.pathname === "/" && activeSection === "home" ? "text-white" : "text-white/70 hover:text-white"}`}
-                >
-                  Home
-                </Link>
+              <div className="hidden md:flex liquid-glass px-5 lg:px-6 py-2 rounded-full items-center gap-4 lg:gap-6 backdrop-blur-md shrink-0">
                 <Link
                   to="/about"
                   className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap ${location.pathname === "/about" || (location.pathname === "/" && activeSection === "about") ? "text-white" : "text-white/70 hover:text-white"}`}
@@ -358,24 +351,6 @@ export default function RootLayout() {
                   Experience
                 </Link>
                 <Link
-                  to="/resume"
-                  className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap ${location.pathname === "/resume" ? "text-white" : "text-white/70 hover:text-white"}`}
-                >
-                  Resume
-                </Link>
-                <Link
-                  to="/blog"
-                  className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap ${location.pathname === "/blog" ? "text-white" : "text-white/70 hover:text-white"}`}
-                >
-                  Blog
-                </Link>
-                <Link
-                  to="/skills"
-                  className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap ${location.pathname === "/skills" || (location.pathname === "/" && activeSection === "skills") ? "text-white" : "text-white/70 hover:text-white"}`}
-                >
-                  Skills
-                </Link>
-                <Link
                   to="/projects"
                   className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap ${location.pathname.startsWith("/projects") ? "text-white" : "text-white/70 hover:text-white"}`}
                 >
@@ -385,13 +360,13 @@ export default function RootLayout() {
                   to="/certifications"
                   className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap ${location.pathname === "/certifications" || (location.pathname === "/" && activeSection === "certifications") ? "text-white" : "text-white/70 hover:text-white"}`}
                 >
-                  Certs
+                  Certifications
                 </Link>
               </div>
               <div className="flex items-center gap-2 sm:gap-3 shrink-0">
                 <a
-                  href={`${appBase}resume.pdf`}
-                  download
+                  href={`${appBase}sahaya_savari_resume.pdf`}
+                  download="sahaya_savari_resume.pdf"
                   className="hidden sm:flex items-center gap-2 px-3 py-2 rounded-full border border-white/15 bg-white/5 hover:bg-white/15 text-white/90 hover:text-white text-xs font-body font-medium transition-all shadow-sm shrink-0"
                   aria-label="Download CV (Resume PDF)"
                 >
@@ -401,7 +376,7 @@ export default function RootLayout() {
                 <Link
                   to="/contact"
                   className="hidden md:flex relative text-xs xl:text-sm font-medium rounded-full h-9 xl:h-10 pl-4 xl:pl-6 pr-11 xl:pr-14 group transition-all duration-500 hover:pl-11 hover:pr-4 xl:hover:pl-14 xl:hover:pr-6 overflow-hidden cursor-pointer bg-white text-black items-center shrink-0"
-                  aria-label="Get in touch — navigate to contact page"
+                  aria-label="Get in touch - navigate to contact page"
                 >
                   <span className="relative z-10 transition-all duration-500">Get In Touch</span>
                   <div
@@ -472,27 +447,6 @@ export default function RootLayout() {
                 Experience
               </Link>
               <Link
-                to="/resume"
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-2xl sm:text-3xl font-heading font-semibold text-white/70 hover:text-white transition-colors min-h-[44px] flex items-center justify-center"
-              >
-                Resume
-              </Link>
-              <Link
-                to="/blog"
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-2xl sm:text-3xl font-heading font-semibold text-white/70 hover:text-white transition-colors min-h-[44px] flex items-center justify-center"
-              >
-                Blog
-              </Link>
-              <Link
-                to="/skills"
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-2xl sm:text-3xl font-heading font-semibold text-white/70 hover:text-white transition-colors min-h-[44px] flex items-center justify-center"
-              >
-                Skills
-              </Link>
-              <Link
                 to="/projects"
                 onClick={() => setMobileMenuOpen(false)}
                 className="text-2xl sm:text-3xl font-heading font-semibold text-white/70 hover:text-white transition-colors min-h-[44px] flex items-center justify-center"
@@ -504,7 +458,7 @@ export default function RootLayout() {
                 onClick={() => setMobileMenuOpen(false)}
                 className="text-2xl sm:text-3xl font-heading font-semibold text-white/70 hover:text-white transition-colors min-h-[44px] flex items-center justify-center"
               >
-                Certs
+                Certifications
               </Link>
               <Link
                 to="/contact"
@@ -514,8 +468,8 @@ export default function RootLayout() {
                 Contact
               </Link>
               <a
-                href={`${appBase}resume.pdf`}
-                download
+                href={`${appBase}sahaya_savari_resume.pdf`}
+                download="sahaya_savari_resume.pdf"
                 onClick={() => setMobileMenuOpen(false)}
                 className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 text-sm font-body font-medium text-white transition-all duration-200 mt-2 min-h-[44px]"
               >

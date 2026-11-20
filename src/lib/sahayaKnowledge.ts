@@ -50,7 +50,7 @@ export function answerQuestion(query: string): string {
     ])
   ) {
     return (
-      `👋 **Hello! I'm Sahaya Savari F's AI Portfolio Assistant.**\n\n` +
+      `**Hello! I'm Sahaya Savari F's AI Portfolio Assistant.**\n\n` +
       `I have verified, real-time knowledge about Sahaya's software engineering background, artificial intelligence research, hackathon championships, and professional credentials.\n\n` +
       `**Here are popular questions you can ask me:**\n` +
       `• **Hackathons**: *"Tell me about NelSync AI and your championship win."*\n` +
@@ -66,7 +66,7 @@ export function answerQuestion(query: string): string {
   if (hasAny(q, ["nelsync", "paddy", "procurement", "aixcelerate"])) {
     const p = PROJECTS.find((proj) => proj.id === "nelsync-ai")!;
     return (
-      `🌾 **NelSync AI — Overall Champion (AIxcelerate 2026 Hackathon)**\n\n` +
+      `**NelSync AI - Overall Champion (AIxcelerate 2026 Hackathon)**\n\n` +
       `NelSync AI won **1st Place Overall Champion out of 66 competing teams** at the Multidisciplinary AI Innovation Hackathon hosted by Dhanalakshmi Srinivasan University.\n\n` +
       `**Problem & Impact:** Direct paddy procurement centers in Tamil Nadu suffer from severe queue bottlenecking and farmer wait times.\n\n` +
       `**4-Stage Architecture:**\n` +
@@ -76,46 +76,46 @@ export function answerQuestion(query: string): string {
       `4. **Monitor**: Live center flow tracking & bottleneck alerts.\n\n` +
       `**Sahaya's Direct Contribution:** Crafted the initial pitch deck, spearheaded empirical research, coordinated multi-discipline team tasks, and led live defense prep during judges' Q&A.\n\n` +
       `**Stack:** Python, Machine Learning, Data Analytics, Logistics Optimization.\n` +
-      `🔗 [View Video Demo](${p.link})`
+      `[View Video Demo](${p.link})`
     );
   }
 
   if (hasAny(q, ["vibecraft", "neuragenzers", "attendance", "free class", "yuva'26", "srm"])) {
     return (
-      `🎯 **VibeCraft 2026 (NeuraGenZers) — Top 5 Finalist (out of 110 Teams, 440 Participants)**\n\n` +
+      `**VibeCraft 2026 (NeuraGenZers) - Top 5 Finalist (out of 110 Teams, 440 Participants)**\n\n` +
       `Built under pressure at SRM IST Trichy during YUVA'26, this solution integrated two full campus utilities into a single production deployment:\n\n` +
-      `• **Round 1 — Student Attendance Predictor & Planner:**\n` +
+      `• **Round 1 - Student Attendance Predictor & Planner:**\n` +
       `  Subject-wise projection models, 75% statutory detention warnings, smart OD duty simulation, and margin-of-error planning across 13 student sections.\n\n` +
-      `• **Round 2 — Free Class Locator & Smart Search Floor Manager:**\n` +
+      `• **Round 2 - Free Class Locator & Smart Search Floor Manager:**\n` +
       `  Floor-wise room vacancy heatmaps, schedule filters, and natural language query parsing backed by the **Google Gemini API**.\n\n` +
       `**Tech Stack:** Next.js 16, React 19, TypeScript 5, Tailwind CSS v4, Recharts 3, Gemini API, Vercel.\n` +
-      `🔗 [Live Application](https://neuragenzers.vercel.app/)`
+      `[Live Application](https://neuragenzers.vercel.app/)`
     );
   }
 
   if (hasAny(q, ["prepmind", "exam", "quiz"])) {
     const p = PROJECTS.find((proj) => proj.id === "prepmind-ai");
     return (
-      `🧠 **PrepMind AI — Adaptive Exam Practice & Learning Platform**\n\n` +
+      `**PrepMind AI - Adaptive Exam Practice & Learning Platform**\n\n` +
       `An interactive preparation suite designed to help students master core computer science and AI subjects.\n\n` +
       `• Real-time question generation and topic-wise mock tests.\n` +
       `• Instant feedback loops with detailed step-by-step explanations.\n` +
       `• Performance diagnostics showing accuracy, speed, and knowledge gaps.\n\n` +
       `**Tech Stack:** React, TypeScript, Tailwind CSS, Local Persistence.\n` +
-      `🔗 [Live Platform](${p?.link || "https://sahayasavari.dev/projects/prepmind-ai"})`
+      `[Live Platform](${p?.link || "https://sahayasavari.dev/projects/prepmind-ai"})`
     );
   }
 
   if (hasAny(q, ["daily spark", "habit"])) {
     const p = PROJECTS.find((proj) => proj.id === "daily-spark");
     return (
-      `⚡ **Daily Spark — Minimalist Offline-First Habit Tracker**\n\n` +
+      `**Daily Spark - Minimalist Offline-First Habit Tracker**\n\n` +
       `Designed around atomic habit psychology to remove friction from daily routine building.\n\n` +
       `• Local-first architecture using IndexedDB for zero-latency, private offline logging.\n` +
       `• Native mobile wrapper compatibility via Capacitor.\n` +
       `• Streak visualization, completion velocity heatmaps, and customizable routine triggers.\n\n` +
       `**Tech Stack:** React, TypeScript, IndexedDB, Tailwind CSS, Capacitor.\n` +
-      `🔗 [Live Platform](${p?.link || "https://sahayasavari.dev/projects/daily-spark"})`
+      `[Live Platform](${p?.link || "https://sahayasavari.dev/projects/daily-spark"})`
     );
   }
 
@@ -127,13 +127,13 @@ export function answerQuestion(query: string): string {
   if (matchedProject) {
     const cs = CASE_STUDIES[matchedProject.id];
     return (
-      `🚀 **${matchedProject.title}** (${matchedProject.tag} · ${matchedProject.status})\n\n` +
+      `**${matchedProject.title}** (${matchedProject.tag} · ${matchedProject.status})\n\n` +
       `${matchedProject.desc}\n\n` +
       `• **Problem:** ${matchedProject.problem}\n` +
       `• **Architecture:** ${cs ? cs.solution : matchedProject.architecture}\n` +
       `• **Tech Stack:** ${matchedProject.techStack?.join(", ") || matchedProject.stack}\n` +
       `• **Key Features:** ${matchedProject.features.join(", ")}\n\n` +
-      `🔗 [Live Link](${matchedProject.link})${matchedProject.github ? ` · [GitHub Repository](${matchedProject.github})` : ""}`
+      `[Live Link](${matchedProject.link})${matchedProject.github ? ` · [GitHub Repository](${matchedProject.github})` : ""}`
     );
   }
 
@@ -154,14 +154,14 @@ export function answerQuestion(query: string): string {
     ])
   ) {
     return (
-      `🏆 **Hackathon & Technical Honors Won by Sahaya Savari F:**\n\n` +
+      `**Hackathon & Technical Honors Won by Sahaya Savari F:**\n\n` +
       HONORS_AND_AWARDS.map(
         (a) =>
-          `• **${a.badge} ${a.title}** — *${a.event}*\n` +
+          `• **${a.badge} ${a.title}** - *${a.event}*\n` +
           `  Organized by **${a.organizer}** (${a.date})\n` +
           `  ${a.desc}`,
       ).join("\n\n") +
-      `\n\n💡 *Ask me specifically about NelSync AI or VibeCraft to see the full architectural breakdown!*`
+      `\n\n*Ask me specifically about NelSync AI or VibeCraft to see the full architectural breakdown!*`
     );
   }
 
@@ -179,15 +179,15 @@ export function answerQuestion(query: string): string {
     ])
   ) {
     return (
-      `💼 **Work & Industry Experience:**\n\n` +
+      `**Work & Industry Experience:**\n\n` +
       EXPERIENCES.map(
         (e) =>
           `• **${e.role}** @ **${e.company}** (${e.period} · ${e.location})\n` +
           `  ${e.highlights.join(" ")}\n` +
           `  *Core Skills:* ${e.skills.join(", ")}`,
       ).join("\n\n") +
-      `\n\n🤝 **Academic Leadership:**\n` +
-      `• **Event In-Charge, AION 2K26 (Treasure Titans)** — Department of Artificial Intelligence, St. Joseph's College (Autonomous), Tiruchirappalli.`
+      `\n\n**Academic Leadership:**\n` +
+      `• **Event In-Charge, AION 2K26 (Treasure Titans)** - Department of Artificial Intelligence, St. Joseph's College (Autonomous), Tiruchirappalli.`
     );
   }
 
@@ -207,7 +207,7 @@ export function answerQuestion(query: string): string {
     ])
   ) {
     return (
-      `🎯 **Why Hire Sahaya Savari F:**\n\n` +
+      `**Why Hire Sahaya Savari F:**\n\n` +
       `1. **Proven Hackathon Champion:** Won 1st Place Overall Champion (66 teams) at AIxcelerate 2026 and Top 5 Finalist (110 teams) at VibeCraft 2026 under intense sprint conditions.\n` +
       `2. **Rigorous Academic Base:** Pursuing M.Sc in Artificial Intelligence at St. Joseph's College (Autonomous), Tiruchirappalli with B.Sc. Data science from Thiagarajar College, Madurai.\n` +
       `3. **Full-Stack & Data Synergy:** Proven proficiency in PostgreSQL, Node.js, and React.js, bridging predictive ML models (Python) to responsive production interfaces.\n` +
@@ -240,7 +240,7 @@ export function answerQuestion(query: string): string {
       EDUCATION_HISTORY.map(
         (ed) =>
           `• **${ed.degree}**\n` +
-          `  ${ed.institution} (${ed.period}) — **${ed.grade}**\n` +
+          `  ${ed.institution} (${ed.period}) - **${ed.grade}**\n` +
           `  *Focus:* ${ed.focus}`,
       ).join("\n\n")
     );
@@ -264,7 +264,7 @@ export function answerQuestion(query: string): string {
       `📜 **Featured Credentials & Professional Certifications:**\n\n` +
       FEATURED_CREDENTIALS.map(
         (c) =>
-          `• **${c.title}** — ${c.issuer}\n` +
+          `• **${c.title}** - ${c.issuer}\n` +
           `  *Issued:* ${c.issueDate || "2026"} ${c.credentialId ? `| *ID:* ${c.credentialId}` : ""}\n` +
           `  ${c.desc}`,
       ).join("\n\n") +
@@ -299,7 +299,7 @@ export function answerQuestion(query: string): string {
     ])
   ) {
     return (
-      `⚡ **Top Skills & Technical Competencies:**\n\n` +
+      `**Top Skills & Technical Competencies:**\n\n` +
       `• **Top Skills (Verified):** ${TOP_SKILLS.join(", ")}.\n` +
       `• **AI & Machine Learning:** Python, Scikit-learn, Regression, Classification, Model Evaluation, Prompt Engineering, Gemini API, Data Wrangling, Pandas, NumPy.\n` +
       `• **Frontend Engineering:** React.js, Next.js 16, TypeScript, Vite, Tailwind CSS v4, Framer Motion, Responsive Layouts, Core Web Vitals optimization.\n` +

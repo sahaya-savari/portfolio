@@ -8,7 +8,7 @@ import {
   ChevronRight,
   ChevronLeft,
   ExternalLink,
-  Sparkles,
+  Award,
   X,
   Maximize2,
   Image as ImageIcon,
@@ -389,7 +389,7 @@ const ExperienceSection = memo(() => {
           </div>
         )}
 
-        {/* Tab 2: Hackathons & Competitions — Matches User Reference Layout */}
+        {/* Tab 2: Hackathons & Competitions - Matches User Reference Layout */}
         {activeTab === "awards" &&
           (() => {
             const award = HONORS_AND_AWARDS[featuredHonorIndex];
@@ -421,10 +421,10 @@ const ExperienceSection = memo(() => {
                   {/* RIGHT: Standalone Dark Glass Detail Card */}
                   <div className="w-full lg:w-1/2 relative rounded-3xl border border-white/10 bg-[#0d1117]/95 backdrop-blur-2xl p-7 sm:p-9 lg:p-10 flex flex-col justify-between shadow-2xl min-h-[460px] lg:min-h-[480px]">
                     <div>
-                      {/* Top Row: Squircle Trophy Icon + Date */}
+                      {/* Top Row: Refined Amber Trophy Icon + Date */}
                       <div className="flex items-center justify-between gap-3 mb-4">
-                        <div className="w-12 h-12 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center shadow-inner">
-                          <Trophy className="w-6 h-6" aria-hidden="true" />
+                        <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-amber-400/15 to-amber-500/5 border border-amber-400/30 text-amber-300 flex items-center justify-center shadow-[0_0_20px_rgba(251,191,36,0.12)]">
+                          <Trophy className="w-5 h-5 text-amber-300" aria-hidden="true" />
                         </div>
 
                         <div className="flex items-center gap-1.5 text-xs sm:text-sm font-mono text-zinc-400">
@@ -438,16 +438,16 @@ const ExperienceSection = memo(() => {
                         {award.title}
                       </h3>
 
-                      {/* Category Pill Badge (Matches reference) */}
+                      {/* Category & Badge Pills */}
                       <div className="flex flex-wrap items-center gap-2.5 mb-5">
-                        <span className="inline-flex items-center px-3.5 py-1 rounded-full text-xs font-mono font-medium bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
+                        <span className="inline-flex items-center px-3.5 py-1 rounded-full text-xs font-mono font-medium bg-white/[0.04] text-zinc-300 border border-white/10">
                           {award.category || "Competition"}
                         </span>
 
                         <span
-                          className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium border ${badgeClass}`}
+                          className={`inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-mono font-medium border ${badgeClass}`}
                         >
-                          <Sparkles className="w-3 h-3 shrink-0" aria-hidden="true" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-current opacity-80" />
                           <span>{award.badge}</span>
                         </span>
 
@@ -558,7 +558,7 @@ const ExperienceSection = memo(() => {
                       >
                         <span className="font-bold">{String(idx + 1).padStart(2, "0")}</span>
                         <span className="truncate max-w-[140px]">
-                          {item.title.split("—")[0].trim()}
+                          {item.title.split(" - ")[0].trim()}
                         </span>
                       </button>
                     ))}
@@ -740,7 +740,7 @@ const ExperienceSection = memo(() => {
                   {selectedAward.projectTitle && (
                     <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 space-y-1.5">
                       <div className="flex items-center gap-2 text-amber-300 text-xs font-mono uppercase tracking-wider">
-                        <Sparkles className="w-3.5 h-3.5" />
+                        <Award className="w-3.5 h-3.5" />
                         <span>Winning Innovation</span>
                       </div>
                       <h4 className="font-heading font-bold text-lg text-white">

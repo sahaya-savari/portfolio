@@ -58,7 +58,7 @@ export default function ResumePage() {
 
           <a
             href={RESUME_FILE_URL}
-            download="Sahaya_Savari_Resume.pdf"
+            download="sahaya_savari_resume.pdf"
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-black text-xs font-body font-medium hover:bg-white/90 transition-colors"
           >
             <Download className="w-3.5 h-3.5" />
@@ -144,7 +144,7 @@ export default function ResumePage() {
             </span>
             <a
               href={RESUME_FILE_URL}
-              download="Sahaya_Savari_Resume.pdf"
+              download="sahaya_savari_resume.pdf"
               className="text-purple-300 hover:text-white underline font-medium"
             >
               Download Official Resume (PDF)
@@ -213,7 +213,7 @@ export default function ResumePage() {
                   <p>Your browser does not embed PDF documents inline.</p>
                   <a
                     href={RESUME_FILE_URL}
-                    download="Sahaya_Savari_Resume.pdf"
+                    download="sahaya_savari_resume.pdf"
                     className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black font-semibold text-xs hover:bg-white/90 transition-all"
                   >
                     <Download className="w-4 h-4" />
@@ -245,7 +245,7 @@ export default function ResumePage() {
                   </a>
                   <a
                     href={RESUME_FILE_URL}
-                    download="Sahaya_Savari_Resume.pdf"
+                    download="sahaya_savari_resume.pdf"
                     className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full border border-white/15 bg-white/5 hover:bg-white/10 text-white font-medium text-xs transition-all"
                   >
                     <Download className="w-4 h-4" />

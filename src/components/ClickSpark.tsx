@@ -3,7 +3,7 @@ import { useRef, useEffect, useCallback, useState } from "react";
 /**
  * CLS-5 Fix:
  * The previous implementation rendered two fundamentally different DOM structures:
- *   - Disabled: <>{children}</> — no wrapper
+ *   - Disabled: <>{children}</> - no wrapper
  *   - Enabled:  <div style="position:relative; width:100%; minHeight:100vh">{children}</div>
  *
  * This caused a page-level layout context switch on mount (after the performance
@@ -155,7 +155,7 @@ const ClickSpark = ({
     return () => window.removeEventListener("click", handleClick);
   }, [draw, isDisabled]);
 
-  // CLS-5 Fix: ALWAYS render children in a fragment — never in a wrapping div.
+  // CLS-5 Fix: ALWAYS render children in a fragment - never in a wrapping div.
   // The canvas overlay is position:fixed so it never affects document flow.
   return (
     <>

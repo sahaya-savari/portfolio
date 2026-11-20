@@ -55,7 +55,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
       "My contribution: built the first pitch deck, drove research behind the final presentation, coordinated the team, and led Q&A prep.",
     ],
     demoUrl: "https://lnkd.in/ghBUvf4P",
-    statusBadge: "🏆 Overall Champion (66 Teams) — AIxcelerate 2026",
+    statusBadge: "Overall Champion (66 Teams) - AIxcelerate 2026",
   },
   "prepmind-ai": {
     id: "prepmind-ai",
@@ -198,7 +198,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
       "Pruning out unstable secondary phase requirements to focus on bulletproof execution of core features earned higher judges' marks than unfinished feature bloat.",
       "My role centered on web development, deployment on Vercel, and crafting the final presentation deck.",
     ],
-    statusBadge: "Top 5 Finalist (110 Teams) — VibeCraft 2026",
+    statusBadge: "Top 5 Finalist (110 Teams) - VibeCraft 2026",
     demoUrl: "https://neuragenzers.vercel.app/",
   },
 };

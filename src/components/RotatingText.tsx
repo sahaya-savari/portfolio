@@ -91,7 +91,7 @@ const RotatingText = forwardRef<any, RotatingTextProps>((props, ref) => {
     reset,
   ]);
 
-  // INP-2 Fix: Observe visibility — pause interval when hero is off-screen
+  // INP-2 Fix: Observe visibility - pause interval when hero is off-screen
   useEffect(() => {
     const el = spanRef.current;
     if (!el) return;

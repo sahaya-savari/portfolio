@@ -56,7 +56,7 @@ export default function ProjectDetails() {
   return (
     <>
       <SEOHead
-        title={project.seoTitle || `${project.title} — ${project.tagline} | Sahaya Savari`}
+        title={project.seoTitle || `${project.title} - ${project.tagline} | Sahaya Savari`}
         description={project.overview}
         url={`${SITE_URL}/projects/${project.id}`}
         schema={combinedSchema}

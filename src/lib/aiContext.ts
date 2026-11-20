@@ -29,12 +29,12 @@ export function getPortfolioSystemPrompt(): string {
   ).join("\n\n");
 
   const awardsSummary = HONORS_AND_AWARDS.map(
-    (a) => `- **${a.badge} ${a.title}** — ${a.event} (${a.organizer}, ${a.date})
+    (a) => `- **${a.badge} ${a.title}** - ${a.event} (${a.organizer}, ${a.date})
   * ${a.desc}`,
   ).join("\n");
 
   const eduSummary = EDUCATION_HISTORY.map(
-    (ed) => `- **${ed.degree}** — ${ed.institution} (${ed.period}) [Grade: ${ed.grade}]
+    (ed) => `- **${ed.degree}** - ${ed.institution} (${ed.period}) [Grade: ${ed.grade}]
   * Focus: ${ed.focus}`,
   ).join("\n");
 

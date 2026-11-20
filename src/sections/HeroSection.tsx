@@ -6,7 +6,7 @@ import FocusText from "../components/FocusText";
 import { RainbowButton } from "../components/magicui/rainbow-button";
 import { Text3DFlip } from "../components/magicui/text-3d-flip";
 
-// Static Badge Card fallback — visually matches Three.js 3D Lanyard badge to prevent layout/visual flash
+// Static Badge Card fallback - visually matches Three.js 3D Lanyard badge to prevent layout/visual flash
 const StaticBadgeCard = () => (
   <div className="relative w-full h-full flex flex-col items-center justify-start pointer-events-none select-none animate-portrait-float">
     {/* Hanging Lanyard Strap & Clip extending gracefully */}
@@ -35,9 +35,9 @@ const StaticBadgeCard = () => (
 // Magic UI Text 3D Flip heading with Plus Jakarta Sans & reduced semibold weight
 const HeroHeadingName = () => (
   <Text3DFlip
-    className="text-[clamp(2.75rem,7.5vw,6.5rem)] font-heading font-semibold tracking-tight text-white inline-flex flex-wrap justify-center md:justify-start leading-[0.95] drop-shadow-[0_2px_24px_rgba(255,255,255,0.22)]"
-    textClassName="text-white"
-    flipTextClassName="text-white/85"
+    className="text-[clamp(1.85rem,7.2vw,6.5rem)] font-heading font-semibold tracking-tight text-white inline-flex flex-nowrap whitespace-nowrap justify-center md:justify-start leading-[0.95] drop-shadow-[0_2px_24px_rgba(255,255,255,0.22)]"
+    textClassName="text-white whitespace-nowrap"
+    flipTextClassName="text-white/85 whitespace-nowrap"
     staggerDuration={0.035}
     rotateDirection="top"
   >
@@ -49,7 +49,7 @@ interface HeroSectionProps {
   setShowResume: (show: boolean) => void;
 }
 
-const RESUME_URL = `${import.meta.env.BASE_URL}resume.pdf?v=${typeof __RESUME_HASH__ !== "undefined" ? __RESUME_HASH__ : Date.now()}`;
+const RESUME_URL = `${import.meta.env.BASE_URL}sahaya_savari_resume.pdf?v=${typeof __RESUME_HASH__ !== "undefined" ? __RESUME_HASH__ : Date.now()}`;
 // Ambient hero background visual assets
 const HERO_POSTER = `${import.meta.env.BASE_URL}hero-ambient-poster.webp`;
 const HERO_VIDEO = `${import.meta.env.BASE_URL}hero-ambient.mp4`;
@@ -385,7 +385,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
                 {/* 1-Click Resume Download */}
                 <a
                   href={RESUME_URL}
-                  download="Sahaya_Savari_Resume.pdf"
+                  download="sahaya_savari_resume.pdf"
                   className="w-full text-center text-xs font-body font-semibold px-4 py-3.5 rounded-full bg-white text-black hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer"
                   aria-label="Download PDF Resume"
                 >
@@ -396,7 +396,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
                 <a
                   href="#contact"
                   className="w-full text-center text-xs font-body font-medium px-4 py-3.5 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 text-white/90 hover:text-white transition-all flex items-center justify-center gap-2 cursor-pointer"
-                  aria-label="Get In Touch — Contact section"
+                  aria-label="Get In Touch - Contact section"
                 >
                   Get In Touch
                 </a>

@@ -19,7 +19,7 @@ const buildKeyframes = (from: any, steps: any[]) => {
  * when the animation started.
  *
  * Fix: Remove the Y-axis translation from the initial/final states entirely.
- * The entrance is now a blur+opacity fade only — visually identical at the
+ * The entrance is now a blur+opacity fade only - visually identical at the
  * perceived "wow" level but without any layout-affecting movement.
  * The parent container uses `overflow:hidden` styling so any residual
  * visual artifact is clipped.
@@ -57,9 +57,9 @@ const BlurText = ({
     return () => observer.disconnect();
   }, [threshold, rootMargin]);
 
-  // CLS-2 Fix: No Y translation — pure opacity+blur fade only.
+  // CLS-2 Fix: No Y translation - pure opacity+blur fade only.
   // Previously: { filter: 'blur(10px)', opacity: 0, y: -50 } caused in-flow reflow.
-  // Now: { filter: 'blur(10px)', opacity: 0 } — no layout-affecting properties change.
+  // Now: { filter: 'blur(10px)', opacity: 0 } - no layout-affecting properties change.
   const defaultFrom = useMemo(() => ({ filter: "blur(10px)", opacity: 0 }), []);
 
   const defaultTo = useMemo(

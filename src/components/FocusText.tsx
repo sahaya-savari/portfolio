@@ -13,7 +13,7 @@ interface FocusTextProps {
  * The original component measured DOM offset positions in a `setTimeout(50ms)` after
  * mount, then animated the track to the measured position. During that 50ms window,
  * the track was at position `xOffset=0` (wrong position), and the 50ms timer then
- * fired and shifted the track — causing a visible layout shift.
+ * fired and shifted the track - causing a visible layout shift.
  *
  * Fix: The outer container has a FIXED height (`h-[100px] md:h-[140px]`) which is
  * preserved. The track starts at a reasonable default offset (-100) to avoid the
@@ -46,7 +46,7 @@ function FocusText({ className = "" }: FocusTextProps) {
   }, [activeIndex]);
 
   useEffect(() => {
-    // Initial measure — use rAF to ensure layout is complete
+    // Initial measure - use rAF to ensure layout is complete
     updatePosition();
 
     let debounceTimer: ReturnType<typeof setTimeout>;

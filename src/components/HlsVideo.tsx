@@ -4,18 +4,18 @@ import React, { useEffect, useRef, useState } from "react";
  * INP-6 Fix: Cache the hls.js module at module level.
  * Previously, each HlsVideo mount did a fresh dynamic import('hls.js'), meaning
  * three separate mounts (About, Stats, Contact) each waited for and executed the
- * hls.js module separately — adding ~80-120ms of import overhead each time.
+ * hls.js module separately - adding ~80-120ms of import overhead each time.
  * Now the module is resolved once and reused across all instances.
  *
  * CLS-6 Fix: Added `poster` prop to display a static image while HLS loads,
  * and explicit width/height attributes so the browser can reserve layout space
- * before video metadata arrives — preventing height collapse on load.
+ * before video metadata arrives - preventing height collapse on load.
  *
  * Performance Fix: Lazily initialize HLS and load hls.js only after the video
  * container has intersected with the viewport to defer bundle execution.
  */
 
-// Module-level cache — shared across all HlsVideo instances
+// Module-level cache - shared across all HlsVideo instances
 let hlsModuleCache: Promise<any> | null = null;
 const getHlsModule = () => {
   if (!hlsModuleCache) {

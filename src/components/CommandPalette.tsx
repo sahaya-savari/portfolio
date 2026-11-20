@@ -227,7 +227,7 @@ export default function CommandPalette({ onClose, onOpenResume }: CommandPalette
       aria-modal="true"
       aria-label="Command palette"
     >
-      {/* Overlay — matches portfolio's modal overlay style */}
+      {/* Overlay - matches portfolio's modal overlay style */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

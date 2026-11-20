@@ -221,12 +221,12 @@ const FeaturedCard = ({ p, onClick }: { p: Project; onClick: () => void }) => {
       onFocus={() => trigger("appear")}
       onBlur={() => trigger("disappear")}
       className="project-card-featured group cursor-target"
-      aria-label={`${p.title} — ${p.tag}. Click to view details.`}
+      aria-label={`${p.title} - ${p.tag}. Click to view details.`}
     >
-      {/* Pixel canvas — sits at z-0 behind all content */}
+      {/* Pixel canvas - sits at z-0 behind all content */}
       <canvas ref={canvasRef} className="project-pixel-canvas" aria-hidden="true" />
 
-      {/* All card content — z-10 above canvas */}
+      {/* All card content - z-10 above canvas */}
       <div className="project-card-content flex flex-col h-full">
         {/* Top Header Row: Badges (left) and Action Buttons (right) */}
         <div className="flex items-center justify-between gap-3 mb-5">
@@ -359,12 +359,12 @@ const GridCard = ({ p, onClick }: { p: Project; onClick: () => void }) => {
       onFocus={() => trigger("appear")}
       onBlur={() => trigger("disappear")}
       className="project-card-grid group cursor-target"
-      aria-label={`${p.title} — ${p.tag}. Click to view details.`}
+      aria-label={`${p.title} - ${p.tag}. Click to view details.`}
     >
-      {/* Pixel canvas — sits at z-0 */}
+      {/* Pixel canvas - sits at z-0 */}
       <canvas ref={canvasRef} className="project-pixel-canvas" aria-hidden="true" />
 
-      {/* Card content — z-10 */}
+      {/* Card content - z-10 */}
       <div className="project-card-content flex flex-col h-full">
         {/* Top Header Row: Badges (left) and Action Buttons (right) */}
         <div className="flex items-center justify-between gap-3 mb-5">
@@ -547,7 +547,7 @@ const ProjectsSection = memo(() => {
               <p className="text-white/60 font-body font-light text-base md:text-lg leading-relaxed">
                 Explore my portfolio of software applications, Machine Learning models, and web
                 solutions. Each featured project showcases practical architecture built with Python,
-                React, Next.js, TypeScript, and responsive UI design—focused on real-world utility
+                React, Next.js, TypeScript, and responsive UI design - focused on real-world utility
                 and verified competition results.
               </p>
             </div>

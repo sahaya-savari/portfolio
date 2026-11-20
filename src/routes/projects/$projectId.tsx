@@ -15,7 +15,7 @@ export const Route = createFileRoute("/projects/$projectId")({
       });
     }
     return buildSeoHead({
-      title: project.seoTitle || `${project.title} — ${project.tagline} | Sahaya Savari`,
+      title: project.seoTitle || `${project.title} - ${project.tagline} | Sahaya Savari`,
       description: project.overview,
       url: `${SITE_URL}/projects/${project.id}`,
     });

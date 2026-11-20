@@ -31,7 +31,7 @@ export default function IntersectionLazy({
   const [isStable, setIsStable] = useState(isServer || hasHash);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
-  // Intersection observer — fire early (400px before viewport)
+  // Intersection observer - fire early (400px before viewport)
   // Also listens to 'reveal-lazy-sections' when user triggers anchor navigation
   useEffect(() => {
     if (hasIntersected) return;
@@ -61,7 +61,7 @@ export default function IntersectionLazy({
 
   // Once content is mounted, use ResizeObserver to detect when height has stabilised.
   // After one frame where height is > 0, we lock in the real height then release the
-  // placeholder — preventing any visible jump.
+  // placeholder - preventing any visible jump.
   useEffect(() => {
     if (!hasIntersected || isStable || !wrapperRef.current) return;
 

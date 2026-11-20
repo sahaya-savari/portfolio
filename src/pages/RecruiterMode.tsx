@@ -32,7 +32,7 @@ export default function RecruiterMode() {
 
   const handleCopyAts = () => {
     const atsText = [
-      "# Sahaya Savari F — Student AI/ML Engineer",
+      "# Sahaya Savari F - Student AI/ML Engineer",
       `Email: ${CONTACT_INFO.primaryEmail} | Phone: ${CONTACT_INFO.phone} | Portfolio: ${CONTACT_INFO.website} | GitHub: ${CONTACT_INFO.github} | LinkedIn: ${CONTACT_INFO.linkedin}`,
       "Availability: Summer 2027 | Target Roles: Software Engineering, Backend Development, Applied AI | Location: Madurai, Tamil Nadu, India (Open to Remote / Relocation)",
       "",
@@ -47,11 +47,11 @@ export default function RecruiterMode() {
       `- Languages Spoken: ${LANGUAGES.map((l) => `${l.language} (${l.proficiency})`).join(", ")}`,
       "",
       "## Work Experience",
-      "- Digital Marketing Intern — HodoLabs, Madurai, Tamil Nadu, India (June 2026 – Present)",
+      "- Digital Marketing Intern - HodoLabs, Madurai, Tamil Nadu, India (June 2026 – Present)",
       "  * Conduct in-depth technical SEO audits, site architecture reviews, and PageSpeed optimizations across client web properties.",
       "  * Analyze organic search visibility, crawlability, and conversion metrics to optimize digital acquisition funnels.",
       "  * Manage Google Business Profiles and marketing analytics reporting.",
-      "- Web Development & Software Engineering Trainee — HodoLabs, Madurai, Tamil Nadu, India (May 2026 – June 2026)",
+      "- Web Development & Software Engineering Trainee - HodoLabs, Madurai, Tamil Nadu, India (May 2026 – June 2026)",
       "  * Completed intensive 1-month software engineering and web development training covering modern web architecture.",
       "  * Built responsive full-stack features with React.js, Node.js, PostgreSQL, and REST APIs with Git version control.",
       "",
@@ -70,9 +70,9 @@ export default function RecruiterMode() {
       "- AION 2K26 – Event In-Charge (Treasure Titans) (St. Joseph's College)",
       "",
       "## Education",
-      "- M.Sc. Artificial Intelligence (July 2025 – May 2027) — St. Joseph's College (Autonomous), Tiruchirappalli",
-      "- B.Sc. Data science (August 2022 – May 2025) — Thiagarajar College, Madurai",
-      "- HSC, BIO-MATHS (Maths Physics Chemistry Biology) (June 2020 – July 2022) — St. Mary's Higher Secondary School, Madurai",
+      "- M.Sc. Artificial Intelligence (July 2025 – May 2027) - St. Joseph's College (Autonomous), Tiruchirappalli",
+      "- B.Sc. Data science (August 2022 – May 2025) - Thiagarajar College, Madurai",
+      "- HSC, BIO-MATHS (Maths Physics Chemistry Biology) (June 2020 – July 2022) - St. Mary's Higher Secondary School, Madurai",
     ].join("\n");
 
     navigator.clipboard.writeText(atsText);
@@ -334,7 +334,7 @@ export default function RecruiterMode() {
                   <span className="font-semibold text-white">
                     {award.badge} {award.title}
                   </span>{" "}
-                  — {award.event} ({award.organizer})
+                  - {award.event} ({award.organizer})
                 </div>
                 <span className="text-xs text-white/50">{award.date}</span>
               </div>

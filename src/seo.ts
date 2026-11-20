@@ -17,7 +17,7 @@ export const personEntity = {
     "M.Sc. AI student building and shipping web apps with React, TypeScript, Next.js and Python. Seeking Summer 2027 internships in software engineering, backend, and applied AI.",
   email: "contact@sahayasavari.dev",
   telephone: "+91-6385648514",
-  // Current student affiliation — not alumniOf as degree is ongoing
+  // Current student affiliation - not alumniOf as degree is ongoing
   affiliation: {
     "@type": "EducationalOrganization",
     name: "St. Joseph's College (Autonomous), Tiruchirappalli",

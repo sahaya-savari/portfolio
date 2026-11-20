@@ -176,7 +176,7 @@ const ResumeViewer: React.FC<ResumeViewerProps> = ({
         <div className="flex items-center gap-4">
           <a
             href={pdfUrl}
-            download
+            download="sahaya_savari_resume.pdf"
             className="w-10 h-10 liquid-glass rounded-full flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-colors"
             aria-label="Download resume as PDF"
           >

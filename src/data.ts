@@ -1,4 +1,4 @@
-// Pure data module — no React or component dependencies.
+// Pure data module - no React or component dependencies.
 // Icon identifiers are resolved at render time in CertificationsSection.
 
 export const BLOG_URL = "https://blog.sahayasavari.dev";
@@ -31,7 +31,7 @@ export const ARTICLES: Article[] = [
       "Strict aspect-ratio sizing and layout reserve blocks drop Cumulative Layout Shift (CLS) to an absolute 0.00.",
       "Interlinked schema graphs (@graph with Person, WebSite, and TechArticle) maximize search engine entity discovery.",
     ],
-    content: `During my tenure as a Digital Marketing Intern at HodoLabs, the single most common culprit behind poor Google PageSpeed scores was not server latency—it was unmeasured client-side layout thrashing and deferred media rendering.
+    content: `During my tenure as a Digital Marketing Intern at HodoLabs, the single most common culprit behind poor Google PageSpeed scores was not server latency - it was unmeasured client-side layout thrashing and deferred media rendering.
 
 Key optimizations implemented across audit projects:
 
@@ -199,7 +199,7 @@ export const PROJECTS: Project[] = [
     results:
       "Achieved Top 5 Finalist standing out of 110 participating teams (440 participants) at VibeCraft 2026 and shipped a responsive, live deployment on Vercel.",
     lessonsLearned:
-      "Disciplined scope management—focusing on delivering a rock-solid Round 1 and Round 2 Phase 1 rather than overextending into unstable Phase 2 features—enabled shipping a complete, working product under competition time limits.",
+      "Disciplined scope management - focusing on delivering a rock-solid Round 1 and Round 2 Phase 1 rather than overextending into unstable Phase 2 features - enabled shipping a complete, working product under competition time limits.",
     futureImprovements:
       "Incorporate automated timetable synchronization with the university portal.",
     theme: {
@@ -330,7 +330,7 @@ export const PROJECTS: Project[] = [
     problem:
       "Standard portfolios fail to communicate the technical depth and design sensibility of a modern AI Engineer, Python Developer, and Full Stack Developer.",
     architecture:
-      "Single Page Application built with React, Vite, and Tailwind CSS. Framer Motion drives all transitions. No traditional router — all sections are in-page with lazy intersection loading to preserve 'liquid' scroll state.",
+      "Single Page Application built with React, Vite, and Tailwind CSS. Framer Motion drives all transitions. No traditional router - all sections are in-page with lazy intersection loading to preserve 'liquid' scroll state.",
     techStack: ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vite"],
     challenges:
       "Achieving 60fps glassmorphism and spring animations without causing layout thrashing on mobile devices.",
@@ -564,16 +564,16 @@ export interface HonorAward {
 
 export const HONORS_AND_AWARDS: HonorAward[] = [
   {
-    title: "Overall Champion — AIxcelerate 2026 Hackathon",
+    title: "Overall Champion - AIxcelerate 2026 Hackathon",
     event: "AIxcelerate 2026 (Multidisciplinary AI Innovation Hackathon)",
     organizer: "Dhanalakshmi Srinivasan University, Tiruchirappalli (with DefineInfoTech)",
     date: "September 2026",
-    badge: "🥇 Overall Champion",
+    badge: "Overall Champion",
     category: "Competition",
     badgeVariant: "gold",
-    desc: "As developer, team leader and sole presenter of Team NelSync AI across both rounds, led the build and pitch of NelSync AI — an AI intelligence platform optimizing Tamil Nadu's paddy procurement ecosystem (predict → optimize → schedule → monitor). The team won the Overall Champion title at AIxcelerate 2026, a multidisciplinary AI hackathon by DefineInfoTech with 66 competing teams, securing a ₹15,000 cash prize, champion trophy, and merit certificates.",
+    desc: "As developer, team leader and sole presenter of Team NelSync AI across both rounds, led the build and pitch of NelSync AI - an AI intelligence platform optimizing Tamil Nadu's paddy procurement ecosystem (predict → optimize → schedule → monitor). The team won the Overall Champion title at AIxcelerate 2026, a multidisciplinary AI hackathon by DefineInfoTech with 66 competing teams, securing a ₹15,000 cash prize, champion trophy, and merit certificates.",
     summary:
-      "As developer, team leader and sole presenter of Team NelSync AI across both rounds, led the build and pitch of NelSync AI — an AI intelligence platform optimizing Tamil Nadu's paddy procurement ecosystem (predict → optimize → schedule → monitor). The team won the Overall Champion title at AIxcelerate 2026, a multidisciplinary AI hackathon by DefineInfoTech with 66 competing teams, securing a ₹15,000 cash prize, champion trophy, and merit certificates.",
+      "As developer, team leader and sole presenter of Team NelSync AI across both rounds, led the build and pitch of NelSync AI - an AI intelligence platform optimizing Tamil Nadu's paddy procurement ecosystem (predict → optimize → schedule → monitor). The team won the Overall Champion title at AIxcelerate 2026, a multidisciplinary AI hackathon by DefineInfoTech with 66 competing teams, securing a ₹15,000 cash prize, champion trophy, and merit certificates.",
     linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
     caseStudyUrl: "/projects/nelsync-ai",
     image: "/achievements/aixcelerate-presentation.jpg?v=hd3",
@@ -586,7 +586,7 @@ export const HONORS_AND_AWARDS: HonorAward[] = [
       "Chris Matthew",
     ],
     role: "Team Lead, AI System Architect & Sole Presenter",
-    projectTitle: "NelSync AI — Smart Paddy Procurement Optimization",
+    projectTitle: "NelSync AI - Smart Paddy Procurement Optimization",
     projectDescription:
       "An intelligent, end-to-end agricultural logistics optimization system built for Direct Purchase Centres (DPCs). Features moisture loss risk modeling, predictive truck dispatch scheduling, and real-time farmer queue management to eliminate procurement bottlenecks.",
     highlights: [
@@ -624,11 +624,11 @@ export const HONORS_AND_AWARDS: HonorAward[] = [
     ],
   },
   {
-    title: "Overall Runners & Dual Winner — BOOTFEST-2K26",
+    title: "Overall Runners & Dual Winner - BOOTFEST-2K26",
     event: "BOOTFEST-2K26 (National Intercollegiate Technical Symposium)",
     organizer: "PG Dept. of Computer Science (SF-II), Bishop Heber College (Autonomous)",
     date: "March 12, 2026",
-    badge: "🏆 Overall Runners",
+    badge: "Overall Runners",
     category: "National Symposium",
     badgeVariant: "gold",
     desc: "Led St. Joseph's College contingent to the Overall Runners Trophy. Clinched 1st Prize in Technical Quiz and 2nd Prize in Capture The Flag (CTF) cybersecurity challenge.",
@@ -642,8 +642,8 @@ export const HONORS_AND_AWARDS: HonorAward[] = [
     role: "Technical Quiz Lead & CTF Specialist",
     highlights: [
       "Secured the Prestigious Golden Overall Runners Trophy for St. Joseph's College",
-      "🥇 Winner (1st Prize) — Technical Quiz Competition",
-      "🥈 Runner (2nd Prize) — Capture The Flag (CTF) Cybersecurity Event",
+      "Winner (1st Prize) - Technical Quiz Competition",
+      "Runner (2nd Prize) - Capture The Flag (CTF) Cybersecurity Event",
       "Contributed maximum podium points leading the college contingent",
     ],
     tags: ["Technical Quiz", "Capture The Flag (CTF)", "Cybersecurity", "Algorithms"],
@@ -679,11 +679,11 @@ export const HONORS_AND_AWARDS: HonorAward[] = [
     ],
   },
   {
-    title: "Rank V Finalist — VibeCraft Season '26",
+    title: "Rank V Finalist - VibeCraft Season '26",
     event: "SRM Yuva '26 / VibeCraft Season '26 National Hackathon",
     organizer: "SRM Institute of Science and Technology, Tiruchirappalli",
     date: "March 2026",
-    badge: "🥉 Rank V Finalist",
+    badge: "Rank V Finalist",
     category: "24H Hackathon",
     badgeVariant: "cyan",
     desc: "Top 5 Finalist out of 110 teams (440 participants) with Team NeuraGenZers, developing two combined campus productivity applications for attendance projection and smart room location.",
@@ -722,11 +722,11 @@ export const HONORS_AND_AWARDS: HonorAward[] = [
     ],
   },
   {
-    title: "Academic & Contest Merit Award — Achievers' Day 2026",
+    title: "Academic & Contest Merit Award - Achievers' Day 2026",
     event: "Annual Achievers' Day 2026 Interdepartmental Contest",
     organizer: "St. Joseph's College (Autonomous), Tiruchirappalli",
     date: "March 2026",
-    badge: "🏅 Merit Award",
+    badge: "Merit Award",
     category: "Academic Merit",
     badgeVariant: "purple",
     desc: "Awarded Certificate of Merit for technical design and software presentation among competing postgraduate STEM departments.",
@@ -759,11 +759,11 @@ export const HONORS_AND_AWARDS: HonorAward[] = [
     ],
   },
   {
-    title: "Event In-Charge (Treasure Titans) — AION 2K26",
+    title: "Event In-Charge (Treasure Titans) - AION 2K26",
     event: "AION 2K26 (State-Level Technical Symposium)",
     organizer: "Department of Artificial Intelligence, St. Joseph's College (Autonomous)",
     date: "February 13, 2026",
-    badge: "🎖️ Event In-Charge",
+    badge: "Event In-Charge",
     category: "Symposium Leadership",
     badgeVariant: "cyan",
     desc: "Served as Event In-Charge for 'Treasure Titans' at AION 2K26, a State-Level Technical Symposium conducted by the Department of Artificial Intelligence, St. Joseph's College.",
@@ -833,7 +833,7 @@ export interface StatItem {
 
 export const STATS: StatItem[] = [
   {
-    value: "#1",
+    value: "1st",
     label: "AI Hackathon Champion",
     description: "NelSync AI · AIxcelerate 2026 Grand Champion",
   },

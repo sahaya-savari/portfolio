@@ -27,7 +27,7 @@ const PHASES: TelemetryPhase[] = [
   {
     minPct: 25,
     badge: "HONORS",
-    highlight: "🏆 AIXCELERATE 2026 OVERALL CHAMPION",
+    highlight: "AIXCELERATE 2026 OVERALL CHAMPION",
     subtext: "NelSync AI · Agri-Logistics & Predictive Grading",
   },
   {
@@ -386,7 +386,7 @@ const AstralPreloader = memo(({ onComplete }: AstralPreloaderProps) => {
         <div className="flex flex-wrap items-center justify-center gap-2.5">
           <a
             href={resumeUrl}
-            download="Sahaya_Savari_Resume.pdf"
+            download="sahaya_savari_resume.pdf"
             onClick={finishPreloader}
             className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white text-black font-body text-xs font-semibold hover:scale-105 active:scale-95 transition-all shadow-md cursor-pointer"
             aria-label="Direct 1-Click Resume Download"
