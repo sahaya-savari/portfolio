@@ -39,7 +39,11 @@ export default function RootLayout() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
+    targetId: string,
+  ) => {
+    e.preventDefault();
     const cleanId = targetId.replace(/^#/, "");
     forceUnlockScroll();
     setMobileMenuOpen(false);
@@ -50,15 +54,16 @@ export default function RootLayout() {
     }
 
     if (location.pathname === "/") {
-      e.preventDefault();
-      if (window.location.hash !== `#${cleanId}`) {
-        window.history.pushState(null, "", `#${cleanId}`);
+      if (typeof window !== "undefined" && window.location.hash) {
+        window.history.replaceState(null, "", appBase);
       }
       scrollToSection(cleanId, { behavior: "smooth" });
       setActiveSection(cleanId);
     } else {
-      e.preventDefault();
-      navigate(`/#${cleanId}`);
+      if (typeof window !== "undefined") {
+        sessionStorage.setItem("targetSection", cleanId);
+      }
+      navigate("/");
     }
   };
 
@@ -236,34 +241,48 @@ export default function RootLayout() {
     }
   }, [mobileMenuOpen]);
 
-  // Scroll hash target on initial load or route/hash changes on the homepage
+  // Scroll target on initial load or navigation to homepage, immediately cleaning any # hash from address bar
   useEffect(() => {
     if (location.pathname !== "/") return;
-    const hash = location.hash || (typeof window !== "undefined" ? window.location.hash : "");
-    const cleanId = hash.replace(/^#/, "");
-    if (!cleanId) return;
+    const target =
+      (typeof window !== "undefined" ? sessionStorage.getItem("targetSection") : null) ||
+      (location.hash ? location.hash.replace(/^#/, "") : "") ||
+      (typeof window !== "undefined" && window.location.hash
+        ? window.location.hash.replace(/^#/, "")
+        : "");
 
-    if (cleanId === "resume") {
+    if (!target) return;
+    if (typeof window !== "undefined") {
+      sessionStorage.removeItem("targetSection");
+      if (window.location.hash) {
+        window.history.replaceState(null, "", appBase);
+      }
+    }
+
+    if (target === "resume") {
       navigate("/resume");
       return;
     }
 
-    const cancel = scrollToSection(cleanId, { behavior: "smooth" });
-    setActiveSection(cleanId);
+    const cancel = scrollToSection(target, { behavior: "smooth" });
+    setActiveSection(target);
     return () => {
       cancel?.();
     };
-  }, [location.pathname, location.hash, navigate]);
+  }, [location.pathname, location.hash, navigate, appBase]);
 
-  // Handle browser back/forward history navigation and direct hash changes
+  // Handle browser back/forward history navigation
   useEffect(() => {
     const handleHashOrPopState = () => {
       if (location.pathname !== "/") return;
       const cleanId = window.location.hash.replace(/^#/, "");
       if (cleanId) {
+        window.history.replaceState(null, "", appBase);
         scrollToSection(cleanId, { behavior: "smooth" });
+        setActiveSection(cleanId);
       } else {
         window.scrollTo({ top: 0, behavior: "smooth" });
+        setActiveSection("home");
       }
     };
 
@@ -273,7 +292,7 @@ export default function RootLayout() {
       window.removeEventListener("popstate", handleHashOrPopState);
       window.removeEventListener("hashchange", handleHashOrPopState);
     };
-  }, [location.pathname]);
+  }, [location.pathname, appBase]);
 
   return (
     <ClickSpark sparkColor="#FFFFFF" sparkSize={8} sparkRadius={14} sparkCount={8} duration={350}>
@@ -335,21 +354,21 @@ export default function RootLayout() {
               </div>
               <div className="hidden md:flex liquid-glass px-4 lg:px-6 py-2 rounded-full items-center gap-3.5 lg:gap-5 xl:gap-6 backdrop-blur-md shrink-0">
                 <Link
-                  to="/#about"
+                  to="/"
                   onClick={(e) => handleNavClick(e, "about")}
                   className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap cursor-pointer ${location.pathname === "/" && activeSection === "about" ? "text-white font-semibold" : "text-white/70 hover:text-white"}`}
                 >
                   About
                 </Link>
                 <Link
-                  to="/#experience"
+                  to="/"
                   onClick={(e) => handleNavClick(e, "experience")}
                   className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap cursor-pointer ${location.pathname === "/" && activeSection === "experience" ? "text-white font-semibold" : "text-white/70 hover:text-white"}`}
                 >
                   Experience
                 </Link>
                 <Link
-                  to="/#projects"
+                  to="/"
                   onClick={(e) => handleNavClick(e, "projects")}
                   className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap cursor-pointer ${location.pathname === "/" && activeSection === "projects" ? "text-white font-semibold" : "text-white/70 hover:text-white"}`}
                 >
@@ -362,14 +381,14 @@ export default function RootLayout() {
                   Resume
                 </Link>
                 <Link
-                  to="/#certifications"
+                  to="/"
                   onClick={(e) => handleNavClick(e, "certifications")}
                   className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap cursor-pointer ${location.pathname === "/" && activeSection === "certifications" ? "text-white font-semibold" : "text-white/70 hover:text-white"}`}
                 >
                   Certifications
                 </Link>
                 <Link
-                  to="/#contact"
+                  to="/"
                   onClick={(e) => handleNavClick(e, "contact")}
                   className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap cursor-pointer ${location.pathname === "/" && activeSection === "contact" ? "text-white font-semibold" : "text-white/70 hover:text-white"}`}
                 >
@@ -387,7 +406,7 @@ export default function RootLayout() {
                   <span className="hidden xl:inline">Download CV</span>
                 </a>
                 <Link
-                  to="/#contact"
+                  to="/"
                   onClick={(e) => handleNavClick(e, "contact")}
                   className="hidden md:flex relative text-xs xl:text-sm font-medium rounded-full h-9 xl:h-10 pl-4 xl:pl-6 pr-11 xl:pr-14 group transition-all duration-500 hover:pl-11 hover:pr-4 xl:hover:pl-14 xl:hover:pr-6 overflow-hidden cursor-pointer bg-white text-black items-center shrink-0"
                   aria-label="Get in touch - scroll to contact section"
@@ -447,21 +466,21 @@ export default function RootLayout() {
                 Home
               </Link>
               <Link
-                to="/#about"
+                to="/"
                 onClick={(e) => handleNavClick(e, "about")}
                 className="text-2xl sm:text-3xl font-heading font-semibold text-white/70 hover:text-white transition-colors min-h-[44px] flex items-center justify-center"
               >
                 About
               </Link>
               <Link
-                to="/#experience"
+                to="/"
                 onClick={(e) => handleNavClick(e, "experience")}
                 className="text-2xl sm:text-3xl font-heading font-semibold text-white/70 hover:text-white transition-colors min-h-[44px] flex items-center justify-center"
               >
                 Experience
               </Link>
               <Link
-                to="/#projects"
+                to="/"
                 onClick={(e) => handleNavClick(e, "projects")}
                 className="text-2xl sm:text-3xl font-heading font-semibold text-white/70 hover:text-white transition-colors min-h-[44px] flex items-center justify-center"
               >
@@ -475,14 +494,14 @@ export default function RootLayout() {
                 Resume
               </Link>
               <Link
-                to="/#certifications"
+                to="/"
                 onClick={(e) => handleNavClick(e, "certifications")}
                 className="text-2xl sm:text-3xl font-heading font-semibold text-white/70 hover:text-white transition-colors min-h-[44px] flex items-center justify-center"
               >
                 Certifications
               </Link>
               <Link
-                to="/#contact"
+                to="/"
                 onClick={(e) => handleNavClick(e, "contact")}
                 className="text-2xl sm:text-3xl font-heading font-semibold text-white/70 hover:text-white transition-colors min-h-[44px] flex items-center justify-center"
               >
@@ -530,7 +549,7 @@ export default function RootLayout() {
             <Linkedin size={18} />
           </a>
           <Link
-            to="/#projects"
+            to="/"
             onClick={(e) => handleNavClick(e, "projects")}
             className="w-9 h-9 rounded-full flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 hover:scale-110 transition-all duration-200 cursor-pointer"
             aria-label="Engineering projects and source code"
@@ -539,7 +558,7 @@ export default function RootLayout() {
             <Code2 size={18} />
           </Link>
           <Link
-            to="/#contact"
+            to="/"
             onClick={(e) => handleNavClick(e, "contact")}
             className="w-9 h-9 rounded-full flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 hover:scale-110 transition-all duration-200 cursor-pointer"
             aria-label="Get in touch / Email"

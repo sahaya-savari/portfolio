@@ -650,66 +650,51 @@ const ContactSection = memo(
               aria-label="Footer navigation"
               className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs sm:text-sm font-body text-white/65"
             >
-              <a
-                href="#about"
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection("about", { behavior: "smooth" });
-                }}
+              <button
+                type="button"
+                onClick={() => scrollToSection("about", { behavior: "smooth" })}
                 className="hover:text-white transition-colors cursor-pointer"
               >
                 About
-              </a>
-              <a
-                href="#experience"
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection("experience", { behavior: "smooth" });
-                }}
+              </button>
+              <button
+                type="button"
+                onClick={() => scrollToSection("experience", { behavior: "smooth" })}
                 className="hover:text-white transition-colors cursor-pointer"
               >
                 Experience
-              </a>
-              <a
-                href="#projects"
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection("projects", { behavior: "smooth" });
-                }}
+              </button>
+              <button
+                type="button"
+                onClick={() => scrollToSection("projects", { behavior: "smooth" })}
                 className="hover:text-white transition-colors cursor-pointer"
               >
                 Projects
-              </a>
+              </button>
               <Link to="/resume" className="hover:text-white transition-colors">
                 Resume
               </Link>
-              <a
-                href="#certifications"
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection("certifications", { behavior: "smooth" });
-                }}
+              <button
+                type="button"
+                onClick={() => scrollToSection("certifications", { behavior: "smooth" })}
                 className="hover:text-white transition-colors cursor-pointer"
               >
                 Certifications
-              </a>
-              <a
-                href="#contact"
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection("contact", { behavior: "smooth" });
-                }}
+              </button>
+              <button
+                type="button"
+                onClick={() => scrollToSection("contact", { behavior: "smooth" })}
                 className="hover:text-white transition-colors cursor-pointer"
               >
                 Contact
-              </a>
+              </button>
             </nav>
 
             {/* Copyright & Built With Care */}
             <div className="text-white/40 font-body text-xs sm:text-[13px] tracking-wide">
               © {new Date().getFullYear()} Sahaya Savari F. Made with{" "}
               <span className="text-rose-500" aria-label="love">
-                ❤️
+                🖤
               </span>{" "}
               and{" "}
               <span className="font-mono text-white/70 font-semibold" aria-label="code">

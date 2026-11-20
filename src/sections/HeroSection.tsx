@@ -1,6 +1,7 @@
 import { useEffect, useState, memo, useRef, lazy, Suspense } from "react";
 const HeroBadge = lazy(() => import("../components/reactbits/HeroBadge"));
 import { Play, ArrowUpRight } from "lucide-react";
+import { scrollToSection } from "../utils/navigation";
 import RotatingText from "../components/RotatingText";
 import FocusText from "../components/FocusText";
 import { RainbowButton } from "../components/magicui/rainbow-button";
@@ -393,13 +394,14 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
                 </a>
 
                 {/* Get in Touch CTA */}
-                <a
-                  href="#contact"
+                <button
+                  type="button"
+                  onClick={() => scrollToSection("contact", { behavior: "smooth" })}
                   className="w-full text-center text-xs font-body font-medium px-4 py-3.5 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 text-white/90 hover:text-white transition-all flex items-center justify-center gap-2 cursor-pointer"
                   aria-label="Get In Touch - Contact section"
                 >
                   Get In Touch
-                </a>
+                </button>
 
                 {/* Profiles row */}
                 <div className="flex items-center justify-center gap-6 mt-2">
