@@ -181,6 +181,62 @@ const ContactSection = memo(
       }
       setFormStatus("submitting");
 
+      const emailjsServiceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const emailjsTemplateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const emailjsPublicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+      // 1. Dispatch via EmailJS when credentials are provided
+      if (emailjsServiceId && emailjsTemplateId && emailjsPublicKey) {
+        try {
+          const res = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              service_id: emailjsServiceId,
+              template_id: emailjsTemplateId,
+              user_id: emailjsPublicKey,
+              template_params: {
+                fname: formState.name,
+                name: formState.name,
+                email: formState.email,
+                subject: formState.subject.trim() || `Portfolio Inquiry from ${formState.name}`,
+                message: formState.subject
+                  ? `Subject: ${formState.subject}\n\n${formState.message}`
+                  : formState.message,
+                time: new Date().toLocaleString(),
+              },
+            }),
+          });
+
+          if (res.ok) {
+            setFormStatus("success");
+            setStatusMessage("Message sent successfully! I will reply within 24-48 hours.");
+            setFormState({ name: "", email: "", subject: "", message: "" });
+            setTurnstileToken("");
+            const turnstile = (
+              window as unknown as {
+                turnstile?: { reset: (id?: string) => void };
+              }
+            ).turnstile;
+            if (turnstile && widgetIdRef.current) {
+              try {
+                turnstile.reset(widgetIdRef.current);
+              } catch {
+                // ignore
+              }
+            }
+            return;
+          }
+          const errText = await res.text();
+          console.error("EmailJS dispatch failed:", errText);
+        } catch (err) {
+          console.error("EmailJS network error, attempting fallback:", err);
+        }
+      }
+
+      // 2. Web3Forms fallback or primary
       const accessKey =
         import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "642d50c7-2c43-4e70-a954-a111831c8f9b";
 

@@ -325,7 +325,7 @@ export default function RootLayout() {
                   to="/"
                   onClick={handleHomeClick}
                   className="w-10 h-10 liquid-glass-strong rounded-full flex items-center justify-center border border-white/20"
-                  aria-label="SF - Sahaya Savari F Home"
+                  aria-label="SF -       SAHAYA SAVARI F Home"
                 >
                   <span className="font-heading text-lg font-bold" aria-hidden="true">
                     SF

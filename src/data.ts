@@ -571,9 +571,9 @@ export const HONORS_AND_AWARDS: HonorAward[] = [
     badge: "Overall Champion",
     category: "Competition",
     badgeVariant: "gold",
-    desc: "As developer, team leader and sole presenter of Team NelSync AI across both rounds, led the build and pitch of NelSync AI - an AI intelligence platform optimizing Tamil Nadu's paddy procurement ecosystem (predict → optimize → schedule → monitor). The team won the Overall Champion title at AIxcelerate 2026, a multidisciplinary AI hackathon by DefineInfoTech with 66 competing teams, securing a ₹15,000 cash prize, champion trophy, and merit certificates.",
+    desc: "As developer, team leader and sole presenter of Team NelSync AI across both rounds, led the build and pitch of NelSync AI - an AI intelligence platform optimizing Tamil Nadu's paddy procurement ecosystem (predict → optimize → schedule → monitor). The team won the Overall Champion title at AIxcelerate 2026, a multidisciplinary AI hackathon by DefineInfoTech with 66 competing teams, securing a ₹8,000 cash prize, champion trophy, and merit certificates.",
     summary:
-      "As developer, team leader and sole presenter of Team NelSync AI across both rounds, led the build and pitch of NelSync AI - an AI intelligence platform optimizing Tamil Nadu's paddy procurement ecosystem (predict → optimize → schedule → monitor). The team won the Overall Champion title at AIxcelerate 2026, a multidisciplinary AI hackathon by DefineInfoTech with 66 competing teams, securing a ₹15,000 cash prize, champion trophy, and merit certificates.",
+      "As developer, team leader and sole presenter of Team NelSync AI across both rounds, led the build and pitch of NelSync AI - an AI intelligence platform optimizing Tamil Nadu's paddy procurement ecosystem (predict → optimize → schedule → monitor). The team won the Overall Champion title at AIxcelerate 2026, a multidisciplinary AI hackathon by DefineInfoTech with 66 competing teams, securing a ₹8,000 cash prize, champion trophy, and merit certificates.",
     linkedinUrl: "https://www.linkedin.com/in/sahaya-savari",
     caseStudyUrl: "/projects/nelsync-ai",
     image: "/achievements/aixcelerate-presentation.jpg?v=hd3",
@@ -591,7 +591,7 @@ export const HONORS_AND_AWARDS: HonorAward[] = [
       "An intelligent, end-to-end agricultural logistics optimization system built for Direct Purchase Centres (DPCs). Features moisture loss risk modeling, predictive truck dispatch scheduling, and real-time farmer queue management to eliminate procurement bottlenecks.",
     highlights: [
       "Awarded 1st Place & Overall Champion out of 66 competing engineering teams",
-      "Won ₹15,000 Cash Prize, Golden Trophy, and Certificates of Achievement",
+      "Won ₹8,000 Cash Prize, Golden Trophy, and Certificates of Achievement",
       "Architected NelSync AI with predictive moisture loss & queue optimization models",
       "Sole presenter across all rounds before DefineInfoTech and university leadership",
     ],

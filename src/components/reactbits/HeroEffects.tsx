@@ -74,7 +74,7 @@ export function HeroName() {
       staggerDuration={0.035}
       rotateDirection="top"
     >
-      Sahaya Savari F
+      SAHAYA SAVARI F
     </Text3DFlip>
   );
 }

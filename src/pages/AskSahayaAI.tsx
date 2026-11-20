@@ -133,7 +133,7 @@ export default function AskSahayaAI() {
 
         <header className="mb-6 border-b border-white/10 pb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+            <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white shadow-sm">
               <TerminalIcon className="w-6 h-6" />
             </div>
             <div>
@@ -146,21 +146,24 @@ export default function AskSahayaAI() {
             </div>
           </div>
 
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono self-start sm:self-auto">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-xs font-mono self-start sm:self-auto">
+            <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
             <span>Terminal Active</span>
           </div>
         </header>
 
         {/* Developer CLI Terminal View */}
-        <div className="flex flex-col bg-black/90 border border-emerald-500/30 rounded-2xl overflow-hidden mb-6 h-[560px] max-h-[75dvh] min-h-[360px] font-mono shadow-2xl">
+        <div
+          onClick={() => cliInputRef.current?.focus()}
+          className="flex flex-col bg-black/90 border border-white/15 rounded-2xl overflow-hidden mb-6 h-[560px] max-h-[75dvh] min-h-[360px] font-mono shadow-2xl cursor-text"
+        >
           {/* Terminal Title Bar */}
           <div className="px-4 py-2.5 bg-white/5 border-b border-white/10 flex items-center justify-between text-xs text-white/60">
             <div className="flex items-center gap-2">
               <span className="w-3 h-3 rounded-full bg-rose-500/80 inline-block"></span>
               <span className="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
               <span className="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
-              <span className="ml-2 font-mono text-emerald-400 text-[11px] sm:text-xs">
+              <span className="ml-2 font-mono text-white/70 text-[11px] sm:text-xs">
                 sahaya@portfolio: ~
               </span>
             </div>
@@ -168,14 +171,14 @@ export default function AskSahayaAI() {
           </div>
 
           {/* Terminal Body */}
-          <div className="flex-1 min-h-0 overflow-y-auto p-4 space-y-4 text-xs leading-relaxed text-emerald-300">
+          <div className="flex-1 min-h-0 overflow-y-auto p-4 space-y-4 text-xs leading-relaxed text-white/90">
             {terminalHistory.map((item) => (
               <div key={item.id} className="space-y-1">
                 <div className="flex items-center gap-2 text-white/80">
-                  <span className="text-emerald-400 font-bold">sahaya@portfolio:~$</span>
+                  <span className="text-white font-bold">sahaya@portfolio:~$</span>
                   <span>{item.command}</span>
                 </div>
-                <div className="pl-4 whitespace-pre-wrap text-emerald-200/90 font-mono">
+                <div className="pl-4 whitespace-pre-wrap text-white/70 font-mono">
                   {item.output}
                 </div>
               </div>
@@ -199,7 +202,7 @@ export default function AskSahayaAI() {
                 <button
                   key={cmd}
                   onClick={() => handleCliCommand(cmd)}
-                  className="px-2.5 py-1 rounded-md bg-white/5 hover:bg-emerald-500/20 hover:border-emerald-500/40 border border-white/10 text-[11px] text-emerald-300 transition-colors cursor-pointer"
+                  className="px-2.5 py-1 rounded-md bg-white/5 hover:bg-white/15 hover:border-white/30 border border-white/10 text-[11px] text-white/80 hover:text-white transition-colors cursor-pointer"
                 >
                   {cmd}
                 </button>
@@ -212,14 +215,17 @@ export default function AskSahayaAI() {
               }}
               className="flex items-center gap-2"
             >
-              <span className="text-emerald-400 font-bold text-xs shrink-0">
-                sahaya@portfolio:~$
-              </span>
+              <span className="text-white font-bold text-xs shrink-0">sahaya@portfolio:~$</span>
               <input
                 ref={cliInputRef}
                 type="text"
                 value={cliInput}
                 onChange={(e) => setCliInput(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === " ") {
+                    e.stopPropagation();
+                  }
+                }}
                 placeholder="Type a command (e.g. nelsync, projects, skills)..."
                 className="flex-grow bg-transparent border-none text-xs text-white placeholder-white/30 focus:outline-none"
                 autoFocus
