@@ -184,120 +184,73 @@ const ContactSection = memo(
       }
       setFormStatus("submitting");
 
-      const emailjsServiceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-      const emailjsTemplateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-      const emailjsPublicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || "service_zzbgsqe";
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "JWGNI6cb9noYfzaWt";
 
-      // 1. Dispatch via EmailJS when credentials are provided
-      if (emailjsServiceId && emailjsTemplateId && emailjsPublicKey) {
-        try {
-          const res = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              service_id: emailjsServiceId,
-              template_id: emailjsTemplateId,
-              user_id: emailjsPublicKey,
-              template_params: {
-                fname: formState.name,
-                name: formState.name,
-                email: formState.email,
-                subject: formState.subject.trim() || `Portfolio Inquiry from ${formState.name}`,
-                message: formState.subject
-                  ? `Subject: ${formState.subject}\n\n${formState.message}`
-                  : formState.message,
-                time: new Date().toLocaleString(),
-              },
-            }),
-          });
-
-          if (res.ok) {
-            setFormStatus("success");
-            setStatusMessage("Message sent successfully! I will reply within 24-48 hours.");
-            setFormState({ name: "", email: "", subject: "", message: "" });
-            setTurnstileToken("");
-            const turnstile = (
-              window as unknown as {
-                turnstile?: { reset: (id?: string) => void };
-              }
-            ).turnstile;
-            if (turnstile && widgetIdRef.current) {
-              try {
-                turnstile.reset(widgetIdRef.current);
-              } catch {
-                // ignore
-              }
-            }
-            return;
-          }
-          const errText = await res.text();
-          console.error("EmailJS dispatch failed:", errText);
-        } catch (err) {
-          console.error("EmailJS network error, attempting fallback:", err);
-        }
+      if (!serviceId || !templateId || !publicKey) {
+        setFormStatus("error");
+        setStatusMessage(
+          "EmailJS Template ID is needed. Please open Email Templates -> Settings in your EmailJS dashboard to copy your Template ID.",
+        );
+        return;
       }
 
-      // 2. Web3Forms fallback or primary
-      const accessKey =
-        import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "642d50c7-2c43-4e70-a954-a111831c8f9b";
-
-      if (accessKey) {
-        try {
-          const res = await fetch("https://api.web3forms.com/submit", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-            },
-            body: JSON.stringify({
-              access_key: accessKey,
+      try {
+        const res = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            service_id: serviceId,
+            template_id: templateId,
+            user_id: publicKey,
+            template_params: {
+              from_name: formState.name,
               name: formState.name,
+              fname: formState.name,
+              reply_to: formState.email,
               email: formState.email,
               subject: formState.subject.trim() || `Portfolio Inquiry from ${formState.name}`,
-              message: formState.message,
-              from_name: "Sahaya Savari Portfolio",
-              botcheck: "",
-              "cf-turnstile-response": turnstileToken,
-            }),
-          });
-          const data = await res.json();
-          if (data.success) {
-            setFormStatus("success");
-            setStatusMessage("Message sent successfully! I will reply within 24-48 hours.");
-            setFormState({ name: "", email: "", subject: "", message: "" });
-            setTurnstileToken("");
-            const turnstile = (
-              window as unknown as {
-                turnstile?: { reset: (id?: string) => void };
-              }
-            ).turnstile;
-            if (turnstile && widgetIdRef.current) {
-              try {
-                turnstile.reset(widgetIdRef.current);
-              } catch {
-                // ignore
-              }
-            }
-            return;
-          }
-          throw new Error(data.message || `Web3Forms responded with status ${res.status}`);
-        } catch (err) {
-          console.error("Web3Forms dispatch failed, using mailto fallback:", err);
-        }
-      }
+              message: formState.subject.trim()
+                ? `Subject: ${formState.subject.trim()}\n\n${formState.message}`
+                : formState.message,
+              time: new Date().toLocaleString(),
+              "g-recaptcha-response": turnstileToken,
+            },
+          }),
+        });
 
-      // Graceful direct fallback: open user's mail client with filled details
-      const mailtoUrl = `mailto:${CONTACT_INFO.email}?subject=${encodeURIComponent(
-        formState.subject.trim() || `Portfolio Message from ${formState.name}`,
-      )}&body=${encodeURIComponent(
-        formState.message + "\n\nReply To: " + formState.name + " <" + formState.email + ">",
-      )}`;
-      window.open(mailtoUrl, "_blank");
-      setFormStatus("success");
-      setStatusMessage("Message prepared! Opened your mail client to send.");
-      setFormState({ name: "", email: "", subject: "", message: "" });
+        if (res.ok) {
+          setFormStatus("success");
+          setStatusMessage("Message sent successfully! I will reply within 24-48 hours.");
+          setFormState({ name: "", email: "", subject: "", message: "" });
+          setTurnstileToken("");
+          const turnstile = (
+            window as unknown as {
+              turnstile?: { reset: (id?: string) => void };
+            }
+          ).turnstile;
+          if (turnstile && widgetIdRef.current) {
+            try {
+              turnstile.reset(widgetIdRef.current);
+            } catch {
+              // ignore
+            }
+          }
+          return;
+        }
+
+        const errText = await res.text();
+        throw new Error(errText || `EmailJS returned HTTP ${res.status}`);
+      } catch (err) {
+        console.error("EmailJS dispatch failed:", err);
+        setFormStatus("error");
+        setStatusMessage(
+          "Failed to deliver message via EmailJS. Please try again or email directly to contact@sahayasavari.dev.",
+        );
+      }
     };
 
     return (
