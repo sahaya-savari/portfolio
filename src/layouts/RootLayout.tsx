@@ -40,31 +40,25 @@ export default function RootLayout() {
   const location = useLocation();
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
-    e.preventDefault();
     const cleanId = targetId.replace(/^#/, "");
     forceUnlockScroll();
     setMobileMenuOpen(false);
 
-    const routeMap: Record<string, string> = {
-      about: "/about",
-      experience: "/experience",
-      skills: "/skills",
-      certifications: "/certifications",
-      contact: "/contact",
-      projects: "/projects",
-      blog: "/blog",
-      resume: "/resume",
-    };
-
-    if (routeMap[cleanId]) {
-      navigate(routeMap[cleanId]);
+    if (cleanId === "resume") {
+      navigate("/resume");
       return;
     }
 
-    if (location.pathname !== "/") {
-      navigate(`/${cleanId}`);
-    } else {
+    if (location.pathname === "/") {
+      e.preventDefault();
+      if (window.location.hash !== `#${cleanId}`) {
+        window.history.pushState(null, "", `#${cleanId}`);
+      }
       scrollToSection(cleanId, { behavior: "smooth" });
+      setActiveSection(cleanId);
+    } else {
+      e.preventDefault();
+      navigate(`/#${cleanId}`);
     }
   };
 
@@ -242,30 +236,20 @@ export default function RootLayout() {
     }
   }, [mobileMenuOpen]);
 
-  // Scroll or redirect hash target on initial load or route/hash changes
+  // Scroll hash target on initial load or route/hash changes on the homepage
   useEffect(() => {
     if (location.pathname !== "/") return;
     const hash = location.hash || (typeof window !== "undefined" ? window.location.hash : "");
     const cleanId = hash.replace(/^#/, "");
     if (!cleanId) return;
 
-    const routeMap: Record<string, string> = {
-      about: "/about",
-      skills: "/skills",
-      certifications: "/certifications",
-      contact: "/contact",
-      experience: "/experience",
-      projects: "/projects",
-      blog: "/blog",
-      resume: "/resume",
-    };
-
-    if (routeMap[cleanId]) {
-      navigate(routeMap[cleanId]);
+    if (cleanId === "resume") {
+      navigate("/resume");
       return;
     }
 
     const cancel = scrollToSection(cleanId, { behavior: "smooth" });
+    setActiveSection(cleanId);
     return () => {
       cancel?.();
     };
@@ -351,38 +335,43 @@ export default function RootLayout() {
               </div>
               <div className="hidden md:flex liquid-glass px-4 lg:px-6 py-2 rounded-full items-center gap-3.5 lg:gap-5 xl:gap-6 backdrop-blur-md shrink-0">
                 <Link
-                  to="/about"
-                  className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap ${location.pathname === "/about" || (location.pathname === "/" && activeSection === "about") ? "text-white" : "text-white/70 hover:text-white"}`}
+                  to="/#about"
+                  onClick={(e) => handleNavClick(e, "about")}
+                  className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap cursor-pointer ${location.pathname === "/" && activeSection === "about" ? "text-white font-semibold" : "text-white/70 hover:text-white"}`}
                 >
                   About
                 </Link>
                 <Link
-                  to="/experience"
-                  className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap ${location.pathname === "/experience" || (location.pathname === "/" && activeSection === "experience") ? "text-white" : "text-white/70 hover:text-white"}`}
+                  to="/#experience"
+                  onClick={(e) => handleNavClick(e, "experience")}
+                  className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap cursor-pointer ${location.pathname === "/" && activeSection === "experience" ? "text-white font-semibold" : "text-white/70 hover:text-white"}`}
                 >
                   Experience
                 </Link>
                 <Link
-                  to="/projects"
-                  className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap ${location.pathname.startsWith("/projects") || (location.pathname === "/" && activeSection === "projects") ? "text-white" : "text-white/70 hover:text-white"}`}
+                  to="/#projects"
+                  onClick={(e) => handleNavClick(e, "projects")}
+                  className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap cursor-pointer ${location.pathname === "/" && activeSection === "projects" ? "text-white font-semibold" : "text-white/70 hover:text-white"}`}
                 >
                   Projects
                 </Link>
                 <Link
                   to="/resume"
-                  className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap ${location.pathname === "/resume" ? "text-white" : "text-white/70 hover:text-white"}`}
+                  className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap ${location.pathname === "/resume" ? "text-white font-semibold" : "text-white/70 hover:text-white"}`}
                 >
                   Resume
                 </Link>
                 <Link
-                  to="/certifications"
-                  className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap ${location.pathname === "/certifications" || (location.pathname === "/" && activeSection === "certifications") ? "text-white" : "text-white/70 hover:text-white"}`}
+                  to="/#certifications"
+                  onClick={(e) => handleNavClick(e, "certifications")}
+                  className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap cursor-pointer ${location.pathname === "/" && activeSection === "certifications" ? "text-white font-semibold" : "text-white/70 hover:text-white"}`}
                 >
                   Certifications
                 </Link>
                 <Link
-                  to="/contact"
-                  className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap ${location.pathname === "/contact" || (location.pathname === "/" && activeSection === "contact") ? "text-white" : "text-white/70 hover:text-white"}`}
+                  to="/#contact"
+                  onClick={(e) => handleNavClick(e, "contact")}
+                  className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap cursor-pointer ${location.pathname === "/" && activeSection === "contact" ? "text-white font-semibold" : "text-white/70 hover:text-white"}`}
                 >
                   Contact
                 </Link>
@@ -398,9 +387,10 @@ export default function RootLayout() {
                   <span className="hidden xl:inline">Download CV</span>
                 </a>
                 <Link
-                  to="/contact"
+                  to="/#contact"
+                  onClick={(e) => handleNavClick(e, "contact")}
                   className="hidden md:flex relative text-xs xl:text-sm font-medium rounded-full h-9 xl:h-10 pl-4 xl:pl-6 pr-11 xl:pr-14 group transition-all duration-500 hover:pl-11 hover:pr-4 xl:hover:pl-14 xl:hover:pr-6 overflow-hidden cursor-pointer bg-white text-black items-center shrink-0"
-                  aria-label="Get in touch - navigate to contact page"
+                  aria-label="Get in touch - scroll to contact section"
                 >
                   <span className="relative z-10 transition-all duration-500">Get In Touch</span>
                   <div
@@ -457,22 +447,22 @@ export default function RootLayout() {
                 Home
               </Link>
               <Link
-                to="/about"
-                onClick={() => setMobileMenuOpen(false)}
+                to="/#about"
+                onClick={(e) => handleNavClick(e, "about")}
                 className="text-2xl sm:text-3xl font-heading font-semibold text-white/70 hover:text-white transition-colors min-h-[44px] flex items-center justify-center"
               >
                 About
               </Link>
               <Link
-                to="/experience"
-                onClick={() => setMobileMenuOpen(false)}
+                to="/#experience"
+                onClick={(e) => handleNavClick(e, "experience")}
                 className="text-2xl sm:text-3xl font-heading font-semibold text-white/70 hover:text-white transition-colors min-h-[44px] flex items-center justify-center"
               >
                 Experience
               </Link>
               <Link
-                to="/projects"
-                onClick={() => setMobileMenuOpen(false)}
+                to="/#projects"
+                onClick={(e) => handleNavClick(e, "projects")}
                 className="text-2xl sm:text-3xl font-heading font-semibold text-white/70 hover:text-white transition-colors min-h-[44px] flex items-center justify-center"
               >
                 Projects
@@ -485,15 +475,15 @@ export default function RootLayout() {
                 Resume
               </Link>
               <Link
-                to="/certifications"
-                onClick={() => setMobileMenuOpen(false)}
+                to="/#certifications"
+                onClick={(e) => handleNavClick(e, "certifications")}
                 className="text-2xl sm:text-3xl font-heading font-semibold text-white/70 hover:text-white transition-colors min-h-[44px] flex items-center justify-center"
               >
                 Certifications
               </Link>
               <Link
-                to="/contact"
-                onClick={() => setMobileMenuOpen(false)}
+                to="/#contact"
+                onClick={(e) => handleNavClick(e, "contact")}
                 className="text-2xl sm:text-3xl font-heading font-semibold text-white/70 hover:text-white transition-colors min-h-[44px] flex items-center justify-center"
               >
                 Contact
@@ -540,16 +530,18 @@ export default function RootLayout() {
             <Linkedin size={18} />
           </a>
           <Link
-            to="/projects"
-            className="w-9 h-9 rounded-full flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 hover:scale-110 transition-all duration-200"
+            to="/#projects"
+            onClick={(e) => handleNavClick(e, "projects")}
+            className="w-9 h-9 rounded-full flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 hover:scale-110 transition-all duration-200 cursor-pointer"
             aria-label="Engineering projects and source code"
             title="Projects"
           >
             <Code2 size={18} />
           </Link>
           <Link
-            to="/contact"
-            className="w-9 h-9 rounded-full flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 hover:scale-110 transition-all duration-200"
+            to="/#contact"
+            onClick={(e) => handleNavClick(e, "contact")}
+            className="w-9 h-9 rounded-full flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 hover:scale-110 transition-all duration-200 cursor-pointer"
             aria-label="Get in touch / Email"
             title="Contact"
           >

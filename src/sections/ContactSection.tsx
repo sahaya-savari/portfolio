@@ -15,34 +15,46 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { Link } from "@/lib/router-compat";
+import { scrollToSection } from "../utils/navigation";
 import HlsVideo from "../components/HlsVideo";
 import { CONTACT_INFO } from "../data";
 
 const FAQS = [
   {
+    category: "OPPORTUNITIES",
     question: "What roles and opportunities are you currently seeking?",
     answer:
-      "I am actively seeking Summer 2027 internships, software engineering, backend development, and applied AI/ML engineering roles. I love building production-grade software and scalable machine learning workflows.",
+      "I am actively seeking Summer 2027 internships, junior software engineering, backend development, and applied AI/ML engineering roles. I specialize in designing scalable backend APIs, production machine learning pipelines, and high-performance full-stack web applications.",
   },
   {
+    category: "LOCATION",
     question: "What is your availability and preferred work location?",
     answer:
-      "I am available for remote opportunities worldwide, as well as on-site and hybrid positions across major tech hubs in India and internationally.",
+      "I am available for remote opportunities worldwide, as well as on-site or hybrid roles across major tech hubs (Bengaluru, Chennai, Hyderabad, Mumbai, and internationally). I adapt quickly to distributed team workflows and different time zones.",
   },
   {
-    question: "What is your typical response time?",
+    category: "TECH STACK",
+    question: "What core technologies and architectures do you work with?",
     answer:
-      "I typically respond to inquiries within 24 to 48 hours. For urgent opportunities, reaching out on LinkedIn is also warmly welcomed.",
+      "My primary backend & ML stack includes Python, PyTorch, Scikit-learn, PostgreSQL, and Node.js. For web engineering, I build with TypeScript, React 19, Tailwind CSS v4, and modern SSR/SSG architectures (TanStack Start, Vite). I prioritize clean code, test coverage, and sub-second response times.",
   },
   {
-    question: "Are you open to hackathons and open-source collaborations?",
+    category: "HACKATHONS",
+    question: "Can we collaborate on hackathons, research, or open-source projects?",
     answer:
-      "Absolutely! As the AIXcelerate 2026 Overall Champion (NelSync AI), I thrive in high-velocity engineering environments, turning complex algorithmic ideas into usable products.",
+      "Yes, absolutely! I am the AIxcelerate 2026 Overall Champion (competing against 66 university teams with NelSync AI, an agri-tech predictive grading system). I thrive under tight deadlines, rapid prototyping, and solving complex algorithmic challenges.",
   },
   {
-    question: "Where can I review your resume and verified credentials?",
+    category: "PROCESS",
+    question: "What is your typical response time for recruiters and collaborators?",
     answer:
-      "You can explore my interactive resume on the /resume page, download the official verified PDF directly from the navigation bar, and review verified credentials on the /certifications page.",
+      "I respond to all professional inquiries within 24 to 48 hours. If you are reaching out regarding an urgent interview or engineering opportunity, messaging me directly on LinkedIn (linkedin.com/in/sahaya-savari) is also welcome.",
+  },
+  {
+    category: "VERIFICATION",
+    question: "Where can I verify your academic credentials and certifications?",
+    answer:
+      "You can inspect my verified credentials on the /certifications page (including IBM Data Analyst, NIELIT, and NPTEL IIT Madras honors), test out live simulators in the /projects directory, or download my verified PDF resume directly from the top navigation bar.",
   },
 ];
 
@@ -247,10 +259,10 @@ const ContactSection = memo(
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto">
-          {/* Section Header (Reference Image 1) */}
+          {/* Section Header */}
           <div className="text-center mb-12 sm:mb-16">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/15 bg-white/5 backdrop-blur-md mb-4 text-xs font-mono uppercase tracking-widest text-cyan-400">
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/15 bg-white/5 backdrop-blur-md mb-4 text-xs font-mono uppercase tracking-widest text-white/80">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               Get In Touch
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-white tracking-tight mb-3">
@@ -261,7 +273,7 @@ const ContactSection = memo(
             </p>
           </div>
 
-          {/* Two-Column Contact Layout (Reference Image 1) */}
+          {/* Two-Column Contact Layout (Unified Monochrome Palette) */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start mb-20">
             {/* Left Column: Let's Connect & Opportunities */}
             <div className="lg:col-span-5 space-y-6 text-left">
@@ -280,7 +292,7 @@ const ContactSection = memo(
                 {/* Email Card */}
                 <div className="liquid-glass-strong border border-white/10 rounded-2xl p-4 flex items-center justify-between gap-3 hover:border-white/25 transition-all">
                   <div className="flex items-center gap-3.5 min-w-0">
-                    <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 shrink-0">
+                    <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/80 shrink-0">
                       <Mail className="w-5 h-5" />
                     </div>
                     <div className="min-w-0">
@@ -289,7 +301,7 @@ const ContactSection = memo(
                       </div>
                       <a
                         href={`mailto:${CONTACT_INFO.email}`}
-                        className="text-sm font-body font-medium text-white hover:text-cyan-300 transition-colors truncate block"
+                        className="text-sm font-body font-medium text-white hover:text-white/80 transition-colors truncate block"
                       >
                         {CONTACT_INFO.email}
                       </a>
@@ -323,7 +335,7 @@ const ContactSection = memo(
                 {/* Location Card */}
                 <div className="liquid-glass-strong border border-white/10 rounded-2xl p-4 flex items-center justify-between gap-3 hover:border-white/25 transition-all">
                   <div className="flex items-center gap-3.5 min-w-0">
-                    <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 shrink-0">
+                    <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/80 shrink-0">
                       <MapPin className="w-5 h-5" />
                     </div>
                     <div className="min-w-0">
@@ -351,14 +363,14 @@ const ContactSection = memo(
                 </div>
               </div>
 
-              {/* What I'm Looking For Cards (Reference Image 1) */}
+              {/* What I'm Looking For Cards */}
               <div className="pt-2">
                 <h4 className="text-xs font-mono uppercase tracking-wider text-white/50 mb-3">
                   What I'm Looking For
                 </h4>
                 <div className="space-y-3">
                   <div className="liquid-glass border border-white/10 rounded-2xl p-4 flex items-start gap-3.5 hover:border-white/20 transition-all">
-                    <div className="w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 shrink-0 mt-0.5">
+                    <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/80 shrink-0 mt-0.5">
                       <Briefcase className="w-4 h-4" />
                     </div>
                     <div>
@@ -372,7 +384,7 @@ const ContactSection = memo(
                   </div>
 
                   <div className="liquid-glass border border-white/10 rounded-2xl p-4 flex items-start gap-3.5 hover:border-white/20 transition-all">
-                    <div className="w-9 h-9 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 shrink-0 mt-0.5">
+                    <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/80 shrink-0 mt-0.5">
                       <Sparkles className="w-4 h-4" />
                     </div>
                     <div>
@@ -388,7 +400,7 @@ const ContactSection = memo(
               </div>
             </div>
 
-            {/* Right Column: Send Me a Message Form (Reference Image 1) */}
+            {/* Right Column: Send Me a Message Form (Refined Monochrome) */}
             <div className="lg:col-span-7">
               <form
                 onSubmit={handleFormSubmit}
@@ -405,8 +417,8 @@ const ContactSection = memo(
 
                 {/* Personal Information Group */}
                 <div className="pt-2">
-                  <div className="flex items-center gap-2 text-xs font-heading font-semibold text-cyan-400 uppercase tracking-wider mb-3">
-                    <User className="w-3.5 h-3.5" />
+                  <div className="flex items-center gap-2 text-xs font-mono font-medium text-white/70 uppercase tracking-wider mb-3">
+                    <User className="w-3.5 h-3.5 text-white/60" />
                     <span>Personal Information</span>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -426,7 +438,7 @@ const ContactSection = memo(
                           setFormState((prev) => ({ ...prev, name: e.target.value }))
                         }
                         placeholder="Enter your full name"
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm font-body text-white placeholder-white/30 focus:outline-none focus:border-cyan-400/60 focus:bg-white/[0.08] transition-all"
+                        className="w-full bg-white/[0.03] border border-white/15 rounded-xl px-4 py-2.5 text-sm font-body text-white placeholder-white/30 focus:outline-none focus:border-white/50 focus:bg-white/[0.06] transition-all"
                       />
                     </div>
 
@@ -446,7 +458,7 @@ const ContactSection = memo(
                           setFormState((prev) => ({ ...prev, email: e.target.value }))
                         }
                         placeholder="your.email@example.com"
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm font-body text-white placeholder-white/30 focus:outline-none focus:border-cyan-400/60 focus:bg-white/[0.08] transition-all"
+                        className="w-full bg-white/[0.03] border border-white/15 rounded-xl px-4 py-2.5 text-sm font-body text-white placeholder-white/30 focus:outline-none focus:border-white/50 focus:bg-white/[0.06] transition-all"
                       />
                     </div>
                   </div>
@@ -454,8 +466,8 @@ const ContactSection = memo(
 
                 {/* Message Details Group */}
                 <div>
-                  <div className="flex items-center gap-2 text-xs font-heading font-semibold text-purple-400 uppercase tracking-wider mb-3">
-                    <MessageSquare className="w-3.5 h-3.5" />
+                  <div className="flex items-center gap-2 text-xs font-mono font-medium text-white/70 uppercase tracking-wider mb-3">
+                    <MessageSquare className="w-3.5 h-3.5 text-white/60" />
                     <span>Message Details</span>
                   </div>
                   <div className="space-y-4">
@@ -475,7 +487,7 @@ const ContactSection = memo(
                           setFormState((prev) => ({ ...prev, subject: e.target.value }))
                         }
                         placeholder="What's this about?"
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm font-body text-white placeholder-white/30 focus:outline-none focus:border-purple-400/60 focus:bg-white/[0.08] transition-all"
+                        className="w-full bg-white/[0.03] border border-white/15 rounded-xl px-4 py-2.5 text-sm font-body text-white placeholder-white/30 focus:outline-none focus:border-white/50 focus:bg-white/[0.06] transition-all"
                       />
                     </div>
 
@@ -495,7 +507,7 @@ const ContactSection = memo(
                           setFormState((prev) => ({ ...prev, message: e.target.value }))
                         }
                         placeholder="Tell me about your project, opportunity, or just say hello! I'd love to hear from you."
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm font-body text-white placeholder-white/30 focus:outline-none focus:border-purple-400/60 focus:bg-white/[0.08] transition-all resize-none"
+                        className="w-full bg-white/[0.03] border border-white/15 rounded-xl px-4 py-2.5 text-sm font-body text-white placeholder-white/30 focus:outline-none focus:border-white/50 focus:bg-white/[0.06] transition-all resize-none"
                       />
                     </div>
                   </div>
@@ -514,16 +526,15 @@ const ContactSection = memo(
                 {/* Cloudflare Turnstile Token Response Input */}
                 <input type="hidden" name="cf-turnstile-response" value={turnstileToken} />
 
-                {/* Cloudflare Turnstile Verification Widget */}
-                <div className="pt-1">
-                  <div className="flex items-center gap-1.5 text-xs font-mono text-white/50 mb-2">
-                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                {/* Cloudflare Turnstile Verification Widget (Natural Framing, Zero Clipping) */}
+                <div className="pt-2">
+                  <div className="flex items-center gap-1.5 text-[11px] font-mono text-white/50 mb-2">
+                    <ShieldCheck className="w-3.5 h-3.5 text-white/70" />
                     <span>Cloudflare Turnstile Verified Protection</span>
                   </div>
-                  <div
-                    ref={turnstileContainerRef}
-                    className="min-h-[65px] flex items-center justify-start overflow-hidden rounded-xl"
-                  />
+                  <div className="w-full flex items-center justify-start">
+                    <div ref={turnstileContainerRef} className="min-h-[65px] inline-block" />
+                  </div>
                 </div>
 
                 {statusMessage && (
@@ -541,13 +552,13 @@ const ContactSection = memo(
                 <button
                   type="submit"
                   disabled={formStatus === "submitting"}
-                  className="w-full h-12 rounded-xl bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 text-white font-heading font-semibold text-sm hover:opacity-95 active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_25px_rgba(99,102,241,0.35)]"
+                  className="w-full h-12 rounded-xl bg-white text-black font-heading font-semibold text-sm hover:bg-white/90 active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_4px_24px_rgba(255,255,255,0.2)]"
                 >
                   {formStatus === "submitting" ? (
                     <span>Sending message...</span>
                   ) : formStatus === "success" ? (
                     <>
-                      <Check className="w-4 h-4 text-emerald-300" />
+                      <Check className="w-4 h-4 text-emerald-600" />
                       <span>Message Sent Successfully</span>
                     </>
                   ) : (
@@ -561,42 +572,57 @@ const ContactSection = memo(
             </div>
           </div>
 
-          {/* FAQ Section */}
-          <div className="mb-20 pt-10 border-t border-white/10 max-w-4xl mx-auto">
-            <div className="text-center mb-8">
-              <h3 className="text-2xl sm:text-3xl font-heading font-bold text-white mb-2">
+          {/* Enhanced FAQ Section (Premium UI/UX & In-depth Content) */}
+          <div className="mb-20 pt-12 border-t border-white/10 max-w-4xl mx-auto">
+            <div className="text-center mb-10">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/15 bg-white/5 backdrop-blur-md mb-3 text-xs font-mono uppercase tracking-widest text-white/70">
+                Answers &amp; Overview
+              </div>
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-white tracking-tight mb-2">
                 Frequently Asked Questions
               </h3>
               <p className="text-sm font-body text-white/50 max-w-xl mx-auto">
-                Common questions about my availability, work setup, and collaborative process.
+                Key details regarding my engineering background, internship timeline, and
+                collaboration model.
               </p>
             </div>
 
-            <div className="space-y-3 text-left">
+            <div className="space-y-3.5 text-left">
               {FAQS.map((faq, idx) => {
                 const isOpen = openFaq === idx;
                 return (
                   <div
                     key={idx}
-                    className="liquid-glass border border-white/10 rounded-2xl overflow-hidden transition-all duration-200 hover:border-white/20"
+                    className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
+                      isOpen
+                        ? "border-white/30 bg-white/[0.06] shadow-[0_8px_32px_rgba(0,0,0,0.5)]"
+                        : "border-white/10 bg-white/[0.02] hover:border-white/20 hover:bg-white/[0.03]"
+                    }`}
                   >
                     <button
                       type="button"
                       onClick={() => setOpenFaq(isOpen ? null : idx)}
-                      className="w-full px-5 sm:px-6 py-4 flex items-center justify-between gap-4 text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+                      className="w-full px-5 sm:px-6 py-4 sm:py-5 flex items-center justify-between gap-4 text-left cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/40"
                       aria-expanded={isOpen}
                     >
-                      <span className="font-heading font-semibold text-sm sm:text-base text-white">
-                        {faq.question}
-                      </span>
-                      <ChevronDown
-                        className={`w-4 h-4 text-white/60 shrink-0 transition-transform duration-200 ${
-                          isOpen ? "rotate-180 text-cyan-400" : ""
+                      <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+                        <span className="text-[10px] font-mono font-semibold tracking-wider px-2 py-0.5 rounded-md border border-white/10 bg-white/5 text-white/60 shrink-0">
+                          {faq.category}
+                        </span>
+                        <span className="font-heading font-semibold text-sm sm:text-base text-white truncate">
+                          {faq.question}
+                        </span>
+                      </div>
+                      <div
+                        className={`w-7 h-7 rounded-full border border-white/10 flex items-center justify-center shrink-0 transition-transform duration-300 ${
+                          isOpen ? "rotate-180 bg-white text-black" : "text-white/60 bg-white/5"
                         }`}
-                      />
+                      >
+                        <ChevronDown className="w-3.5 h-3.5" />
+                      </div>
                     </button>
                     {isOpen && (
-                      <div className="px-5 sm:px-6 pb-4 pt-1 text-xs sm:text-sm font-body text-white/70 leading-relaxed border-t border-white/5">
+                      <div className="px-5 sm:px-6 pb-5 pt-1 text-xs sm:text-sm font-body text-white/70 leading-relaxed border-t border-white/5">
                         {faq.answer}
                       </div>
                     )}
@@ -606,7 +632,7 @@ const ContactSection = memo(
             </div>
           </div>
 
-          {/* Redesigned Centered Footer (Reference Image 2) */}
+          {/* Centered Modern Footer */}
           <div className="pt-10 border-t border-white/10 text-center flex flex-col items-center gap-6">
             {/* Centered Name & Title */}
             <div>
@@ -614,7 +640,7 @@ const ContactSection = memo(
                 Sahaya Savari F
               </h3>
               <p className="text-xs sm:text-sm font-body text-white/60 max-w-xl mx-auto mt-2 leading-relaxed">
-                AI Developer & Full-Stack Engineer building production machine learning systems,
+                AI Developer &amp; Full-Stack Engineer building production machine learning systems,
                 backend APIs, and full-stack applications.
               </p>
             </div>
@@ -624,34 +650,69 @@ const ContactSection = memo(
               aria-label="Footer navigation"
               className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs sm:text-sm font-body text-white/65"
             >
-              <Link to="/about" className="hover:text-white transition-colors">
+              <a
+                href="#about"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection("about", { behavior: "smooth" });
+                }}
+                className="hover:text-white transition-colors cursor-pointer"
+              >
                 About
-              </Link>
-              <Link to="/experience" className="hover:text-white transition-colors">
+              </a>
+              <a
+                href="#experience"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection("experience", { behavior: "smooth" });
+                }}
+                className="hover:text-white transition-colors cursor-pointer"
+              >
                 Experience
-              </Link>
-              <Link to="/projects" className="hover:text-white transition-colors">
+              </a>
+              <a
+                href="#projects"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection("projects", { behavior: "smooth" });
+                }}
+                className="hover:text-white transition-colors cursor-pointer"
+              >
                 Projects
-              </Link>
+              </a>
               <Link to="/resume" className="hover:text-white transition-colors">
                 Resume
               </Link>
-              <Link to="/certifications" className="hover:text-white transition-colors">
+              <a
+                href="#certifications"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection("certifications", { behavior: "smooth" });
+                }}
+                className="hover:text-white transition-colors cursor-pointer"
+              >
                 Certifications
-              </Link>
-              <Link to="/contact" className="hover:text-white transition-colors">
+              </a>
+              <a
+                href="#contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection("contact", { behavior: "smooth" });
+                }}
+                className="hover:text-white transition-colors cursor-pointer"
+              >
                 Contact
-              </Link>
+              </a>
             </nav>
 
-            {/* Copyright & Built With Love */}
+            {/* Copyright & Built With Care */}
             <div className="text-white/40 font-body text-xs sm:text-[13px] tracking-wide">
               © {new Date().getFullYear()} Sahaya Savari F. Made with{" "}
               <span className="text-rose-500" aria-label="love">
                 ❤️
               </span>{" "}
               and{" "}
-              <span className="font-mono text-cyan-400 font-semibold" aria-label="code">
+              <span className="font-mono text-white/70 font-semibold" aria-label="code">
                 &lt; / &gt;
               </span>
             </div>
