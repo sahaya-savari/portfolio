@@ -55,35 +55,37 @@ const ContactSection = memo(({ setShowCommandPalette }: ContactSectionProps) => 
     }
     setFormStatus("submitting");
 
-    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+    const accessKey =
+      import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "642d50c7-2c43-4e70-a954-a111831c8f9b";
 
-    if (serviceId && templateId && publicKey) {
+    if (accessKey) {
       try {
-        const res = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+        const res = await fetch("https://api.web3forms.com/submit", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
           body: JSON.stringify({
-            service_id: serviceId,
-            template_id: templateId,
-            user_id: publicKey,
-            template_params: {
-              from_name: formState.name,
-              reply_to: formState.email,
-              message: formState.message,
-            },
+            access_key: accessKey,
+            name: formState.name,
+            email: formState.email,
+            message: formState.message,
+            subject: `Portfolio Inquiry from ${formState.name}`,
+            from_name: "Sahaya Savari Portfolio",
+            botcheck: "",
           }),
         });
-        if (res.ok) {
+        const data = await res.json();
+        if (data.success) {
           setFormStatus("success");
           setStatusMessage("Message sent successfully! I will reply within 24-48 hours.");
           setFormState({ name: "", email: "", message: "" });
           return;
         }
-        throw new Error(`EmailJS responded with ${res.status}`);
+        throw new Error(data.message || `Web3Forms responded with status ${res.status}`);
       } catch (err) {
-        console.error("EmailJS dispatch failed:", err);
+        console.error("Web3Forms dispatch failed, using mailto fallback:", err);
       }
     }
 
@@ -194,16 +196,15 @@ const ContactSection = memo(({ setShowCommandPalette }: ContactSectionProps) => 
                 />
               </div>
 
-              {/* Captcha Slot Container */}
-              <div
-                id="turnstile-container"
-                className="min-h-[50px] rounded-xl bg-white/[0.02] border border-white/10 flex items-center justify-center p-2 text-center"
-                data-sitekey={import.meta.env.VITE_TURNSTILE_SITE_KEY || ""}
-              >
-                <span className="text-[11px] font-mono text-white/40">
-                  Security verification container (Cloudflare Turnstile / Captcha ready)
-                </span>
-              </div>
+              {/* Hidden Botcheck Honeypot for Automated Spam Prevention */}
+              <input
+                type="checkbox"
+                name="botcheck"
+                className="hidden"
+                style={{ display: "none" }}
+                tabIndex={-1}
+                autoComplete="off"
+              />
 
               {statusMessage && (
                 <div

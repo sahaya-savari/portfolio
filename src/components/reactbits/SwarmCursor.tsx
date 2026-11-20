@@ -35,10 +35,10 @@ const MAX_PARTICLES = 2000;
 const INTRO_SECONDS = 1.4;
 const HIDDEN = "swarm-cursor-hidden";
 const SHAPES = { dot: 0, square: 1, streak: 2 };
-const CELL = 16;
-const MAX_COLS = 72;
-const MAX_ROWS = 48;
-const PRESSURE_STEPS = 12;
+const CELL = 24;
+const MAX_COLS = 54;
+const MAX_ROWS = 36;
+const PRESSURE_STEPS = 4;
 
 const VERTEX = `#version 300 es
 layout(location = 0) in vec2 aCorner;
@@ -659,6 +659,10 @@ const SwarmCursor = ({
       }
     };
 
+    let cachedHovered = null;
+    let cachedRadius = 0;
+    let dirtyTarget = true;
+
     const findTarget = () => {
       const s = settingsRef.current;
       if (!s.targets || !pointer.inside) return null;
@@ -681,7 +685,11 @@ const SwarmCursor = ({
       if (hovered && hovered.isConnected) {
         const box = hovered.getBoundingClientRect();
         const frame = container.getBoundingClientRect();
-        const radius = parseFloat(getComputedStyle(hovered).borderTopLeftRadius) || 0;
+        if (hovered !== cachedHovered) {
+          cachedHovered = hovered;
+          cachedRadius = parseFloat(getComputedStyle(hovered).borderTopLeftRadius) || 0;
+        }
+        const radius = cachedRadius;
         ring.x = box.left - frame.left + box.width / 2;
         ring.y = box.top - frame.top + box.height / 2;
         ring.hx = box.width / 2;
@@ -853,13 +861,15 @@ const SwarmCursor = ({
       ping.age += dt;
       if (introClock < 1) introClock = Math.min(1, introClock + dt / INTRO_SECONDS);
       const ease = introClock * introClock * (3 - 2 * introClock);
-      hovered = findTarget();
+      if (dirtyTarget) {
+        hovered = findTarget();
+        dirtyTarget = false;
+      }
       updateAnchor(s, dt);
       setHidden(s.hideCursor && pointer.inside);
       stir(s, dt, ease);
       flow(s, dt);
-      move(s, dt / 2, ease);
-      move(s, dt / 2, ease);
+      move(s, dt, ease);
       draw();
       raf = requestAnimationFrame(frame);
     };
@@ -880,6 +890,7 @@ const SwarmCursor = ({
       pointer.x = x;
       pointer.y = y;
       pointer.inside = inside;
+      dirtyTarget = true;
     };
 
     const onPointerDown = (event) => {
@@ -945,6 +956,10 @@ const SwarmCursor = ({
       }
     });
     intersection.observe(container);
+    const onScroll = () => {
+      dirtyTarget = true;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("pointermove", onPointerMove, { passive: true });
     window.addEventListener("pointerdown", onPointerDown, { passive: true });
     window.addEventListener("pointerup", onPointerUp, { passive: true });
@@ -960,6 +975,7 @@ const SwarmCursor = ({
       setHidden(false);
       resizeObserver.disconnect();
       intersection.disconnect();
+      window.removeEventListener("scroll", onScroll);
       window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("pointerdown", onPointerDown);
       window.removeEventListener("pointerup", onPointerUp);
