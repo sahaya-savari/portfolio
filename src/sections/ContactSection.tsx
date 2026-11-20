@@ -1,4 +1,4 @@
-import { useState, memo } from "react";
+import { useState, memo, useEffect, useRef } from "react";
 import {
   Check,
   Mail,
@@ -12,6 +12,7 @@ import {
   ChevronDown,
   ArrowUp,
   ArrowUpRight,
+  ShieldCheck,
 } from "lucide-react";
 import { Link } from "@/lib/router-compat";
 import HlsVideo from "../components/HlsVideo";
@@ -70,6 +71,56 @@ const ContactSection = memo(
       "idle",
     );
     const [statusMessage, setStatusMessage] = useState<string>("");
+    const [turnstileToken, setTurnstileToken] = useState<string>("");
+    const turnstileContainerRef = useRef<HTMLDivElement>(null);
+
+    // Lazily mount Cloudflare Turnstile on client without blocking initial page render
+    useEffect(() => {
+      if (typeof window === "undefined") return;
+
+      const siteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY || "0x4AAAAAAGKldDqh0c-LillI";
+
+      const renderWidget = () => {
+        const turnstile = (
+          window as unknown as {
+            turnstile?: {
+              render: (el: HTMLElement, opts: Record<string, unknown>) => string;
+            };
+          }
+        ).turnstile;
+
+        if (
+          turnstile &&
+          turnstileContainerRef.current &&
+          !turnstileContainerRef.current.hasChildNodes()
+        ) {
+          turnstile.render(turnstileContainerRef.current, {
+            sitekey: siteKey,
+            theme: "dark",
+            callback: (token: string) => {
+              setTurnstileToken(token);
+            },
+          });
+        }
+      };
+
+      const SCRIPT_ID = "cf-turnstile-script";
+      let script = document.getElementById(SCRIPT_ID) as HTMLScriptElement | null;
+
+      if (!script) {
+        script = document.createElement("script");
+        script.id = SCRIPT_ID;
+        script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+        script.async = true;
+        script.defer = true;
+        script.onload = () => renderWidget();
+        document.head.appendChild(script);
+      } else if ((window as unknown as { turnstile?: unknown }).turnstile) {
+        renderWidget();
+      } else {
+        script.addEventListener("load", renderWidget, { once: true });
+      }
+    }, []);
 
     const copyToClipboard = async (text: string, label: string) => {
       try {
@@ -107,6 +158,7 @@ const ContactSection = memo(
               message: formState.message,
               from_name: "Sahaya Savari Portfolio",
               botcheck: "",
+              "cf-turnstile-response": turnstileToken,
             }),
           });
           const data = await res.json();
@@ -415,6 +467,18 @@ const ContactSection = memo(
                   tabIndex={-1}
                   autoComplete="off"
                 />
+
+                {/* Cloudflare Turnstile Verification Widget */}
+                <div className="pt-1">
+                  <div className="flex items-center gap-1.5 text-xs font-mono text-white/50 mb-2">
+                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                    <span>Cloudflare Turnstile Verified Protection</span>
+                  </div>
+                  <div
+                    ref={turnstileContainerRef}
+                    className="min-h-[65px] flex items-center justify-start overflow-hidden rounded-xl"
+                  />
+                </div>
 
                 {statusMessage && (
                   <div
