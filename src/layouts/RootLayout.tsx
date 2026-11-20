@@ -7,6 +7,7 @@ import {
   Sparkles,
   Download,
   Github,
+  Gitlab,
   Linkedin,
   Code2,
   Mail,
@@ -515,6 +516,37 @@ export default function RootLayout() {
               >
                 <Download size={16} /> Download Resume PDF
               </a>
+
+              {/* Mobile Social Profiles Bar */}
+              <div className="flex items-center justify-center gap-3 mt-3 pt-3 border-t border-white/10 w-full">
+                <a
+                  href="https://github.com/sahaya-savari"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full flex items-center justify-center text-white/70 hover:text-white bg-white/5 border border-white/10 transition-colors"
+                  aria-label="GitHub profile"
+                >
+                  <Github size={18} />
+                </a>
+                <a
+                  href="https://gitlab.com/sahaya-savari"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full flex items-center justify-center text-white/70 hover:text-white bg-white/5 border border-white/10 transition-colors"
+                  aria-label="GitLab profile"
+                >
+                  <Gitlab size={18} />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/sahaya-savari"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full flex items-center justify-center text-white/70 hover:text-white bg-white/5 border border-white/10 transition-colors"
+                  aria-label="LinkedIn profile"
+                >
+                  <Linkedin size={18} />
+                </a>
+              </div>
             </nav>
           </div>
         )}
@@ -537,6 +569,16 @@ export default function RootLayout() {
             title="GitHub"
           >
             <Github size={18} />
+          </a>
+          <a
+            href="https://gitlab.com/sahaya-savari"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-9 h-9 rounded-full flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 hover:scale-110 transition-all duration-200"
+            aria-label="Sahaya Savari GitLab profile"
+            title="GitLab"
+          >
+            <Gitlab size={18} />
           </a>
           <a
             href="https://www.linkedin.com/in/sahaya-savari"

@@ -65,6 +65,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "apple-touch-icon", href: `${import.meta.env.BASE_URL}favicon.png?v=2` },
       { rel: "manifest", href: `${import.meta.env.BASE_URL}manifest.json` },
       { rel: "me", href: "https://github.com/sahaya-savari" },
+      { rel: "me", href: "https://gitlab.com/sahaya-savari" },
       { rel: "me", href: "https://www.linkedin.com/in/sahaya-savari" },
       {
         rel: "preload",

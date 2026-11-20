@@ -119,6 +119,11 @@ export default function CommandPalette({ onClose, onOpenResume }: CommandPalette
         sub: "Open GitHub in new tab",
       },
       {
+        title: "GitLab Profile",
+        url: "https://gitlab.com/sahaya-savari",
+        sub: "Open GitLab in new tab",
+      },
+      {
         title: "LinkedIn Profile",
         url: "https://www.linkedin.com/in/sahaya-savari",
         sub: "Open LinkedIn profile in new tab",

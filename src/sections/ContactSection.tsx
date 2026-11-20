@@ -13,6 +13,9 @@ import {
   ArrowUp,
   ArrowUpRight,
   ShieldCheck,
+  Github,
+  Gitlab,
+  Linkedin,
 } from "lucide-react";
 import { Link } from "@/lib/router-compat";
 import { scrollToSection } from "../utils/navigation";
@@ -699,6 +702,48 @@ const ContactSection = memo(
                 AI Developer &amp; Full-Stack Engineer building production machine learning systems,
                 backend APIs, and full-stack applications.
               </p>
+            </div>
+
+            {/* Social Channels Row */}
+            <div className="flex items-center justify-center gap-3.5 text-white/70">
+              <a
+                href="https://github.com/sahaya-savari"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full flex items-center justify-center border border-white/10 bg-white/5 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-200"
+                aria-label="GitHub profile"
+                title="GitHub"
+              >
+                <Github size={16} />
+              </a>
+              <a
+                href="https://gitlab.com/sahaya-savari"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full flex items-center justify-center border border-white/10 bg-white/5 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-200"
+                aria-label="GitLab profile"
+                title="GitLab"
+              >
+                <Gitlab size={16} />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/sahaya-savari"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full flex items-center justify-center border border-white/10 bg-white/5 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-200"
+                aria-label="LinkedIn profile"
+                title="LinkedIn"
+              >
+                <Linkedin size={16} />
+              </a>
+              <a
+                href="mailto:contact@sahayasavari.dev"
+                className="w-9 h-9 rounded-full flex items-center justify-center border border-white/10 bg-white/5 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-200"
+                aria-label="Email contact"
+                title="Email"
+              >
+                <Mail size={16} />
+              </a>
             </div>
 
             {/* Horizontal Navigation Links */}

@@ -35,6 +35,7 @@ export const personEntity = {
   sameAs: [
     "https://www.linkedin.com/in/sahaya-savari",
     "https://github.com/sahaya-savari",
+    "https://gitlab.com/sahaya-savari",
     "https://blog.sahayasavari.dev",
     "https://leetcode.com/u/sahaya_savari/",
   ],

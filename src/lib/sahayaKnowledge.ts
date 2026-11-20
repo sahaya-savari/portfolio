@@ -333,6 +333,7 @@ export function answerQuestion(query: string): string {
       `• **Location:** ${CONTACT_INFO.location}\n` +
       `• **LinkedIn:** [linkedin.com/in/sahaya-savari](${CONTACT_INFO.linkedin})\n` +
       `• **GitHub:** [github.com/sahaya-savari](${CONTACT_INFO.github})\n` +
+      `• **GitLab:** [gitlab.com/sahaya-savari](${CONTACT_INFO.gitlab})\n` +
       `• **Portfolio:** [${CONTACT_INFO.website}](${CONTACT_INFO.website})\n` +
       `• **Resume:** [Download PDF Resume](/resume.pdf)\n\n` +
       `*Open to remote, hybrid, and relocation opportunities worldwide.*`

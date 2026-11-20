@@ -377,6 +377,7 @@ export const CONTACT_INFO = {
   phoneRaw: "6385648514",
   linkedin: "https://www.linkedin.com/in/sahaya-savari",
   github: "https://github.com/sahaya-savari",
+  gitlab: "https://gitlab.com/sahaya-savari",
   website: "https://sahayasavari.dev",
 };
 

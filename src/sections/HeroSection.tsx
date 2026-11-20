@@ -404,7 +404,7 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
                 </button>
 
                 {/* Profiles row */}
-                <div className="flex items-center justify-center gap-6 mt-2">
+                <div className="flex items-center justify-center gap-4 sm:gap-6 mt-2">
                   <a
                     href="https://github.com/sahaya-savari"
                     target="_blank"
@@ -413,6 +413,18 @@ const HeroSection = memo(({ setShowResume }: HeroSectionProps) => {
                     aria-label="GitHub (opens in new tab)"
                   >
                     GitHub
+                  </a>
+                  <span className="text-white/10" aria-hidden="true">
+                    |
+                  </span>
+                  <a
+                    href="https://gitlab.com/sahaya-savari"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white/70 hover:text-white transition-colors text-xs font-body flex items-center gap-1.5"
+                    aria-label="GitLab (opens in new tab)"
+                  >
+                    GitLab
                   </a>
                   <span className="text-white/10" aria-hidden="true">
                     |
