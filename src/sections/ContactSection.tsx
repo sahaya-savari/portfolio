@@ -73,6 +73,7 @@ const ContactSection = memo(
     const [statusMessage, setStatusMessage] = useState<string>("");
     const [turnstileToken, setTurnstileToken] = useState<string>("");
     const turnstileContainerRef = useRef<HTMLDivElement>(null);
+    const widgetIdRef = useRef<string | null>(null);
 
     // Lazily mount Cloudflare Turnstile on client without blocking initial page render
     useEffect(() => {
@@ -85,6 +86,8 @@ const ContactSection = memo(
           window as unknown as {
             turnstile?: {
               render: (el: HTMLElement, opts: Record<string, unknown>) => string;
+              reset: (widgetId?: string) => void;
+              remove?: (widgetId: string) => void;
             };
           }
         ).turnstile;
@@ -94,13 +97,25 @@ const ContactSection = memo(
           turnstileContainerRef.current &&
           !turnstileContainerRef.current.hasChildNodes()
         ) {
-          turnstile.render(turnstileContainerRef.current, {
-            sitekey: siteKey,
-            theme: "dark",
-            callback: (token: string) => {
-              setTurnstileToken(token);
-            },
-          });
+          try {
+            const id = turnstile.render(turnstileContainerRef.current, {
+              sitekey: siteKey,
+              theme: "dark",
+              callback: (token: string) => {
+                setTurnstileToken(token);
+              },
+              "expired-callback": () => {
+                setTurnstileToken("");
+              },
+              "error-callback": (err: unknown) => {
+                console.warn("Turnstile challenge error:", err);
+                setTurnstileToken("");
+              },
+            });
+            widgetIdRef.current = id;
+          } catch (err) {
+            console.error("Turnstile render error:", err);
+          }
         }
       };
 
@@ -120,6 +135,21 @@ const ContactSection = memo(
       } else {
         script.addEventListener("load", renderWidget, { once: true });
       }
+
+      return () => {
+        const turnstile = (
+          window as unknown as {
+            turnstile?: { remove?: (widgetId: string) => void };
+          }
+        ).turnstile;
+        if (turnstile?.remove && widgetIdRef.current) {
+          try {
+            turnstile.remove(widgetIdRef.current);
+          } catch {
+            // ignore
+          }
+        }
+      };
     }, []);
 
     const copyToClipboard = async (text: string, label: string) => {
@@ -166,6 +196,19 @@ const ContactSection = memo(
             setFormStatus("success");
             setStatusMessage("Message sent successfully! I will reply within 24-48 hours.");
             setFormState({ name: "", email: "", subject: "", message: "" });
+            setTurnstileToken("");
+            const turnstile = (
+              window as unknown as {
+                turnstile?: { reset: (id?: string) => void };
+              }
+            ).turnstile;
+            if (turnstile && widgetIdRef.current) {
+              try {
+                turnstile.reset(widgetIdRef.current);
+              } catch {
+                // ignore
+              }
+            }
             return;
           }
           throw new Error(data.message || `Web3Forms responded with status ${res.status}`);
@@ -467,6 +510,9 @@ const ContactSection = memo(
                   tabIndex={-1}
                   autoComplete="off"
                 />
+
+                {/* Cloudflare Turnstile Token Response Input */}
+                <input type="hidden" name="cf-turnstile-response" value={turnstileToken} />
 
                 {/* Cloudflare Turnstile Verification Widget */}
                 <div className="pt-1">
