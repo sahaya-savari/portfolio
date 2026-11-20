@@ -337,7 +337,7 @@ export default function RootLayout() {
                   </kbd>
                 </button>
               </div>
-              <div className="hidden md:flex liquid-glass px-5 lg:px-6 py-2 rounded-full items-center gap-4 lg:gap-6 backdrop-blur-md shrink-0">
+              <div className="hidden md:flex liquid-glass px-4 lg:px-6 py-2 rounded-full items-center gap-3.5 lg:gap-5 xl:gap-6 backdrop-blur-md shrink-0">
                 <Link
                   to="/about"
                   className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap ${location.pathname === "/about" || (location.pathname === "/" && activeSection === "about") ? "text-white" : "text-white/70 hover:text-white"}`}
@@ -346,21 +346,33 @@ export default function RootLayout() {
                 </Link>
                 <Link
                   to="/experience"
-                  className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap ${location.pathname === "/experience" ? "text-white" : "text-white/70 hover:text-white"}`}
+                  className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap ${location.pathname === "/experience" || (location.pathname === "/" && activeSection === "experience") ? "text-white" : "text-white/70 hover:text-white"}`}
                 >
                   Experience
                 </Link>
                 <Link
                   to="/projects"
-                  className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap ${location.pathname.startsWith("/projects") ? "text-white" : "text-white/70 hover:text-white"}`}
+                  className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap ${location.pathname.startsWith("/projects") || (location.pathname === "/" && activeSection === "projects") ? "text-white" : "text-white/70 hover:text-white"}`}
                 >
                   Projects
+                </Link>
+                <Link
+                  to="/resume"
+                  className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap ${location.pathname === "/resume" ? "text-white" : "text-white/70 hover:text-white"}`}
+                >
+                  Resume
                 </Link>
                 <Link
                   to="/certifications"
                   className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap ${location.pathname === "/certifications" || (location.pathname === "/" && activeSection === "certifications") ? "text-white" : "text-white/70 hover:text-white"}`}
                 >
                   Certifications
+                </Link>
+                <Link
+                  to="/contact"
+                  className={`text-xs lg:text-[13px] xl:text-sm font-body font-medium transition-colors whitespace-nowrap ${location.pathname === "/contact" || (location.pathname === "/" && activeSection === "contact") ? "text-white" : "text-white/70 hover:text-white"}`}
+                >
+                  Contact
                 </Link>
               </div>
               <div className="flex items-center gap-2 sm:gap-3 shrink-0">
@@ -452,6 +464,13 @@ export default function RootLayout() {
                 className="text-2xl sm:text-3xl font-heading font-semibold text-white/70 hover:text-white transition-colors min-h-[44px] flex items-center justify-center"
               >
                 Projects
+              </Link>
+              <Link
+                to="/resume"
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-2xl sm:text-3xl font-heading font-semibold text-white/70 hover:text-white transition-colors min-h-[44px] flex items-center justify-center"
+              >
+                Resume
               </Link>
               <Link
                 to="/certifications"
