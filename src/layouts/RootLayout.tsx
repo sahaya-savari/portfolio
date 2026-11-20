@@ -1,9 +1,21 @@
 import React, { useState, useCallback, useEffect, useRef, lazy, Suspense } from "react";
-import { ArrowUpRight, Menu, X, Search, Sparkles, Download } from "lucide-react";
+import {
+  ArrowUpRight,
+  Menu,
+  X,
+  Search,
+  Sparkles,
+  Download,
+  Github,
+  Linkedin,
+  Code2,
+  Mail,
+} from "lucide-react";
 import { Outlet, useNavigate, useLocation, Link } from "@/lib/router-compat";
 
 import ClickSpark from "../components/ClickSpark";
 import ErrorBoundary from "../components/ErrorBoundary";
+import AstralPreloader from "../components/AstralPreloader";
 import { lockScroll, unlockScroll, forceUnlockScroll } from "../utils/scrollLock";
 import { scrollToSection, revealLazySections, initLazyPreload } from "../utils/navigation";
 const SiteCursor = lazy(() => import("../components/reactbits/SiteCursor"));
@@ -501,6 +513,52 @@ export default function RootLayout() {
         <main id="main-content">
           <Outlet context={{ setShowResume, setShowCommandPalette }} />
         </main>
+
+        {/* Floating Social Sidebar (Desktop - Reference Image 3) */}
+        <aside
+          aria-label="Social and engineering channels"
+          className="fixed left-4 lg:left-6 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-center gap-3 liquid-glass px-2.5 py-4 rounded-full border border-white/15 shadow-2xl backdrop-blur-xl transition-all"
+        >
+          <a
+            href="https://github.com/sahaya-savari"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-9 h-9 rounded-full flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 hover:scale-110 transition-all duration-200"
+            aria-label="Sahaya Savari GitHub profile"
+            title="GitHub"
+          >
+            <Github size={18} />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/sahaya-savari"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-9 h-9 rounded-full flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 hover:scale-110 transition-all duration-200"
+            aria-label="Sahaya Savari LinkedIn profile"
+            title="LinkedIn"
+          >
+            <Linkedin size={18} />
+          </a>
+          <Link
+            to="/projects"
+            className="w-9 h-9 rounded-full flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 hover:scale-110 transition-all duration-200"
+            aria-label="Engineering projects and source code"
+            title="Projects"
+          >
+            <Code2 size={18} />
+          </Link>
+          <Link
+            to="/contact"
+            className="w-9 h-9 rounded-full flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 hover:scale-110 transition-all duration-200"
+            aria-label="Get in touch / Email"
+            title="Contact"
+          >
+            <Mail size={18} />
+          </Link>
+        </aside>
+
+        {/* Astral Preloader (Non-blocking for Lighthouse & Prerender) */}
+        <AstralPreloader />
 
         {/* Universal Floating AI Chatbot Action Button (Mobile & Desktop) */}
         <Link

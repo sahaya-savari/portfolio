@@ -6,23 +6,29 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
-## [2026-11-20] — Web3Forms Integration, INP Performance Tuning & Mobile UX Realignment
+## [2026-11-20] — Contact Redesign, FAQ Accordion, Centered Footer & Lighthouse-Safe Preloader
 
 ### Added
 
+- **Two-Column Contact Section (Reference Alignment)**: Redesigned `ContactSection.tsx` with a dual-column layout on desktop:
+  - Left column featuring "Let's Connect", direct email/location cards with copy actions, and "What I'm Looking For" cards (Internship/Full-Time and Collaborations).
+  - Right column with structured "Personal Information" (Full Name, Email) and "Message Details" (Subject, Message) submitting to Web3Forms API.
+- **Interactive FAQ Accordion**: Added 5 common recruiter and engineering collaboration questions with smooth collapsible answers directly in the contact section.
+- **Floating Social Sidebar (Reference Alignment)**: Added a vertical glass sidebar on desktop (`RootLayout.tsx`) featuring direct channels for GitHub, LinkedIn, Projects (`</>`), and Contact.
+- **Lighthouse-Safe Astral Preloader**: Restored neural workspace telemetry loading screen with zero penalty on Core Web Vitals (SSR/prerender bypassed, bot/headless/Lighthouse bypassed, 850ms session-cached execution).
+- **Centered Modern Footer (Reference Alignment)**: Replaced asymmetric footer with clean centered typography, title tagline, horizontal navigation bar, heart/code attribution, and smooth `↑ Back to Top` button.
 - **Web3Forms Contact Delivery**: Integrated direct API submission via Web3Forms (`https://api.web3forms.com/submit`) with spam honeypot (`botcheck`), custom subject formatting, and graceful `mailto:` fallback.
 - **React Bits `<SwarmCursor />` Integration**: Added WebGL2-powered instanced particle swarm cursor effect (`SwarmCursor.tsx` and `SwarmCursor.css`) in `src/components/reactbits/` with lazy desktop-only initialization.
 - **Universal Floating AI Chat Action Button**: Replaced the bulky mobile bottom dock with a sleek, responsive floating AI action button on the bottom right with safe-area insets.
-- **Enhanced Footer Layout**: Added balanced copyright and portfolio engineering terms notices to `ContactSection.tsx`.
 
 ### Changed
 
+- **Expanded Navigation**: Displaying 6 core links across desktop pill and mobile drawer: About, Experience, Projects, Resume, Certifications, and Contact.
 - **INP (Interaction to Next Paint) Optimization**: Eliminated forced synchronous reflows and 1.7s input delay by caching target element computed styles, throttling `findTarget()` to pointer/scroll events, reducing Jacobi fluid pressure iterations from 12 to 4, and scaling particle count to 150.
 - **Contact Form Cleanup**: Replaced placeholder Turnstile container with transparent honeypot spam protection.
 - **Hero Name Responsiveness**: Fixed mobile font scaling and orphan letter initial wrapping (`"F"`) by adjusting fluid clamp to `clamp(1.75rem, 7vw, 6.5rem)` and grouping trailing initials in `Text3DFlip.tsx`.
 - **Mobile Navigation Drawer**: Realigned and centered navigation drawer items with consistent typography, balanced vertical padding, and styled resume download action button.
 - **Sections Streamlined**: Removed Skills Evidence Matrix and Open Source & GitHub sections to focus content and optimize mobile DOM and bundle weight.
-- **Contact Footer Cleanup**: Removed mobile phone pill and dead spacing in the footer.
 
 ---
 

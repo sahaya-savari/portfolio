@@ -143,7 +143,7 @@ function SegmentedLine({ width = 280, activePct = 0 }: { width?: number; activeP
 }
 
 const AstralPreloader = memo(({ onComplete }: AstralPreloaderProps) => {
-  const [shouldRender, setShouldRender] = useState<boolean>(true);
+  const [shouldRender, setShouldRender] = useState<boolean>(false);
   const [percentage, setPercentage] = useState(0);
   const [fadingOut, setFadingOut] = useState(false);
   const [removed, setRemoved] = useState(false);
@@ -155,7 +155,7 @@ const AstralPreloader = memo(({ onComplete }: AstralPreloaderProps) => {
   const timeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const preloaderRef = useRef<HTMLDivElement>(null);
 
-  const resumeUrl = `${import.meta.env.BASE_URL}resume.pdf?v=${typeof __RESUME_HASH__ !== "undefined" ? __RESUME_HASH__ : Date.now()}`;
+  const resumeUrl = `${import.meta.env.BASE_URL}sahaya_savari_resume.pdf?v=${typeof __RESUME_HASH__ !== "undefined" ? __RESUME_HASH__ : Date.now()}`;
 
   // SSR-safe session and environment check
   useEffect(() => {
