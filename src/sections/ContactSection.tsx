@@ -185,13 +185,13 @@ const ContactSection = memo(
       setFormStatus("submitting");
 
       const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || "service_zzbgsqe";
-      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "template_portfolio";
       const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "JWGNI6cb9noYfzaWt";
 
       if (!serviceId || !templateId || !publicKey) {
         setFormStatus("error");
         setStatusMessage(
-          "EmailJS Template ID is needed. Please open Email Templates -> Settings in your EmailJS dashboard to copy your Template ID.",
+          "EmailJS credentials missing. Please check your EmailJS dashboard settings.",
         );
         return;
       }
