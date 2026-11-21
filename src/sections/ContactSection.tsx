@@ -184,7 +184,7 @@ const ContactSection = memo(
       }
       setFormStatus("submitting");
 
-      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || "service_zzbgsqe";
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || "portfolio";
       const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "template_portfolio";
       const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "JWGNI6cb9noYfzaWt";
 

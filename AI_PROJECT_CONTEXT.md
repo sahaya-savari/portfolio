@@ -465,7 +465,7 @@ This document must be updated whenever any of the following changes occur in the
 ## 17. Contact Form & Anti-Bot Protection Architecture
 
 - **Email Dispatcher**: EmailJS REST API (`https://api.emailjs.com/api/v1.0/email/send`)
-  - **Service ID**: `service_zzbgsqe` (Gmail Service `sahayasavari.info@gmail.com`)
+  - **Service ID**: `portfolio` (Gmail Service `sahayasavari.info@gmail.com`)
   - **Template ID**: `template_portfolio`
   - **Public Key**: `JWGNI6cb9noYfzaWt`
   - **Template Variables**: `fname`, `name`, `email`, `subject`, `message`, `time`, `g-recaptcha-response`
