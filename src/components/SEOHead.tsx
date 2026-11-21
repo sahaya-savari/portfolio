@@ -7,7 +7,7 @@ interface SEOHeadProps {
   url?: string;
   image?: string;
   type?: string;
-  schema?: Record<string, any>;
+  schema?: Record<string, unknown>;
   robots?: string;
 }
 

@@ -11,7 +11,7 @@ export default function SkillAccordion({
 }: {
   title: string;
   children: React.ReactNode;
-  icon: any;
+  icon: React.ComponentType<{ className?: string }>;
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const uid = useId();

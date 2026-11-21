@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components, @typescript-eslint/no-explicit-any */
 // Thin bridge so the imported portfolio components keep their original
 // Link / useNavigate / useLocation / useParams / Outlet usage while running
 // on TanStack Router.

@@ -16,7 +16,7 @@ interface ResumeViewerProps {
   inlineEmbed?: boolean;
 }
 
-const DEFAULT_RESUME_URL = `${(import.meta as any).env.BASE_URL}resume.pdf?v=${typeof __RESUME_HASH__ !== "undefined" ? __RESUME_HASH__ : Date.now()}`;
+const DEFAULT_RESUME_URL = `${import.meta.env.BASE_URL}resume.pdf?v=${typeof __RESUME_HASH__ !== "undefined" ? __RESUME_HASH__ : Date.now()}`;
 
 const ResumeViewer: React.FC<ResumeViewerProps> = ({
   onClose,

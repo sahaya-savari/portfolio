@@ -25,7 +25,7 @@ interface CommandItem {
   title: string;
   subtitle?: string;
   category: "Actions" | "Projects" | "Articles" | "Links";
-  icon: any;
+  icon: React.ComponentType<{ className?: string; size?: number | string }>;
   action: () => void;
 }
 

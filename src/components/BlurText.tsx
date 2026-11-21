@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { m as motion } from "framer-motion";
 import { useEffect, useRef, useState, useMemo } from "react";
 

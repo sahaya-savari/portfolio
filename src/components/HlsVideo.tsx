@@ -16,7 +16,7 @@ import React, { useEffect, useRef, useState } from "react";
  */
 
 // Module-level cache - shared across all HlsVideo instances
-let hlsModuleCache: Promise<any> | null = null;
+let hlsModuleCache: Promise<typeof import("hls.js")> | null = null;
 const getHlsModule = () => {
   if (!hlsModuleCache) {
     hlsModuleCache = import("hls.js");
@@ -71,19 +71,20 @@ const HlsVideo = ({
 
     const video = videoRef.current;
     if (!video) return;
-    let hls: any = null;
+    let hlsInstance: InstanceType<Awaited<ReturnType<typeof getHlsModule>>["default"]> | null =
+      null;
 
     const initHls = async () => {
       const HlsModule = await getHlsModule();
       const Hls = HlsModule.default;
       if (Hls.isSupported()) {
-        hls = new Hls({
+        hlsInstance = new Hls({
           // Performance: Reduce memory/load pressure by limiting buffer length
           maxBufferLength: 10,
           maxMaxBufferLength: 20,
         });
-        hls.loadSource(src);
-        hls.attachMedia(video);
+        hlsInstance.loadSource(src);
+        hlsInstance.attachMedia(video);
       } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
         video.src = src;
       }
@@ -91,7 +92,7 @@ const HlsVideo = ({
 
     initHls();
     return () => {
-      if (hls) hls.destroy();
+      if (hlsInstance) hlsInstance.destroy();
     };
   }, [hasIntersected, src]);
 

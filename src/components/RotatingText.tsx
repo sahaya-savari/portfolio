@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from "react";
 import "./RotatingText.css";
 

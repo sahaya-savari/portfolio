@@ -1,6 +1,6 @@
 declare module "*/Galaxy/Galaxy" {
   import React from "react";
-  const Galaxy: React.ComponentType<any>;
+  const Galaxy: React.ComponentType<Record<string, unknown>>;
   export default Galaxy;
 }
 
