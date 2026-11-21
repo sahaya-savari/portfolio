@@ -460,4 +460,19 @@ This document must be updated whenever any of the following changes occur in the
 - Cache-Control, Security Headers, or CSP policies
 - Deployment workflows or CI/CD scripts
 
+---
+
+## 17. Contact Form & Anti-Bot Protection Architecture
+
+- **Email Dispatcher**: EmailJS REST API (`https://api.emailjs.com/api/v1.0/email/send`)
+  - **Service ID**: `service_zzbgsqe` (Gmail Service `sahayasavari.info@gmail.com`)
+  - **Template ID**: `template_portfolio`
+  - **Public Key**: `JWGNI6cb9noYfzaWt`
+  - **Template Variables**: `fname`, `name`, `email`, `subject`, `message`, `time`, `g-recaptcha-response`
+  - **Zero External Client Redirects**: Form dispatches completely in-page with inline success/error banners. Direct contact cards use click-to-copy to avoid unwanted mail client popups.
+- **Anti-Bot Security**: Cloudflare Turnstile CAPTCHA widget
+  - **Site Key**: `0x4AAAAAAGKldDqh0c-LillI`
+  - **Widget Mode**: Dark theme, managed challenge
+  - **Performance Optimization**: Script loaded lazily with zero impact on initial page load, Core Web Vitals, or Lighthouse scores.
+
 _Do not update this document for trivial code style changes or minor bug fixes. Always verify repository facts before editing._
