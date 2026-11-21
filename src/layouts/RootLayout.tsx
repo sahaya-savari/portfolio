@@ -325,23 +325,25 @@ export default function RootLayout() {
                 <Link
                   to="/"
                   onClick={handleHomeClick}
-                  className="w-10 h-10 liquid-glass-strong rounded-full flex items-center justify-center border border-white/20"
-                  aria-label="SF -       SAHAYA SAVARI F Home"
+                  className="w-10 h-10 bg-black/90 backdrop-blur-xl rounded-full flex items-center justify-center border border-white/20 shadow-xl"
+                  aria-label="SF - SAHAYA SAVARI F Home"
                 >
                   <span className="font-heading text-lg font-bold" aria-hidden="true">
                     SF
                   </span>
                 </Link>
-                <span className="font-body text-xs font-medium tracking-widest hidden xl:flex items-center gap-2">
+                <div className="hidden xl:flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/90 backdrop-blur-xl border border-white/15 shadow-xl">
                   <span
                     className="w-2 h-2 rounded-full bg-green-400 animate-pulse"
                     aria-hidden="true"
                   ></span>
-                  AVAILABLE FOR WORK
-                </span>
+                  <span className="font-body text-xs font-medium tracking-widest text-white/90">
+                    AVAILABLE FOR WORK
+                  </span>
+                </div>
                 <button
                   onClick={() => setShowCommandPalette(true)}
-                  className="font-body text-[11px] font-medium text-white/70 hidden 2xl:flex items-center gap-2.5 ml-4 px-3.5 py-2 rounded-full border border-white/10 bg-white/[0.03] hover:bg-white/[0.08] hover:text-white hover:border-white/20 transition-all duration-300 shadow-sm cursor-pointer group"
+                  className="font-body text-[11px] font-medium text-white/70 hidden 2xl:flex items-center gap-2.5 ml-2 px-3.5 py-2 rounded-full border border-white/15 bg-black/90 backdrop-blur-xl hover:bg-white/[0.1] hover:text-white hover:border-white/25 transition-all duration-300 shadow-xl cursor-pointer group"
                 >
                   <Search
                     size={12}
@@ -353,7 +355,7 @@ export default function RootLayout() {
                   </kbd>
                 </button>
               </div>
-              <div className="hidden md:flex liquid-glass px-4 lg:px-6 py-2 rounded-full items-center gap-3.5 lg:gap-5 xl:gap-6 backdrop-blur-md shrink-0">
+              <div className="hidden md:flex bg-black/90 backdrop-blur-xl border border-white/20 px-4 lg:px-6 py-2 rounded-full items-center gap-3.5 lg:gap-5 xl:gap-6 shadow-2xl shrink-0">
                 <Link
                   to="/"
                   onClick={(e) => handleNavClick(e, "about")}
@@ -400,7 +402,7 @@ export default function RootLayout() {
                 <a
                   href={`${appBase}sahaya_savari_resume.pdf`}
                   download="sahaya_savari_resume.pdf"
-                  className="hidden sm:flex items-center gap-2 px-3 py-2 rounded-full border border-white/15 bg-white/5 hover:bg-white/15 text-white/90 hover:text-white text-xs font-body font-medium transition-all shadow-sm shrink-0"
+                  className="hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-full border border-white/20 bg-black/90 backdrop-blur-xl hover:bg-white/15 text-white/90 hover:text-white text-xs font-body font-medium transition-all shadow-xl shrink-0"
                   aria-label="Download CV (Resume PDF)"
                 >
                   <Download size={13} />

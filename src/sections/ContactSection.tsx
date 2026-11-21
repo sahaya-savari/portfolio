@@ -243,12 +243,20 @@ const ContactSection = memo(
         }
 
         const errText = await res.text();
+        if (errText.includes("Invalid grant") || errText.includes("reconnect")) {
+          throw new Error(
+            "Gmail connection expired. Please open EmailJS -> Email Services -> Gmail_Service, click 'Disconnect' and reconnect your Gmail account.",
+          );
+        }
         throw new Error(errText || `EmailJS returned HTTP ${res.status}`);
       } catch (err) {
         console.error("EmailJS dispatch failed:", err);
         setFormStatus("error");
+        const msg = err instanceof Error ? err.message : "";
         setStatusMessage(
-          "Failed to deliver message via EmailJS. Please try again or email directly to contact@sahayasavari.dev.",
+          msg && msg.length < 200
+            ? msg
+            : "Failed to deliver message via EmailJS. Please try again or email directly to contact@sahayasavari.dev.",
         );
       }
     };
