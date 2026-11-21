@@ -135,9 +135,9 @@ export default function CommandPalette({ onClose, onOpenResume }: CommandPalette
       },
       { title: "Portfolio Website", url: "https://sahayasavari.dev", sub: "sahayasavari.dev" },
       {
-        title: "Email Contact",
-        url: "mailto:contact@sahayasavari.dev",
-        sub: "contact@sahayasavari.dev",
+        title: "Send a Message",
+        url: "#contact",
+        sub: "Open contact form to send an email",
       },
     ];
 

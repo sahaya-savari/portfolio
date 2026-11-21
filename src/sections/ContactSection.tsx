@@ -301,28 +301,37 @@ const ContactSection = memo(
 
               {/* Direct Contact Cards */}
               <div className="space-y-3">
-                {/* Email Card */}
-                <div className="liquid-glass-strong border border-white/10 rounded-2xl p-4 flex items-center justify-between gap-3 hover:border-white/25 transition-all">
+                {/* Email Card - Click to copy (Zero external mail client redirect) */}
+                <div
+                  onClick={() => copyToClipboard(CONTACT_INFO.email, "email")}
+                  className="liquid-glass-strong border border-white/10 rounded-2xl p-4 flex items-center justify-between gap-3 hover:border-white/25 transition-all cursor-pointer group"
+                  title="Click to copy email address"
+                >
                   <div className="flex items-center gap-3.5 min-w-0">
-                    <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/80 shrink-0">
+                    <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/80 shrink-0 group-hover:scale-105 transition-transform">
                       <Mail className="w-5 h-5" />
                     </div>
                     <div className="min-w-0">
-                      <div className="text-[11px] font-mono uppercase tracking-wider text-white/50">
-                        Email
+                      <div className="text-[11px] font-mono uppercase tracking-wider text-white/50 flex items-center gap-2">
+                        <span>Email</span>
+                        {copiedItem === "email" && (
+                          <span className="text-emerald-400 font-semibold text-[10px] normal-case animate-pulse">
+                            • Copied to clipboard!
+                          </span>
+                        )}
                       </div>
-                      <a
-                        href={`mailto:${CONTACT_INFO.email}`}
-                        className="text-sm font-body font-medium text-white hover:text-white/80 transition-colors truncate block"
-                      >
+                      <span className="text-sm font-body font-medium text-white group-hover:text-white/80 transition-colors truncate block">
                         {CONTACT_INFO.email}
-                      </a>
+                      </span>
                     </div>
                   </div>
                   <div className="flex items-center gap-1.5 shrink-0">
                     <button
                       type="button"
-                      onClick={() => copyToClipboard(CONTACT_INFO.email, "email")}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        copyToClipboard(CONTACT_INFO.email, "email");
+                      }}
                       className="p-2 rounded-lg bg-white/5 hover:bg-white/15 text-white/70 hover:text-white transition-colors cursor-pointer"
                       title="Copy email to clipboard"
                       aria-label="Copy email"
@@ -333,14 +342,6 @@ const ContactSection = memo(
                         <Copy className="w-4 h-4" />
                       )}
                     </button>
-                    <a
-                      href={`mailto:${CONTACT_INFO.email}`}
-                      className="p-2 rounded-lg bg-white/5 hover:bg-white/15 text-white/70 hover:text-white transition-colors"
-                      title="Open mail client"
-                      aria-label="Open email client"
-                    >
-                      <ArrowUpRight className="w-4 h-4" />
-                    </a>
                   </div>
                 </div>
 
@@ -689,14 +690,19 @@ const ContactSection = memo(
               >
                 <Linkedin size={16} />
               </a>
-              <a
-                href="mailto:contact@sahayasavari.dev"
-                className="w-9 h-9 rounded-full flex items-center justify-center border border-white/10 bg-white/5 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-200"
-                aria-label="Email contact"
-                title="Email"
+              <button
+                type="button"
+                onClick={() => {
+                  scrollToSection("contact", { behavior: "smooth" });
+                  const nameEl = document.getElementById("contact-name");
+                  nameEl?.focus();
+                }}
+                className="w-9 h-9 rounded-full flex items-center justify-center border border-white/10 bg-white/5 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-200 cursor-pointer"
+                aria-label="Send message - scroll to contact form"
+                title="Send Message"
               >
                 <Mail size={16} />
-              </a>
+              </button>
             </div>
 
             {/* Horizontal Navigation Links */}
